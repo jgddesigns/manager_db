@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./clients/client2"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE2_URL")
+}
+
+model audit_superior {
+  id                    Int     @id @default(autoincrement())
+  changed_by_number     String? @db.VarChar(30)
+  changed_employee      String? @db.VarChar(50)
+  changed_employee_role String? @db.VarChar(50)
+  changed_employee_efis String? @db.VarChar(50)
+  old_superior_name     String? @db.VarChar(50)
+  old_superior_efis     String? @db.VarChar(50)
+  new_superior_name     String? @db.VarChar(50)
+  new_superior_efis     String? @db.VarChar(50)
+  changed_on_date       String? @db.VarChar(30)
+
+  @@index([changed_by_number], map: "changed_by_fk")
+}
+
+model audit_table {
+  id                Int     @id @default(autoincrement())
+  change_type       String? @db.VarChar(50)
+  changed_by_number String? @db.VarChar(30)
+  changed_by_name   String? @db.VarChar(50)
+  changed_by_email  String? @db.VarChar(50)
+  old_name          String  @db.VarChar(50)
+  new_name          String  @db.VarChar(50)
+  old_email         String  @db.VarChar(99)
+  new_email         String  @db.VarChar(99)
+  role              String? @db.VarChar(50)
+  efis              String? @db.VarChar(8)
+  region            String? @db.VarChar(8)
+  date_time         String? @db.VarChar(30)
+
+  @@index([changed_by_number], map: "changed_by_fk2")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model manager_dashboard_tbl {
+  manager_dashboard_id Int     @id @default(autoincrement())
+  REGION               String? @db.VarChar(2)
+  DISTRICT             String? @db.VarChar(2)
+  TRAM                 String? @db.VarChar(50)
+  EFIS                 String? @db.VarChar(4)
+  DEPUTY_NAME          String? @db.VarChar(50)
+  DEPUTY_EMAIL         String? @db.VarChar(50)
+  PRIN_UNIT            String? @db.VarChar(50)
+  PRIN_EFIS            String? @db.VarChar(4)
+  PRIN_NAME            String? @db.VarChar(50)
+  PRIN_EMAIL           String? @db.VarChar(50)
+  CHIEF_UNIT           String? @db.VarChar(50)
+  CHIEF_EFIS           String? @db.VarChar(4)
+  CHIEF_NAME           String? @db.VarChar(50)
+  CHIEF_EMAIL          String? @db.VarChar(50)
+  STE_UNIT             String? @db.VarChar(50)
+  STE_EFIS             String? @db.VarChar(4)
+  STE_NAME             String? @db.VarChar(50)
+  STE_EMAIL            String? @db.VarChar(50)
+
+  @@ignore
+}
