@@ -4,7 +4,7 @@ import CaltransLogo from '../images/caltranslogo-main.png'
 
 export default function Sidebar() {
   return (
-    <div className="flex fixed top-0 left-0 w-16 flex-col bg-gray-900 h-screen shadow-lg">
+    <div className="flex fixed top-0 left-0 w-16 flex-col bg-gray-900 h-screen shadow-lg ">
         <div className="pt-2" >
             <Image src={CaltransLogo} layout="responsive" alt=""  className="pt-16" />
         </div>
