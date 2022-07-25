@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   // User is Logged in
   if(user){
     return (
-      <Layout>
+      <Layout >
         <Component {...pageProps} />
       </Layout>
     )
