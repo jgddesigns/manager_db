@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     if (token) {
       const decoded : Object = jwt_decode(token);
       setUser(decoded);
-      // console.log(decoded);
+      console.log(decoded);
     }
   }, []);
 

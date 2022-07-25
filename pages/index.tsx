@@ -7,12 +7,13 @@ const Home: NextPage = () => {
   
   return (
     // Form with 3 dropdowns
-    <div className="flex ">
+    <div className="flex">
       
       <Head>
         <title>Manager DB Tool</title>
       </Head>
-      <form>
+
+      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         
         <select aria-label="Default select example"
         className="form-select appearance-noneblock w-full px-3 py-1.5 text-base font-normal text-gray-700
@@ -47,6 +48,7 @@ const Home: NextPage = () => {
           <option value="3">Three</option>
 
         </select>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
       </form>
     </div>
   )
