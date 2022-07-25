@@ -116,6 +116,28 @@ exports.Prisma.Audit_tableScalarFieldEnum = makeEnum({
   date_time: 'date_time'
 });
 
+exports.Prisma.ManagersScalarFieldEnum = makeEnum({
+  manager_dashboard_id: 'manager_dashboard_id',
+  REGION: 'REGION',
+  DISTRICT: 'DISTRICT',
+  TRAM: 'TRAM',
+  EFIS: 'EFIS',
+  DEPUTY_NAME: 'DEPUTY_NAME',
+  DEPUTY_EMAIL: 'DEPUTY_EMAIL',
+  PRIN_UNIT: 'PRIN_UNIT',
+  PRIN_EFIS: 'PRIN_EFIS',
+  PRIN_NAME: 'PRIN_NAME',
+  PRIN_EMAIL: 'PRIN_EMAIL',
+  CHIEF_UNIT: 'CHIEF_UNIT',
+  CHIEF_EFIS: 'CHIEF_EFIS',
+  CHIEF_NAME: 'CHIEF_NAME',
+  CHIEF_EMAIL: 'CHIEF_EMAIL',
+  STE_UNIT: 'STE_UNIT',
+  STE_EFIS: 'STE_EFIS',
+  STE_NAME: 'STE_NAME',
+  STE_EMAIL: 'STE_EMAIL'
+});
+
 exports.Prisma.SortOrder = makeEnum({
   asc: 'asc',
   desc: 'desc'
@@ -124,7 +146,8 @@ exports.Prisma.SortOrder = makeEnum({
 
 exports.Prisma.ModelName = makeEnum({
   audit_superior: 'audit_superior',
-  audit_table: 'audit_table'
+  audit_table: 'audit_table',
+  managers: 'managers'
 });
 
 /**

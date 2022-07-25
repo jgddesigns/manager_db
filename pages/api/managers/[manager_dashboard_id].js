@@ -9,14 +9,14 @@ export default function handler(req,res){
             message: `Method ${req.method} not allowed}`
         })
     }
-    const audit_id = Number(req.query.audit_id);
-
-    prisma2.audit_table.findFirst({
+    const manager_dashboard_id = Number(req.query.manager_dashboard_id);
+    
+    prisma2.managers.findFirst({
         where: {
-            id: audit_id
+            manager_dashboard_id: manager_dashboard_id
         }
-    }).then(audit => {
-        res.send(audit)  //Send Audit object back to client
+    }).then(manager => {
+        res.send(manager)  //Send Audit object back to client
     }
     ).catch(err => {
         res.status(500).json({

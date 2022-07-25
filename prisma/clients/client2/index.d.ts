@@ -49,6 +49,32 @@ export type audit_table = {
   date_time: string | null
 }
 
+/**
+ * Model managers
+ * 
+ */
+export type managers = {
+  manager_dashboard_id: number
+  REGION: string | null
+  DISTRICT: string | null
+  TRAM: string | null
+  EFIS: string | null
+  DEPUTY_NAME: string | null
+  DEPUTY_EMAIL: string | null
+  PRIN_UNIT: string | null
+  PRIN_EFIS: string | null
+  PRIN_NAME: string | null
+  PRIN_EMAIL: string | null
+  CHIEF_UNIT: string | null
+  CHIEF_EFIS: string | null
+  CHIEF_NAME: string | null
+  CHIEF_EMAIL: string | null
+  STE_UNIT: string | null
+  STE_EFIS: string | null
+  STE_NAME: string | null
+  STE_EMAIL: string | null
+}
+
 
 /**
  * ##  Prisma Client ʲˢ
@@ -209,6 +235,16 @@ export class PrismaClient<
     * ```
     */
   get audit_table(): Prisma.audit_tableDelegate<GlobalReject>;
+
+  /**
+   * `prisma.managers`: Exposes CRUD operations for the **managers** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Managers
+    * const managers = await prisma.managers.findMany()
+    * ```
+    */
+  get managers(): Prisma.managersDelegate<GlobalReject>;
 }
 
 export namespace Prisma {
@@ -678,7 +714,8 @@ export namespace Prisma {
 
   export const ModelName: {
     audit_superior: 'audit_superior',
-    audit_table: 'audit_table'
+    audit_table: 'audit_table',
+    managers: 'managers'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -2761,6 +2798,1025 @@ export namespace Prisma {
 
 
   /**
+   * Model managers
+   */
+
+
+  export type AggregateManagers = {
+    _count: ManagersCountAggregateOutputType | null
+    _avg: ManagersAvgAggregateOutputType | null
+    _sum: ManagersSumAggregateOutputType | null
+    _min: ManagersMinAggregateOutputType | null
+    _max: ManagersMaxAggregateOutputType | null
+  }
+
+  export type ManagersAvgAggregateOutputType = {
+    manager_dashboard_id: number | null
+  }
+
+  export type ManagersSumAggregateOutputType = {
+    manager_dashboard_id: number | null
+  }
+
+  export type ManagersMinAggregateOutputType = {
+    manager_dashboard_id: number | null
+    REGION: string | null
+    DISTRICT: string | null
+    TRAM: string | null
+    EFIS: string | null
+    DEPUTY_NAME: string | null
+    DEPUTY_EMAIL: string | null
+    PRIN_UNIT: string | null
+    PRIN_EFIS: string | null
+    PRIN_NAME: string | null
+    PRIN_EMAIL: string | null
+    CHIEF_UNIT: string | null
+    CHIEF_EFIS: string | null
+    CHIEF_NAME: string | null
+    CHIEF_EMAIL: string | null
+    STE_UNIT: string | null
+    STE_EFIS: string | null
+    STE_NAME: string | null
+    STE_EMAIL: string | null
+  }
+
+  export type ManagersMaxAggregateOutputType = {
+    manager_dashboard_id: number | null
+    REGION: string | null
+    DISTRICT: string | null
+    TRAM: string | null
+    EFIS: string | null
+    DEPUTY_NAME: string | null
+    DEPUTY_EMAIL: string | null
+    PRIN_UNIT: string | null
+    PRIN_EFIS: string | null
+    PRIN_NAME: string | null
+    PRIN_EMAIL: string | null
+    CHIEF_UNIT: string | null
+    CHIEF_EFIS: string | null
+    CHIEF_NAME: string | null
+    CHIEF_EMAIL: string | null
+    STE_UNIT: string | null
+    STE_EFIS: string | null
+    STE_NAME: string | null
+    STE_EMAIL: string | null
+  }
+
+  export type ManagersCountAggregateOutputType = {
+    manager_dashboard_id: number
+    REGION: number
+    DISTRICT: number
+    TRAM: number
+    EFIS: number
+    DEPUTY_NAME: number
+    DEPUTY_EMAIL: number
+    PRIN_UNIT: number
+    PRIN_EFIS: number
+    PRIN_NAME: number
+    PRIN_EMAIL: number
+    CHIEF_UNIT: number
+    CHIEF_EFIS: number
+    CHIEF_NAME: number
+    CHIEF_EMAIL: number
+    STE_UNIT: number
+    STE_EFIS: number
+    STE_NAME: number
+    STE_EMAIL: number
+    _all: number
+  }
+
+
+  export type ManagersAvgAggregateInputType = {
+    manager_dashboard_id?: true
+  }
+
+  export type ManagersSumAggregateInputType = {
+    manager_dashboard_id?: true
+  }
+
+  export type ManagersMinAggregateInputType = {
+    manager_dashboard_id?: true
+    REGION?: true
+    DISTRICT?: true
+    TRAM?: true
+    EFIS?: true
+    DEPUTY_NAME?: true
+    DEPUTY_EMAIL?: true
+    PRIN_UNIT?: true
+    PRIN_EFIS?: true
+    PRIN_NAME?: true
+    PRIN_EMAIL?: true
+    CHIEF_UNIT?: true
+    CHIEF_EFIS?: true
+    CHIEF_NAME?: true
+    CHIEF_EMAIL?: true
+    STE_UNIT?: true
+    STE_EFIS?: true
+    STE_NAME?: true
+    STE_EMAIL?: true
+  }
+
+  export type ManagersMaxAggregateInputType = {
+    manager_dashboard_id?: true
+    REGION?: true
+    DISTRICT?: true
+    TRAM?: true
+    EFIS?: true
+    DEPUTY_NAME?: true
+    DEPUTY_EMAIL?: true
+    PRIN_UNIT?: true
+    PRIN_EFIS?: true
+    PRIN_NAME?: true
+    PRIN_EMAIL?: true
+    CHIEF_UNIT?: true
+    CHIEF_EFIS?: true
+    CHIEF_NAME?: true
+    CHIEF_EMAIL?: true
+    STE_UNIT?: true
+    STE_EFIS?: true
+    STE_NAME?: true
+    STE_EMAIL?: true
+  }
+
+  export type ManagersCountAggregateInputType = {
+    manager_dashboard_id?: true
+    REGION?: true
+    DISTRICT?: true
+    TRAM?: true
+    EFIS?: true
+    DEPUTY_NAME?: true
+    DEPUTY_EMAIL?: true
+    PRIN_UNIT?: true
+    PRIN_EFIS?: true
+    PRIN_NAME?: true
+    PRIN_EMAIL?: true
+    CHIEF_UNIT?: true
+    CHIEF_EFIS?: true
+    CHIEF_NAME?: true
+    CHIEF_EMAIL?: true
+    STE_UNIT?: true
+    STE_EFIS?: true
+    STE_NAME?: true
+    STE_EMAIL?: true
+    _all?: true
+  }
+
+  export type ManagersAggregateArgs = {
+    /**
+     * Filter which managers to aggregate.
+     * 
+    **/
+    where?: managersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of managers to fetch.
+     * 
+    **/
+    orderBy?: Enumerable<managersOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     * 
+    **/
+    cursor?: managersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` managers from the position of the cursor.
+     * 
+    **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` managers.
+     * 
+    **/
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned managers
+    **/
+    _count?: true | ManagersCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ManagersAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ManagersSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ManagersMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ManagersMaxAggregateInputType
+  }
+
+  export type GetManagersAggregateType<T extends ManagersAggregateArgs> = {
+        [P in keyof T & keyof AggregateManagers]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateManagers[P]>
+      : GetScalarType<T[P], AggregateManagers[P]>
+  }
+
+
+
+
+  export type ManagersGroupByArgs = {
+    where?: managersWhereInput
+    orderBy?: Enumerable<managersOrderByWithAggregationInput>
+    by: Array<ManagersScalarFieldEnum>
+    having?: managersScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ManagersCountAggregateInputType | true
+    _avg?: ManagersAvgAggregateInputType
+    _sum?: ManagersSumAggregateInputType
+    _min?: ManagersMinAggregateInputType
+    _max?: ManagersMaxAggregateInputType
+  }
+
+
+  export type ManagersGroupByOutputType = {
+    manager_dashboard_id: number
+    REGION: string | null
+    DISTRICT: string | null
+    TRAM: string | null
+    EFIS: string | null
+    DEPUTY_NAME: string | null
+    DEPUTY_EMAIL: string | null
+    PRIN_UNIT: string | null
+    PRIN_EFIS: string | null
+    PRIN_NAME: string | null
+    PRIN_EMAIL: string | null
+    CHIEF_UNIT: string | null
+    CHIEF_EFIS: string | null
+    CHIEF_NAME: string | null
+    CHIEF_EMAIL: string | null
+    STE_UNIT: string | null
+    STE_EFIS: string | null
+    STE_NAME: string | null
+    STE_EMAIL: string | null
+    _count: ManagersCountAggregateOutputType | null
+    _avg: ManagersAvgAggregateOutputType | null
+    _sum: ManagersSumAggregateOutputType | null
+    _min: ManagersMinAggregateOutputType | null
+    _max: ManagersMaxAggregateOutputType | null
+  }
+
+  type GetManagersGroupByPayload<T extends ManagersGroupByArgs> = PrismaPromise<
+    Array<
+      PickArray<ManagersGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ManagersGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ManagersGroupByOutputType[P]>
+            : GetScalarType<T[P], ManagersGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type managersSelect = {
+    manager_dashboard_id?: boolean
+    REGION?: boolean
+    DISTRICT?: boolean
+    TRAM?: boolean
+    EFIS?: boolean
+    DEPUTY_NAME?: boolean
+    DEPUTY_EMAIL?: boolean
+    PRIN_UNIT?: boolean
+    PRIN_EFIS?: boolean
+    PRIN_NAME?: boolean
+    PRIN_EMAIL?: boolean
+    CHIEF_UNIT?: boolean
+    CHIEF_EFIS?: boolean
+    CHIEF_NAME?: boolean
+    CHIEF_EMAIL?: boolean
+    STE_UNIT?: boolean
+    STE_EFIS?: boolean
+    STE_NAME?: boolean
+    STE_EMAIL?: boolean
+  }
+
+  export type managersGetPayload<
+    S extends boolean | null | undefined | managersArgs,
+    U = keyof S
+      > = S extends true
+        ? managers
+    : S extends undefined
+    ? never
+    : S extends managersArgs | managersFindManyArgs
+    ?'include' extends U
+    ? managers 
+    : 'select' extends U
+    ? {
+    [P in TrueKeys<S['select']>]:
+    P extends keyof managers ? managers[P] : never
+  } 
+    : managers
+  : managers
+
+
+  type managersCountArgs = Merge<
+    Omit<managersFindManyArgs, 'select' | 'include'> & {
+      select?: ManagersCountAggregateInputType | true
+    }
+  >
+
+  export interface managersDelegate<GlobalRejectSettings> {
+    /**
+     * Find zero or one Managers that matches the filter.
+     * @param {managersFindUniqueArgs} args - Arguments to find a Managers
+     * @example
+     * // Get one Managers
+     * const managers = await prisma.managers.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends managersFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, managersFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'managers'> extends True ? CheckSelect<T, Prisma__managersClient<managers>, Prisma__managersClient<managersGetPayload<T>>> : CheckSelect<T, Prisma__managersClient<managers | null >, Prisma__managersClient<managersGetPayload<T> | null >>
+
+    /**
+     * Find the first Managers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {managersFindFirstArgs} args - Arguments to find a Managers
+     * @example
+     * // Get one Managers
+     * const managers = await prisma.managers.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends managersFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, managersFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'managers'> extends True ? CheckSelect<T, Prisma__managersClient<managers>, Prisma__managersClient<managersGetPayload<T>>> : CheckSelect<T, Prisma__managersClient<managers | null >, Prisma__managersClient<managersGetPayload<T> | null >>
+
+    /**
+     * Find zero or more Managers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {managersFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Managers
+     * const managers = await prisma.managers.findMany()
+     * 
+     * // Get first 10 Managers
+     * const managers = await prisma.managers.findMany({ take: 10 })
+     * 
+     * // Only select the `manager_dashboard_id`
+     * const managersWithManager_dashboard_idOnly = await prisma.managers.findMany({ select: { manager_dashboard_id: true } })
+     * 
+    **/
+    findMany<T extends managersFindManyArgs>(
+      args?: SelectSubset<T, managersFindManyArgs>
+    ): CheckSelect<T, PrismaPromise<Array<managers>>, PrismaPromise<Array<managersGetPayload<T>>>>
+
+    /**
+     * Create a Managers.
+     * @param {managersCreateArgs} args - Arguments to create a Managers.
+     * @example
+     * // Create one Managers
+     * const Managers = await prisma.managers.create({
+     *   data: {
+     *     // ... data to create a Managers
+     *   }
+     * })
+     * 
+    **/
+    create<T extends managersCreateArgs>(
+      args: SelectSubset<T, managersCreateArgs>
+    ): CheckSelect<T, Prisma__managersClient<managers>, Prisma__managersClient<managersGetPayload<T>>>
+
+    /**
+     * Create many Managers.
+     *     @param {managersCreateManyArgs} args - Arguments to create many Managers.
+     *     @example
+     *     // Create many Managers
+     *     const managers = await prisma.managers.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends managersCreateManyArgs>(
+      args?: SelectSubset<T, managersCreateManyArgs>
+    ): PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Managers.
+     * @param {managersDeleteArgs} args - Arguments to delete one Managers.
+     * @example
+     * // Delete one Managers
+     * const Managers = await prisma.managers.delete({
+     *   where: {
+     *     // ... filter to delete one Managers
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends managersDeleteArgs>(
+      args: SelectSubset<T, managersDeleteArgs>
+    ): CheckSelect<T, Prisma__managersClient<managers>, Prisma__managersClient<managersGetPayload<T>>>
+
+    /**
+     * Update one Managers.
+     * @param {managersUpdateArgs} args - Arguments to update one Managers.
+     * @example
+     * // Update one Managers
+     * const managers = await prisma.managers.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends managersUpdateArgs>(
+      args: SelectSubset<T, managersUpdateArgs>
+    ): CheckSelect<T, Prisma__managersClient<managers>, Prisma__managersClient<managersGetPayload<T>>>
+
+    /**
+     * Delete zero or more Managers.
+     * @param {managersDeleteManyArgs} args - Arguments to filter Managers to delete.
+     * @example
+     * // Delete a few Managers
+     * const { count } = await prisma.managers.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends managersDeleteManyArgs>(
+      args?: SelectSubset<T, managersDeleteManyArgs>
+    ): PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Managers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {managersUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Managers
+     * const managers = await prisma.managers.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends managersUpdateManyArgs>(
+      args: SelectSubset<T, managersUpdateManyArgs>
+    ): PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Managers.
+     * @param {managersUpsertArgs} args - Arguments to update or create a Managers.
+     * @example
+     * // Update or create a Managers
+     * const managers = await prisma.managers.upsert({
+     *   create: {
+     *     // ... data to create a Managers
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Managers we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends managersUpsertArgs>(
+      args: SelectSubset<T, managersUpsertArgs>
+    ): CheckSelect<T, Prisma__managersClient<managers>, Prisma__managersClient<managersGetPayload<T>>>
+
+    /**
+     * Find one Managers that matches the filter or throw
+     * `NotFoundError` if no matches were found.
+     * @param {managersFindUniqueOrThrowArgs} args - Arguments to find a Managers
+     * @example
+     * // Get one Managers
+     * const managers = await prisma.managers.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends managersFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, managersFindUniqueOrThrowArgs>
+    ): CheckSelect<T, Prisma__managersClient<managers>, Prisma__managersClient<managersGetPayload<T>>>
+
+    /**
+     * Find the first Managers that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {managersFindFirstOrThrowArgs} args - Arguments to find a Managers
+     * @example
+     * // Get one Managers
+     * const managers = await prisma.managers.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends managersFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, managersFindFirstOrThrowArgs>
+    ): CheckSelect<T, Prisma__managersClient<managers>, Prisma__managersClient<managersGetPayload<T>>>
+
+    /**
+     * Count the number of Managers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {managersCountArgs} args - Arguments to filter Managers to count.
+     * @example
+     * // Count the number of Managers
+     * const count = await prisma.managers.count({
+     *   where: {
+     *     // ... the filter for the Managers we want to count
+     *   }
+     * })
+    **/
+    count<T extends managersCountArgs>(
+      args?: Subset<T, managersCountArgs>,
+    ): PrismaPromise<
+      T extends _Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ManagersCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Managers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ManagersAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ManagersAggregateArgs>(args: Subset<T, ManagersAggregateArgs>): PrismaPromise<GetManagersAggregateType<T>>
+
+    /**
+     * Group by Managers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ManagersGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ManagersGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ManagersGroupByArgs['orderBy'] }
+        : { orderBy?: ManagersGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends TupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ManagersGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetManagersGroupByPayload<T> : PrismaPromise<InputErrors>
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for managers.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__managersClient<T> implements PrismaPromise<T> {
+    [prisma]: true;
+    private readonly _dmmf;
+    private readonly _fetcher;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    constructor(_dmmf: runtime.DMMFClass, _fetcher: PrismaClientFetcher, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+    readonly [Symbol.toStringTag]: 'PrismaClientPromise';
+
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+  // Custom InputTypes
+
+  /**
+   * managers base type for findUnique actions
+   */
+  export type managersFindUniqueArgsBase = {
+    /**
+     * Select specific fields to fetch from the managers
+     * 
+    **/
+    select?: managersSelect | null
+    /**
+     * Filter, which managers to fetch.
+     * 
+    **/
+    where: managersWhereUniqueInput
+  }
+
+  /**
+   * managers: findUnique
+   */
+  export interface managersFindUniqueArgs extends managersFindUniqueArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * managers base type for findFirst actions
+   */
+  export type managersFindFirstArgsBase = {
+    /**
+     * Select specific fields to fetch from the managers
+     * 
+    **/
+    select?: managersSelect | null
+    /**
+     * Filter, which managers to fetch.
+     * 
+    **/
+    where?: managersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of managers to fetch.
+     * 
+    **/
+    orderBy?: Enumerable<managersOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for managers.
+     * 
+    **/
+    cursor?: managersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` managers from the position of the cursor.
+     * 
+    **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` managers.
+     * 
+    **/
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of managers.
+     * 
+    **/
+    distinct?: Enumerable<ManagersScalarFieldEnum>
+  }
+
+  /**
+   * managers: findFirst
+   */
+  export interface managersFindFirstArgs extends managersFindFirstArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * managers findMany
+   */
+  export type managersFindManyArgs = {
+    /**
+     * Select specific fields to fetch from the managers
+     * 
+    **/
+    select?: managersSelect | null
+    /**
+     * Filter, which managers to fetch.
+     * 
+    **/
+    where?: managersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of managers to fetch.
+     * 
+    **/
+    orderBy?: Enumerable<managersOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing managers.
+     * 
+    **/
+    cursor?: managersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` managers from the position of the cursor.
+     * 
+    **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` managers.
+     * 
+    **/
+    skip?: number
+    distinct?: Enumerable<ManagersScalarFieldEnum>
+  }
+
+
+  /**
+   * managers create
+   */
+  export type managersCreateArgs = {
+    /**
+     * Select specific fields to fetch from the managers
+     * 
+    **/
+    select?: managersSelect | null
+    /**
+     * The data needed to create a managers.
+     * 
+    **/
+    data: XOR<managersCreateInput, managersUncheckedCreateInput>
+  }
+
+
+  /**
+   * managers createMany
+   */
+  export type managersCreateManyArgs = {
+    /**
+     * The data used to create many managers.
+     * 
+    **/
+    data: Enumerable<managersCreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * managers update
+   */
+  export type managersUpdateArgs = {
+    /**
+     * Select specific fields to fetch from the managers
+     * 
+    **/
+    select?: managersSelect | null
+    /**
+     * The data needed to update a managers.
+     * 
+    **/
+    data: XOR<managersUpdateInput, managersUncheckedUpdateInput>
+    /**
+     * Choose, which managers to update.
+     * 
+    **/
+    where: managersWhereUniqueInput
+  }
+
+
+  /**
+   * managers updateMany
+   */
+  export type managersUpdateManyArgs = {
+    /**
+     * The data used to update managers.
+     * 
+    **/
+    data: XOR<managersUpdateManyMutationInput, managersUncheckedUpdateManyInput>
+    /**
+     * Filter which managers to update
+     * 
+    **/
+    where?: managersWhereInput
+  }
+
+
+  /**
+   * managers upsert
+   */
+  export type managersUpsertArgs = {
+    /**
+     * Select specific fields to fetch from the managers
+     * 
+    **/
+    select?: managersSelect | null
+    /**
+     * The filter to search for the managers to update in case it exists.
+     * 
+    **/
+    where: managersWhereUniqueInput
+    /**
+     * In case the managers found by the `where` argument doesn't exist, create a new managers with this data.
+     * 
+    **/
+    create: XOR<managersCreateInput, managersUncheckedCreateInput>
+    /**
+     * In case the managers was found with the provided `where` argument, update it with this data.
+     * 
+    **/
+    update: XOR<managersUpdateInput, managersUncheckedUpdateInput>
+  }
+
+
+  /**
+   * managers delete
+   */
+  export type managersDeleteArgs = {
+    /**
+     * Select specific fields to fetch from the managers
+     * 
+    **/
+    select?: managersSelect | null
+    /**
+     * Filter which managers to delete.
+     * 
+    **/
+    where: managersWhereUniqueInput
+  }
+
+
+  /**
+   * managers deleteMany
+   */
+  export type managersDeleteManyArgs = {
+    /**
+     * Filter which managers to delete
+     * 
+    **/
+    where?: managersWhereInput
+  }
+
+
+  /**
+   * managers: findUniqueOrThrow
+   */
+  export type managersFindUniqueOrThrowArgs = managersFindUniqueArgsBase
+      
+
+  /**
+   * managers: findFirstOrThrow
+   */
+  export type managersFindFirstOrThrowArgs = managersFindFirstArgsBase
+      
+
+  /**
+   * managers without action
+   */
+  export type managersArgs = {
+    /**
+     * Select specific fields to fetch from the managers
+     * 
+    **/
+    select?: managersSelect | null
+  }
+
+
+
+  /**
    * Enums
    */
 
@@ -2800,6 +3856,31 @@ export namespace Prisma {
   };
 
   export type Audit_tableScalarFieldEnum = (typeof Audit_tableScalarFieldEnum)[keyof typeof Audit_tableScalarFieldEnum]
+
+
+  export const ManagersScalarFieldEnum: {
+    manager_dashboard_id: 'manager_dashboard_id',
+    REGION: 'REGION',
+    DISTRICT: 'DISTRICT',
+    TRAM: 'TRAM',
+    EFIS: 'EFIS',
+    DEPUTY_NAME: 'DEPUTY_NAME',
+    DEPUTY_EMAIL: 'DEPUTY_EMAIL',
+    PRIN_UNIT: 'PRIN_UNIT',
+    PRIN_EFIS: 'PRIN_EFIS',
+    PRIN_NAME: 'PRIN_NAME',
+    PRIN_EMAIL: 'PRIN_EMAIL',
+    CHIEF_UNIT: 'CHIEF_UNIT',
+    CHIEF_EFIS: 'CHIEF_EFIS',
+    CHIEF_NAME: 'CHIEF_NAME',
+    CHIEF_EMAIL: 'CHIEF_EMAIL',
+    STE_UNIT: 'STE_UNIT',
+    STE_EFIS: 'STE_EFIS',
+    STE_NAME: 'STE_NAME',
+    STE_EMAIL: 'STE_EMAIL'
+  };
+
+  export type ManagersScalarFieldEnum = (typeof ManagersScalarFieldEnum)[keyof typeof ManagersScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -2959,6 +4040,109 @@ export namespace Prisma {
     efis?: StringNullableWithAggregatesFilter | string | null
     region?: StringNullableWithAggregatesFilter | string | null
     date_time?: StringNullableWithAggregatesFilter | string | null
+  }
+
+  export type managersWhereInput = {
+    AND?: Enumerable<managersWhereInput>
+    OR?: Enumerable<managersWhereInput>
+    NOT?: Enumerable<managersWhereInput>
+    manager_dashboard_id?: IntFilter | number
+    REGION?: StringNullableFilter | string | null
+    DISTRICT?: StringNullableFilter | string | null
+    TRAM?: StringNullableFilter | string | null
+    EFIS?: StringNullableFilter | string | null
+    DEPUTY_NAME?: StringNullableFilter | string | null
+    DEPUTY_EMAIL?: StringNullableFilter | string | null
+    PRIN_UNIT?: StringNullableFilter | string | null
+    PRIN_EFIS?: StringNullableFilter | string | null
+    PRIN_NAME?: StringNullableFilter | string | null
+    PRIN_EMAIL?: StringNullableFilter | string | null
+    CHIEF_UNIT?: StringNullableFilter | string | null
+    CHIEF_EFIS?: StringNullableFilter | string | null
+    CHIEF_NAME?: StringNullableFilter | string | null
+    CHIEF_EMAIL?: StringNullableFilter | string | null
+    STE_UNIT?: StringNullableFilter | string | null
+    STE_EFIS?: StringNullableFilter | string | null
+    STE_NAME?: StringNullableFilter | string | null
+    STE_EMAIL?: StringNullableFilter | string | null
+  }
+
+  export type managersOrderByWithRelationInput = {
+    manager_dashboard_id?: SortOrder
+    REGION?: SortOrder
+    DISTRICT?: SortOrder
+    TRAM?: SortOrder
+    EFIS?: SortOrder
+    DEPUTY_NAME?: SortOrder
+    DEPUTY_EMAIL?: SortOrder
+    PRIN_UNIT?: SortOrder
+    PRIN_EFIS?: SortOrder
+    PRIN_NAME?: SortOrder
+    PRIN_EMAIL?: SortOrder
+    CHIEF_UNIT?: SortOrder
+    CHIEF_EFIS?: SortOrder
+    CHIEF_NAME?: SortOrder
+    CHIEF_EMAIL?: SortOrder
+    STE_UNIT?: SortOrder
+    STE_EFIS?: SortOrder
+    STE_NAME?: SortOrder
+    STE_EMAIL?: SortOrder
+  }
+
+  export type managersWhereUniqueInput = {
+    manager_dashboard_id?: number
+  }
+
+  export type managersOrderByWithAggregationInput = {
+    manager_dashboard_id?: SortOrder
+    REGION?: SortOrder
+    DISTRICT?: SortOrder
+    TRAM?: SortOrder
+    EFIS?: SortOrder
+    DEPUTY_NAME?: SortOrder
+    DEPUTY_EMAIL?: SortOrder
+    PRIN_UNIT?: SortOrder
+    PRIN_EFIS?: SortOrder
+    PRIN_NAME?: SortOrder
+    PRIN_EMAIL?: SortOrder
+    CHIEF_UNIT?: SortOrder
+    CHIEF_EFIS?: SortOrder
+    CHIEF_NAME?: SortOrder
+    CHIEF_EMAIL?: SortOrder
+    STE_UNIT?: SortOrder
+    STE_EFIS?: SortOrder
+    STE_NAME?: SortOrder
+    STE_EMAIL?: SortOrder
+    _count?: managersCountOrderByAggregateInput
+    _avg?: managersAvgOrderByAggregateInput
+    _max?: managersMaxOrderByAggregateInput
+    _min?: managersMinOrderByAggregateInput
+    _sum?: managersSumOrderByAggregateInput
+  }
+
+  export type managersScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<managersScalarWhereWithAggregatesInput>
+    OR?: Enumerable<managersScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<managersScalarWhereWithAggregatesInput>
+    manager_dashboard_id?: IntWithAggregatesFilter | number
+    REGION?: StringNullableWithAggregatesFilter | string | null
+    DISTRICT?: StringNullableWithAggregatesFilter | string | null
+    TRAM?: StringNullableWithAggregatesFilter | string | null
+    EFIS?: StringNullableWithAggregatesFilter | string | null
+    DEPUTY_NAME?: StringNullableWithAggregatesFilter | string | null
+    DEPUTY_EMAIL?: StringNullableWithAggregatesFilter | string | null
+    PRIN_UNIT?: StringNullableWithAggregatesFilter | string | null
+    PRIN_EFIS?: StringNullableWithAggregatesFilter | string | null
+    PRIN_NAME?: StringNullableWithAggregatesFilter | string | null
+    PRIN_EMAIL?: StringNullableWithAggregatesFilter | string | null
+    CHIEF_UNIT?: StringNullableWithAggregatesFilter | string | null
+    CHIEF_EFIS?: StringNullableWithAggregatesFilter | string | null
+    CHIEF_NAME?: StringNullableWithAggregatesFilter | string | null
+    CHIEF_EMAIL?: StringNullableWithAggregatesFilter | string | null
+    STE_UNIT?: StringNullableWithAggregatesFilter | string | null
+    STE_EFIS?: StringNullableWithAggregatesFilter | string | null
+    STE_NAME?: StringNullableWithAggregatesFilter | string | null
+    STE_EMAIL?: StringNullableWithAggregatesFilter | string | null
   }
 
   export type audit_superiorCreateInput = {
@@ -3158,6 +4342,157 @@ export namespace Prisma {
     date_time?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type managersCreateInput = {
+    REGION?: string | null
+    DISTRICT?: string | null
+    TRAM?: string | null
+    EFIS?: string | null
+    DEPUTY_NAME?: string | null
+    DEPUTY_EMAIL?: string | null
+    PRIN_UNIT?: string | null
+    PRIN_EFIS?: string | null
+    PRIN_NAME?: string | null
+    PRIN_EMAIL?: string | null
+    CHIEF_UNIT?: string | null
+    CHIEF_EFIS?: string | null
+    CHIEF_NAME?: string | null
+    CHIEF_EMAIL?: string | null
+    STE_UNIT?: string | null
+    STE_EFIS?: string | null
+    STE_NAME?: string | null
+    STE_EMAIL?: string | null
+  }
+
+  export type managersUncheckedCreateInput = {
+    manager_dashboard_id?: number
+    REGION?: string | null
+    DISTRICT?: string | null
+    TRAM?: string | null
+    EFIS?: string | null
+    DEPUTY_NAME?: string | null
+    DEPUTY_EMAIL?: string | null
+    PRIN_UNIT?: string | null
+    PRIN_EFIS?: string | null
+    PRIN_NAME?: string | null
+    PRIN_EMAIL?: string | null
+    CHIEF_UNIT?: string | null
+    CHIEF_EFIS?: string | null
+    CHIEF_NAME?: string | null
+    CHIEF_EMAIL?: string | null
+    STE_UNIT?: string | null
+    STE_EFIS?: string | null
+    STE_NAME?: string | null
+    STE_EMAIL?: string | null
+  }
+
+  export type managersUpdateInput = {
+    REGION?: NullableStringFieldUpdateOperationsInput | string | null
+    DISTRICT?: NullableStringFieldUpdateOperationsInput | string | null
+    TRAM?: NullableStringFieldUpdateOperationsInput | string | null
+    EFIS?: NullableStringFieldUpdateOperationsInput | string | null
+    DEPUTY_NAME?: NullableStringFieldUpdateOperationsInput | string | null
+    DEPUTY_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    PRIN_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
+    PRIN_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
+    PRIN_NAME?: NullableStringFieldUpdateOperationsInput | string | null
+    PRIN_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    CHIEF_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
+    CHIEF_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
+    CHIEF_NAME?: NullableStringFieldUpdateOperationsInput | string | null
+    CHIEF_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    STE_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
+    STE_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
+    STE_NAME?: NullableStringFieldUpdateOperationsInput | string | null
+    STE_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type managersUncheckedUpdateInput = {
+    manager_dashboard_id?: IntFieldUpdateOperationsInput | number
+    REGION?: NullableStringFieldUpdateOperationsInput | string | null
+    DISTRICT?: NullableStringFieldUpdateOperationsInput | string | null
+    TRAM?: NullableStringFieldUpdateOperationsInput | string | null
+    EFIS?: NullableStringFieldUpdateOperationsInput | string | null
+    DEPUTY_NAME?: NullableStringFieldUpdateOperationsInput | string | null
+    DEPUTY_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    PRIN_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
+    PRIN_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
+    PRIN_NAME?: NullableStringFieldUpdateOperationsInput | string | null
+    PRIN_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    CHIEF_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
+    CHIEF_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
+    CHIEF_NAME?: NullableStringFieldUpdateOperationsInput | string | null
+    CHIEF_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    STE_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
+    STE_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
+    STE_NAME?: NullableStringFieldUpdateOperationsInput | string | null
+    STE_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type managersCreateManyInput = {
+    manager_dashboard_id?: number
+    REGION?: string | null
+    DISTRICT?: string | null
+    TRAM?: string | null
+    EFIS?: string | null
+    DEPUTY_NAME?: string | null
+    DEPUTY_EMAIL?: string | null
+    PRIN_UNIT?: string | null
+    PRIN_EFIS?: string | null
+    PRIN_NAME?: string | null
+    PRIN_EMAIL?: string | null
+    CHIEF_UNIT?: string | null
+    CHIEF_EFIS?: string | null
+    CHIEF_NAME?: string | null
+    CHIEF_EMAIL?: string | null
+    STE_UNIT?: string | null
+    STE_EFIS?: string | null
+    STE_NAME?: string | null
+    STE_EMAIL?: string | null
+  }
+
+  export type managersUpdateManyMutationInput = {
+    REGION?: NullableStringFieldUpdateOperationsInput | string | null
+    DISTRICT?: NullableStringFieldUpdateOperationsInput | string | null
+    TRAM?: NullableStringFieldUpdateOperationsInput | string | null
+    EFIS?: NullableStringFieldUpdateOperationsInput | string | null
+    DEPUTY_NAME?: NullableStringFieldUpdateOperationsInput | string | null
+    DEPUTY_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    PRIN_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
+    PRIN_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
+    PRIN_NAME?: NullableStringFieldUpdateOperationsInput | string | null
+    PRIN_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    CHIEF_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
+    CHIEF_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
+    CHIEF_NAME?: NullableStringFieldUpdateOperationsInput | string | null
+    CHIEF_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    STE_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
+    STE_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
+    STE_NAME?: NullableStringFieldUpdateOperationsInput | string | null
+    STE_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type managersUncheckedUpdateManyInput = {
+    manager_dashboard_id?: IntFieldUpdateOperationsInput | number
+    REGION?: NullableStringFieldUpdateOperationsInput | string | null
+    DISTRICT?: NullableStringFieldUpdateOperationsInput | string | null
+    TRAM?: NullableStringFieldUpdateOperationsInput | string | null
+    EFIS?: NullableStringFieldUpdateOperationsInput | string | null
+    DEPUTY_NAME?: NullableStringFieldUpdateOperationsInput | string | null
+    DEPUTY_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    PRIN_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
+    PRIN_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
+    PRIN_NAME?: NullableStringFieldUpdateOperationsInput | string | null
+    PRIN_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    CHIEF_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
+    CHIEF_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
+    CHIEF_NAME?: NullableStringFieldUpdateOperationsInput | string | null
+    CHIEF_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    STE_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
+    STE_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
+    STE_NAME?: NullableStringFieldUpdateOperationsInput | string | null
+    STE_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type IntFilter = {
     equals?: number
     in?: Enumerable<number>
@@ -3348,6 +4683,80 @@ export namespace Prisma {
     _count?: NestedIntFilter
     _min?: NestedStringFilter
     _max?: NestedStringFilter
+  }
+
+  export type managersCountOrderByAggregateInput = {
+    manager_dashboard_id?: SortOrder
+    REGION?: SortOrder
+    DISTRICT?: SortOrder
+    TRAM?: SortOrder
+    EFIS?: SortOrder
+    DEPUTY_NAME?: SortOrder
+    DEPUTY_EMAIL?: SortOrder
+    PRIN_UNIT?: SortOrder
+    PRIN_EFIS?: SortOrder
+    PRIN_NAME?: SortOrder
+    PRIN_EMAIL?: SortOrder
+    CHIEF_UNIT?: SortOrder
+    CHIEF_EFIS?: SortOrder
+    CHIEF_NAME?: SortOrder
+    CHIEF_EMAIL?: SortOrder
+    STE_UNIT?: SortOrder
+    STE_EFIS?: SortOrder
+    STE_NAME?: SortOrder
+    STE_EMAIL?: SortOrder
+  }
+
+  export type managersAvgOrderByAggregateInput = {
+    manager_dashboard_id?: SortOrder
+  }
+
+  export type managersMaxOrderByAggregateInput = {
+    manager_dashboard_id?: SortOrder
+    REGION?: SortOrder
+    DISTRICT?: SortOrder
+    TRAM?: SortOrder
+    EFIS?: SortOrder
+    DEPUTY_NAME?: SortOrder
+    DEPUTY_EMAIL?: SortOrder
+    PRIN_UNIT?: SortOrder
+    PRIN_EFIS?: SortOrder
+    PRIN_NAME?: SortOrder
+    PRIN_EMAIL?: SortOrder
+    CHIEF_UNIT?: SortOrder
+    CHIEF_EFIS?: SortOrder
+    CHIEF_NAME?: SortOrder
+    CHIEF_EMAIL?: SortOrder
+    STE_UNIT?: SortOrder
+    STE_EFIS?: SortOrder
+    STE_NAME?: SortOrder
+    STE_EMAIL?: SortOrder
+  }
+
+  export type managersMinOrderByAggregateInput = {
+    manager_dashboard_id?: SortOrder
+    REGION?: SortOrder
+    DISTRICT?: SortOrder
+    TRAM?: SortOrder
+    EFIS?: SortOrder
+    DEPUTY_NAME?: SortOrder
+    DEPUTY_EMAIL?: SortOrder
+    PRIN_UNIT?: SortOrder
+    PRIN_EFIS?: SortOrder
+    PRIN_NAME?: SortOrder
+    PRIN_EMAIL?: SortOrder
+    CHIEF_UNIT?: SortOrder
+    CHIEF_EFIS?: SortOrder
+    CHIEF_NAME?: SortOrder
+    CHIEF_EMAIL?: SortOrder
+    STE_UNIT?: SortOrder
+    STE_EFIS?: SortOrder
+    STE_NAME?: SortOrder
+    STE_EMAIL?: SortOrder
+  }
+
+  export type managersSumOrderByAggregateInput = {
+    manager_dashboard_id?: SortOrder
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
