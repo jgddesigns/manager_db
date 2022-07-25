@@ -1,4 +1,4 @@
-import {FaBell, FaUser, FaHome, FaSignOutAlt, FaBug} from 'react-icons/fa'
+import {FaBell, FaUser, FaHome, FaSignOutAlt, FaBug,FaTh} from 'react-icons/fa'
 import Image from 'next/image'
 import CaltransLogo from '../images/caltranslogo-main.png'
 
@@ -11,6 +11,7 @@ export default function Sidebar() {
         <SideBarIcon icon={<FaHome/>} text={"Home"}/>
         <SideBarIcon icon={<FaUser/>} text={"Logged in as:"}/>
         <SideBarIcon icon={<FaBug/>} text={"Report a Bug"}/>
+        <SideBarIcon icon={<FaTh/>} text={"Dashboard"}/>
     </div>
   )
 }

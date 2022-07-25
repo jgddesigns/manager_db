@@ -2,11 +2,14 @@ import Sidebar from "./Sidebar";
 
 export default function Layout({children}) {
   return (
-    <div>
-        <div className="flex">
+    
+    <div className="flex h-screen justify-center ">
+        <div >
             <Sidebar />
         </div>
-        {children}
+        <div  >
+          {children}
+        </div>
     </div>
   )
 }
