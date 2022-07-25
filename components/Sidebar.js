@@ -8,38 +8,26 @@ export default function Sidebar() {
         <div className="pt-2" >
             <Image src={CaltransLogo} layout="responsive" alt=""  className="pt-16" />
         </div>
-
-        <SideBarIcon icon={<FaHome/>} />
-        <SideBarIcon icon={<FaUser/>} />
-        <SideBarIcon icon={<FaBug/>} />
+        <SideBarIcon icon={<FaHome/>} text={"Home"}/>
+        <SideBarIcon icon={<FaUser/>} text={"Logged in as:"}/>
+        <SideBarIcon icon={<FaBug/>} text={"Report a Bug"}/>
     </div>
   )
 }
 
 
-const SideBarIcon = ({icon,text="tooltip",clickEvent}) => {
-    if(clickEvent) {
+const defaultClickEvent = () => {
+    // Do stuff on button click
+    console.log("Sidebar button clicked.")
+}
+
+const SideBarIcon = ({icon,text="tooltip",clickEvent=defaultClickEvent}) => {
         return (
-            <div className="sidebar-icon group" onClick={clickEvent()}>
+            <div className="sidebar-icon group" onClick={clickEvent}>
                 {icon}
                 <span className= "sidebar-tooltip group-hover:scale-100"> {text}</span>
             </div>
         )
-    } else {
-        return (
-            <div className="sidebar-icon group">
-                {icon}
-                <span className="sidebar-tooltip group-hover:scale-100"> {text}</span>
-            </div>
-            
-        )
-    }
+
 }
 
-const SideBarImageIcon = ({src,text="tooltip"}) => {
-    return(
-        <div className="sidebar-image-icon">
-            <Image src={src} alt="" layout="fill"/>
-        </div>
-    )
-}   
