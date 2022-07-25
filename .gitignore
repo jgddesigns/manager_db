@@ -36,3 +36,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+#Daemon next-client (for running as a microsoft service)
+/daemon

@@ -1,14 +1,13 @@
 {
   
-  "basename": "managerdb/build",
-  "ServerName": "svgccrm01.dot.ca.gov:3030",
-  "completePath": "http://svgccrm01.dot.ca.gov:3030/managerdb",
+  "ServerName": "svgccrm01.dot.ca.gov:3000",
+  "completePath": "http://svgccrm01.dot.ca.gov:3000/ManagerDB",
   "name": "managerdb",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "scripts": {
+  "dev": "node server.js ",
+  "build": "next build",
+  "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "@prisma/client": "^4.1.0",
