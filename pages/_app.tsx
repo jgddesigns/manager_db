@@ -10,13 +10,18 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [user, setUser] = useState<Object | null>(null);
   
   useEffect(() => {
-    // Get token from jwt cookie
-    const token = document.cookie.replace(/(?:(?:^|.*;\s*)jwt\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    if (token) {
-      const decoded : Object = jwt_decode(token);
-      setUser(decoded);
-      console.log(decoded);
+    // fetch from api/current-user
+    fetch("/ManagerDB/api/current-user/", {
+      method: "GET",
+    }).then((res) => {
+      if (res.status === 200) {
+        res.json().then((data) => {
+          setUser(data); 
+        });
+      }
     }
+    );
+
   }, []);
 
 
