@@ -5,11 +5,13 @@ import 'tailwindcss/tailwind.css'
 import jwt_decode from "jwt-decode";
 import {useState,useEffect} from "react";
 import NoAccessLoader from "../components/NoAccessLoader";
-
+import LoadingLoader from "../components/LoadingLoader";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [user, setUser] = useState<Object | null>(null);
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [user, setUser] = useState<Object | null>(null); // User JWT defined in header
+  const [isAdmin, setIsAdmin] = useState<boolean>(false); // Only users with Admin Access should be able to access the app.
+  const [isLoading, setIsLoading] = useState<boolean>(true); // Show loading screen while checking if user has admin access.
+
   useEffect(() => {
     // fetch from api/current-user
     fetch("/ManagerDB/api/current-user/", {
@@ -20,6 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           console.log(data);
           setUser(data); 
           setIsAdmin(data.IsAdmin);
+          setIsLoading(false);
         });
       }
     }
@@ -29,10 +32,19 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 
 
+  
 
+  // Page has loaded...
   // User is Logged in and isAdmin = true
-
   if(user && isAdmin){
+
+      // While page is loading...
+    if(isLoading){
+      return (
+        <LoadingLoader/>
+      )
+    }
+
     return (
       <Layout >
         <Component {...pageProps} />
@@ -46,7 +58,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     )
 
   }
-  
 }
 
 
