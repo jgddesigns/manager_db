@@ -17,10 +17,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     fetch("/ManagerDB/api/current-user/", {
       method: "GET",
     }).then((res) => {
-      if (res) {
-        console.log(res);
+      if (res.status === 200) {
+        // console.log(res);
         res.json().then((data) => {
-          console.log(data);
+          // console.log(data);
           setUser(data); 
           setIsAdmin(data.IsAdmin);
           setIsLoading(false);

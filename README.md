@@ -14,7 +14,7 @@ npx prisma : View Prisma CLI functionality
 npx prisma db pull : Pull the latest schema from the database
 npx prisma db pull --schema prisma/schema1.prisma : Pull the latest schema from the database to ORM. 
 npx prisma generate : Generate Prisma Client based on MYSQL database schema. Necessary before using new Model.
-
+npx prisma generate --schema prisma/schema1.prisma : Generate Prisma Client based on MYSQL database schema. Necessary before using new Model.
 
 ## To run the server as a Windows Service: 
 https://stackoverflow.com/questions/10547974/how-to-install-node-js-as-windows-service

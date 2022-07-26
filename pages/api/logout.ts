@@ -13,6 +13,12 @@ const token = req.cookies.jwt;
         message: "You have been logged out"
         })
     }
+    else{
+        res.status(200).json({
+            message: "You are not logged in"
+        })
+    }
+
     
 
 
