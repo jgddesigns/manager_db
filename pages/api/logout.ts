@@ -5,6 +5,7 @@ export default async function handler(req : NextApiRequest,res: NextApiResponse)
 // Destroy the cookie with jwt
 // Set the cookie to expire in the past
 const token = req.cookies.jwt;
+
     if (token) {
     res.setHeader('Set-Cookie', `jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`);
     // 

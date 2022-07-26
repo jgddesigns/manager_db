@@ -12,7 +12,7 @@ const token = req.cookies.jwt;
     res.send(decoded);
     }
     else{
-        res.status(401).json({
+        res.status(200).json({
             message: "You are not logged in"
         })
         

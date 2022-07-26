@@ -10,6 +10,11 @@ module.exports = {
         permanent: true,
         basePath: false,
       },
+      // TODO : If someone goes to /ManagerDB/Home, direct them to /ManagerDB
+      
     ]
-  }
+  },
+  
+
+
 }

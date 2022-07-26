@@ -17,7 +17,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     fetch("/ManagerDB/api/current-user/", {
       method: "GET",
     }).then((res) => {
-      if (res.status === 200) {
+      if (res) {
+        console.log(res);
         res.json().then((data) => {
           console.log(data);
           setUser(data); 
@@ -38,12 +39,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   // User is Logged in and isAdmin = true
   if(user && isAdmin){
 
-      // While page is loading...
-    if(isLoading){
-      return (
-        <LoadingLoader/>
-      )
-    }
 
     return (
       <Layout >
@@ -53,9 +48,18 @@ function MyApp({ Component, pageProps }: AppProps) {
   }
   // User is not logged in
   else{
-    return (
-      <NoAccessLoader />
-    )
+     // While page is loading...
+     if(isLoading){
+      return (
+        <LoadingLoader/>
+      )
+    }
+    else{
+      return (
+        <NoAccessLoader />
+      )
+    }
+    
 
   }
 }
