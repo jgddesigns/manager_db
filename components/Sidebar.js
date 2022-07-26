@@ -1,6 +1,6 @@
 import {FaBell, FaUser, FaHome, FaSignOutAlt, FaBug,FaTh} from 'react-icons/fa'
 import Image from 'next/image'
-import CaltransLogo from '../images/caltranslogo-main.png'
+import CaltransLogo from '../public/images/caltranslogo-main.png'
 
 
 export default function Sidebar() {
