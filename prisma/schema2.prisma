@@ -41,7 +41,7 @@ model audit_table {
   @@index([changed_by_number], map: "changed_by_fk2")
 }
 
-model managers {
+model manager_dashboard_tbl {
   manager_dashboard_id Int     @id @default(autoincrement())
   REGION               String? @db.VarChar(2)
   DISTRICT             String? @db.VarChar(2)

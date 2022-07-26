@@ -116,7 +116,7 @@ exports.Prisma.Audit_tableScalarFieldEnum = makeEnum({
   date_time: 'date_time'
 });
 
-exports.Prisma.ManagersScalarFieldEnum = makeEnum({
+exports.Prisma.Manager_dashboard_tblScalarFieldEnum = makeEnum({
   manager_dashboard_id: 'manager_dashboard_id',
   REGION: 'REGION',
   DISTRICT: 'DISTRICT',
@@ -147,7 +147,7 @@ exports.Prisma.SortOrder = makeEnum({
 exports.Prisma.ModelName = makeEnum({
   audit_superior: 'audit_superior',
   audit_table: 'audit_table',
-  managers: 'managers'
+  manager_dashboard_tbl: 'manager_dashboard_tbl'
 });
 
 /**

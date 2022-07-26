@@ -11,7 +11,7 @@ export default function handler(req,res){
     }
     const manager_dashboard_id = Number(req.query.manager_dashboard_id);
     
-    prisma2.managers.findFirst({
+    prisma2.manager_dashboard_tbl.findFirst({
         where: {
             manager_dashboard_id: manager_dashboard_id
         }

@@ -50,10 +50,10 @@ export type audit_table = {
 }
 
 /**
- * Model managers
+ * Model manager_dashboard_tbl
  * 
  */
-export type managers = {
+export type manager_dashboard_tbl = {
   manager_dashboard_id: number
   REGION: string | null
   DISTRICT: string | null
@@ -237,14 +237,14 @@ export class PrismaClient<
   get audit_table(): Prisma.audit_tableDelegate<GlobalReject>;
 
   /**
-   * `prisma.managers`: Exposes CRUD operations for the **managers** model.
+   * `prisma.manager_dashboard_tbl`: Exposes CRUD operations for the **manager_dashboard_tbl** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Managers
-    * const managers = await prisma.managers.findMany()
+    * // Fetch zero or more Manager_dashboard_tbls
+    * const manager_dashboard_tbls = await prisma.manager_dashboard_tbl.findMany()
     * ```
     */
-  get managers(): Prisma.managersDelegate<GlobalReject>;
+  get manager_dashboard_tbl(): Prisma.manager_dashboard_tblDelegate<GlobalReject>;
 }
 
 export namespace Prisma {
@@ -715,7 +715,7 @@ export namespace Prisma {
   export const ModelName: {
     audit_superior: 'audit_superior',
     audit_table: 'audit_table',
-    managers: 'managers'
+    manager_dashboard_tbl: 'manager_dashboard_tbl'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -2798,49 +2798,27 @@ export namespace Prisma {
 
 
   /**
-   * Model managers
+   * Model manager_dashboard_tbl
    */
 
 
-  export type AggregateManagers = {
-    _count: ManagersCountAggregateOutputType | null
-    _avg: ManagersAvgAggregateOutputType | null
-    _sum: ManagersSumAggregateOutputType | null
-    _min: ManagersMinAggregateOutputType | null
-    _max: ManagersMaxAggregateOutputType | null
+  export type AggregateManager_dashboard_tbl = {
+    _count: Manager_dashboard_tblCountAggregateOutputType | null
+    _avg: Manager_dashboard_tblAvgAggregateOutputType | null
+    _sum: Manager_dashboard_tblSumAggregateOutputType | null
+    _min: Manager_dashboard_tblMinAggregateOutputType | null
+    _max: Manager_dashboard_tblMaxAggregateOutputType | null
   }
 
-  export type ManagersAvgAggregateOutputType = {
+  export type Manager_dashboard_tblAvgAggregateOutputType = {
     manager_dashboard_id: number | null
   }
 
-  export type ManagersSumAggregateOutputType = {
+  export type Manager_dashboard_tblSumAggregateOutputType = {
     manager_dashboard_id: number | null
   }
 
-  export type ManagersMinAggregateOutputType = {
-    manager_dashboard_id: number | null
-    REGION: string | null
-    DISTRICT: string | null
-    TRAM: string | null
-    EFIS: string | null
-    DEPUTY_NAME: string | null
-    DEPUTY_EMAIL: string | null
-    PRIN_UNIT: string | null
-    PRIN_EFIS: string | null
-    PRIN_NAME: string | null
-    PRIN_EMAIL: string | null
-    CHIEF_UNIT: string | null
-    CHIEF_EFIS: string | null
-    CHIEF_NAME: string | null
-    CHIEF_EMAIL: string | null
-    STE_UNIT: string | null
-    STE_EFIS: string | null
-    STE_NAME: string | null
-    STE_EMAIL: string | null
-  }
-
-  export type ManagersMaxAggregateOutputType = {
+  export type Manager_dashboard_tblMinAggregateOutputType = {
     manager_dashboard_id: number | null
     REGION: string | null
     DISTRICT: string | null
@@ -2862,7 +2840,29 @@ export namespace Prisma {
     STE_EMAIL: string | null
   }
 
-  export type ManagersCountAggregateOutputType = {
+  export type Manager_dashboard_tblMaxAggregateOutputType = {
+    manager_dashboard_id: number | null
+    REGION: string | null
+    DISTRICT: string | null
+    TRAM: string | null
+    EFIS: string | null
+    DEPUTY_NAME: string | null
+    DEPUTY_EMAIL: string | null
+    PRIN_UNIT: string | null
+    PRIN_EFIS: string | null
+    PRIN_NAME: string | null
+    PRIN_EMAIL: string | null
+    CHIEF_UNIT: string | null
+    CHIEF_EFIS: string | null
+    CHIEF_NAME: string | null
+    CHIEF_EMAIL: string | null
+    STE_UNIT: string | null
+    STE_EFIS: string | null
+    STE_NAME: string | null
+    STE_EMAIL: string | null
+  }
+
+  export type Manager_dashboard_tblCountAggregateOutputType = {
     manager_dashboard_id: number
     REGION: number
     DISTRICT: number
@@ -2886,37 +2886,15 @@ export namespace Prisma {
   }
 
 
-  export type ManagersAvgAggregateInputType = {
+  export type Manager_dashboard_tblAvgAggregateInputType = {
     manager_dashboard_id?: true
   }
 
-  export type ManagersSumAggregateInputType = {
+  export type Manager_dashboard_tblSumAggregateInputType = {
     manager_dashboard_id?: true
   }
 
-  export type ManagersMinAggregateInputType = {
-    manager_dashboard_id?: true
-    REGION?: true
-    DISTRICT?: true
-    TRAM?: true
-    EFIS?: true
-    DEPUTY_NAME?: true
-    DEPUTY_EMAIL?: true
-    PRIN_UNIT?: true
-    PRIN_EFIS?: true
-    PRIN_NAME?: true
-    PRIN_EMAIL?: true
-    CHIEF_UNIT?: true
-    CHIEF_EFIS?: true
-    CHIEF_NAME?: true
-    CHIEF_EMAIL?: true
-    STE_UNIT?: true
-    STE_EFIS?: true
-    STE_NAME?: true
-    STE_EMAIL?: true
-  }
-
-  export type ManagersMaxAggregateInputType = {
+  export type Manager_dashboard_tblMinAggregateInputType = {
     manager_dashboard_id?: true
     REGION?: true
     DISTRICT?: true
@@ -2938,7 +2916,29 @@ export namespace Prisma {
     STE_EMAIL?: true
   }
 
-  export type ManagersCountAggregateInputType = {
+  export type Manager_dashboard_tblMaxAggregateInputType = {
+    manager_dashboard_id?: true
+    REGION?: true
+    DISTRICT?: true
+    TRAM?: true
+    EFIS?: true
+    DEPUTY_NAME?: true
+    DEPUTY_EMAIL?: true
+    PRIN_UNIT?: true
+    PRIN_EFIS?: true
+    PRIN_NAME?: true
+    PRIN_EMAIL?: true
+    CHIEF_UNIT?: true
+    CHIEF_EFIS?: true
+    CHIEF_NAME?: true
+    CHIEF_EMAIL?: true
+    STE_UNIT?: true
+    STE_EFIS?: true
+    STE_NAME?: true
+    STE_EMAIL?: true
+  }
+
+  export type Manager_dashboard_tblCountAggregateInputType = {
     manager_dashboard_id?: true
     REGION?: true
     DISTRICT?: true
@@ -2961,99 +2961,99 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type ManagersAggregateArgs = {
+  export type Manager_dashboard_tblAggregateArgs = {
     /**
-     * Filter which managers to aggregate.
+     * Filter which manager_dashboard_tbl to aggregate.
      * 
     **/
-    where?: managersWhereInput
+    where?: manager_dashboard_tblWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of managers to fetch.
+     * Determine the order of manager_dashboard_tbls to fetch.
      * 
     **/
-    orderBy?: Enumerable<managersOrderByWithRelationInput>
+    orderBy?: Enumerable<manager_dashboard_tblOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      * 
     **/
-    cursor?: managersWhereUniqueInput
+    cursor?: manager_dashboard_tblWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` managers from the position of the cursor.
+     * Take `±n` manager_dashboard_tbls from the position of the cursor.
      * 
     **/
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` managers.
+     * Skip the first `n` manager_dashboard_tbls.
      * 
     **/
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned managers
+     * Count returned manager_dashboard_tbls
     **/
-    _count?: true | ManagersCountAggregateInputType
+    _count?: true | Manager_dashboard_tblCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: ManagersAvgAggregateInputType
+    _avg?: Manager_dashboard_tblAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: ManagersSumAggregateInputType
+    _sum?: Manager_dashboard_tblSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: ManagersMinAggregateInputType
+    _min?: Manager_dashboard_tblMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: ManagersMaxAggregateInputType
+    _max?: Manager_dashboard_tblMaxAggregateInputType
   }
 
-  export type GetManagersAggregateType<T extends ManagersAggregateArgs> = {
-        [P in keyof T & keyof AggregateManagers]: P extends '_count' | 'count'
+  export type GetManager_dashboard_tblAggregateType<T extends Manager_dashboard_tblAggregateArgs> = {
+        [P in keyof T & keyof AggregateManager_dashboard_tbl]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateManagers[P]>
-      : GetScalarType<T[P], AggregateManagers[P]>
+        : GetScalarType<T[P], AggregateManager_dashboard_tbl[P]>
+      : GetScalarType<T[P], AggregateManager_dashboard_tbl[P]>
   }
 
 
 
 
-  export type ManagersGroupByArgs = {
-    where?: managersWhereInput
-    orderBy?: Enumerable<managersOrderByWithAggregationInput>
-    by: Array<ManagersScalarFieldEnum>
-    having?: managersScalarWhereWithAggregatesInput
+  export type Manager_dashboard_tblGroupByArgs = {
+    where?: manager_dashboard_tblWhereInput
+    orderBy?: Enumerable<manager_dashboard_tblOrderByWithAggregationInput>
+    by: Array<Manager_dashboard_tblScalarFieldEnum>
+    having?: manager_dashboard_tblScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: ManagersCountAggregateInputType | true
-    _avg?: ManagersAvgAggregateInputType
-    _sum?: ManagersSumAggregateInputType
-    _min?: ManagersMinAggregateInputType
-    _max?: ManagersMaxAggregateInputType
+    _count?: Manager_dashboard_tblCountAggregateInputType | true
+    _avg?: Manager_dashboard_tblAvgAggregateInputType
+    _sum?: Manager_dashboard_tblSumAggregateInputType
+    _min?: Manager_dashboard_tblMinAggregateInputType
+    _max?: Manager_dashboard_tblMaxAggregateInputType
   }
 
 
-  export type ManagersGroupByOutputType = {
+  export type Manager_dashboard_tblGroupByOutputType = {
     manager_dashboard_id: number
     REGION: string | null
     DISTRICT: string | null
@@ -3073,28 +3073,28 @@ export namespace Prisma {
     STE_EFIS: string | null
     STE_NAME: string | null
     STE_EMAIL: string | null
-    _count: ManagersCountAggregateOutputType | null
-    _avg: ManagersAvgAggregateOutputType | null
-    _sum: ManagersSumAggregateOutputType | null
-    _min: ManagersMinAggregateOutputType | null
-    _max: ManagersMaxAggregateOutputType | null
+    _count: Manager_dashboard_tblCountAggregateOutputType | null
+    _avg: Manager_dashboard_tblAvgAggregateOutputType | null
+    _sum: Manager_dashboard_tblSumAggregateOutputType | null
+    _min: Manager_dashboard_tblMinAggregateOutputType | null
+    _max: Manager_dashboard_tblMaxAggregateOutputType | null
   }
 
-  type GetManagersGroupByPayload<T extends ManagersGroupByArgs> = PrismaPromise<
+  type GetManager_dashboard_tblGroupByPayload<T extends Manager_dashboard_tblGroupByArgs> = PrismaPromise<
     Array<
-      PickArray<ManagersGroupByOutputType, T['by']> &
+      PickArray<Manager_dashboard_tblGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof ManagersGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof Manager_dashboard_tblGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], ManagersGroupByOutputType[P]>
-            : GetScalarType<T[P], ManagersGroupByOutputType[P]>
+              : GetScalarType<T[P], Manager_dashboard_tblGroupByOutputType[P]>
+            : GetScalarType<T[P], Manager_dashboard_tblGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type managersSelect = {
+  export type manager_dashboard_tblSelect = {
     manager_dashboard_id?: boolean
     REGION?: boolean
     DISTRICT?: boolean
@@ -3116,138 +3116,138 @@ export namespace Prisma {
     STE_EMAIL?: boolean
   }
 
-  export type managersGetPayload<
-    S extends boolean | null | undefined | managersArgs,
+  export type manager_dashboard_tblGetPayload<
+    S extends boolean | null | undefined | manager_dashboard_tblArgs,
     U = keyof S
       > = S extends true
-        ? managers
+        ? manager_dashboard_tbl
     : S extends undefined
     ? never
-    : S extends managersArgs | managersFindManyArgs
+    : S extends manager_dashboard_tblArgs | manager_dashboard_tblFindManyArgs
     ?'include' extends U
-    ? managers 
+    ? manager_dashboard_tbl 
     : 'select' extends U
     ? {
     [P in TrueKeys<S['select']>]:
-    P extends keyof managers ? managers[P] : never
+    P extends keyof manager_dashboard_tbl ? manager_dashboard_tbl[P] : never
   } 
-    : managers
-  : managers
+    : manager_dashboard_tbl
+  : manager_dashboard_tbl
 
 
-  type managersCountArgs = Merge<
-    Omit<managersFindManyArgs, 'select' | 'include'> & {
-      select?: ManagersCountAggregateInputType | true
+  type manager_dashboard_tblCountArgs = Merge<
+    Omit<manager_dashboard_tblFindManyArgs, 'select' | 'include'> & {
+      select?: Manager_dashboard_tblCountAggregateInputType | true
     }
   >
 
-  export interface managersDelegate<GlobalRejectSettings> {
+  export interface manager_dashboard_tblDelegate<GlobalRejectSettings> {
     /**
-     * Find zero or one Managers that matches the filter.
-     * @param {managersFindUniqueArgs} args - Arguments to find a Managers
+     * Find zero or one Manager_dashboard_tbl that matches the filter.
+     * @param {manager_dashboard_tblFindUniqueArgs} args - Arguments to find a Manager_dashboard_tbl
      * @example
-     * // Get one Managers
-     * const managers = await prisma.managers.findUnique({
+     * // Get one Manager_dashboard_tbl
+     * const manager_dashboard_tbl = await prisma.manager_dashboard_tbl.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends managersFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args: SelectSubset<T, managersFindUniqueArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'managers'> extends True ? CheckSelect<T, Prisma__managersClient<managers>, Prisma__managersClient<managersGetPayload<T>>> : CheckSelect<T, Prisma__managersClient<managers | null >, Prisma__managersClient<managersGetPayload<T> | null >>
+    findUnique<T extends manager_dashboard_tblFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, manager_dashboard_tblFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'manager_dashboard_tbl'> extends True ? CheckSelect<T, Prisma__manager_dashboard_tblClient<manager_dashboard_tbl>, Prisma__manager_dashboard_tblClient<manager_dashboard_tblGetPayload<T>>> : CheckSelect<T, Prisma__manager_dashboard_tblClient<manager_dashboard_tbl | null >, Prisma__manager_dashboard_tblClient<manager_dashboard_tblGetPayload<T> | null >>
 
     /**
-     * Find the first Managers that matches the filter.
+     * Find the first Manager_dashboard_tbl that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {managersFindFirstArgs} args - Arguments to find a Managers
+     * @param {manager_dashboard_tblFindFirstArgs} args - Arguments to find a Manager_dashboard_tbl
      * @example
-     * // Get one Managers
-     * const managers = await prisma.managers.findFirst({
+     * // Get one Manager_dashboard_tbl
+     * const manager_dashboard_tbl = await prisma.manager_dashboard_tbl.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends managersFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args?: SelectSubset<T, managersFindFirstArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'managers'> extends True ? CheckSelect<T, Prisma__managersClient<managers>, Prisma__managersClient<managersGetPayload<T>>> : CheckSelect<T, Prisma__managersClient<managers | null >, Prisma__managersClient<managersGetPayload<T> | null >>
+    findFirst<T extends manager_dashboard_tblFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, manager_dashboard_tblFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'manager_dashboard_tbl'> extends True ? CheckSelect<T, Prisma__manager_dashboard_tblClient<manager_dashboard_tbl>, Prisma__manager_dashboard_tblClient<manager_dashboard_tblGetPayload<T>>> : CheckSelect<T, Prisma__manager_dashboard_tblClient<manager_dashboard_tbl | null >, Prisma__manager_dashboard_tblClient<manager_dashboard_tblGetPayload<T> | null >>
 
     /**
-     * Find zero or more Managers that matches the filter.
+     * Find zero or more Manager_dashboard_tbls that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {managersFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {manager_dashboard_tblFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Managers
-     * const managers = await prisma.managers.findMany()
+     * // Get all Manager_dashboard_tbls
+     * const manager_dashboard_tbls = await prisma.manager_dashboard_tbl.findMany()
      * 
-     * // Get first 10 Managers
-     * const managers = await prisma.managers.findMany({ take: 10 })
+     * // Get first 10 Manager_dashboard_tbls
+     * const manager_dashboard_tbls = await prisma.manager_dashboard_tbl.findMany({ take: 10 })
      * 
      * // Only select the `manager_dashboard_id`
-     * const managersWithManager_dashboard_idOnly = await prisma.managers.findMany({ select: { manager_dashboard_id: true } })
+     * const manager_dashboard_tblWithManager_dashboard_idOnly = await prisma.manager_dashboard_tbl.findMany({ select: { manager_dashboard_id: true } })
      * 
     **/
-    findMany<T extends managersFindManyArgs>(
-      args?: SelectSubset<T, managersFindManyArgs>
-    ): CheckSelect<T, PrismaPromise<Array<managers>>, PrismaPromise<Array<managersGetPayload<T>>>>
+    findMany<T extends manager_dashboard_tblFindManyArgs>(
+      args?: SelectSubset<T, manager_dashboard_tblFindManyArgs>
+    ): CheckSelect<T, PrismaPromise<Array<manager_dashboard_tbl>>, PrismaPromise<Array<manager_dashboard_tblGetPayload<T>>>>
 
     /**
-     * Create a Managers.
-     * @param {managersCreateArgs} args - Arguments to create a Managers.
+     * Create a Manager_dashboard_tbl.
+     * @param {manager_dashboard_tblCreateArgs} args - Arguments to create a Manager_dashboard_tbl.
      * @example
-     * // Create one Managers
-     * const Managers = await prisma.managers.create({
+     * // Create one Manager_dashboard_tbl
+     * const Manager_dashboard_tbl = await prisma.manager_dashboard_tbl.create({
      *   data: {
-     *     // ... data to create a Managers
+     *     // ... data to create a Manager_dashboard_tbl
      *   }
      * })
      * 
     **/
-    create<T extends managersCreateArgs>(
-      args: SelectSubset<T, managersCreateArgs>
-    ): CheckSelect<T, Prisma__managersClient<managers>, Prisma__managersClient<managersGetPayload<T>>>
+    create<T extends manager_dashboard_tblCreateArgs>(
+      args: SelectSubset<T, manager_dashboard_tblCreateArgs>
+    ): CheckSelect<T, Prisma__manager_dashboard_tblClient<manager_dashboard_tbl>, Prisma__manager_dashboard_tblClient<manager_dashboard_tblGetPayload<T>>>
 
     /**
-     * Create many Managers.
-     *     @param {managersCreateManyArgs} args - Arguments to create many Managers.
+     * Create many Manager_dashboard_tbls.
+     *     @param {manager_dashboard_tblCreateManyArgs} args - Arguments to create many Manager_dashboard_tbls.
      *     @example
-     *     // Create many Managers
-     *     const managers = await prisma.managers.createMany({
+     *     // Create many Manager_dashboard_tbls
+     *     const manager_dashboard_tbl = await prisma.manager_dashboard_tbl.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *     
     **/
-    createMany<T extends managersCreateManyArgs>(
-      args?: SelectSubset<T, managersCreateManyArgs>
+    createMany<T extends manager_dashboard_tblCreateManyArgs>(
+      args?: SelectSubset<T, manager_dashboard_tblCreateManyArgs>
     ): PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Managers.
-     * @param {managersDeleteArgs} args - Arguments to delete one Managers.
+     * Delete a Manager_dashboard_tbl.
+     * @param {manager_dashboard_tblDeleteArgs} args - Arguments to delete one Manager_dashboard_tbl.
      * @example
-     * // Delete one Managers
-     * const Managers = await prisma.managers.delete({
+     * // Delete one Manager_dashboard_tbl
+     * const Manager_dashboard_tbl = await prisma.manager_dashboard_tbl.delete({
      *   where: {
-     *     // ... filter to delete one Managers
+     *     // ... filter to delete one Manager_dashboard_tbl
      *   }
      * })
      * 
     **/
-    delete<T extends managersDeleteArgs>(
-      args: SelectSubset<T, managersDeleteArgs>
-    ): CheckSelect<T, Prisma__managersClient<managers>, Prisma__managersClient<managersGetPayload<T>>>
+    delete<T extends manager_dashboard_tblDeleteArgs>(
+      args: SelectSubset<T, manager_dashboard_tblDeleteArgs>
+    ): CheckSelect<T, Prisma__manager_dashboard_tblClient<manager_dashboard_tbl>, Prisma__manager_dashboard_tblClient<manager_dashboard_tblGetPayload<T>>>
 
     /**
-     * Update one Managers.
-     * @param {managersUpdateArgs} args - Arguments to update one Managers.
+     * Update one Manager_dashboard_tbl.
+     * @param {manager_dashboard_tblUpdateArgs} args - Arguments to update one Manager_dashboard_tbl.
      * @example
-     * // Update one Managers
-     * const managers = await prisma.managers.update({
+     * // Update one Manager_dashboard_tbl
+     * const manager_dashboard_tbl = await prisma.manager_dashboard_tbl.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3257,34 +3257,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends managersUpdateArgs>(
-      args: SelectSubset<T, managersUpdateArgs>
-    ): CheckSelect<T, Prisma__managersClient<managers>, Prisma__managersClient<managersGetPayload<T>>>
+    update<T extends manager_dashboard_tblUpdateArgs>(
+      args: SelectSubset<T, manager_dashboard_tblUpdateArgs>
+    ): CheckSelect<T, Prisma__manager_dashboard_tblClient<manager_dashboard_tbl>, Prisma__manager_dashboard_tblClient<manager_dashboard_tblGetPayload<T>>>
 
     /**
-     * Delete zero or more Managers.
-     * @param {managersDeleteManyArgs} args - Arguments to filter Managers to delete.
+     * Delete zero or more Manager_dashboard_tbls.
+     * @param {manager_dashboard_tblDeleteManyArgs} args - Arguments to filter Manager_dashboard_tbls to delete.
      * @example
-     * // Delete a few Managers
-     * const { count } = await prisma.managers.deleteMany({
+     * // Delete a few Manager_dashboard_tbls
+     * const { count } = await prisma.manager_dashboard_tbl.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends managersDeleteManyArgs>(
-      args?: SelectSubset<T, managersDeleteManyArgs>
+    deleteMany<T extends manager_dashboard_tblDeleteManyArgs>(
+      args?: SelectSubset<T, manager_dashboard_tblDeleteManyArgs>
     ): PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Managers.
+     * Update zero or more Manager_dashboard_tbls.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {managersUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {manager_dashboard_tblUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Managers
-     * const managers = await prisma.managers.updateMany({
+     * // Update many Manager_dashboard_tbls
+     * const manager_dashboard_tbl = await prisma.manager_dashboard_tbl.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3294,93 +3294,93 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends managersUpdateManyArgs>(
-      args: SelectSubset<T, managersUpdateManyArgs>
+    updateMany<T extends manager_dashboard_tblUpdateManyArgs>(
+      args: SelectSubset<T, manager_dashboard_tblUpdateManyArgs>
     ): PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Managers.
-     * @param {managersUpsertArgs} args - Arguments to update or create a Managers.
+     * Create or update one Manager_dashboard_tbl.
+     * @param {manager_dashboard_tblUpsertArgs} args - Arguments to update or create a Manager_dashboard_tbl.
      * @example
-     * // Update or create a Managers
-     * const managers = await prisma.managers.upsert({
+     * // Update or create a Manager_dashboard_tbl
+     * const manager_dashboard_tbl = await prisma.manager_dashboard_tbl.upsert({
      *   create: {
-     *     // ... data to create a Managers
+     *     // ... data to create a Manager_dashboard_tbl
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Managers we want to update
+     *     // ... the filter for the Manager_dashboard_tbl we want to update
      *   }
      * })
     **/
-    upsert<T extends managersUpsertArgs>(
-      args: SelectSubset<T, managersUpsertArgs>
-    ): CheckSelect<T, Prisma__managersClient<managers>, Prisma__managersClient<managersGetPayload<T>>>
+    upsert<T extends manager_dashboard_tblUpsertArgs>(
+      args: SelectSubset<T, manager_dashboard_tblUpsertArgs>
+    ): CheckSelect<T, Prisma__manager_dashboard_tblClient<manager_dashboard_tbl>, Prisma__manager_dashboard_tblClient<manager_dashboard_tblGetPayload<T>>>
 
     /**
-     * Find one Managers that matches the filter or throw
+     * Find one Manager_dashboard_tbl that matches the filter or throw
      * `NotFoundError` if no matches were found.
-     * @param {managersFindUniqueOrThrowArgs} args - Arguments to find a Managers
+     * @param {manager_dashboard_tblFindUniqueOrThrowArgs} args - Arguments to find a Manager_dashboard_tbl
      * @example
-     * // Get one Managers
-     * const managers = await prisma.managers.findUniqueOrThrow({
+     * // Get one Manager_dashboard_tbl
+     * const manager_dashboard_tbl = await prisma.manager_dashboard_tbl.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends managersFindUniqueOrThrowArgs>(
-      args?: SelectSubset<T, managersFindUniqueOrThrowArgs>
-    ): CheckSelect<T, Prisma__managersClient<managers>, Prisma__managersClient<managersGetPayload<T>>>
+    findUniqueOrThrow<T extends manager_dashboard_tblFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, manager_dashboard_tblFindUniqueOrThrowArgs>
+    ): CheckSelect<T, Prisma__manager_dashboard_tblClient<manager_dashboard_tbl>, Prisma__manager_dashboard_tblClient<manager_dashboard_tblGetPayload<T>>>
 
     /**
-     * Find the first Managers that matches the filter or
+     * Find the first Manager_dashboard_tbl that matches the filter or
      * throw `NotFoundError` if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {managersFindFirstOrThrowArgs} args - Arguments to find a Managers
+     * @param {manager_dashboard_tblFindFirstOrThrowArgs} args - Arguments to find a Manager_dashboard_tbl
      * @example
-     * // Get one Managers
-     * const managers = await prisma.managers.findFirstOrThrow({
+     * // Get one Manager_dashboard_tbl
+     * const manager_dashboard_tbl = await prisma.manager_dashboard_tbl.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends managersFindFirstOrThrowArgs>(
-      args?: SelectSubset<T, managersFindFirstOrThrowArgs>
-    ): CheckSelect<T, Prisma__managersClient<managers>, Prisma__managersClient<managersGetPayload<T>>>
+    findFirstOrThrow<T extends manager_dashboard_tblFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, manager_dashboard_tblFindFirstOrThrowArgs>
+    ): CheckSelect<T, Prisma__manager_dashboard_tblClient<manager_dashboard_tbl>, Prisma__manager_dashboard_tblClient<manager_dashboard_tblGetPayload<T>>>
 
     /**
-     * Count the number of Managers.
+     * Count the number of Manager_dashboard_tbls.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {managersCountArgs} args - Arguments to filter Managers to count.
+     * @param {manager_dashboard_tblCountArgs} args - Arguments to filter Manager_dashboard_tbls to count.
      * @example
-     * // Count the number of Managers
-     * const count = await prisma.managers.count({
+     * // Count the number of Manager_dashboard_tbls
+     * const count = await prisma.manager_dashboard_tbl.count({
      *   where: {
-     *     // ... the filter for the Managers we want to count
+     *     // ... the filter for the Manager_dashboard_tbls we want to count
      *   }
      * })
     **/
-    count<T extends managersCountArgs>(
-      args?: Subset<T, managersCountArgs>,
+    count<T extends manager_dashboard_tblCountArgs>(
+      args?: Subset<T, manager_dashboard_tblCountArgs>,
     ): PrismaPromise<
       T extends _Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], ManagersCountAggregateOutputType>
+          : GetScalarType<T['select'], Manager_dashboard_tblCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Managers.
+     * Allows you to perform aggregations operations on a Manager_dashboard_tbl.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ManagersAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {Manager_dashboard_tblAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -3400,13 +3400,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends ManagersAggregateArgs>(args: Subset<T, ManagersAggregateArgs>): PrismaPromise<GetManagersAggregateType<T>>
+    aggregate<T extends Manager_dashboard_tblAggregateArgs>(args: Subset<T, Manager_dashboard_tblAggregateArgs>): PrismaPromise<GetManager_dashboard_tblAggregateType<T>>
 
     /**
-     * Group by Managers.
+     * Group by Manager_dashboard_tbl.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ManagersGroupByArgs} args - Group by arguments.
+     * @param {Manager_dashboard_tblGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -3421,14 +3421,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends ManagersGroupByArgs,
+      T extends Manager_dashboard_tblGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ManagersGroupByArgs['orderBy'] }
-        : { orderBy?: ManagersGroupByArgs['orderBy'] },
+        ? { orderBy: Manager_dashboard_tblGroupByArgs['orderBy'] }
+        : { orderBy?: Manager_dashboard_tblGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends TupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -3477,16 +3477,16 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, ManagersGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetManagersGroupByPayload<T> : PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, Manager_dashboard_tblGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetManager_dashboard_tblGroupByPayload<T> : PrismaPromise<InputErrors>
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for managers.
+   * The delegate class that acts as a "Promise-like" for manager_dashboard_tbl.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export class Prisma__managersClient<T> implements PrismaPromise<T> {
+  export class Prisma__manager_dashboard_tblClient<T> implements PrismaPromise<T> {
     [prisma]: true;
     private readonly _dmmf;
     private readonly _fetcher;
@@ -3530,25 +3530,25 @@ export namespace Prisma {
   // Custom InputTypes
 
   /**
-   * managers base type for findUnique actions
+   * manager_dashboard_tbl base type for findUnique actions
    */
-  export type managersFindUniqueArgsBase = {
+  export type manager_dashboard_tblFindUniqueArgsBase = {
     /**
-     * Select specific fields to fetch from the managers
+     * Select specific fields to fetch from the manager_dashboard_tbl
      * 
     **/
-    select?: managersSelect | null
+    select?: manager_dashboard_tblSelect | null
     /**
-     * Filter, which managers to fetch.
+     * Filter, which manager_dashboard_tbl to fetch.
      * 
     **/
-    where: managersWhereUniqueInput
+    where: manager_dashboard_tblWhereUniqueInput
   }
 
   /**
-   * managers: findUnique
+   * manager_dashboard_tbl: findUnique
    */
-  export interface managersFindUniqueArgs extends managersFindUniqueArgsBase {
+  export interface manager_dashboard_tblFindUniqueArgs extends manager_dashboard_tblFindUniqueArgsBase {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
@@ -3558,60 +3558,60 @@ export namespace Prisma {
       
 
   /**
-   * managers base type for findFirst actions
+   * manager_dashboard_tbl base type for findFirst actions
    */
-  export type managersFindFirstArgsBase = {
+  export type manager_dashboard_tblFindFirstArgsBase = {
     /**
-     * Select specific fields to fetch from the managers
+     * Select specific fields to fetch from the manager_dashboard_tbl
      * 
     **/
-    select?: managersSelect | null
+    select?: manager_dashboard_tblSelect | null
     /**
-     * Filter, which managers to fetch.
+     * Filter, which manager_dashboard_tbl to fetch.
      * 
     **/
-    where?: managersWhereInput
+    where?: manager_dashboard_tblWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of managers to fetch.
+     * Determine the order of manager_dashboard_tbls to fetch.
      * 
     **/
-    orderBy?: Enumerable<managersOrderByWithRelationInput>
+    orderBy?: Enumerable<manager_dashboard_tblOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for managers.
+     * Sets the position for searching for manager_dashboard_tbls.
      * 
     **/
-    cursor?: managersWhereUniqueInput
+    cursor?: manager_dashboard_tblWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` managers from the position of the cursor.
+     * Take `±n` manager_dashboard_tbls from the position of the cursor.
      * 
     **/
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` managers.
+     * Skip the first `n` manager_dashboard_tbls.
      * 
     **/
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of managers.
+     * Filter by unique combinations of manager_dashboard_tbls.
      * 
     **/
-    distinct?: Enumerable<ManagersScalarFieldEnum>
+    distinct?: Enumerable<Manager_dashboard_tblScalarFieldEnum>
   }
 
   /**
-   * managers: findFirst
+   * manager_dashboard_tbl: findFirst
    */
-  export interface managersFindFirstArgs extends managersFindFirstArgsBase {
+  export interface manager_dashboard_tblFindFirstArgs extends manager_dashboard_tblFindFirstArgsBase {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
@@ -3621,197 +3621,197 @@ export namespace Prisma {
       
 
   /**
-   * managers findMany
+   * manager_dashboard_tbl findMany
    */
-  export type managersFindManyArgs = {
+  export type manager_dashboard_tblFindManyArgs = {
     /**
-     * Select specific fields to fetch from the managers
+     * Select specific fields to fetch from the manager_dashboard_tbl
      * 
     **/
-    select?: managersSelect | null
+    select?: manager_dashboard_tblSelect | null
     /**
-     * Filter, which managers to fetch.
+     * Filter, which manager_dashboard_tbls to fetch.
      * 
     **/
-    where?: managersWhereInput
+    where?: manager_dashboard_tblWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of managers to fetch.
+     * Determine the order of manager_dashboard_tbls to fetch.
      * 
     **/
-    orderBy?: Enumerable<managersOrderByWithRelationInput>
+    orderBy?: Enumerable<manager_dashboard_tblOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing managers.
+     * Sets the position for listing manager_dashboard_tbls.
      * 
     **/
-    cursor?: managersWhereUniqueInput
+    cursor?: manager_dashboard_tblWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` managers from the position of the cursor.
+     * Take `±n` manager_dashboard_tbls from the position of the cursor.
      * 
     **/
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` managers.
+     * Skip the first `n` manager_dashboard_tbls.
      * 
     **/
     skip?: number
-    distinct?: Enumerable<ManagersScalarFieldEnum>
+    distinct?: Enumerable<Manager_dashboard_tblScalarFieldEnum>
   }
 
 
   /**
-   * managers create
+   * manager_dashboard_tbl create
    */
-  export type managersCreateArgs = {
+  export type manager_dashboard_tblCreateArgs = {
     /**
-     * Select specific fields to fetch from the managers
+     * Select specific fields to fetch from the manager_dashboard_tbl
      * 
     **/
-    select?: managersSelect | null
+    select?: manager_dashboard_tblSelect | null
     /**
-     * The data needed to create a managers.
+     * The data needed to create a manager_dashboard_tbl.
      * 
     **/
-    data: XOR<managersCreateInput, managersUncheckedCreateInput>
+    data: XOR<manager_dashboard_tblCreateInput, manager_dashboard_tblUncheckedCreateInput>
   }
 
 
   /**
-   * managers createMany
+   * manager_dashboard_tbl createMany
    */
-  export type managersCreateManyArgs = {
+  export type manager_dashboard_tblCreateManyArgs = {
     /**
-     * The data used to create many managers.
+     * The data used to create many manager_dashboard_tbls.
      * 
     **/
-    data: Enumerable<managersCreateManyInput>
+    data: Enumerable<manager_dashboard_tblCreateManyInput>
     skipDuplicates?: boolean
   }
 
 
   /**
-   * managers update
+   * manager_dashboard_tbl update
    */
-  export type managersUpdateArgs = {
+  export type manager_dashboard_tblUpdateArgs = {
     /**
-     * Select specific fields to fetch from the managers
+     * Select specific fields to fetch from the manager_dashboard_tbl
      * 
     **/
-    select?: managersSelect | null
+    select?: manager_dashboard_tblSelect | null
     /**
-     * The data needed to update a managers.
+     * The data needed to update a manager_dashboard_tbl.
      * 
     **/
-    data: XOR<managersUpdateInput, managersUncheckedUpdateInput>
+    data: XOR<manager_dashboard_tblUpdateInput, manager_dashboard_tblUncheckedUpdateInput>
     /**
-     * Choose, which managers to update.
+     * Choose, which manager_dashboard_tbl to update.
      * 
     **/
-    where: managersWhereUniqueInput
+    where: manager_dashboard_tblWhereUniqueInput
   }
 
 
   /**
-   * managers updateMany
+   * manager_dashboard_tbl updateMany
    */
-  export type managersUpdateManyArgs = {
+  export type manager_dashboard_tblUpdateManyArgs = {
     /**
-     * The data used to update managers.
+     * The data used to update manager_dashboard_tbls.
      * 
     **/
-    data: XOR<managersUpdateManyMutationInput, managersUncheckedUpdateManyInput>
+    data: XOR<manager_dashboard_tblUpdateManyMutationInput, manager_dashboard_tblUncheckedUpdateManyInput>
     /**
-     * Filter which managers to update
+     * Filter which manager_dashboard_tbls to update
      * 
     **/
-    where?: managersWhereInput
+    where?: manager_dashboard_tblWhereInput
   }
 
 
   /**
-   * managers upsert
+   * manager_dashboard_tbl upsert
    */
-  export type managersUpsertArgs = {
+  export type manager_dashboard_tblUpsertArgs = {
     /**
-     * Select specific fields to fetch from the managers
+     * Select specific fields to fetch from the manager_dashboard_tbl
      * 
     **/
-    select?: managersSelect | null
+    select?: manager_dashboard_tblSelect | null
     /**
-     * The filter to search for the managers to update in case it exists.
+     * The filter to search for the manager_dashboard_tbl to update in case it exists.
      * 
     **/
-    where: managersWhereUniqueInput
+    where: manager_dashboard_tblWhereUniqueInput
     /**
-     * In case the managers found by the `where` argument doesn't exist, create a new managers with this data.
+     * In case the manager_dashboard_tbl found by the `where` argument doesn't exist, create a new manager_dashboard_tbl with this data.
      * 
     **/
-    create: XOR<managersCreateInput, managersUncheckedCreateInput>
+    create: XOR<manager_dashboard_tblCreateInput, manager_dashboard_tblUncheckedCreateInput>
     /**
-     * In case the managers was found with the provided `where` argument, update it with this data.
+     * In case the manager_dashboard_tbl was found with the provided `where` argument, update it with this data.
      * 
     **/
-    update: XOR<managersUpdateInput, managersUncheckedUpdateInput>
+    update: XOR<manager_dashboard_tblUpdateInput, manager_dashboard_tblUncheckedUpdateInput>
   }
 
 
   /**
-   * managers delete
+   * manager_dashboard_tbl delete
    */
-  export type managersDeleteArgs = {
+  export type manager_dashboard_tblDeleteArgs = {
     /**
-     * Select specific fields to fetch from the managers
+     * Select specific fields to fetch from the manager_dashboard_tbl
      * 
     **/
-    select?: managersSelect | null
+    select?: manager_dashboard_tblSelect | null
     /**
-     * Filter which managers to delete.
+     * Filter which manager_dashboard_tbl to delete.
      * 
     **/
-    where: managersWhereUniqueInput
+    where: manager_dashboard_tblWhereUniqueInput
   }
 
 
   /**
-   * managers deleteMany
+   * manager_dashboard_tbl deleteMany
    */
-  export type managersDeleteManyArgs = {
+  export type manager_dashboard_tblDeleteManyArgs = {
     /**
-     * Filter which managers to delete
+     * Filter which manager_dashboard_tbls to delete
      * 
     **/
-    where?: managersWhereInput
+    where?: manager_dashboard_tblWhereInput
   }
 
 
   /**
-   * managers: findUniqueOrThrow
+   * manager_dashboard_tbl: findUniqueOrThrow
    */
-  export type managersFindUniqueOrThrowArgs = managersFindUniqueArgsBase
+  export type manager_dashboard_tblFindUniqueOrThrowArgs = manager_dashboard_tblFindUniqueArgsBase
       
 
   /**
-   * managers: findFirstOrThrow
+   * manager_dashboard_tbl: findFirstOrThrow
    */
-  export type managersFindFirstOrThrowArgs = managersFindFirstArgsBase
+  export type manager_dashboard_tblFindFirstOrThrowArgs = manager_dashboard_tblFindFirstArgsBase
       
 
   /**
-   * managers without action
+   * manager_dashboard_tbl without action
    */
-  export type managersArgs = {
+  export type manager_dashboard_tblArgs = {
     /**
-     * Select specific fields to fetch from the managers
+     * Select specific fields to fetch from the manager_dashboard_tbl
      * 
     **/
-    select?: managersSelect | null
+    select?: manager_dashboard_tblSelect | null
   }
 
 
@@ -3858,7 +3858,7 @@ export namespace Prisma {
   export type Audit_tableScalarFieldEnum = (typeof Audit_tableScalarFieldEnum)[keyof typeof Audit_tableScalarFieldEnum]
 
 
-  export const ManagersScalarFieldEnum: {
+  export const Manager_dashboard_tblScalarFieldEnum: {
     manager_dashboard_id: 'manager_dashboard_id',
     REGION: 'REGION',
     DISTRICT: 'DISTRICT',
@@ -3880,7 +3880,7 @@ export namespace Prisma {
     STE_EMAIL: 'STE_EMAIL'
   };
 
-  export type ManagersScalarFieldEnum = (typeof ManagersScalarFieldEnum)[keyof typeof ManagersScalarFieldEnum]
+  export type Manager_dashboard_tblScalarFieldEnum = (typeof Manager_dashboard_tblScalarFieldEnum)[keyof typeof Manager_dashboard_tblScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4042,10 +4042,10 @@ export namespace Prisma {
     date_time?: StringNullableWithAggregatesFilter | string | null
   }
 
-  export type managersWhereInput = {
-    AND?: Enumerable<managersWhereInput>
-    OR?: Enumerable<managersWhereInput>
-    NOT?: Enumerable<managersWhereInput>
+  export type manager_dashboard_tblWhereInput = {
+    AND?: Enumerable<manager_dashboard_tblWhereInput>
+    OR?: Enumerable<manager_dashboard_tblWhereInput>
+    NOT?: Enumerable<manager_dashboard_tblWhereInput>
     manager_dashboard_id?: IntFilter | number
     REGION?: StringNullableFilter | string | null
     DISTRICT?: StringNullableFilter | string | null
@@ -4067,7 +4067,7 @@ export namespace Prisma {
     STE_EMAIL?: StringNullableFilter | string | null
   }
 
-  export type managersOrderByWithRelationInput = {
+  export type manager_dashboard_tblOrderByWithRelationInput = {
     manager_dashboard_id?: SortOrder
     REGION?: SortOrder
     DISTRICT?: SortOrder
@@ -4089,11 +4089,11 @@ export namespace Prisma {
     STE_EMAIL?: SortOrder
   }
 
-  export type managersWhereUniqueInput = {
+  export type manager_dashboard_tblWhereUniqueInput = {
     manager_dashboard_id?: number
   }
 
-  export type managersOrderByWithAggregationInput = {
+  export type manager_dashboard_tblOrderByWithAggregationInput = {
     manager_dashboard_id?: SortOrder
     REGION?: SortOrder
     DISTRICT?: SortOrder
@@ -4113,17 +4113,17 @@ export namespace Prisma {
     STE_EFIS?: SortOrder
     STE_NAME?: SortOrder
     STE_EMAIL?: SortOrder
-    _count?: managersCountOrderByAggregateInput
-    _avg?: managersAvgOrderByAggregateInput
-    _max?: managersMaxOrderByAggregateInput
-    _min?: managersMinOrderByAggregateInput
-    _sum?: managersSumOrderByAggregateInput
+    _count?: manager_dashboard_tblCountOrderByAggregateInput
+    _avg?: manager_dashboard_tblAvgOrderByAggregateInput
+    _max?: manager_dashboard_tblMaxOrderByAggregateInput
+    _min?: manager_dashboard_tblMinOrderByAggregateInput
+    _sum?: manager_dashboard_tblSumOrderByAggregateInput
   }
 
-  export type managersScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<managersScalarWhereWithAggregatesInput>
-    OR?: Enumerable<managersScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<managersScalarWhereWithAggregatesInput>
+  export type manager_dashboard_tblScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<manager_dashboard_tblScalarWhereWithAggregatesInput>
+    OR?: Enumerable<manager_dashboard_tblScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<manager_dashboard_tblScalarWhereWithAggregatesInput>
     manager_dashboard_id?: IntWithAggregatesFilter | number
     REGION?: StringNullableWithAggregatesFilter | string | null
     DISTRICT?: StringNullableWithAggregatesFilter | string | null
@@ -4342,7 +4342,7 @@ export namespace Prisma {
     date_time?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type managersCreateInput = {
+  export type manager_dashboard_tblCreateInput = {
     REGION?: string | null
     DISTRICT?: string | null
     TRAM?: string | null
@@ -4363,7 +4363,7 @@ export namespace Prisma {
     STE_EMAIL?: string | null
   }
 
-  export type managersUncheckedCreateInput = {
+  export type manager_dashboard_tblUncheckedCreateInput = {
     manager_dashboard_id?: number
     REGION?: string | null
     DISTRICT?: string | null
@@ -4385,7 +4385,7 @@ export namespace Prisma {
     STE_EMAIL?: string | null
   }
 
-  export type managersUpdateInput = {
+  export type manager_dashboard_tblUpdateInput = {
     REGION?: NullableStringFieldUpdateOperationsInput | string | null
     DISTRICT?: NullableStringFieldUpdateOperationsInput | string | null
     TRAM?: NullableStringFieldUpdateOperationsInput | string | null
@@ -4406,7 +4406,7 @@ export namespace Prisma {
     STE_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type managersUncheckedUpdateInput = {
+  export type manager_dashboard_tblUncheckedUpdateInput = {
     manager_dashboard_id?: IntFieldUpdateOperationsInput | number
     REGION?: NullableStringFieldUpdateOperationsInput | string | null
     DISTRICT?: NullableStringFieldUpdateOperationsInput | string | null
@@ -4428,7 +4428,7 @@ export namespace Prisma {
     STE_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type managersCreateManyInput = {
+  export type manager_dashboard_tblCreateManyInput = {
     manager_dashboard_id?: number
     REGION?: string | null
     DISTRICT?: string | null
@@ -4450,7 +4450,7 @@ export namespace Prisma {
     STE_EMAIL?: string | null
   }
 
-  export type managersUpdateManyMutationInput = {
+  export type manager_dashboard_tblUpdateManyMutationInput = {
     REGION?: NullableStringFieldUpdateOperationsInput | string | null
     DISTRICT?: NullableStringFieldUpdateOperationsInput | string | null
     TRAM?: NullableStringFieldUpdateOperationsInput | string | null
@@ -4471,7 +4471,7 @@ export namespace Prisma {
     STE_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type managersUncheckedUpdateManyInput = {
+  export type manager_dashboard_tblUncheckedUpdateManyInput = {
     manager_dashboard_id?: IntFieldUpdateOperationsInput | number
     REGION?: NullableStringFieldUpdateOperationsInput | string | null
     DISTRICT?: NullableStringFieldUpdateOperationsInput | string | null
@@ -4685,7 +4685,7 @@ export namespace Prisma {
     _max?: NestedStringFilter
   }
 
-  export type managersCountOrderByAggregateInput = {
+  export type manager_dashboard_tblCountOrderByAggregateInput = {
     manager_dashboard_id?: SortOrder
     REGION?: SortOrder
     DISTRICT?: SortOrder
@@ -4707,33 +4707,11 @@ export namespace Prisma {
     STE_EMAIL?: SortOrder
   }
 
-  export type managersAvgOrderByAggregateInput = {
+  export type manager_dashboard_tblAvgOrderByAggregateInput = {
     manager_dashboard_id?: SortOrder
   }
 
-  export type managersMaxOrderByAggregateInput = {
-    manager_dashboard_id?: SortOrder
-    REGION?: SortOrder
-    DISTRICT?: SortOrder
-    TRAM?: SortOrder
-    EFIS?: SortOrder
-    DEPUTY_NAME?: SortOrder
-    DEPUTY_EMAIL?: SortOrder
-    PRIN_UNIT?: SortOrder
-    PRIN_EFIS?: SortOrder
-    PRIN_NAME?: SortOrder
-    PRIN_EMAIL?: SortOrder
-    CHIEF_UNIT?: SortOrder
-    CHIEF_EFIS?: SortOrder
-    CHIEF_NAME?: SortOrder
-    CHIEF_EMAIL?: SortOrder
-    STE_UNIT?: SortOrder
-    STE_EFIS?: SortOrder
-    STE_NAME?: SortOrder
-    STE_EMAIL?: SortOrder
-  }
-
-  export type managersMinOrderByAggregateInput = {
+  export type manager_dashboard_tblMaxOrderByAggregateInput = {
     manager_dashboard_id?: SortOrder
     REGION?: SortOrder
     DISTRICT?: SortOrder
@@ -4755,7 +4733,29 @@ export namespace Prisma {
     STE_EMAIL?: SortOrder
   }
 
-  export type managersSumOrderByAggregateInput = {
+  export type manager_dashboard_tblMinOrderByAggregateInput = {
+    manager_dashboard_id?: SortOrder
+    REGION?: SortOrder
+    DISTRICT?: SortOrder
+    TRAM?: SortOrder
+    EFIS?: SortOrder
+    DEPUTY_NAME?: SortOrder
+    DEPUTY_EMAIL?: SortOrder
+    PRIN_UNIT?: SortOrder
+    PRIN_EFIS?: SortOrder
+    PRIN_NAME?: SortOrder
+    PRIN_EMAIL?: SortOrder
+    CHIEF_UNIT?: SortOrder
+    CHIEF_EFIS?: SortOrder
+    CHIEF_NAME?: SortOrder
+    CHIEF_EMAIL?: SortOrder
+    STE_UNIT?: SortOrder
+    STE_EFIS?: SortOrder
+    STE_NAME?: SortOrder
+    STE_EMAIL?: SortOrder
+  }
+
+  export type manager_dashboard_tblSumOrderByAggregateInput = {
     manager_dashboard_id?: SortOrder
   }
 

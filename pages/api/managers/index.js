@@ -7,7 +7,7 @@ export default async function handler(req,res){
     
     switch(req.method){
         case 'GET': 
-            const users = prisma2.managers.findMany({
+            const managers = prisma2.manager_dashboard_tbl.findMany({
             }).then(managers => {
                 res.send(managers) //Send user objects back to client
             }).catch(err => {
