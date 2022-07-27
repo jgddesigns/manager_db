@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import ManagerDBForm from '../components/ManagerDBForm'
+
 const Home: NextPage = () => {
   // Redirect user to Home page
   

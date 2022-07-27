@@ -63,6 +63,4 @@ model manager_dashboard_tbl {
   STE_NAME             String? @db.VarChar(50)
   STE_EMAIL            String? @db.VarChar(50)
   manager_dashboard_id Int     @id @default(autoincrement())
-
-  @@ignore
 }
