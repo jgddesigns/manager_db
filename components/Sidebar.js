@@ -23,40 +23,54 @@ export default function Sidebar() {
     
       }, []);
   return (
-    <div className="flex fixed top-0 left-0 w-16 flex-col bg-gray-900 h-screen shadow-lg ">
+    <div className="flex fixed top-0 left-0 w-24 flex-col bg-[#333] h-screen shadow-lg ">
 
         {/* Caltrans Logo */}
-        <div className="pt-2" >
+        <div className="pt-4 p-4" >
             <Image src={CaltransLogo} layout="responsive" alt=""  className="pt-16" />
         </div>
 
+        <div className='grid gap-6 pt-6'>
         {/* Sidebar Icons*/}
+        
         <SideBarIcon icon={<p> {getUserInitials(user.UserName)}</p>} text={`Logged in as ${user.UserName}`}/>
         <SideBarIcon icon={<FaBug/>} text={"Report a Bug"}/>
-        <SideBarIcon icon={<FaTh/>} text={"Dashboard"}/>
+        <SideBarIcon icon={<FaTh/>} text={"Dashboard"}  />
+        </div>
 
         {/* Logout icon at bottom of sidebar */}
+        <div className="p-6">
         <div className="flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-auto
         bg-gray-800 text-cyan-700 hover:text-white hover:bg-gray-500 
         rounded-3xl hover:rounded-xl transition-all cursor-pointer group fixed bottom-0" onClick={handleLogout}>
                 <FaSignOutAlt/>
                 <span className= "sidebar-tooltip group-hover:scale-100 " >Logout</span>
         </div>
-
+        </div>
 
     </div>
   )
 }
 
 
-const defaultClickEvent = () => {
+const defaultClickEvent = props => {
     // Do stuff on button click
-    console.log("Sidebar button clicked.")
+    if(props === "Dashboard"){
+      window.location.href = "http://svgccrm01.dot.ca.gov:3030/UserBase/build"
+      console.log(props + " Sidebar button clicked.")
+    }
+    else if(props === "Report a Bug"){
+      console.log(props + " Sidebar button clicked.")
+    }
+    
+    // if(this.value == "Dashboard"){
+    //     console.log(this)
+    // }
 }
 
 const SideBarIcon = ({icon,text="tooltip",clickEvent=defaultClickEvent}) => {
         return (
-            <div className="sidebar-icon group" onClick={clickEvent}>
+            <div className="sidebar-icon group" onClick={() => {clickEvent(text)}}>
                 {icon}
                 <span className= "sidebar-tooltip group-hover:scale-100"> {text}</span>
             </div>
@@ -86,3 +100,4 @@ const handleLogout = () => {
       }}
     );
 }
+

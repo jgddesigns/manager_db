@@ -37,12 +37,13 @@ model audit_table {
   efis              String? @db.VarChar(8)
   region            String? @db.VarChar(8)
   date_time         String? @db.VarChar(30)
+  test              Int     @default(0) @db.TinyInt
 
   @@index([changed_by_number], map: "changed_by_fk2")
 }
 
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 model manager_dashboard_tbl {
-  manager_dashboard_id Int     @id @default(autoincrement())
   REGION               String? @db.VarChar(2)
   DISTRICT             String? @db.VarChar(2)
   TRAM                 String? @db.VarChar(50)
@@ -61,4 +62,7 @@ model manager_dashboard_tbl {
   STE_EFIS             String? @db.VarChar(4)
   STE_NAME             String? @db.VarChar(50)
   STE_EMAIL            String? @db.VarChar(50)
+  manager_dashboard_id Int     @id @default(autoincrement())
+
+  @@ignore
 }

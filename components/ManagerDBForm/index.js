@@ -1,17 +1,33 @@
 
-import ManagerDBForm from './ManagerDBForm'
+
 import ManagerDBView from './ManagerDBView'
+import SearchBar from './SearchBar'
+import { InstantSearch, SearchBox, Hits } 
+    from "react-instantsearch-dom";
+import  Button from 'react-bootstrap/Button';
 
 export default function index() {
   return (
-    <div className="grid grid-cols-2 grid-rows-1 gap-4 md:grid-cols-1 lg:grid-cols-2 sm:grid-cols-1 mx-auto ">
+    <div className="grid gap-[1rem] space-y-4 pb-24">
+      <div className="text-center text-3xl text-black mt-8 mb-8">Manager Update Tool for Construction</div>
         <div>
-            <ManagerDBForm />
+          
+          <InstantSearch 
+            searchClient={""} 
+            indexName="gfg_dev">
+      
+            <SearchBar/>
+      
+            <Hits />
+          </InstantSearch>
+
         </div>
         <div>
             <ManagerDBView />
+            
         </div>
 
     </div>
   )
 }
+
