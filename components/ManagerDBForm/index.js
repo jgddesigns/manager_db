@@ -8,18 +8,19 @@ import {useState, useEffect} from 'react'
 export default function index() {
 
   const [searchInput, setSearchInput] = useState('')
-  const [searchResults, setSearchResults] = useState([])
+  const [allManagerDB, setAllManagerDB] = useState([])
 
   useEffect(() => {
-    setSearchResults(["Waiting for search input..."], ["a"], ["b"], ["c"])
-    console.log(searchInput)
-    fetch("/ManagerDB/api/managers/", {
-      method: "GET",
-    }).then((res) => {
-      res.json().then((data) => {
-        setSearchResults(SearchProcess(searchInput, data))
+    // if allManagers is empty, fetch all managers
+    if (allManagerDB.length === 0) {
+      fetch("/ManagerDB/api/managers/", {
+        method: "GET",
+      }).then((res) => {
+        res.json().then((data) => {
+          setAllManagerDB(data)
+        });
       });
-    });
+    }
  
   }, [searchInput])
 
@@ -38,7 +39,7 @@ export default function index() {
         </div>
 
         <div>
-            <ManagerDBView searchResults={searchResults}/>
+            <ManagerDBView searchResults={SearchProcess(searchInput, allManagerDB)}/>
 
             
             
