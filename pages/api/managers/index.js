@@ -4,23 +4,18 @@
 import { prisma2 } from '../../../utils/prisma/prisma2'
 
 export default async function handler(req,res){
-    
     switch(req.method){
         case 'GET': 
-            const managers = prisma2.manager_dashboard_tbl.findMany({
+            const managers = await prisma2.manager_dashboard_tbl.findMany({
             }).then(managers => {
-                res.send(managers) //Send user objects back to client
+                res.status(200).send(managers) //Send user objects back to client
             }).catch(err => {
                 res.status(500).json({
                     error: err
                 })
             })
             break;
-        case 'POST': // POST: create new user
-           break;
-
-
-
+    
         default:
             res.status(405).json({
                 message: "Method not allowed"

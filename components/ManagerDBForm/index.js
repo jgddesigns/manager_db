@@ -2,7 +2,7 @@
 
 import ManagerDBView from './ManagerDBView'
 import SearchBar from './SearchBar'
-import SearchProcess from './SearchProcess'
+import SearchProcess from '../../utils/helpers/SearchProcess'
 import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
 import {useState, useEffect} from 'react'
 export default function index() {
@@ -17,6 +17,7 @@ export default function index() {
         method: "GET",
       }).then((res) => {
         res.json().then((data) => {
+          // console.log(data);
           setAllManagerDB(data)
         });
       });
@@ -41,8 +42,6 @@ export default function index() {
         <div>
             <ManagerDBView searchResults={SearchProcess(searchInput, allManagerDB)}/>
 
-            
-            
         </div>
 
     </div>
