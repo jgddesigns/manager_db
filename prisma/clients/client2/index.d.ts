@@ -47,14 +47,14 @@ export type audit_table = {
   efis: string | null
   region: string | null
   date_time: string | null
+  test: number
 }
 
 /**
  * Model manager_dashboard_tbl
- * 
+ * The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
  */
 export type manager_dashboard_tbl = {
-  manager_dashboard_id: number
   REGION: string | null
   DISTRICT: string | null
   TRAM: string | null
@@ -73,6 +73,7 @@ export type manager_dashboard_tbl = {
   STE_EFIS: string | null
   STE_NAME: string | null
   STE_EMAIL: string | null
+  manager_dashboard_id: number
 }
 
 
@@ -1841,10 +1842,12 @@ export namespace Prisma {
 
   export type Audit_tableAvgAggregateOutputType = {
     id: number | null
+    test: number | null
   }
 
   export type Audit_tableSumAggregateOutputType = {
     id: number | null
+    test: number | null
   }
 
   export type Audit_tableMinAggregateOutputType = {
@@ -1861,6 +1864,7 @@ export namespace Prisma {
     efis: string | null
     region: string | null
     date_time: string | null
+    test: number | null
   }
 
   export type Audit_tableMaxAggregateOutputType = {
@@ -1877,6 +1881,7 @@ export namespace Prisma {
     efis: string | null
     region: string | null
     date_time: string | null
+    test: number | null
   }
 
   export type Audit_tableCountAggregateOutputType = {
@@ -1893,16 +1898,19 @@ export namespace Prisma {
     efis: number
     region: number
     date_time: number
+    test: number
     _all: number
   }
 
 
   export type Audit_tableAvgAggregateInputType = {
     id?: true
+    test?: true
   }
 
   export type Audit_tableSumAggregateInputType = {
     id?: true
+    test?: true
   }
 
   export type Audit_tableMinAggregateInputType = {
@@ -1919,6 +1927,7 @@ export namespace Prisma {
     efis?: true
     region?: true
     date_time?: true
+    test?: true
   }
 
   export type Audit_tableMaxAggregateInputType = {
@@ -1935,6 +1944,7 @@ export namespace Prisma {
     efis?: true
     region?: true
     date_time?: true
+    test?: true
   }
 
   export type Audit_tableCountAggregateInputType = {
@@ -1951,6 +1961,7 @@ export namespace Prisma {
     efis?: true
     region?: true
     date_time?: true
+    test?: true
     _all?: true
   }
 
@@ -2060,6 +2071,7 @@ export namespace Prisma {
     efis: string | null
     region: string | null
     date_time: string | null
+    test: number
     _count: Audit_tableCountAggregateOutputType | null
     _avg: Audit_tableAvgAggregateOutputType | null
     _sum: Audit_tableSumAggregateOutputType | null
@@ -2095,6 +2107,7 @@ export namespace Prisma {
     efis?: boolean
     region?: boolean
     date_time?: boolean
+    test?: boolean
   }
 
   export type audit_tableGetPayload<
@@ -2819,7 +2832,6 @@ export namespace Prisma {
   }
 
   export type Manager_dashboard_tblMinAggregateOutputType = {
-    manager_dashboard_id: number | null
     REGION: string | null
     DISTRICT: string | null
     TRAM: string | null
@@ -2838,10 +2850,10 @@ export namespace Prisma {
     STE_EFIS: string | null
     STE_NAME: string | null
     STE_EMAIL: string | null
+    manager_dashboard_id: number | null
   }
 
   export type Manager_dashboard_tblMaxAggregateOutputType = {
-    manager_dashboard_id: number | null
     REGION: string | null
     DISTRICT: string | null
     TRAM: string | null
@@ -2860,10 +2872,10 @@ export namespace Prisma {
     STE_EFIS: string | null
     STE_NAME: string | null
     STE_EMAIL: string | null
+    manager_dashboard_id: number | null
   }
 
   export type Manager_dashboard_tblCountAggregateOutputType = {
-    manager_dashboard_id: number
     REGION: number
     DISTRICT: number
     TRAM: number
@@ -2882,6 +2894,7 @@ export namespace Prisma {
     STE_EFIS: number
     STE_NAME: number
     STE_EMAIL: number
+    manager_dashboard_id: number
     _all: number
   }
 
@@ -2895,7 +2908,6 @@ export namespace Prisma {
   }
 
   export type Manager_dashboard_tblMinAggregateInputType = {
-    manager_dashboard_id?: true
     REGION?: true
     DISTRICT?: true
     TRAM?: true
@@ -2914,10 +2926,10 @@ export namespace Prisma {
     STE_EFIS?: true
     STE_NAME?: true
     STE_EMAIL?: true
+    manager_dashboard_id?: true
   }
 
   export type Manager_dashboard_tblMaxAggregateInputType = {
-    manager_dashboard_id?: true
     REGION?: true
     DISTRICT?: true
     TRAM?: true
@@ -2936,10 +2948,10 @@ export namespace Prisma {
     STE_EFIS?: true
     STE_NAME?: true
     STE_EMAIL?: true
+    manager_dashboard_id?: true
   }
 
   export type Manager_dashboard_tblCountAggregateInputType = {
-    manager_dashboard_id?: true
     REGION?: true
     DISTRICT?: true
     TRAM?: true
@@ -2958,6 +2970,7 @@ export namespace Prisma {
     STE_EFIS?: true
     STE_NAME?: true
     STE_EMAIL?: true
+    manager_dashboard_id?: true
     _all?: true
   }
 
@@ -3054,7 +3067,6 @@ export namespace Prisma {
 
 
   export type Manager_dashboard_tblGroupByOutputType = {
-    manager_dashboard_id: number
     REGION: string | null
     DISTRICT: string | null
     TRAM: string | null
@@ -3073,6 +3085,7 @@ export namespace Prisma {
     STE_EFIS: string | null
     STE_NAME: string | null
     STE_EMAIL: string | null
+    manager_dashboard_id: number
     _count: Manager_dashboard_tblCountAggregateOutputType | null
     _avg: Manager_dashboard_tblAvgAggregateOutputType | null
     _sum: Manager_dashboard_tblSumAggregateOutputType | null
@@ -3095,7 +3108,6 @@ export namespace Prisma {
 
 
   export type manager_dashboard_tblSelect = {
-    manager_dashboard_id?: boolean
     REGION?: boolean
     DISTRICT?: boolean
     TRAM?: boolean
@@ -3114,6 +3126,7 @@ export namespace Prisma {
     STE_EFIS?: boolean
     STE_NAME?: boolean
     STE_EMAIL?: boolean
+    manager_dashboard_id?: boolean
   }
 
   export type manager_dashboard_tblGetPayload<
@@ -3186,8 +3199,8 @@ export namespace Prisma {
      * // Get first 10 Manager_dashboard_tbls
      * const manager_dashboard_tbls = await prisma.manager_dashboard_tbl.findMany({ take: 10 })
      * 
-     * // Only select the `manager_dashboard_id`
-     * const manager_dashboard_tblWithManager_dashboard_idOnly = await prisma.manager_dashboard_tbl.findMany({ select: { manager_dashboard_id: true } })
+     * // Only select the `REGION`
+     * const manager_dashboard_tblWithREGIONOnly = await prisma.manager_dashboard_tbl.findMany({ select: { REGION: true } })
      * 
     **/
     findMany<T extends manager_dashboard_tblFindManyArgs>(
@@ -3852,14 +3865,14 @@ export namespace Prisma {
     role: 'role',
     efis: 'efis',
     region: 'region',
-    date_time: 'date_time'
+    date_time: 'date_time',
+    test: 'test'
   };
 
   export type Audit_tableScalarFieldEnum = (typeof Audit_tableScalarFieldEnum)[keyof typeof Audit_tableScalarFieldEnum]
 
 
   export const Manager_dashboard_tblScalarFieldEnum: {
-    manager_dashboard_id: 'manager_dashboard_id',
     REGION: 'REGION',
     DISTRICT: 'DISTRICT',
     TRAM: 'TRAM',
@@ -3877,7 +3890,8 @@ export namespace Prisma {
     STE_UNIT: 'STE_UNIT',
     STE_EFIS: 'STE_EFIS',
     STE_NAME: 'STE_NAME',
-    STE_EMAIL: 'STE_EMAIL'
+    STE_EMAIL: 'STE_EMAIL',
+    manager_dashboard_id: 'manager_dashboard_id'
   };
 
   export type Manager_dashboard_tblScalarFieldEnum = (typeof Manager_dashboard_tblScalarFieldEnum)[keyof typeof Manager_dashboard_tblScalarFieldEnum]
@@ -3980,6 +3994,7 @@ export namespace Prisma {
     efis?: StringNullableFilter | string | null
     region?: StringNullableFilter | string | null
     date_time?: StringNullableFilter | string | null
+    test?: IntFilter | number
   }
 
   export type audit_tableOrderByWithRelationInput = {
@@ -3996,6 +4011,7 @@ export namespace Prisma {
     efis?: SortOrder
     region?: SortOrder
     date_time?: SortOrder
+    test?: SortOrder
   }
 
   export type audit_tableWhereUniqueInput = {
@@ -4016,6 +4032,7 @@ export namespace Prisma {
     efis?: SortOrder
     region?: SortOrder
     date_time?: SortOrder
+    test?: SortOrder
     _count?: audit_tableCountOrderByAggregateInput
     _avg?: audit_tableAvgOrderByAggregateInput
     _max?: audit_tableMaxOrderByAggregateInput
@@ -4040,13 +4057,13 @@ export namespace Prisma {
     efis?: StringNullableWithAggregatesFilter | string | null
     region?: StringNullableWithAggregatesFilter | string | null
     date_time?: StringNullableWithAggregatesFilter | string | null
+    test?: IntWithAggregatesFilter | number
   }
 
   export type manager_dashboard_tblWhereInput = {
     AND?: Enumerable<manager_dashboard_tblWhereInput>
     OR?: Enumerable<manager_dashboard_tblWhereInput>
     NOT?: Enumerable<manager_dashboard_tblWhereInput>
-    manager_dashboard_id?: IntFilter | number
     REGION?: StringNullableFilter | string | null
     DISTRICT?: StringNullableFilter | string | null
     TRAM?: StringNullableFilter | string | null
@@ -4065,10 +4082,10 @@ export namespace Prisma {
     STE_EFIS?: StringNullableFilter | string | null
     STE_NAME?: StringNullableFilter | string | null
     STE_EMAIL?: StringNullableFilter | string | null
+    manager_dashboard_id?: IntFilter | number
   }
 
   export type manager_dashboard_tblOrderByWithRelationInput = {
-    manager_dashboard_id?: SortOrder
     REGION?: SortOrder
     DISTRICT?: SortOrder
     TRAM?: SortOrder
@@ -4087,6 +4104,7 @@ export namespace Prisma {
     STE_EFIS?: SortOrder
     STE_NAME?: SortOrder
     STE_EMAIL?: SortOrder
+    manager_dashboard_id?: SortOrder
   }
 
   export type manager_dashboard_tblWhereUniqueInput = {
@@ -4094,7 +4112,6 @@ export namespace Prisma {
   }
 
   export type manager_dashboard_tblOrderByWithAggregationInput = {
-    manager_dashboard_id?: SortOrder
     REGION?: SortOrder
     DISTRICT?: SortOrder
     TRAM?: SortOrder
@@ -4113,6 +4130,7 @@ export namespace Prisma {
     STE_EFIS?: SortOrder
     STE_NAME?: SortOrder
     STE_EMAIL?: SortOrder
+    manager_dashboard_id?: SortOrder
     _count?: manager_dashboard_tblCountOrderByAggregateInput
     _avg?: manager_dashboard_tblAvgOrderByAggregateInput
     _max?: manager_dashboard_tblMaxOrderByAggregateInput
@@ -4124,7 +4142,6 @@ export namespace Prisma {
     AND?: Enumerable<manager_dashboard_tblScalarWhereWithAggregatesInput>
     OR?: Enumerable<manager_dashboard_tblScalarWhereWithAggregatesInput>
     NOT?: Enumerable<manager_dashboard_tblScalarWhereWithAggregatesInput>
-    manager_dashboard_id?: IntWithAggregatesFilter | number
     REGION?: StringNullableWithAggregatesFilter | string | null
     DISTRICT?: StringNullableWithAggregatesFilter | string | null
     TRAM?: StringNullableWithAggregatesFilter | string | null
@@ -4143,6 +4160,7 @@ export namespace Prisma {
     STE_EFIS?: StringNullableWithAggregatesFilter | string | null
     STE_NAME?: StringNullableWithAggregatesFilter | string | null
     STE_EMAIL?: StringNullableWithAggregatesFilter | string | null
+    manager_dashboard_id?: IntWithAggregatesFilter | number
   }
 
   export type audit_superiorCreateInput = {
@@ -4246,6 +4264,7 @@ export namespace Prisma {
     efis?: string | null
     region?: string | null
     date_time?: string | null
+    test?: number
   }
 
   export type audit_tableUncheckedCreateInput = {
@@ -4262,6 +4281,7 @@ export namespace Prisma {
     efis?: string | null
     region?: string | null
     date_time?: string | null
+    test?: number
   }
 
   export type audit_tableUpdateInput = {
@@ -4277,6 +4297,7 @@ export namespace Prisma {
     efis?: NullableStringFieldUpdateOperationsInput | string | null
     region?: NullableStringFieldUpdateOperationsInput | string | null
     date_time?: NullableStringFieldUpdateOperationsInput | string | null
+    test?: IntFieldUpdateOperationsInput | number
   }
 
   export type audit_tableUncheckedUpdateInput = {
@@ -4293,6 +4314,7 @@ export namespace Prisma {
     efis?: NullableStringFieldUpdateOperationsInput | string | null
     region?: NullableStringFieldUpdateOperationsInput | string | null
     date_time?: NullableStringFieldUpdateOperationsInput | string | null
+    test?: IntFieldUpdateOperationsInput | number
   }
 
   export type audit_tableCreateManyInput = {
@@ -4309,6 +4331,7 @@ export namespace Prisma {
     efis?: string | null
     region?: string | null
     date_time?: string | null
+    test?: number
   }
 
   export type audit_tableUpdateManyMutationInput = {
@@ -4324,6 +4347,7 @@ export namespace Prisma {
     efis?: NullableStringFieldUpdateOperationsInput | string | null
     region?: NullableStringFieldUpdateOperationsInput | string | null
     date_time?: NullableStringFieldUpdateOperationsInput | string | null
+    test?: IntFieldUpdateOperationsInput | number
   }
 
   export type audit_tableUncheckedUpdateManyInput = {
@@ -4340,6 +4364,7 @@ export namespace Prisma {
     efis?: NullableStringFieldUpdateOperationsInput | string | null
     region?: NullableStringFieldUpdateOperationsInput | string | null
     date_time?: NullableStringFieldUpdateOperationsInput | string | null
+    test?: IntFieldUpdateOperationsInput | number
   }
 
   export type manager_dashboard_tblCreateInput = {
@@ -4364,7 +4389,6 @@ export namespace Prisma {
   }
 
   export type manager_dashboard_tblUncheckedCreateInput = {
-    manager_dashboard_id?: number
     REGION?: string | null
     DISTRICT?: string | null
     TRAM?: string | null
@@ -4383,6 +4407,7 @@ export namespace Prisma {
     STE_EFIS?: string | null
     STE_NAME?: string | null
     STE_EMAIL?: string | null
+    manager_dashboard_id?: number
   }
 
   export type manager_dashboard_tblUpdateInput = {
@@ -4407,7 +4432,6 @@ export namespace Prisma {
   }
 
   export type manager_dashboard_tblUncheckedUpdateInput = {
-    manager_dashboard_id?: IntFieldUpdateOperationsInput | number
     REGION?: NullableStringFieldUpdateOperationsInput | string | null
     DISTRICT?: NullableStringFieldUpdateOperationsInput | string | null
     TRAM?: NullableStringFieldUpdateOperationsInput | string | null
@@ -4426,10 +4450,10 @@ export namespace Prisma {
     STE_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
     STE_NAME?: NullableStringFieldUpdateOperationsInput | string | null
     STE_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    manager_dashboard_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type manager_dashboard_tblCreateManyInput = {
-    manager_dashboard_id?: number
     REGION?: string | null
     DISTRICT?: string | null
     TRAM?: string | null
@@ -4448,6 +4472,7 @@ export namespace Prisma {
     STE_EFIS?: string | null
     STE_NAME?: string | null
     STE_EMAIL?: string | null
+    manager_dashboard_id?: number
   }
 
   export type manager_dashboard_tblUpdateManyMutationInput = {
@@ -4472,7 +4497,6 @@ export namespace Prisma {
   }
 
   export type manager_dashboard_tblUncheckedUpdateManyInput = {
-    manager_dashboard_id?: IntFieldUpdateOperationsInput | number
     REGION?: NullableStringFieldUpdateOperationsInput | string | null
     DISTRICT?: NullableStringFieldUpdateOperationsInput | string | null
     TRAM?: NullableStringFieldUpdateOperationsInput | string | null
@@ -4491,6 +4515,7 @@ export namespace Prisma {
     STE_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
     STE_NAME?: NullableStringFieldUpdateOperationsInput | string | null
     STE_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    manager_dashboard_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter = {
@@ -4626,10 +4651,12 @@ export namespace Prisma {
     efis?: SortOrder
     region?: SortOrder
     date_time?: SortOrder
+    test?: SortOrder
   }
 
   export type audit_tableAvgOrderByAggregateInput = {
     id?: SortOrder
+    test?: SortOrder
   }
 
   export type audit_tableMaxOrderByAggregateInput = {
@@ -4646,6 +4673,7 @@ export namespace Prisma {
     efis?: SortOrder
     region?: SortOrder
     date_time?: SortOrder
+    test?: SortOrder
   }
 
   export type audit_tableMinOrderByAggregateInput = {
@@ -4662,10 +4690,12 @@ export namespace Prisma {
     efis?: SortOrder
     region?: SortOrder
     date_time?: SortOrder
+    test?: SortOrder
   }
 
   export type audit_tableSumOrderByAggregateInput = {
     id?: SortOrder
+    test?: SortOrder
   }
 
   export type StringWithAggregatesFilter = {
@@ -4686,7 +4716,6 @@ export namespace Prisma {
   }
 
   export type manager_dashboard_tblCountOrderByAggregateInput = {
-    manager_dashboard_id?: SortOrder
     REGION?: SortOrder
     DISTRICT?: SortOrder
     TRAM?: SortOrder
@@ -4705,6 +4734,7 @@ export namespace Prisma {
     STE_EFIS?: SortOrder
     STE_NAME?: SortOrder
     STE_EMAIL?: SortOrder
+    manager_dashboard_id?: SortOrder
   }
 
   export type manager_dashboard_tblAvgOrderByAggregateInput = {
@@ -4712,7 +4742,6 @@ export namespace Prisma {
   }
 
   export type manager_dashboard_tblMaxOrderByAggregateInput = {
-    manager_dashboard_id?: SortOrder
     REGION?: SortOrder
     DISTRICT?: SortOrder
     TRAM?: SortOrder
@@ -4731,10 +4760,10 @@ export namespace Prisma {
     STE_EFIS?: SortOrder
     STE_NAME?: SortOrder
     STE_EMAIL?: SortOrder
+    manager_dashboard_id?: SortOrder
   }
 
   export type manager_dashboard_tblMinOrderByAggregateInput = {
-    manager_dashboard_id?: SortOrder
     REGION?: SortOrder
     DISTRICT?: SortOrder
     TRAM?: SortOrder
@@ -4753,6 +4782,7 @@ export namespace Prisma {
     STE_EFIS?: SortOrder
     STE_NAME?: SortOrder
     STE_EMAIL?: SortOrder
+    manager_dashboard_id?: SortOrder
   }
 
   export type manager_dashboard_tblSumOrderByAggregateInput = {

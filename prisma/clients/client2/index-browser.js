@@ -113,11 +113,11 @@ exports.Prisma.Audit_tableScalarFieldEnum = makeEnum({
   role: 'role',
   efis: 'efis',
   region: 'region',
-  date_time: 'date_time'
+  date_time: 'date_time',
+  test: 'test'
 });
 
 exports.Prisma.Manager_dashboard_tblScalarFieldEnum = makeEnum({
-  manager_dashboard_id: 'manager_dashboard_id',
   REGION: 'REGION',
   DISTRICT: 'DISTRICT',
   TRAM: 'TRAM',
@@ -135,7 +135,8 @@ exports.Prisma.Manager_dashboard_tblScalarFieldEnum = makeEnum({
   STE_UNIT: 'STE_UNIT',
   STE_EFIS: 'STE_EFIS',
   STE_NAME: 'STE_NAME',
-  STE_EMAIL: 'STE_EMAIL'
+  STE_EMAIL: 'STE_EMAIL',
+  manager_dashboard_id: 'manager_dashboard_id'
 });
 
 exports.Prisma.SortOrder = makeEnum({
