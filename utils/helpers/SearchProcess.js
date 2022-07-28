@@ -18,24 +18,21 @@ export default function SearchProcess(input, data){
               filtered_efis.push(users[i]['EFIS'])
               filtered_district.push(users[i]['DISTRICT'])
           }
-      }
-      if(users[i]['PRIN_NAME'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['PRIN_EFIS'].includes(search_text)){
+      }else if(users[i]['PRIN_NAME'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['PRIN_EFIS'].includes(search_text)){
           if(!filtered_users.includes(users[i]['PRIN_NAME'])){
               filtered_users.push(users[i]['PRIN_NAME'])
               filtered_roles.push('Principal')
               filtered_efis.push(users[i]['PRIN_EFIS'])
               filtered_district.push(users[i]['DISTRICT'])
           }
-      }
-      if(users[i]['CHIEF_NAME'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['CHIEF_EFIS'].includes(search_text)){
+      }else if(users[i]['CHIEF_NAME'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['CHIEF_EFIS'].includes(search_text)){
           if(!filtered_users.includes(users[i]['CHIEF_NAME'])){
               filtered_users.push(users[i]['CHIEF_NAME'])
               filtered_roles.push('Chief')
               filtered_efis.push(users[i]['CHIEF_EFIS'])
               filtered_district.push(users[i]['DISTRICT'])
           }
-      }
-      if(users[i]['STE_NAME'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['STE_EFIS'].includes(search_text)){
+      }else if(users[i]['STE_NAME'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['STE_EFIS'].includes(search_text)){
           if(!filtered_users.includes(users[i]['STE_NAME'])){
               filtered_users.push(users[i]['STE_NAME'])
               filtered_roles.push('STE')
