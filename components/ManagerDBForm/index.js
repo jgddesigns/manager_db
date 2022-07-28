@@ -2,16 +2,25 @@
 
 import ManagerDBView from './ManagerDBView'
 import SearchBar from './SearchBar'
+import SearchProcess from './SearchProcess'
 import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
 import {useState, useEffect} from 'react'
-
 export default function index() {
 
   const [searchInput, setSearchInput] = useState('')
   const [searchResults, setSearchResults] = useState([])
 
   useEffect(() => {
+    setSearchResults(["Waiting for search input..."], ["a"], ["b"], ["c"])
     console.log(searchInput)
+    fetch("/ManagerDB/api/managers/", {
+      method: "GET",
+    }).then((res) => {
+      res.json().then((data) => {
+        setSearchResults(SearchProcess(searchInput, data))
+      });
+    });
+ 
   }, [searchInput])
 
   return (
@@ -21,7 +30,7 @@ export default function index() {
           
           <InstantSearch 
             searchClient={""} 
-            indexName="gfg_dev">
+            >
       
           <SearchBar setSearchInput={setSearchInput}/>
           <Hits />
@@ -30,6 +39,8 @@ export default function index() {
 
         <div>
             <ManagerDBView searchResults={searchResults}/>
+
+            
             
         </div>
 
