@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import ManagerDBForm from '../components/ManagerDBForm'
+import ManagerDBTable from '../components/ManagerDBTable'
 
 const Home: NextPage = () => {
   // Redirect user to Home page
@@ -12,8 +12,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Manager DB Tool</title>
       </Head>
-
-      <ManagerDBForm/>
+      <ManagerDBTable/>
 
       
     </div>

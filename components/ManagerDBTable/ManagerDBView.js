@@ -1,6 +1,6 @@
 import {setState, useState, useEffect} from 'react'
 
-export default function ManagerDBView({searchResults}) {
+export default function ManagerDBView({searchResults, setSearchInput}) {
 
 
   const results = Object.values(searchResults)
@@ -34,17 +34,28 @@ export default function ManagerDBView({searchResults}) {
       emp_district: emp_district[index]
     }
   })
-
- 
- 
+  console.log(resultsMap);
+  
   return (
 
     <div className="h-[36rem] max-h-[36rem] p-2 w-[44rem] rounded bg-[#70AA9B] shadow-lg">
-      <div className="text-white text-2xl pb-2">
-        Retrieved Information:
+      <div className="text-white text-2xl pb-2 inline-block">
+          Employees
       </div>
+      
+      <input
+      onChange={(e) => setSearchInput(e.target.value)}
+      placeholder="Search by Name, EFIS"
+      className=" inline-block form-control px-3 py-1.5text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none placeholder:pl-2 h-8 rounded float-right shadow-lg"
+      title='Search bar'
+      />
+      {/* <div className="text-right pt-2 text-sm">
+        Click name to display information.
+      </div> */}
+      
+          
       <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
-        {renderResults(resultsMap)}
+        {resultsMap.length > 0 || resultsMap === undefined ? renderResults(resultsMap) : <div className="text-center text-lg text-black">No results found.</div>}
       </div>
 
       <div className="text-center p-6">
@@ -82,6 +93,7 @@ const renderResults = (results) =>{
         </thead>
         <tbody>
           {/* sort by name */}
+
           {results.sort((a, b) => (a.emp_name > b.emp_name) ? 1 : -1).map(result => {
             return (
               <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
@@ -102,68 +114,3 @@ const renderResults = (results) =>{
 
 
 
-
-{/* <div class="flex flex-col">
-  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-      <div class="overflow-hidden">
-        <table class="min-w-full">
-          <thead class="border-b">
-            <tr>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                #
-              </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                First
-              </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Last
-              </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Handle
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-b">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                Mark
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                Otto
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                @mdo
-              </td>
-            </tr>
-            <tr class="bg-white border-b">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                Jacob
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                Thornton
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                @fat
-              </td>
-            </tr>
-            <tr class="bg-white border-b">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                Larry
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                Wild
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                @twitter
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div> */}
