@@ -1,6 +1,5 @@
-
-
 import ManagerDBView from './ManagerDBView'
+import Instructions from '../instructions'
 import SearchBar from './SearchBar'
 import SearchProcess from '../../utils/helpers/SearchProcess'
 import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
@@ -29,11 +28,11 @@ export default function index() {
     <div className="grid gap-[1rem] space-y-4 pb-24">
       <div className="text-center text-3xl text-black mt-8 mb-8">Manager Update Tool for Construction</div>
         <div>
-          
-          <InstantSearch 
+
+          <InstantSearch
             searchClient={""} 
             >
-      
+          <Instructions/>
           <SearchBar setSearchInput={setSearchInput}/>
           <Hits />
           </InstantSearch>
