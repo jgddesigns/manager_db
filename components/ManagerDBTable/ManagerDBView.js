@@ -39,28 +39,29 @@ export default function ManagerDBView({searchResults, setSearchInput}) {
   return (
 
     <div className="h-[36rem] max-h-[36rem] p-2 w-[44rem] rounded bg-[#70AA9B] shadow-lg">
-      <div className="text-white text-2xl pb-2 inline-block">
-          Employees
-      </div>
+
+        <div className="text-white text-2xl pb-2 inline-block">
+            Employees
+        </div>
       
-      <input
-      onChange={(e) => setSearchInput(e.target.value)}
-      placeholder="Search by Name, EFIS"
-      className=" inline-block form-control px-3 py-1.5text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none placeholder:pl-2 h-8 rounded float-right shadow-lg"
-      title='Search bar'
-      />
-      {/* <div className="text-right pt-2 text-sm">
-        Click name to display information.
-      </div> */}
+        <input
+        onChange={(e) => setSearchInput(e.target.value)}
+        placeholder="Search by Name, EFIS"
+        className=" inline-block form-control px-3 py-1.5text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none placeholder:pl-2 h-8 rounded float-right shadow-lg"
+        title='Search bar'
+        />
+        {/* <div className="text-right pt-2 text-sm">
+          Click name to display information.
+        </div> */}
       
           
-      <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
-        {resultsMap.length > 0 || resultsMap === undefined ? renderResults(resultsMap) : <div className="text-center text-lg text-black">No results found.</div>}
-      </div>
+        <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
+          {resultsMap.length > 0 || resultsMap === undefined ? renderResults(resultsMap) : <div className="text-center text-lg text-black">No results found.</div>}
+        </div>
 
-      <div className="text-center p-6">
-        <button className="bg-yellow-500 hover:bg-yellow-700 text-white px-4 rounded m-2 w-auto h-10" onClick={submitEdits}>Submit Edits</button>
-      </div>
+        <div className="text-center p-6">
+          <button className="bg-yellow-500 hover:bg-yellow-700 text-white px-4 rounded m-2 w-auto h-10" onClick={submitEdits}>Submit Edits</button>
+        </div>
 
     </div>
 
