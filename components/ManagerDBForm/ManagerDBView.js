@@ -1,6 +1,8 @@
 import {setState, useState, useEffect} from 'react'
 
 export default function ManagerDBView({searchResults}) {
+
+
   const results = Object.values(searchResults)
   if(results[1]){
     var emp_name = Object.values(results[0])
@@ -41,7 +43,7 @@ export default function ManagerDBView({searchResults}) {
       <div className="text-white text-2xl pb-2">
         Retrieved Information:
       </div>
-      <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 ">
+      <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
         {renderResults(resultsMap)}
       </div>
 
@@ -87,6 +89,7 @@ const renderResults = (results) =>{
                 <td className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_efis}</td>
                 <td className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_role}</td>
                 <td className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_district}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-left"><p className = "text-md text-blue-500 hover:text-blue-300" onClick={() => console.log("Clicked")}>Update</p></td>
               </tr>
             )
           })}
