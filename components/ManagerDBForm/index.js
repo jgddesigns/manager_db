@@ -11,7 +11,7 @@ export default function index() {
   const [searchResults, setSearchResults] = useState([])
 
   useEffect(() => {
-    setSearchResults(["Waiting for search input..."], ["a"], ["b"], ["c"])
+    setSearchResults(["Waiting for search input..."], [""], [""], [""])
     console.log(searchInput)
     fetch("/ManagerDB/api/managers/", {
       method: "GET",
