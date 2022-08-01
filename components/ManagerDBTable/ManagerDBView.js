@@ -1,7 +1,12 @@
 import {setState, useState, useEffect} from 'react'
-
+import SelectedEmployee from './SelectedEmployee'
 export default function ManagerDBView({searchResults, setSearchInput}) {
-
+  const [selectedUser, setSelectedUser] = useState(null)
+  useEffect(() => {
+    // if allManagers is empty, fetch all managers
+   console.log(selectedUser)
+ 
+  }, [selectedUser])
 
   const results = Object.values(searchResults)
   if(results[1]){
@@ -34,7 +39,43 @@ export default function ManagerDBView({searchResults, setSearchInput}) {
       emp_district: emp_district[index]
     }
   })
-  console.log(resultsMap);
+
+  const renderResults = (results) =>{
+    return(
+      // /Map each result to a row in a table.
+      <div className="flex flex-col text-center">
+        <div className="overflow-y-auto max-h-[28rem] ">
+        <table className="scroll-auto table-auto overflow-scroll w-full max-h-[36rem]">
+          <thead>
+            <tr>
+              <th className=" text-md font-medium text-gray-900 px-6 py-4 text-left">Name</th>
+              <th className=" text-md font-medium text-gray-900 px-6 py-4 text-left">EFIS</th>
+              <th className=" text-md font-medium text-gray-900 px-6 py-4 text-left">Role</th>
+              <th className=" text-md font-medium text-gray-900 px-6 py-4 text-left">District</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* sort by name */}
+  
+            {results.sort((a, b) => (a.emp_name > b.emp_name) ? 1 : -1).map(result => {
+              return (
+                <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                  <td className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_name}</td>
+                  <td className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_efis}</td>
+                  <td className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_role}</td>
+                  <td className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_district}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-left"><p className = "text-md text-blue-500 hover:text-blue-300" onClick={() => setSelectedUser(result)}>Update</p></td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+        </div>
+      </div>
+    )
+  }
+  
+ 
   
   return (
 
@@ -56,7 +97,7 @@ export default function ManagerDBView({searchResults, setSearchInput}) {
       
           
         <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
-          {resultsMap.length > 0 || resultsMap === undefined ? renderResults(resultsMap) : <div className="text-center text-lg text-black">No results found.</div>}
+          {selectedUser ? <SelectedEmployee selectedEmployee={selectedUser}/> : renderResults(resultsMap)}
         </div>
 
         <div className="text-center p-6">
@@ -78,40 +119,6 @@ const submitEdits = () => {
   // }
 }
 
-const renderResults = (results) =>{
-  return(
-    // /Map each result to a row in a table.
-    <div className="flex flex-col text-center">
-      <div className="overflow-y-auto max-h-[28rem] ">
-      <table className="scroll-auto table-auto overflow-scroll w-full max-h-[36rem]">
-        <thead>
-          <tr>
-            <th className=" text-md font-medium text-gray-900 px-6 py-4 text-left">Name</th>
-            <th className=" text-md font-medium text-gray-900 px-6 py-4 text-left">EFIS</th>
-            <th className=" text-md font-medium text-gray-900 px-6 py-4 text-left">Role</th>
-            <th className=" text-md font-medium text-gray-900 px-6 py-4 text-left">District</th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* sort by name */}
-
-          {results.sort((a, b) => (a.emp_name > b.emp_name) ? 1 : -1).map(result => {
-            return (
-              <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                <td className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_name}</td>
-                <td className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_efis}</td>
-                <td className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_role}</td>
-                <td className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_district}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-left"><p className = "text-md text-blue-500 hover:text-blue-300" onClick={() => console.log("Clicked")}>Update</p></td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
-      </div>
-    </div>
-  )
-}
 
 
 
