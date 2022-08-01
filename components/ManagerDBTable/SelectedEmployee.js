@@ -9,7 +9,7 @@ export default function SelectedEmployee({selectedEmployee}) {
           <div className="ml-64" id="display_title">
               <span className="font-bold text-center">Selected Employee:</span>
           </div>
-    
+
           <div className="ml-36 grid auto-rows-grid auto-cols-grid" id="display_row"> 
             <div className="grid grid-cols-2">
               <div>

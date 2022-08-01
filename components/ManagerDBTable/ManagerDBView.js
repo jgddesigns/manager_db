@@ -11,7 +11,7 @@ export default function ManagerDBView({searchResults, setSearchInput}) {
    console.log(selectedUser)
   }, [selectedUser])
 
-
+  // Fire on Change of SearchInput when a User is Selected.
   function changeDisplay() {
     MySwal.fire({
       icon: 'question',
@@ -24,37 +24,14 @@ export default function ManagerDBView({searchResults, setSearchInput}) {
       }
     })
   };
-  
-
-  const results = Object.values(searchResults)
-  if(results[1]){
-    var emp_name = Object.values(results[0])
-  }else{
-    emp_name = [""]
-  }
-  if(results[2]){
-    var emp_role = Object.values(results[1]) 
-  }else{
-    emp_role = [""]
-  }
-  if(results.length  > 2){
-    var emp_efis = Object.values(results[2])
-  }else{
-    emp_efis = [""]
-  }
-  if(results.length  > 3){
-    var emp_district = Object.values(results[3])
-  }else{
-    emp_district = [""]
-  }
 
   // Map each ressult to a single json object {emp_name: "", emp_role: "", emp_efis: "", emp_district: ""}
-  const resultsMap = emp_name.map((name, index) => {
+  const resultsMap = searchResults[0].map((name, index) => {
     return {
-      emp_name: name,
-      emp_role: emp_role[index],
-      emp_efis: emp_efis[index],
-      emp_district: emp_district[index]
+      emp_name: searchResults[0][index],
+      emp_role: searchResults[1][index],
+      emp_efis: searchResults[2][index],
+      emp_district: searchResults[3][index]
     }
   })
 
@@ -74,7 +51,6 @@ export default function ManagerDBView({searchResults, setSearchInput}) {
           </thead>
           <tbody>
             {/* sort by name */}
-  
             {results.sort((a, b) => (a.emp_name > b.emp_name) ? 1 : -1).map(result => {
               return (
                 <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
