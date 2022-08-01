@@ -17,6 +17,10 @@ export default function index() {
   const [searchInput, setSearchInput] = useState('')
   const [searchResults, setSearchResults] = useState([])
   const [searchData, setSearchData] = useState([])
+  const [employeeName, setEmployeeName] = useState([])
+  const [employeeRole, setEmployeeRole] = useState([])
+  const [employeeEFIS, setEmployeeEFIS] = useState([])
+  const [employeeDistrict, setEmployeeDistrict] = useState([])
 
 
 
@@ -29,14 +33,15 @@ export default function index() {
       showCancelButton: true,
     }).then((result) => {
       if (result.isConfirmed) {
-      document.getElementById('info_row').hidden = false;
-      document.getElementById('display_row').hidden = true;
+        document.getElementById("display_row").classList.remove('gap-4')
+        document.getElementById("display_title").classList.remove('mb-8')
+        setEmployeeName("")
+        setEmployeeRole("")
+        setEmployeeEFIS("")
+        setEmployeeDistrict("")
+        setSearchResults(SearchProcess(searchInput, searchData))
       }
     })
-  
-  
-  
-  
   };
   
   useEffect(() => {
@@ -51,16 +56,9 @@ export default function index() {
   },[]);
 
   useEffect(() => {
-    // setSearchResults(["Waiting for search input..."], [""], [""], [""])
-    console.log(searchInput)
-    if(!document.getElementById('display_row').hidden){
-      changeDisplay()
-      console.log('change')
-    }
-    
+   
     setSearchResults(SearchProcess(searchInput, searchData))
 
- 
   }, [searchInput])
 
 
@@ -70,14 +68,33 @@ export default function index() {
     <div className="grid gap-[1rem] space-y-4 pb-24">
       <div className="text-center text-3xl text-black mt-8 mb-8">Manager Update Tool for Construction</div>
         <div>
-          <InstantSearch searchClient={""} >
-            <SearchBar setSearchInput={setSearchInput}/>
+          <InstantSearch 
+            searchClient={""} 
+          >
+            <SearchBar 
+              setSearchInput={setSearchInput} 
+              employeeName={employeeName} 
+              changeDisplay={changeDisplay}
+            />
             <Hits />
           </InstantSearch>
         </div>
 
         <div>
-            <ManagerDBView searchResults={searchResults}/> 
+            <ManagerDBView 
+              searchResults={searchResults} 
+              employeeName={employeeName} 
+              employeeRole={employeeRole} 
+              employeeEFIS={employeeEFIS} 
+              employeeDistrict={employeeDistrict} 
+              setSearchResults={setSearchResults} 
+              setEmployeeName={setEmployeeName} 
+              setSearchData={setSearchData} 
+              setEmployeeRole={setEmployeeRole} 
+              setEmployeeEFIS={setEmployeeEFIS} 
+              setEmployeeDistrict={setEmployeeDistrict} 
+              searchInput={searchInput}
+            /> 
         </div>
     </div>
   )
