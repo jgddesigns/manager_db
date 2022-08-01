@@ -1,6 +1,6 @@
 import ManagerDBView from './ManagerDBView'
 // import SearchBar from './SearchBar'
-import Instructions from '../instructions'
+import Instructions from '../Instructions'
 import SearchProcess from '../../utils/helpers/SearchProcess'
 import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
 import {useState, useEffect} from 'react'
