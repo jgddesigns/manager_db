@@ -1,12 +1,30 @@
 import {setState, useState, useEffect} from 'react'
 import SelectedEmployee from './SelectedEmployee'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
 export default function ManagerDBView({searchResults, setSearchInput}) {
   const [selectedUser, setSelectedUser] = useState(null)
+  const MySwal = withReactContent(Swal)
   useEffect(() => {
-    // if allManagers is empty, fetch all managers
+    
    console.log(selectedUser)
- 
   }, [selectedUser])
+
+
+  function changeDisplay() {
+    MySwal.fire({
+      icon: 'question',
+      title: <p>Clear Info</p>,
+      text: 'This will clear current employee information. Continue?',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setSelectedUser(null)
+      }
+    })
+  };
+  
 
   const results = Object.values(searchResults)
   if(results[1]){
@@ -86,7 +104,7 @@ export default function ManagerDBView({searchResults, setSearchInput}) {
         </div>
       
         <input
-        onChange={(e) => setSearchInput(e.target.value)}
+        onChange={(e) => { if(selectedUser != null) changeDisplay() ; setSearchInput(e.target.value); }}
         placeholder="Search by Name, EFIS"
         className=" inline-block form-control px-3 py-1.5text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none placeholder:pl-2 h-8 rounded float-right shadow-lg"
         title='Search bar'
@@ -118,6 +136,8 @@ const submitEdits = () => {
   //     console.log(this)
   // }
 }
+
+
 
 
 
