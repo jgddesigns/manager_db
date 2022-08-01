@@ -7,7 +7,7 @@ export default async function handler(req,res){
     
     switch(req.method){
         case 'GET': 
-            const users = prisma2.audit_table.findMany({
+            const users = await prisma2.audit_table.findMany({
             }).then(users => {
                 res.send(users) //Send user objects back to client
             }).catch(err => {

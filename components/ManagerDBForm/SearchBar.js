@@ -15,7 +15,7 @@ function SearchBar(props) {
   
   return (
 
-      <div className="p-2 pt-2 rounded bg-[#70AA9B] content-center w-128 max-w-128">
+      <div className="p-2 pt-2 rounded bg-[#70AA9B] content-center max-w-[20rem] shadow-lg">
         <div className="text-white text-2xl pb-2">Employee Search:</div>
           
           <input id="search_input"
