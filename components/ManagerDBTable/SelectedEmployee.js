@@ -4,59 +4,33 @@ export default function SelectedEmployee({selectedEmployee}) {
 
     return (
     
-        <div>
-    
-          <div className="ml-64" id="display_title">
-              <span className="font-bold text-center">Selected Employee:</span>
-          </div>
-
-          <div className="ml-36 grid auto-rows-grid auto-cols-grid" id="display_row"> 
-            <div className="grid grid-cols-2">
-              <div>
-                <span className="font-bold">Name:</span>
-              </div>
-              <div>
-                <span className="color-red-400">{selectedEmployee.emp_name}</span>
-              </div>
-            </div>
-    
-            <div className="grid grid-cols-2">
-              <div>
-                <span className="font-bold">Email:</span>
-              </div>
-              <div>
-                <span className="color-red-400">{}</span>
-              </div>
-            </div>
-    
-            <div className="grid grid-cols-2">
-              <div>
-                <span className="font-bold">Role:</span>
-              </div>
-              <div>
-                <span className="color-red-400">{selectedEmployee.emp_role}</span>
-              </div>
-            </div>
-    
-            <div className="grid grid-cols-2">
-              <div>
-                <span className="font-bold">EFIS:</span>
-              </div>
-              <div>
-                <span className="color-red-400">{selectedEmployee.emp_efis}</span>
-              </div>
-            </div>
-    
-            <div className="grid grid-cols-2">
-              <div>
-                <span className="font-bold">District:</span>
-              </div>
-              <div>
-                <span className="color-red-400">{selectedEmployee.emp_district}</span>
-              </div>
-            </div>
-          </div>
-    
+        <div className='w-full'>
+            <h2 className="px-4 py-2 text-center w-full text-xl">Selected Employee:</h2>
+            <table className="table-auto w-full">
+                
+                <tbody>
+                    <tr>
+                        <td className="border px-4 py-2">Name:</td>
+                        <td className="border px-4 py-2">{selectedEmployee.emp_name}</td>
+                    </tr>
+                    <tr>
+                        <td className="border px-4 py-2">Email:</td>
+                        <td className="border px-4 py-2">{selectedEmployee.emp_email}</td>
+                    </tr>
+                    <tr>
+                        <td className="border px-4 py-2">Role:</td>
+                        <td className="border px-4 py-2">{selectedEmployee.emp_role}</td>
+                    </tr>
+                    <tr>
+                        <td className="border px-4 py-2">EFIS:</td>
+                        <td className="border px-4 py-2">{selectedEmployee.emp_efis}</td>
+                    </tr>
+                    <tr>
+                        <td className="border px-4 py-2">District:</td>
+                        <td className="border px-4 py-2">{selectedEmployee.emp_district}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
       );
 }
