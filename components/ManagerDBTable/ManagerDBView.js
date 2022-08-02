@@ -3,7 +3,7 @@ import SelectedEmployee from './SelectedEmployee'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
-export default function ManagerDBView({searchResults, setSearchInput}) {
+export default function ManagerDBView({searchResults, setSearchInput, searchInput}) {
   const [selectedUser, setSelectedUser] = useState(null)
   const MySwal = withReactContent(Swal)
   useEffect(() => {
@@ -29,9 +29,11 @@ export default function ManagerDBView({searchResults, setSearchInput}) {
   const resultsMap = searchResults[0].map((name, index) => {
     return {
       emp_name: searchResults[0][index],
-      emp_role: searchResults[1][index],
-      emp_efis: searchResults[2][index],
-      emp_district: searchResults[3][index]
+      emp_email: searchResults[1][index],
+      emp_role: searchResults[2][index],
+      emp_efis: searchResults[3][index],
+      emp_district: searchResults[4][index],
+      emp_tram: searchResults[5][index]
     }
   })
 
@@ -40,30 +42,36 @@ export default function ManagerDBView({searchResults, setSearchInput}) {
       // /Map each result to a row in a table.
       <div className="flex flex-col text-center">
         <div className="overflow-y-auto max-h-[28rem] ">
-        <table className="scroll-auto table-auto overflow-scroll w-full max-h-[36rem]">
-          <thead>
-            <tr>
-              <th className=" text-md font-medium text-gray-900 px-6 py-4 text-left">Name</th>
-              <th className=" text-md font-medium text-gray-900 px-6 py-4 text-left">EFIS</th>
-              <th className=" text-md font-medium text-gray-900 px-6 py-4 text-left">Role</th>
-              <th className=" text-md font-medium text-gray-900 px-6 py-4 text-left">District</th>
-            </tr>
-          </thead>
+        {/* <table className="scroll-auto table-auto overflow-scroll w-full max-h-[36rem]"> */}
+          { results.length > 0 ?
+          // <thead>
+            <div className="grid grid-rows-1 grid-cols-5">
+              <div className=" text-md font-medium text-gray-900 px-6 py-4 text-left">Name</div>
+              <div className=" text-md font-medium text-gray-900 px-32 py-4 text-left">EFIS</div>
+              <div className=" text-md font-medium text-gray-900 px-20 py-4 text-left ml-4">Role</div>
+              <div className=" text-md font-medium text-gray-900 px-12 py-4 text-left ml-6">District</div>
+              <div></div>
+            </div>
+          // </thead>
+          : ( results.length < 1 && searchInput.length > 0 ? <div className="text-center mt-56">No results.</div> :<div className="text-center mt-56">Enter employee information above to make changes.</div> )}
           <tbody>
             {/* sort by name */}
             {results.sort((a, b) => (a.emp_name > b.emp_name) ? 1 : -1).map(result => {
               return (
-                <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                  <td className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_name}</td>
-                  <td className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_efis}</td>
-                  <td className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_role}</td>
-                  <td className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_district}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-left"><p className = "text-md text-blue-500 hover:text-blue-300" onClick={() => setSelectedUser(result)}>Update</p></td>
-                </tr>
+                // <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                  <div className="grid grid-rows-1 grid-cols-5 bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                  <div className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_name}</div>
+                  <div className="text-md text-gray-900 font-light px-32 py-4 whitespace-nowrap text-left">{result.emp_efis}</div>
+                  <div className="text-md text-gray-900 font-light px-24 py-4 whitespace-nowrap text-left">{result.emp_role}</div>
+                  <div className="text-md text-gray-900 font-light px-20 py-4 whitespace-nowrap text-left">{result.emp_district}</div>
+                  <div className="px-6 py-4 whitespace-nowrap text-left ml-6"><p className = "text-md text-blue-500 hover:text-blue-300 cursor-pointer" onClick={() => setSelectedUser(result)}>Update</p></div>
+                  </div>
+                //</tr> 
+              
               )
             })}
           </tbody>
-        </table>
+        {/* </table> */}
         </div>
       </div>
     )
@@ -94,9 +102,9 @@ export default function ManagerDBView({searchResults, setSearchInput}) {
           {selectedUser ? <SelectedEmployee selectedEmployee={selectedUser}/> : renderResults(resultsMap)}
         </div>
 
-        <div className="text-center p-6">
+        {/* <div className="text-center p-6">
           <button className="bg-yellow-500 hover:bg-yellow-700 text-white px-4 rounded m-2 w-auto h-10" onClick={submitEdits}>Submit Edits</button>
-        </div>
+        </div> */}
 
     </div>
 

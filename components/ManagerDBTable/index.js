@@ -44,7 +44,7 @@ export default function index() {
 
         <div>
             <Instructions />
-            <ManagerDBView searchResults={SearchProcess(searchInput, allManagerDB)} setSearchInput={setSearchInput} />
+            <ManagerDBView searchResults={SearchProcess(searchInput, allManagerDB)} setSearchInput={setSearchInput} searchInput={searchInput}/>
         </div>
     </div>
   )

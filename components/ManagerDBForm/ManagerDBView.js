@@ -30,16 +30,16 @@ export default function ManagerDBView(props) {
   }
 
 
-  const createEmployeeList = (data) => {
+  // const createEmployeeList = (data) => {
 
-    var employeeList = []
+  //   var employeeList = []
 
-    for(var i = 0; i < data[0].length; i++){
-      employeeList.push(<div className="grid grid-rows-1 grid-flow-col gap-4 ml-4" key={i}><div className="w-60"><button className="underline text-blue-600" onClick={() => changeScreen(data[0][i], data[1][i], data[2][i], data[3][i])}>{data[0][i]}</button></div><div className="w-36"><button>{data[1][i]}</button></div><div className="w-32"><button>{data[2][i]}</button></div><div><button>{data[3][i]}</button></div></div>)
-    }
+  //   for(var i = 0; i < data[0].length; i++){
+  //     employeeList.push(<div className="grid grid-rows-1 grid-flow-col gap-4 ml-4" key={i}><div className="w-60"><button className="underline text-blue-600" onClick={() => changeScreen(data[0][i], data[1][i], data[2][i], data[3][i])}>{data[0][i]}</button></div><div className="w-36"><button>{data[1][i]}</button></div><div className="w-32"><button>{data[2][i]}</button></div><div><button>{data[3][i]}</button></div></div>)
+  //   }
 
-    return employeeList
-  }
+  //   return employeeList
+  // }
 
 
   const submitEdits = () => {
@@ -89,9 +89,13 @@ const submitEdits = () => {
 const renderResults = (results) =>{
   return(
     // /Map each result to a row in a table.
+    
     <div className="flex flex-col text-center">
+      
       <div className="overflow-y-auto max-h-[28rem] ">
+      
       <table className="scroll-auto table-auto overflow-scroll w-full max-h-[36rem]">
+    
         <thead>
           <tr>
             <th className=" text-md font-medium text-gray-900 px-6 py-4 text-left">Name</th>
@@ -100,6 +104,7 @@ const renderResults = (results) =>{
             <th className=" text-md font-medium text-gray-900 px-6 py-4 text-left">District</th>
           </tr>
         </thead>
+
         <tbody>
           {/* sort by name */}
           {results.sort((a, b) => (a.emp_name > b.emp_name) ? 1 : -1).map(result => {
@@ -111,11 +116,13 @@ const renderResults = (results) =>{
                 <td className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_district}</td>
               </tr>
             )
-          })}
+          })} 
         </tbody>
       </table>
       </div>
+      
     </div>
+    
   )
 }
 
