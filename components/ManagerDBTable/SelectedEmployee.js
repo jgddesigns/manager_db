@@ -1,34 +1,86 @@
-import React from 'react'
+import {React, useState, useEffect} from 'react'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+
 
 export default function SelectedEmployee({selectedEmployee}) {
 
     const MySwal = withReactContent(Swal)
 
-    const EditEmployee = (type) => {
+    const [newEmail, setNewEmail] = useState("")
+    const [newName, setNewName] = useState("")
+    const [NameChanges, setNameChanges] = useState(false)
+    const [EmailChanges, setEmailChanges] = useState(false)
 
-        if(type === 'Name'){
-            var text = '<br><p class="text-sm"> Enter new name for: <br><p class="font-bold italic">'+ selectedEmployee.emp_name +'</span> </p>\
-            <br><br><label id="name" style="font-size:14px;">New Name:</label> <br><input id="userName" class="swal2-input" style="font-size: 16px; width: 300px;" placeholder="Enter New Name..."><br><br>'
-        }else if(type === 'Email'){
-            text = '<br><p class="text-sm"> Enter new email address for: <br><p class="font-bold italic">'+ selectedEmployee.emp_name +'</span> </p>\
-            <br><br><label style="font-size:14px;">Current Email:</label> <br><input class="swal2-input" style="font-size: 16px; width: 300px; background-color: #c9c9c9;  color:white;" value="'+selectedEmployee.emp_email+'" disabled>\
-            <br><br><label id="email" style="font-size:14px;">New Email:</label> <br><input id="userEmail" class="swal2-input" style="font-size: 16px; width: 300px;" placeholder="Enter New Email..."<br><br>'
+    const SaveChanges = ()=>{
+        setNameChanges(false)
+        setEmailChanges(false)
+    }
 
-        }else{
-            console.log("Error")
+    const EditEmployeeHandler = () => {
+        setNameChanges(false)
+        setEmailChanges(false)
+        setNewName("")
+        setNewEmail("")
+        EditEmployee()
+    }
+
+    const validateEmail = (email) => {
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    const emailChangeHandler = (val) => {
+        setNewEmail(val)
+        if(document.getElementById('userEmail').classList.contains('border-red-500')){
+            document.getElementById('email').classList.remove('text-red-500')
+            document.getElementById('userEmail').classList.remove('border-red-500')
+            document.getElementById('error_message').hidden = true
         }
+    }
 
+    const nameChangeHandler = (val) => {
+        setNewName(val)
+        if(document.getElementById('userName').classList.contains('border-red-500')){
+            document.getElementById('name').classList.remove('text-red-500')
+            document.getElementById('userName').classList.remove('border-red-500')
+            document.getElementById('error_message').hidden = true
+        }
+    }
+
+
+    const EditEmployee = async () => {
 
         MySwal.fire({
-            title: "Edit Employee " + type,
-            html: text,    
+            title: "Edit Employee Record",
+            html: (
+            <div className="mb-8">
+                <p className="text-sm"> Enter new data for:</p>
+                <p className="font-bold italic">EFIS #{selectedEmployee.emp_efis}</p>
+                <p className="text-sm mt-8 mb-2">Current Name</p> 
+                <input className="text-xl w-72 bg-gray-300 text-white rounded h-10" value={selectedEmployee.emp_name} disabled></input>
+                <p className="text-sm mt-4 mb-2">Current Email</p> 
+                <input className="text-xl w-72 bg-gray-300 text-white rounded h-10" value={selectedEmployee.emp_email} disabled></input>
+                <div className="w-36 grid grid-cols-2 grid-rows-1 ml-48 mt-12 mb-2">
+                    <p class="text-sm" id="name">New Name</p>
+               
+                </div>
+                <input className="text-xl w-72 border rounded h-10" onChange={(e) => nameChangeHandler(e.target.value)} id="userName"></input>
+                <div className="w-36 grid grid-cols-2 grid-rows-1 ml-48 mt-4 mb-2">
+                    <p className="text-sm" id="email">New Email</p>
+               
+                </div> 
+                <input class="text-xl w-72 border rounded h-10 mb-8" onChange={(e) => emailChangeHandler(e.target.value)} id="userEmail"></input> 
+                <div className=" grid grid-cols-1 h-10 ml-16 fixed mb-4">
+                    <span className="text-red-400 text-center" id="error_message" hidden></span> 
+                </div>
+                {/* NEED TO FIX CENTERING FOR ERROR MESSAGES */}
+            </div>
+            ),   
             showCancelButton: true ,
             confirmButtonColor: 'bg-indigo-400',
 
             preConfirm: function() {
-   
                 try{
                 var new_email = document.getElementById('userEmail').value
                 }catch{
@@ -40,38 +92,49 @@ export default function SelectedEmployee({selectedEmployee}) {
                     new_name = ""
                 }
                 return new Promise(function(resolve){
-                    if (type==='Name'){
-                        if(new_name != ""){
-                            resolve()
-                        }else{
-                            document.getElementById("name").classList.add("text-red-500");
-                            document.getElementById("userName").classList.add("border-red-500");
-                            resolve(false)
-                        }
-                    }else{
-                        if (validateEmail(email)) {   
-                            resolve();                
-                        }
-                        else{      
-                            document.getElementById("email").classList.add("text-red-500");
-                            document.getElementById("userEmail").classList.add("border-red-500");
-                            resolve(false);
-                        }
+                    if((new_name != "" && new_email == "") || (new_email != "" && validateEmail(new_email))){
+                        resolve()
+                    }else if (new_name == "" && new_email == ""){
+                        document.getElementById("name").classList.add("text-red-500")
+                        document.getElementById("email").classList.add("text-red-500")
+                        document.getElementById("userName").classList.add("border-red-500")
+                        document.getElementById("userEmail").classList.add("border-red-500")
+                        document.getElementById('error_message').hidden = false
+                        document.getElementById('error_message').innerHTML = "Please enter a new name or email address."
+                        resolve(false)
                     }
-                })
+                    if (new_email != "" && !validateEmail(new_email)){      
+                        document.getElementById("email").classList.add("text-red-500")
+                        document.getElementById("userEmail").classList.add("border-red-500")
+                        document.getElementById('error_message').hidden = false
+                        document.getElementById('error_message').innerHTML = "Please enter a valid email address."
+                        resolve(false)
+                    }
+                 })
             },                        
-            }).then((result) => {
-            if (result.value) {  
-                //Update email value in db by name and efis
-            }
+            }).then(function(result, new_name, new_email){
+                if (result.value) {  
+                    //NEEDS WORK. DATA WON'T PASS IN RESPONSE? HAD TO DECLARE AGAIN...I SWEAR I'VE DONE THIS BEFORE. BTW, HAD TO USE JS IN THIS SWAL BECAUSE THE REACT STATES WON'T UPDATE UNTIL THE MODAL CLOSED.
+                    try{
+                        var new_email = document.getElementById('userEmail').value
+                    }catch{
+                        new_email = ""
+                    }
+                    try{ 
+                        var new_name = document.getElementById('userName').value
+                    }catch{
+                        new_name = ""
+                    }
+
+                    if(new_name != ""){
+                        setNameChanges(true)    
+                    }
+                    
+                    if(new_email != ""){
+                        setEmailChanges(true)
+                    }
+                }
             })
-
-    
-    }
-
-    const validateEmail = (email) => {
-        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
     }
 
 
@@ -79,16 +142,17 @@ export default function SelectedEmployee({selectedEmployee}) {
     
         <div className='w-full'>
             <h2 className="px-4 py-2 text-center w-full text-xl">Selected Employee:</h2>
-            <table className="table-auto w-full mt-20">
+            <table className="table-auto w-full mt-20 static">
                 
                 <tbody>
                     <tr>
                         <td className="border px-4 py-2">Name:</td>
-                        <td className="border px-4 py-2">{selectedEmployee.emp_name}<button className="float-right bg-indigo-400 hover:bg-indigo-500 text-white px-4 rounded m-2 w-auto h-4 text-xs" onClick={() => EditEmployee("Name")}>Edit</button></td>
+                        <td className="border px-4 py-2">{selectedEmployee.emp_name} {NameChanges ? <span className="float-right text-white bg-gray-300 rounded px-2 mr-2"><span className="text-xs font-bold underline">New:</span> {newName}</span>:null}</td> {/* MAKE 'NEW' UPDATES FIT IN THE TABLE WITHOUT MOVING ANY DATA */}
                     </tr>
                     <tr>
                         <td className="border px-4 py-2">Email:</td>
-                        <td className="border px-4 py-2">{selectedEmployee.emp_email}{selectedEmployee.emp_email != "" ? <button className="float-right bg-indigo-400 hover:bg-indigo-500 text-white px-4 rounded m-2 w-auto h-4 text-xs" onClick={() => EditEmployee("Email")}>Edit</button>:null}</td>
+                        <td className="border px-4 py-2">{selectedEmployee.emp_email} {EmailChanges ? <span className="float-right text-white bg-gray-300 rounded px-2 mr-2"><span className="text-xs font-bold underline">New:</span> {newEmail}</span>:null}</td> 
+                        
                     </tr>
                     <tr>
                         <td className="border px-4 py-2">Role:</td>
@@ -107,7 +171,11 @@ export default function SelectedEmployee({selectedEmployee}) {
                         <td className="border px-4 py-2">{selectedEmployee.emp_tram}</td>
                     </tr>
                 </tbody>
-            </table>
+            </table><div className="float-right grid grid-rows-2">
+            <button className="float-right bg-indigo-400 hover:bg-indigo-500 text-white rounded mt-4 mr-8 h-6 w-16 text-xs" onClick={() => EditEmployeeHandler()}>Edit</button>
+            {(NameChanges || EmailChanges) ?  <button className="float-right bg-green-500 hover:bg-green-600 text-white rounded mt-2 h-6 w-16 text-xs" onClick={() => SaveChanges(false)}>Save</button>   : null}
+    
+            </div>
         </div>
       );
 }
