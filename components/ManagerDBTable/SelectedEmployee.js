@@ -1,6 +1,7 @@
 import {React, useState, useEffect} from 'react'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import UpdateHandler from '../../utils/helpers/UpdateHandler'
 
 
 export default function SelectedEmployee({selectedEmployee}) {
@@ -12,9 +13,24 @@ export default function SelectedEmployee({selectedEmployee}) {
     const [NameChanges, setNameChanges] = useState(false)
     const [EmailChanges, setEmailChanges] = useState(false)
 
-    const SaveChanges = ()=>{
+    const SaveChanges = (name, role, efis) =>{
         setNameChanges(false)
         setEmailChanges(false)
+
+        var old_data = []
+        var new_data = []
+        var data = []
+
+    
+
+        old_data.push(name, role, efis)
+        new_data.push(newName, newEmail)
+        data = {
+            old_data: old_data,
+            new_data: new_data
+        }     
+        UpdateHandler(data)
+
     }
 
     const EditEmployeeHandler = () => {
@@ -149,8 +165,8 @@ export default function SelectedEmployee({selectedEmployee}) {
                 
                 <tbody>
                     <tr>
-                        <td className="border px-4 py-2">Name:</td>
-                        <td className="border px-4 py-2">{selectedEmployee.emp_name} {NameChanges ? <span className="float-right text-white bg-gray-300 rounded px-2 mr-2"><span className="text-xs font-bold underline">New:</span> {newName}</span>:null}</td> {/* MAKE 'NEW' UPDATES FIT IN THE TABLE WITHOUT MOVING ANY DATA */}
+                        <td className="border px-4 py-2 w-16">Name:</td>
+                        <td className="border px-4 py-2 w-96">{selectedEmployee.emp_name} {NameChanges ? <span className="float-right text-white bg-gray-300 rounded px-2 mr-2"><span className="text-xs font-bold underline">New:</span> {newName}</span>:null}</td>
                     </tr>
                     <tr>
                         <td className="border px-4 py-2">Email:</td>
@@ -176,7 +192,7 @@ export default function SelectedEmployee({selectedEmployee}) {
                 </tbody>
             </table><div className="float-right grid grid-rows-2">
             <button className="float-right bg-indigo-400 hover:bg-indigo-500 text-white rounded mt-4 mr-8 h-6 w-16 text-xs" onClick={() => EditEmployeeHandler()}>Edit</button>
-            {(NameChanges || EmailChanges) ?  <button className="float-right bg-green-500 hover:bg-green-600 text-white rounded mt-2 h-6 w-16 text-xs" onClick={() => SaveChanges(false)}>Save</button>   : null}
+            {(NameChanges || EmailChanges) ?  <button className="float-right bg-green-500 hover:bg-green-600 text-white rounded mt-2 h-6 w-16 text-xs" onClick={() => SaveChanges(selectedEmployee.emp_name,selectedEmployee.emp_role,  selectedEmployee.emp_efis)}>Save</button>   : null}
     
             </div>
         </div>
