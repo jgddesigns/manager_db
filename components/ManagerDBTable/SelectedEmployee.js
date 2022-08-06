@@ -35,16 +35,20 @@ export default function SelectedEmployee({selectedEmployee}) {
         if(document.getElementById('userEmail').classList.contains('border-red-500')){
             document.getElementById('email').classList.remove('text-red-500')
             document.getElementById('userEmail').classList.remove('border-red-500')
-            document.getElementById('error_message').hidden = true
+            document.getElementById('error_email').hidden = true
+            document.getElementById('error_both').hidden = true
         }
     }
 
     const nameChangeHandler = (val) => {
         setNewName(val)
         if(document.getElementById('userName').classList.contains('border-red-500')){
+            document.getElementById('email').classList.remove('text-red-500')
+            document.getElementById('userEmail').classList.remove('border-red-500')
             document.getElementById('name').classList.remove('text-red-500')
             document.getElementById('userName').classList.remove('border-red-500')
-            document.getElementById('error_message').hidden = true
+            document.getElementById('error_email').hidden = true
+            document.getElementById('error_both').hidden = true
         }
     }
 
@@ -58,23 +62,24 @@ export default function SelectedEmployee({selectedEmployee}) {
                 <p className="text-sm"> Enter new data for:</p>
                 <p className="font-bold italic">EFIS #{selectedEmployee.emp_efis}</p>
                 <p className="text-sm mt-8 mb-2">Current Name</p> 
-                <input className="text-xl w-72 bg-gray-300 text-white rounded h-10" value={selectedEmployee.emp_name} disabled></input>
+                <input className="px-3 text-xl w-72 bg-gray-300 text-white rounded h-10" value={selectedEmployee.emp_name} disabled></input>
                 <p className="text-sm mt-4 mb-2">Current Email</p> 
-                <input className="text-xl w-72 bg-gray-300 text-white rounded h-10" value={selectedEmployee.emp_email} disabled></input>
+                <input className="px-3 text-xl w-72 bg-gray-300 text-white rounded h-10" value={selectedEmployee.emp_email} disabled></input>
                 <div className="w-36 grid grid-cols-2 grid-rows-1 ml-48 mt-12 mb-2">
                     <p class="text-sm" id="name">New Name</p>
                
                 </div>
-                <input className="text-xl w-72 border rounded h-10" onChange={(e) => nameChangeHandler(e.target.value)} id="userName"></input>
+                <input className="px-3 text-xl w-72 border rounded h-10" onChange={(e) => nameChangeHandler(e.target.value)} id="userName"></input>
                 <div className="w-36 grid grid-cols-2 grid-rows-1 ml-48 mt-4 mb-2">
                     <p className="text-sm" id="email">New Email</p>
                
                 </div> 
-                <input class="text-xl w-72 border rounded h-10 mb-8" onChange={(e) => emailChangeHandler(e.target.value)} id="userEmail"></input> 
-                <div className=" grid grid-cols-1 h-10 ml-16 fixed mb-4">
-                    <span className="text-red-400 text-center" id="error_message" hidden></span> 
+                <input class="px-3 text-xl w-72 border rounded h-10 mb-8" onChange={(e) => emailChangeHandler(e.target.value)} id="userEmail"></input> 
+                <div className="grid grid-cols-1 w-88 h-10 ml-16 fixed mb-4">
+                    <span className="text-red-400 text-center" id="error_both" hidden>Please enter a new name or email address.</span> 
+                    <span className="text-red-400 ml-8 text-center fixed" id="error_email" hidden>Please enter a valid email address.</span> 
                 </div>
-                {/* NEED TO FIX CENTERING FOR ERROR MESSAGES */}
+
             </div>
             ),   
             showCancelButton: true ,
@@ -99,15 +104,13 @@ export default function SelectedEmployee({selectedEmployee}) {
                         document.getElementById("email").classList.add("text-red-500")
                         document.getElementById("userName").classList.add("border-red-500")
                         document.getElementById("userEmail").classList.add("border-red-500")
-                        document.getElementById('error_message').hidden = false
-                        document.getElementById('error_message').innerHTML = "Please enter a new name or email address."
+                        document.getElementById('error_both').hidden = false
                         resolve(false)
                     }
                     if (new_email != "" && !validateEmail(new_email)){      
                         document.getElementById("email").classList.add("text-red-500")
                         document.getElementById("userEmail").classList.add("border-red-500")
-                        document.getElementById('error_message').hidden = false
-                        document.getElementById('error_message').innerHTML = "Please enter a valid email address."
+                        document.getElementById('error_email').hidden = false
                         resolve(false)
                     }
                  })

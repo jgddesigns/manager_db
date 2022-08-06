@@ -46,10 +46,10 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
           { results.length > 0 ?
           // <thead>
             <div className="grid grid-rows-1 grid-cols-5">
-              <div className=" text-md font-medium text-gray-900 px-6 py-4 text-left">Name</div>
-              <div className=" text-md font-medium text-gray-900 px-32 py-4 text-left">EFIS</div>
-              <div className=" text-md font-medium text-gray-900 px-20 py-4 text-left ml-4">Role</div>
-              <div className=" text-md font-medium text-gray-900 px-12 py-4 text-left ml-6">District</div>
+              <div className="text-md font-medium text-gray-900 px-6 py-4 text-left w-96">Name</div>
+              <div className="text-md font-medium text-gray-900 px-32 py-4 text-left w-16">EFIS</div>
+              <div className="text-md font-medium text-gray-900 px-20 py-4 text-left ml-4 w-16 ">Role</div>
+              <div className="text-md font-medium text-gray-900 px-12 py-4 text-left ml-6 w-16">District</div>
               <div></div>
             </div>
           // </thead>
@@ -60,11 +60,11 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
               return (
                 // <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
                   <div className="grid grid-rows-1 grid-cols-5 bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                  <div className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left">{result.emp_name}</div>
+                  <div className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left w-96">{result.emp_name}</div>
                   <div className="text-md text-gray-900 font-light px-32 py-4 whitespace-nowrap text-left">{result.emp_efis}</div>
                   <div className="text-md text-gray-900 font-light px-24 py-4 whitespace-nowrap text-left">{result.emp_role}</div>
                   <div className="text-md text-gray-900 font-light px-20 py-4 whitespace-nowrap text-left">{result.emp_district}</div>
-                  <div className="px-6 py-4 whitespace-nowrap text-left ml-6"><p className = "text-md text-blue-500 hover:text-blue-300 cursor-pointer" onClick={() => setSelectedUser(result)}>Update</p></div>
+                  <div className="px-6 py-4 whitespace-nowrap text-left ml-6 w-16"><p className = "text-md text-blue-500 hover:text-blue-300 cursor-pointer" onClick={() => setSelectedUser(result)}>Update</p></div>
                   </div>
                 //</tr> 
               
