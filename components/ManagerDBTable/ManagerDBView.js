@@ -2,13 +2,34 @@ import {setState, useState, useEffect} from 'react'
 import SelectedEmployee from './SelectedEmployee'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import setReloadGraphic from './SelectedEmployee'
 
-export default function ManagerDBView({searchResults, setSearchInput, searchInput}) {
+export default function ManagerDBView({searchResults, setSearchInput, searchInput, setAllManagerDB}) {
   const [selectedUser, setSelectedUser] = useState(null)
+  const [reloadPopup, setReloadPopup] = useState(false)
+  const [loadingGraphic, setLoadingGraphic] = useState(false)
+
   const MySwal = withReactContent(Swal)
+
   useEffect(() => {
-    
-   console.log(selectedUser)
+    if(selectedUser == null && !reloadPopup){
+      
+      setSearchInput("")
+      
+      fetch("/ManagerDB/api/managers/", {
+        method: "GET",
+      }).then((res) => {
+        res.json().then((data) => {
+
+          setAllManagerDB(data)
+         
+        }).then(()=>{
+          setLoadingGraphic(false)
+        })
+      });
+      
+    }
+
   }, [selectedUser])
 
   // Fire on Change of SearchInput when a User is Selected.
@@ -21,9 +42,15 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
     }).then((result) => {
       if (result.isConfirmed) {
         setSelectedUser(null)
+        setReloadPopup(true)
       }
     })
   };
+
+  const setEmployeeHandler = (result) => {
+    setSelectedUser(result)
+    setReloadPopup(false)
+  }
 
   // Map each ressult to a single json object {emp_name: "", emp_role: "", emp_efis: "", emp_district: ""}
   const resultsMap = searchResults[0].map((name, index) => {
@@ -64,7 +91,7 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
                   <div className="text-md text-gray-900 font-light px-32 py-4 whitespace-nowrap text-left">{result.emp_efis}</div>
                   <div className="text-md text-gray-900 font-light px-24 py-4 whitespace-nowrap text-left">{result.emp_role}</div>
                   <div className="text-md text-gray-900 font-light px-20 py-4 whitespace-nowrap text-left">{result.emp_district}</div>
-                  <div className="px-6 py-4 whitespace-nowrap text-left ml-6 w-16"><p className = "text-md text-blue-500 hover:text-blue-300 cursor-pointer" onClick={() => setSelectedUser(result)}>Update</p></div>
+                  <div className="px-6 py-4 whitespace-nowrap text-left ml-6 w-16"><p className = "text-md text-blue-500 hover:text-blue-300 cursor-pointer" onClick={() => setEmployeeHandler(result)}>Update</p></div>
                   </div>
                 //</tr> 
               
@@ -87,24 +114,17 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
             Employees
         </div>
       
-        <input
+        <input 
         onChange={(e) => { if(selectedUser != null) changeDisplay() ; setSearchInput(e.target.value); }}
+        // onClick={(e) => { if(selectedUser != null) null ; setSearchInput(e.target.value); }}
         placeholder="Search by Name, EFIS"
         className=" inline-block form-control px-3 py-1.5text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none placeholder:pl-2 h-8 rounded float-right shadow-lg"
         title='Search bar'
         />
-        {/* <div className="text-right pt-2 text-sm">
-          Click name to display information.
-        </div> */}
-      
           
         <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
-          {selectedUser ? <SelectedEmployee selectedEmployee={selectedUser}/> : renderResults(resultsMap)}
+          {selectedUser ? <SelectedEmployee selectedEmployee={selectedUser} setSelectedUser={setSelectedUser} setLoadingGraphic={setLoadingGraphic}/> : (!loadingGraphic ? renderResults(resultsMap) : renderResults([]))}
         </div>
-
-        {/* <div className="text-center p-6">
-          <button className="bg-yellow-500 hover:bg-yellow-700 text-white px-4 rounded m-2 w-auto h-10" onClick={submitEdits}>Submit Edits</button>
-        </div> */}
 
     </div>
 
@@ -116,9 +136,6 @@ const submitEdits = () => {
   // Do stuff on button click
   console.log("Submit Edits button clicked.")
   
-  // if(this.value == "Dashboard"){
-  //     console.log(this)
-  // }
 }
 
 

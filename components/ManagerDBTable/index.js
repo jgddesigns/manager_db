@@ -11,6 +11,9 @@ export default function index() {
 
   const [searchInput, setSearchInput] = useState('')
   const [allManagerDB, setAllManagerDB] = useState([])
+
+
+
   useEffect(() => {
     // if allManagers is empty, fetch all managers
     if (allManagerDB.length === 0) {
@@ -44,7 +47,7 @@ export default function index() {
 
         <div>
             <Instructions />
-            <ManagerDBView searchResults={SearchProcess(searchInput, allManagerDB)} setSearchInput={setSearchInput} searchInput={searchInput}/>
+            <ManagerDBView searchResults={SearchProcess(searchInput, allManagerDB)} setSearchInput={setSearchInput} searchInput={searchInput} setAllManagerDB={setAllManagerDB}/>
         </div>
     </div>
   )

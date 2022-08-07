@@ -1,6 +1,6 @@
+import setAllManagerDB from '../../components/ManagerDBTable/index'
 
-
-export default function UpdateHandler(update){
+const UpdateHandler = (update) =>{
     //'data' ARRAY MAP
     // emp_name: data[0][0],
     // emp_role: data[0][1],
@@ -56,10 +56,20 @@ export default function UpdateHandler(update){
         body: JSON.stringify(update) 
       }).then((res) => {
         res.json().then((data) => {
-           console.log(data);
+          fetch("/ManagerDB/api/managers/", {
+            method: "GET",
+          }).then((res) => {
+            res.json().then((data) => {
+              // console.log(data);
+              // window.location.reload(false);
+            });
+          });
+        
          
         });
       });
 
    
 }
+
+export default UpdateHandler;

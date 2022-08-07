@@ -34,7 +34,7 @@ export default async function handler(req,res){
                         DEPUTY_EMAIL: {set: new_email},
                     },
                 }).then(data => {
-                    res.send("Update Successful") 
+                    res.send(data) 
                 }).catch(err => {
                     res.status(500).json({
                         error: err.message
@@ -57,7 +57,7 @@ export default async function handler(req,res){
                         PRIN_EMAIL: {set: new_email},
                     },
                 }).then(data => {
-                    res.send("Update Successful") 
+                    res.send(data)
                 }).catch(err => {
                     res.status(500).json({
                         error: err.message
@@ -80,7 +80,7 @@ export default async function handler(req,res){
                         CHIEF_EMAIL: {set: new_email},
                     },
                 }).then(data => {
-                    res.send("Update Successful") 
+                    res.send(data) 
                 }).catch(err => {
                     res.status(500).json({
                         error: err.message
@@ -103,7 +103,7 @@ export default async function handler(req,res){
                         STE_EMAIL: {set: new_email},
                     },
                 }).then(data => {
-                    res.send("Update Successful") 
+                    res.send(data) 
                 }).catch(err => {
                     res.status(500).json({
                         error: err.message

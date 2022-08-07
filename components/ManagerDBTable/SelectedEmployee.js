@@ -1,10 +1,11 @@
 import {React, useState, useEffect} from 'react'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import UpdateHandler from '../../utils/helpers/UpdateHandler'
+// import UpdateHandler from '../../utils/helpers/UpdateHandler'
+import { Grid } from 'react-loader-spinner'
 
 
-export default function SelectedEmployee({selectedEmployee}) {
+export default function SelectedEmployee({selectedEmployee, setSelectedUser, setLoadingGraphic}) {
 
     const MySwal = withReactContent(Swal)
 
@@ -12,6 +13,35 @@ export default function SelectedEmployee({selectedEmployee}) {
     const [newName, setNewName] = useState("")
     const [NameChanges, setNameChanges] = useState(false)
     const [EmailChanges, setEmailChanges] = useState(false)
+    const [reloadGraphicDisplay, setReloadGraphicDisplay] = useState(false)
+
+    const UpdateHandler = (data) => {
+
+        fetch("/ManagerDB/api/update/", {
+            method: "POST",
+            headers: {
+                'Content-Type':'application/json',
+                'Accept':'application/json'
+            },
+            body: JSON.stringify(data) 
+          }).then((res) => {
+            res.json().then((data) => {
+              fetch("/ManagerDB/api/managers/", {
+                method: "GET",
+              })
+              
+ 
+              setLoadingGraphic(true)
+              setSelectedUser(null)  
+            });
+          }).then(() => {
+            setTimeout(
+                setReloadGraphicDisplay(false)
+               , 3000) 
+        })
+
+
+    }
 
     const SaveChanges = (name, role, efis) =>{
         setNameChanges(false)
@@ -28,10 +58,19 @@ export default function SelectedEmployee({selectedEmployee}) {
         data = {
             old_data: old_data,
             new_data: new_data
-        }     
+        }
+        // setReloadHandler(data)
+        // setSelectedUser(null)  
+        setReloadGraphicDisplay(true)   
         UpdateHandler(data)
+        
 
     }
+
+    // const setReloadHandler = (data) => {
+    //     setReloadGraphicDisplay(true)
+    //     UpdateHandler(data)
+    // }
 
     const EditEmployeeHandler = () => {
         setNameChanges(false)
@@ -160,6 +199,8 @@ export default function SelectedEmployee({selectedEmployee}) {
     return (
     
         <div className='w-full'>
+            {!reloadGraphicDisplay ? 
+           <div>
             <h2 className="px-4 py-2 text-center w-full text-xl">Selected Employee:</h2>
             <table className="table-auto w-full mt-20 static">
                 
@@ -194,7 +235,19 @@ export default function SelectedEmployee({selectedEmployee}) {
             <button className="float-right bg-indigo-400 hover:bg-indigo-500 text-white rounded mt-4 mr-8 h-6 w-16 text-xs" onClick={() => EditEmployeeHandler()}>Edit</button>
             {(NameChanges || EmailChanges) ?  <button className="float-right bg-green-500 hover:bg-green-600 text-white rounded mt-2 h-6 w-16 text-xs" onClick={() => SaveChanges(selectedEmployee.emp_name,selectedEmployee.emp_role,  selectedEmployee.emp_efis)}>Save</button>   : null}
     
-            </div>
+            </div> 
+            </div> :
+            <div className="grid place-content-center mt-40"><div>
+            <Grid
+          height = "80"
+          width = "80"
+          radius = "9"
+          color = '#70AA9B'
+          ariaLabel = 'three-dots-loading'     
+          wrapperStyle
+          wrapperClass
+        /> </div>
+        </div> }
         </div>
       );
 }
