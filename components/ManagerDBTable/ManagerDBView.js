@@ -9,7 +9,16 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   const [reloadPopup, setReloadPopup] = useState(false)
   const [loadingGraphic, setLoadingGraphic] = useState(false)
 
+  const [SortBy, setSortBy] = useState("Name")
+  const [ToggleName, setToggleName] = useState(false)
+  const [ToggleEFIS, setToggleEFIS] = useState(false)
+  const [ToggleRole, setToggleRole] = useState(false)
+  const [ToggleDistrict, setToggleDistrict] = useState(false)
+
+
   const MySwal = withReactContent(Swal)
+
+  
 
   useEffect(() => {
     if(selectedUser == null && !reloadPopup){
@@ -24,7 +33,9 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
           setAllManagerDB(data)
          
         }).then(()=>{
+
           setLoadingGraphic(false)
+
         })
       });
       
@@ -64,6 +75,56 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
     }
   })
 
+  const SortHandler = (type) => {
+    
+    if(type == "Name"){
+      setToggleName(!ToggleName)
+    }
+    if(type == "EFIS"){
+      setToggleEFIS(!ToggleEFIS)
+    }
+    if(type == "Role"){
+      setToggleRole(!ToggleRole)
+    }
+    if(type == "District"){
+      setToggleDistrict(!ToggleDistrict)
+    }
+
+    setSortBy(type)
+    renderResults(resultsMap)
+  }
+
+  const sortBy = (results) => {
+    
+    if(SortBy == "Name" && ToggleName){
+      return results.sort((a, b) => (a.emp_name < b.emp_name) ? 1 : -1)
+    }else if(SortBy == "Name" && !ToggleName){
+      return results.sort((a, b) => (a.emp_name > b.emp_name) ? 1 : -1)
+    }
+
+    if(SortBy == "EFIS" && ToggleEFIS){
+      return results.sort((a, b) => (a.emp_efis > b.emp_efis) ? 1 : -1)
+    }else if(SortBy == "EFIS" && !ToggleEFIS){
+      return results.sort((a, b) => (a.emp_efis < b.emp_efis) ? 1 : -1)
+    }
+
+    if(SortBy == "Role" && ToggleRole){
+      return results.sort((a, b) => (a.emp_role > b.emp_role) ? 1 : -1)
+    }else if(SortBy == "Role" && !ToggleRole){
+      return results.sort((a, b) => (a.emp_role < b.emp_role) ? 1 : -1)
+    }
+
+    if(SortBy == "District" && ToggleDistrict){
+      return results.sort((a, b) => (a.emp_district > b.emp_district) ? 1 : -1)
+    }else if(SortBy == "District" && !ToggleDistrict){
+      return results.sort((a, b) => (a.emp_district < b.emp_district) ? 1 : -1)
+    }
+    
+
+
+  }
+
+  
   const renderResults = (results) =>{
     return(
       // /Map each result to a row in a table.
@@ -73,19 +134,21 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
           { results.length > 0 ?
           // <thead>
             <div className="grid grid-rows-1 grid-cols-5">
-              <div className="text-md font-medium text-gray-900 px-6 py-4 text-left w-96">Name</div>
-              <div className="text-md font-medium text-gray-900 px-32 py-4 text-left w-16">EFIS</div>
-              <div className="text-md font-medium text-gray-900 px-20 py-4 text-left ml-4 w-16 ">Role</div>
-              <div className="text-md font-medium text-gray-900 px-12 py-4 text-left ml-6 w-16">District</div>
+              <div className="text-md font-medium text-gray-900 px-6 py-4 text-left w-96"><a className="underline text-blue-600 hover:text-blue-800 cursor-pointer" onClick={()=>SortHandler("Name")}>Name</a></div>
+              <div className="text-md font-medium text-gray-900 px-32 py-4 text-left w-16"><a className="underline text-blue-600 hover:text-blue-800 cursor-pointer" onClick={()=>SortHandler("EFIS")}>EFIS</a></div>
+              <div className="text-md font-medium text-gray-900 px-20 py-4 text-left ml-4 w-16 "><a className="underline text-blue-600 hover:text-blue-800 cursor-pointer" onClick={()=>SortHandler("Role")}>Role</a></div>
+              <div className="text-md font-medium text-gray-900 px-12 py-4 text-left ml-6 w-16"><a className="underline text-blue-600 hover:text-blue-800 cursor-pointer" onClick={()=>SortHandler("District")}>District</a></div>
               <div></div>
             </div>
           // </thead>
-          : ( results.length < 1 && searchInput.length > 0 ? <div className="text-center mt-56">No results.</div> :<div className="text-center mt-56">Enter employee information above to make changes.</div> )}
+          : ( results.length < 1 && searchInput.length > 0 ? <div className="text-center mt-56">No results.</div> :<div className="text-center mt-56">Enter employee information above to search records.</div> )}
+
+
           <tbody>
-            {/* sort by name */}
-            {results.sort((a, b) => (a.emp_name > b.emp_name) ? 1 : -1).map(result => {
+
+            {sortBy(results).map(result => {
               return (
-                // <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+
                   <div className="grid grid-rows-1 grid-cols-5 bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
                   <div className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left w-96">{result.emp_name}</div>
                   <div className="text-md text-gray-900 font-light px-32 py-4 whitespace-nowrap text-left">{result.emp_efis}</div>
@@ -93,12 +156,11 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
                   <div className="text-md text-gray-900 font-light px-20 py-4 whitespace-nowrap text-left">{result.emp_district}</div>
                   <div className="px-6 py-4 whitespace-nowrap text-left ml-6 w-16"><p className = "text-md text-blue-500 hover:text-blue-300 cursor-pointer" onClick={() => setEmployeeHandler(result)}>Update</p></div>
                   </div>
-                //</tr> 
-              
+
               )
             })}
           </tbody>
-        {/* </table> */}
+
         </div>
       </div>
     )
