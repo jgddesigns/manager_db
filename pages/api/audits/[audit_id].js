@@ -4,7 +4,7 @@ import { prisma2 } from '../../../utils/prisma/prisma2'
 export default function handler(req,res){
     //Find Audit based on Audit ID
     //Only allow GET requests.
-    if (req.method !== 'GET'){
+    if (req.method !== 'POST'){
         res.status(405).json({
             message: `Method ${req.method} not allowed}`
         })

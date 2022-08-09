@@ -16,6 +16,7 @@ export default function Sidebar() {
             res.json().then((data) => {
             //   console.log(data);
               setUser(data);
+
             });
           }
         }

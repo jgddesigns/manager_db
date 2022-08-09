@@ -1,7 +1,7 @@
 import {React, useState, useEffect} from 'react'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-// import UpdateHandler from '../../utils/helpers/UpdateHandler'
+import AuditHandler from '../../utils/helpers/AuditHandler'
 import { Grid } from 'react-loader-spinner'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,30 +15,77 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
     const [NameChanges, setNameChanges] = useState(false)
     const [EmailChanges, setEmailChanges] = useState(false)
     const [loadingGraphicDisplay, setLoadingGraphicDisplay] = useState(false)
+    const [user,setUser] = useState({}) // I would rather use the session for this, but I don't know how to do that yet.
+
+    useEffect(() => {
+        // fetch from api/current-user
+        
+        fetch("/ManagerDB/api/current-user/", {
+          method: "GET",
+        }).then((res) => {
+          if (res.status === 200) {
+            res.json().then((data) => {
+            //   console.log(data);
+              setUser(data);
+              console.log(data)
+            });
+          }
+        }
+        );
+    
+      }, []);
 
     const UpdateHandler = (data) => {
 
+        //AUDIT DATA START
+        var audit = []
+        //change type
+        if((data["old_data"][0] != data["new_data"][0]) && (data["old_data"][3] != data["new_data"][1])){
+            audit.push("Name/Email")
+        }else if((data["old_data"][0] != data["new_data"][0]) && (data["old_data"][3] == data["new_data"][1])){
+            audit.push("Name")
+        }else if((data["old_data"][0] == data["new_data"][0]) && (data["old_data"][3] != data["new_data"][1])){
+            audit.push("Email")
+        }else{
+            audit.push(null)
+        }
+        audit.push(user.userid) //employee number
+        audit.push(data["old_data"][0]) //old name
+        audit.push(data["new_data"][0]) //new name
+        audit.push(data["old_data"][3]) //old email
+        audit.push(data["new_data"][1]) //new email
+        audit.push(data["old_data"][1]) //role
+        audit.push(data["old_data"][2]) //efis
+        audit.push(data["old_data"][4]) //district/region
+
+        console.log("audit array: " + audit)
+        var audit_data = {
+            change_data: audit
+        }
+        //AUDIT DATA END
+
+
+        //UPDATE API CALLS AUDIT HANDLER AFTER SUCCESSFUL RESPONSE
         fetch("/ManagerDB/api/update/", {
             method: "POST",
             headers: {
                 'Content-Type':'application/json',
                 'Accept':'application/json'
             },
-            body: JSON.stringify(data) 
+            body: JSON.stringify(data)
           }).then((res) => {
             res.json().then((data) => {
               fetch("/ManagerDB/api/managers/", {
                 method: "GET",
               })
-              
- 
               setLoadingGraphic(true)
               setSelectedUser(null)  
+              AuditHandler(audit_data)
             });
           }).then(() => {
+            console.log("Update Response: " + data)   
             setTimeout(() => {
                 setLoadingGraphicDisplay(false)
-
             }, 2000) 
             toast.success('Update Successful!', {
                 position: "top-right",
@@ -50,8 +97,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                 progress: undefined,
             });
         })
-
-
     }
 
     const SaveChanges = (selected) =>{
@@ -76,7 +121,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             new_email = newEmail
         }
 
-        old_data.push(selected.emp_name, selected.emp_role, selected.emp_efis)
+        old_data.push(selected.emp_name, selected.emp_role, selected.emp_efis, selected.emp_email, selected.emp_district)
         new_data.push(new_name, new_email)
         data = {
             old_data: old_data,
@@ -85,8 +130,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
 
         setLoadingGraphicDisplay(true)   
         UpdateHandler(data)
-        
-
     }
 
 
@@ -108,6 +151,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         if(document.getElementById('userEmail').classList.contains('border-red-500')){
             document.getElementById('email').classList.remove('text-red-500')
             document.getElementById('userEmail').classList.remove('border-red-500')
+            document.getElementById('userName').classList.remove('border-red-500')
             document.getElementById('error_email').hidden = true
             document.getElementById('error_both').hidden = true
         }
@@ -122,9 +166,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
     const nameChangeHandler = (val) => {
         setNewName(val)
         if(document.getElementById('userName').classList.contains('border-red-500')){
-            // document.getElementById('email').classList.remove('text-red-500')
             document.getElementById('userEmail').classList.remove('border-red-500')
-            // document.getElementById('name').classList.remove('text-red-500')
             document.getElementById('userName').classList.remove('border-red-500')
             document.getElementById('error_email').hidden = true
             document.getElementById('error_both').hidden = true
@@ -192,16 +234,16 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                
                 </div>
                 <input className="px-3 text-xl w-72 border rounded h-10" onChange={(e) => nameChangeHandler(e.target.value)} id="userName"></input>
-                <div className="w-36 grid grid-cols-2 grid-rows-1 ml-48 mt-4 mb-2">
+                <div className="w-48 grid grid-cols-3 grid-rows-1 ml-48 mt-4 mb-2">
                     <p className="text-sm" id="email">New Email</p>
-               
-                </div> 
-                <input class="px-3 text-xl w-72 border rounded h-10 mb-8" onChange={(e) => emailChangeHandler(e.target.value)} id="userEmail"></input> 
-                <div className="grid grid-cols-1 w-88 h-10 ml-16 fixed mb-4">
-                    <span className="text-red-400 text-center" id="error_both" hidden>Please enter a new name or email address.</span> 
-                    <span className="text-red-400 ml-8 text-center fixed" id="error_email" hidden>Please enter a valid email address.</span> 
+                    {/* <input type="checkbox" class="h-4" value="false" /><span class="text-xs">Set Blank</span> */}
                 </div>
-
+ 
+                <input class="px-3 text-xl w-72 border rounded h-10 mb-8" onChange={(e) => emailChangeHandler(e.target.value)} id="userEmail"></input> 
+                <div className="grid grid-cols-1 w-88 h-10 ml-2 mb-4">
+                    <span className="text-red-400 text-center" id="error_both" hidden>Please enter a new name or email address.</span> 
+                    <span className="text-red-400 text-center static" id="error_email" hidden>Please enter a valid email address.</span> 
+                </div>
             </div>
             ),   
             showCancelButton: true ,
@@ -232,7 +274,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                         resolve(false)
                     }
                     if (new_email != "" && !validateEmail(new_email)){      
-                        // document.getElementById("email").classList.add("text-red-500")
                         document.getElementById('userEmail').classList.remove('border-cyan-400')
                         document.getElementById("userEmail").classList.add("border-red-500")
                         document.getElementById('error_email').hidden = false
@@ -281,8 +322,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                         </tr>
                         <tr>
                             <td className="border px-4 py-2">Email:</td>
-                            <td className="border px-4 py-2">{selectedEmployee.emp_email} {EmailChanges ? <span className="float-right text-white bg-gray-300 rounded px-2 mr-2"><span className="text-xs font-bold underline">New:</span> {newEmail}</span>:null}</td> 
-                            
+                            <td className="border px-4 py-2">{selectedEmployee.emp_email} {EmailChanges ? <span className="float-right text-white bg-gray-300 rounded px-2 mr-2"><span className="text-xs font-bold underline">New:</span> {newEmail}</span>:null}</td>       
                         </tr>
                         <tr>
                             <td className="border px-4 py-2">Role:</td>
@@ -322,17 +362,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                 </div>
             </div> 
             }
-            {/* <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            /> */}
         </div>
       );
 }

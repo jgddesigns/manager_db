@@ -3,6 +3,8 @@ import SelectedEmployee from './SelectedEmployee'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import setReloadGraphic from './SelectedEmployee'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSort } from '@fortawesome/free-solid-svg-icons'
 
 export default function ManagerDBView({searchResults, setSearchInput, searchInput, setAllManagerDB}) {
   const [selectedUser, setSelectedUser] = useState(null)
@@ -94,12 +96,19 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
     renderResults(resultsMap)
   }
 
+  const SetSearch = (e) => {
+
+    setSortBy("Name")
+    setToggleName(true)
+    setSearchInput(e.target.value);
+
+  }
+
   const sortBy = (results) => {
-    
     if(SortBy == "Name" && ToggleName){
-      return results.sort((a, b) => (a.emp_name < b.emp_name) ? 1 : -1)
-    }else if(SortBy == "Name" && !ToggleName){
       return results.sort((a, b) => (a.emp_name > b.emp_name) ? 1 : -1)
+    }else if(SortBy == "Name" && !ToggleName){
+      return results.sort((a, b) => (a.emp_name < b.emp_name) ? 1 : -1)
     }
 
     if(SortBy == "EFIS" && ToggleEFIS){
@@ -119,9 +128,8 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
     }else if(SortBy == "District" && !ToggleDistrict){
       return results.sort((a, b) => (a.emp_district < b.emp_district) ? 1 : -1)
     }
-    
 
-
+    return results.sort((a, b) => (a.emp_name > b.emp_name) ? 1 : -1)
   }
 
   
@@ -130,25 +138,19 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
       // /Map each result to a row in a table.
       <div className="flex flex-col text-center">
         <div className="overflow-y-auto max-h-[28rem] ">
-        {/* <table className="scroll-auto table-auto overflow-scroll w-full max-h-[36rem]"> */}
           { results.length > 0 ?
-          // <thead>
             <div className="grid grid-rows-1 grid-cols-5">
               <div className="text-md font-medium text-gray-900 px-6 py-4 text-left w-96"><a className="underline text-blue-600 hover:text-blue-800 cursor-pointer" onClick={()=>SortHandler("Name")}>Name</a></div>
               <div className="text-md font-medium text-gray-900 px-32 py-4 text-left w-16"><a className="underline text-blue-600 hover:text-blue-800 cursor-pointer" onClick={()=>SortHandler("EFIS")}>EFIS</a></div>
               <div className="text-md font-medium text-gray-900 px-20 py-4 text-left ml-4 w-16 "><a className="underline text-blue-600 hover:text-blue-800 cursor-pointer" onClick={()=>SortHandler("Role")}>Role</a></div>
               <div className="text-md font-medium text-gray-900 px-12 py-4 text-left ml-6 w-16"><a className="underline text-blue-600 hover:text-blue-800 cursor-pointer" onClick={()=>SortHandler("District")}>District</a></div>
-              <div></div>
+              <div> <FontAwesomeIcon icon={faSort} className="text-gray-400 py-5 float-right mr-4" /></div>
             </div>
-          // </thead>
           : ( results.length < 1 && searchInput.length > 0 ? <div className="text-center mt-56">No results.</div> :<div className="text-center mt-56">Enter employee information above to search records.</div> )}
-
-
           <tbody>
 
             {sortBy(results).map(result => {
               return (
-
                   <div className="grid grid-rows-1 grid-cols-5 bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
                   <div className="text-md text-gray-900 font-light px-6 py-4 whitespace-nowrap text-left w-96">{result.emp_name}</div>
                   <div className="text-md text-gray-900 font-light px-32 py-4 whitespace-nowrap text-left">{result.emp_efis}</div>
@@ -156,29 +158,21 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
                   <div className="text-md text-gray-900 font-light px-20 py-4 whitespace-nowrap text-left">{result.emp_district}</div>
                   <div className="px-6 py-4 whitespace-nowrap text-left ml-6 w-16"><p className = "text-md text-blue-500 hover:text-blue-300 cursor-pointer" onClick={() => setEmployeeHandler(result)}>Update</p></div>
                   </div>
-
               )
             })}
           </tbody>
-
         </div>
       </div>
     )
   }
   
- 
-  
   return (
-
     <div className="h-[36rem] max-h-[36rem] p-2 w-[44rem] rounded bg-[#70AA9B] shadow-lg">
-
         <div className="text-white text-2xl pb-2 inline-block">
             Employees
         </div>
-      
         <input 
-        onChange={(e) => { if(selectedUser != null) changeDisplay() ; setSearchInput(e.target.value); }}
-        // onClick={(e) => { if(selectedUser != null) null ; setSearchInput(e.target.value); }}
+        onChange={(e) => { if(selectedUser != null) changeDisplay() ; SetSearch(e) }}
         placeholder="Search by Name, EFIS"
         className=" inline-block form-control px-3 py-1.5text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none placeholder:pl-2 h-8 rounded float-right shadow-lg"
         title='Search bar'
@@ -187,18 +181,12 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
         <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
           {selectedUser ? <SelectedEmployee selectedEmployee={selectedUser} setSelectedUser={setSelectedUser} setLoadingGraphic={setLoadingGraphic}/> : (!loadingGraphic ? renderResults(resultsMap) : renderResults([]))}
         </div>
-
     </div>
 
   )
 }
 
 
-const submitEdits = () => {
-  // Do stuff on button click
-  console.log("Submit Edits button clicked.")
-  
-}
 
 
 
