@@ -225,20 +225,20 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                 <p className="text-sm"> Enter new data for:</p>
                 <p className="font-bold italic">EFIS #{selectedEmployee.emp_efis}</p>
                 <p className="text-sm mt-8 mb-2">Current Name</p> 
-                <input className="px-3 text-xl w-72 bg-gray-300 text-white rounded h-10" value={selectedEmployee.emp_name} disabled></input>
+                <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 bg-gray-300 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={selectedEmployee.emp_name} disabled></input>
                 <p className="text-sm mt-4 mb-2">Current Email</p> 
-                <input className="px-3 text-xl w-72 bg-gray-300 text-white rounded h-10" value={selectedEmployee.emp_email} disabled></input>
+                <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 bg-gray-300 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={selectedEmployee.emp_email} disabled></input>
                 <div className="w-36 grid grid-cols-2 grid-rows-1 ml-48 mt-12 mb-2">
                     <p class="text-sm" id="name">New Name</p>
                
                 </div>
-                <input className="px-3 text-xl w-72 border rounded h-10" onChange={(e) => nameChangeHandler(e.target.value)} id="userName"></input>
+                <input className="px-3 text-xl w-72 border rounded h-10  shadow appearance-none py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => nameChangeHandler(e.target.value)} id="userName"></input>
                 <div className="w-36 grid grid-cols-2 grid-rows-1 ml-48 mt-4 mb-2">
                     <p className="text-sm" id="email">New Email</p>
                     {/* <input type="checkbox" class="h-4" value="false" /><span class="text-xs">Set Blank</span> */}
                 </div>
  
-                <input class="px-3 text-xl w-72 border rounded h-10 mb-8" onChange={(e) => emailChangeHandler(e.target.value)} id="userEmail"></input> 
+                <input class="px-3 text-xl w-72 border rounded h-10  shadow appearance-none py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => emailChangeHandler(e.target.value)} id="userEmail"></input> 
                 <div className="grid grid-cols-1 w-88 h-10 ml-2 mb-4">
                     <span className="text-red-400 text-center" id="error_both" hidden>Please enter a new name or email address.</span> 
                     <span className="text-red-400 text-center static" id="error_email" hidden>Please enter a valid email address.</span> 
