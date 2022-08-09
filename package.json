@@ -9,10 +9,7 @@
     "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
-    "@fortawesome/free-solid-svg-icons": "^6.1.2",
-    "@fortawesome/react-fontawesome": "^0.2.0",
     "@prisma/client": "^4.1.0",
-    "@sweetalert/with-react": "^0.1.1",
     "font-awesome": "^4.7.0",
     "jwt-decode": "^3.1.2",
     "next": "latest",
@@ -25,8 +22,7 @@
     "react-loader-spinner": "^5.1.7-beta.1",
     "react-spinners": "^0.13.3",
     "react-toastify": "^9.0.8",
-    "sweetalert": "^2.1.2",
-    "sweetalert2": "^11.4.24",
+    "sweetalert2": "^11.4.26",
     "sweetalert2-react-content": "^5.0.2"
   },
   "devDependencies": {
