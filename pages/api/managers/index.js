@@ -19,7 +19,6 @@ export default async function handler(req,res){
             case 'PATCH':
             
                 console.log(req.body['old_data'])
-        
                 const old_name = req.body['old_data'][0]
                 const old_role = req.body['old_data'][1]
                 const old_efis = req.body['old_data'][2]
@@ -113,6 +112,7 @@ export default async function handler(req,res){
                         },
                     }).then(data => {
                         res.send(data) 
+                        console.log(data)
                     }).catch(err => {
                         res.status(500).json({
                             error: err.message

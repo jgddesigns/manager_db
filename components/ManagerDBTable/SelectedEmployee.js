@@ -58,7 +58,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         audit.push(data["old_data"][2]) //efis
         audit.push(data["old_data"][4]) //district/region
 
-        console.log("audit array: " + audit)
+        // console.log("audit array: " + audit)
         var audit_data = {
             change_data: audit
         }
@@ -83,7 +83,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
               AuditHandler(audit_data)
             });
           }).then(() => {
-            console.log("Update Response: " + data)   
+            console.log("Update Response: ", data)   
             setTimeout(() => {
                 setLoadingGraphicDisplay(false)
             }, 2000) 
@@ -111,12 +111,12 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         var new_email
 
         if(newName.length < 1){
-            new_name = selected.emp_name
+            new_name = null
         }else{
             new_name = newName
         }
         if(newEmail.length < 1){
-            new_email = selected.emp_email
+            new_email = null
         }else{
             new_email = newEmail
         }
@@ -131,7 +131,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         setLoadingGraphicDisplay(true)   
         UpdateHandler(data)
     }
-
 
     const EditEmployeeHandler = () => {
         setNameChanges(false)

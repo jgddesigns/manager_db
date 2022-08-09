@@ -24,7 +24,7 @@ const UpdateHandler = (update) =>{
     // role = audit[6]
     // efis = audit[7]
 
-
+  
 
     var audit = []
 
@@ -56,7 +56,7 @@ const UpdateHandler = (update) =>{
         body: JSON.stringify(update) 
       }).then((res) => {
         res.json().then((data) => {
-          console.log("Update Response: " + data)
+          // console.dir("Update Response: " + data)
           AuditHandler(audit)
           fetch("/ManagerDB/api/managers/", {
             method: "GET",
