@@ -66,8 +66,8 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
 
 
         //UPDATE API CALLS AUDIT HANDLER AFTER SUCCESSFUL RESPONSE
-        fetch("/ManagerDB/api/update/", {
-            method: "POST",
+        fetch("/ManagerDB/api/managers/", {
+            method: "PATCH",
             headers: {
                 'Content-Type':'application/json',
                 'Accept':'application/json'

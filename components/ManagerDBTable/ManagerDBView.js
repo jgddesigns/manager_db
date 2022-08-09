@@ -18,7 +18,6 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
 
 
   const MySwal = withReactContent(Swal)
-
   
 
   useEffect(() => {

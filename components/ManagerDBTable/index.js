@@ -37,31 +37,25 @@ export default function index() {
   return (
     <div className="grid gap-[1rem] space-y-4 pb-24">
       <div className="text-center text-3xl text-black mt-8 mb-8">Manager Update Tool for Construction</div>
-        <div>
-
-          <InstantSearch 
-            searchClient={""} 
-            >
-          {/* <SearchBar setSearchInput={setSearchInput}/> */}
-          <Hits />
-          </InstantSearch>
-        </div>
+        
 
         <div>
             <Instructions />
             <ManagerDBView searchResults={SearchProcess(searchInput, allManagerDB)} setSearchInput={setSearchInput} searchInput={searchInput} setAllManagerDB={setAllManagerDB}/>
         </div>
+
+        
         <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
             />
     </div>
   )

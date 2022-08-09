@@ -47,8 +47,8 @@ const UpdateHandler = (update) =>{
     audit.push(data[0][2]) //efis
 
 
-    fetch("/ManagerDB/api/update/", {
-        method: "POST",
+    fetch("/ManagerDB/api/managers/", {
+        method: "PATCH",
         headers: {
             'Content-Type':'application/json',
             'Accept':'application/json'
