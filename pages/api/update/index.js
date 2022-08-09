@@ -64,7 +64,7 @@ export default async function handler(req,res){
                     })
                 })
 
-            }else if(old_role == "Chief"){
+            }else if(old_rolimage.pnge == "Chief"){
 
                 const chief = await prisma2.manager_dashboard_tbl.updateMany({
                     where: {
