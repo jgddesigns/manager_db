@@ -234,7 +234,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                
                 </div>
                 <input className="px-3 text-xl w-72 border rounded h-10" onChange={(e) => nameChangeHandler(e.target.value)} id="userName"></input>
-                <div className="w-48 grid grid-cols-3 grid-rows-1 ml-48 mt-4 mb-2">
+                <div className="w-36 grid grid-cols-2 grid-rows-1 ml-48 mt-4 mb-2">
                     <p className="text-sm" id="email">New Email</p>
                     {/* <input type="checkbox" class="h-4" value="false" /><span class="text-xs">Set Blank</span> */}
                 </div>
@@ -348,7 +348,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         
                 </div> 
                 </div> :
-            <div className="grid place-content-center mt-40">
+            <div className="grid place-content-center mt-48">
                 <div>
                     <Grid
                         height = "80"
