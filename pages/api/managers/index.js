@@ -19,12 +19,12 @@ export default async function handler(req,res){
             case 'PATCH':
             
                 console.log(req.body['old_data'])
-                const old_name = req.body['old_data'][0]
-                const old_role = req.body['old_data'][1]
-                const old_efis = req.body['old_data'][2]
+                const old_name = req.body['emp_name']
+                const old_role = req.body['emp_role']
+                const old_efis = req.body['emp_efis']
         
-                const new_name = req.body['new_data'][0]
-                const new_email = req.body['new_data'][1]
+                const new_name = req.body['new_name']
+                const new_email = req.body['new_email']
         
                 if (old_role == "Deputy"){
         

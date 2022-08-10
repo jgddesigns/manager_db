@@ -5,6 +5,7 @@ import AuditHandler from '../../utils/helpers/AuditHandler'
 import { Grid } from 'react-loader-spinner'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ManagerProcess from '../../utils/helpers/ManagerProcess'
 
 export default function SelectedEmployee({selectedEmployee, setSelectedUser, setLoadingGraphic}) {
 
@@ -16,6 +17,8 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
     const [EmailChanges, setEmailChanges] = useState(false)
     const [loadingGraphicDisplay, setLoadingGraphicDisplay] = useState(false)
     const [user,setUser] = useState({}) // I would rather use the session for this, but I don't know how to do that yet.
+    const [Superiors, setSuperiors] = useState([])
+    const [Manager, setManager] = useState([])
 
     useEffect(() => {
         // fetch from api/current-user
@@ -32,35 +35,58 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
           }
         }
         );
+
     
-      }, []);
+        fetch("/ManagerDB/api/managers/", {
+            method: "GET",
+        }).then((res) => {
+            res.json().then((data) => {
+            console.log(data);
+            setSuperiors(ManagerProcess(data, selectedEmployee.emp_district, selectedEmployee.emp_role, selectedEmployee.emp_efis))
+
+
+            
+            });
+        }).then(()=>{
+
+        })
+        
+      }, [superiorMap])
+
+      const superiorMap = Superiors[0].map((name, index) => {
+        return {
+          manager: Superiors[0][index],
+          efis: Superiors[1][index],
+          current_manager: Superiors[2]
+        }
+      })
+
 
     const UpdateHandler = (data) => {
 
         //AUDIT DATA START
-        var audit = []
-        //change type
-        if((data["old_data"][0] != data["new_data"][0]) && (data["old_data"][3] != data["new_data"][1])){
-            audit.push("Name/Email")
-        }else if((data["old_data"][0] != data["new_data"][0]) && (data["old_data"][3] == data["new_data"][1])){
-            audit.push("Name")
-        }else if((data["old_data"][0] == data["new_data"][0]) && (data["old_data"][3] != data["new_data"][1])){
-            audit.push("Email")
-        }else{
-            audit.push(null)
-        }
-        audit.push(user.userid) //employee number
-        audit.push(data["old_data"][0]) //old name
-        audit.push(data["new_data"][0]) //new name
-        audit.push(data["old_data"][3]) //old email
-        audit.push(data["new_data"][1]) //new email
-        audit.push(data["old_data"][1]) //role
-        audit.push(data["old_data"][2]) //efis
-        audit.push(data["old_data"][4]) //district/region
+        var audit_type; 
 
-        // console.log("audit array: " + audit)
-        var audit_data = {
-            change_data: audit
+        if((data["emp_name"] != data["new_name"]) && (data["emp_email"] != data["new_email"])){
+            audit_type ="Name/Email"
+        }else if((data["emp_name"] != data["new_name"]) && (data["emp_email"] == data["new_email"])){
+            audit_type = "Name"
+        }else if((data["emp_name"] == data["new_name"]) && (data["emp_email"] != data["new_email"])){
+            audit_type = "Email"
+        }else{
+            audit_type = ""
+        }
+
+        const audit_data = {
+            type: audit_type,
+            employee_number: user.userid,
+            old_name: data["emp_name"],
+            new_name: data["new_name"],
+            old_email: data["emp_email"],
+            new_email: data["new_email"],
+            role: data["emp_role"],
+            efis: data["emp_efis"],
+            region: data["region"] 
         }
         //AUDIT DATA END
 
@@ -83,7 +109,8 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
               AuditHandler(audit_data)
             });
           }).then(() => {
-            console.log("Update Response: ", data)   
+            // console.log("Update Response: ", data)   
+            console.log("Update Success")   
             setTimeout(() => {
                 setLoadingGraphicDisplay(false)
             }, 2000) 
@@ -103,30 +130,35 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         setNameChanges(false)
         setEmailChanges(false)
 
-        var old_data = []
-        var new_data = []
-        var data = []
 
         var new_name
         var new_email
 
         if(newName.length < 1){
-            new_name = null
+            // new_name = null
+            new_name = ""
         }else{
             new_name = newName
         }
         if(newEmail.length < 1){
-            new_email = null
+            // new_email = null
+            new_email = ""
         }else{
             new_email = newEmail
         }
 
-        old_data.push(selected.emp_name, selected.emp_role, selected.emp_efis, selected.emp_email, selected.emp_district)
-        new_data.push(new_name, new_email)
-        data = {
-            old_data: old_data,
-            new_data: new_data
+
+        const data = {
+            emp_name: selected.emp_name,
+            emp_role: selected.emp_role,
+            emp_efis: selected.emp_efis,
+            emp_email: selected.emp_email,
+            region: selected.emp_district,
+            new_name: new_name,
+            new_email: new_email
         }
+
+     
 
         setLoadingGraphicDisplay(true)   
         UpdateHandler(data)
@@ -160,6 +192,10 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         }else{
             document.getElementById('userEmail').classList.remove('border-cyan-400') 
         }
+
+        if(document.getElementById('no_changes').hidden == false){
+            document.getElementById('no_changes').hidden = true
+        }
     }
 
     const nameChangeHandler = (val) => {
@@ -169,6 +205,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             document.getElementById('userName').classList.remove('border-red-500')
             document.getElementById('error_email').hidden = true
             document.getElementById('error_both').hidden = true
+       
         }
 
         if(document.getElementById('userName').value.length > 0){
@@ -180,6 +217,10 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             document.getElementById('userEmail').classList.add('border-cyan-400')
         }else{
             document.getElementById('userEmail').classList.remove('border-cyan-400') 
+        }
+
+        if(document.getElementById('no_changes').hidden == false){
+            document.getElementById('no_changes').hidden = true
         }
     }
 
@@ -215,6 +256,54 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         })
     }
 
+    const EditManager = () => {
+
+
+        {superiorMap.map(result => {
+            setManager(result.current_manager)
+            })}
+
+        
+        MySwal.fire({
+            title: "Edit Employee's Manager",
+            html: (
+            <div className="mb-8">
+                <p className="text-sm"> Change manager for:</p>
+                <p className="font-bold italic">EFIS #{selectedEmployee.emp_efis}</p>
+                <p className="text-sm mt-8 mb-2">Employee</p> 
+                <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 bg-gray-300 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={selectedEmployee.emp_name} disabled></input>
+                <p className="text-sm mt-6 mb-2">Current Manager</p> 
+                <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 bg-gray-300 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={Manager} disabled></input>
+
+
+              
+                    <p className="text-sm text-center mt-12 mb-2" id="name">New Manager</p>
+               
+                <select className="px-3 text-xl w-72 border rounded h-10  shadow appearance-none py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => EditManagerHandler(e.target.value)} id="userName">
+                    <option value="">Select Manager</option>
+                    {superiorMap.map(result => {
+                        return (
+                            <option value={result.manager}>{result.manager}</option>
+                        )
+                        })}
+                </select>
+
+
+                <div className="w-36 grid grid-cols-2 grid-rows-1 ml-48 mt-4 mb-2">
+
+                </div>
+
+            </div>
+            ),   
+            showCancelButton: true ,
+            confirmButtonColor: 'bg-indigo-400',
+        }).then(function(result) {
+            if (result.value) {
+                console.log("edit manager placeholder")
+            }
+        })
+
+    }
 
     const EditEmployee = async () => {
 
@@ -229,7 +318,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                 <p className="text-sm mt-4 mb-2">Current Email</p> 
                 <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 bg-gray-300 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={selectedEmployee.emp_email} disabled></input>
                 <div className="w-36 grid grid-cols-2 grid-rows-1 ml-48 mt-12 mb-2">
-                    <p class="text-sm" id="name">New Name</p>
+                    <p className="text-sm" id="name">New Name</p>
                
                 </div>
                 <input className="px-3 text-xl w-72 border rounded h-10  shadow appearance-none py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => nameChangeHandler(e.target.value)} id="userName"></input>
@@ -238,10 +327,11 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                     {/* <input type="checkbox" class="h-4" value="false" /><span class="text-xs">Set Blank</span> */}
                 </div>
  
-                <input class="px-3 text-xl w-72 border rounded h-10  shadow appearance-none py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => emailChangeHandler(e.target.value)} id="userEmail"></input> 
-                <div className="grid grid-cols-1 w-88 h-10 ml-2 mb-4">
-                    <span className="text-red-400 text-center" id="error_both" hidden>Please enter a new name or email address.</span> 
-                    <span className="text-red-400 text-center static" id="error_email" hidden>Please enter a valid email address.</span> 
+                <input className="px-3 text-xl w-72 border rounded h-10  shadow appearance-none py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => emailChangeHandler(e.target.value)} id="userEmail"></input> 
+                <div className="grid grid-rows-auto grid-cols-1 w-88 h-10 ml-2 mb-4">
+                    <span className="text-red-400 text-center font-bold mt-8" id="error_both" hidden>Please enter a new name or email address.</span> 
+                    <span className="text-red-400 text-center static font-bold mt-8" id="error_email" hidden>Please enter a valid email address.</span> 
+                    <span className="text-cyan-500 text-center font-bold mt-8" id="no_changes" hidden>No information was changed.</span> 
                 </div>
             </div>
             ),   
@@ -260,11 +350,13 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                     new_name = ""
                 }
                 return new Promise(function(resolve){
+                    if((new_name == selectedEmployee.emp_name) && (new_email  == selectedEmployee.emp_email)){
+                        document.getElementById('no_changes').hidden = false
+                        resolve(false)
+                    } 
                     if((new_name != "" && new_email == "") || (new_email != "" && validateEmail(new_email))){
                         resolve()
                     }else if (new_name == "" && new_email == ""){
-                        // document.getElementById("name").classList.add("text-red-500")
-                        // document.getElementById("email").classList.add("text-red-500")
                         document.getElementById('userName').classList.remove('border-cyan-400')
                         document.getElementById('userEmail').classList.remove('border-cyan-400')
                         document.getElementById("userName").classList.add("border-red-500")
@@ -278,11 +370,11 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                         document.getElementById('error_email').hidden = false
                         resolve(false)
                     }
+                    
                  })
             },                        
             }).then(function(result, new_name, new_email){
                 if (result.value) {  
-                    //NEEDS WORK. DATA WON'T PASS IN RESPONSE? HAD TO DECLARE AGAIN...I SWEAR I'VE DONE THIS BEFORE. BTW, HAD TO USE JS IN THIS SWAL BECAUSE THE REACT STATES WON'T UPDATE UNTIL THE MODAL CLOSED.
                     try{
                         var new_email = document.getElementById('userEmail').value
                     }catch{
@@ -340,12 +432,13 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                             <td className="border px-4 py-2">{selectedEmployee.emp_tram}</td>
                         </tr>
                     </tbody>
-                </table><div className="float-right grid grid-rows-3">
-                <button className="float-right bg-indigo-400 hover:bg-indigo-500 text-white rounded mt-4 mr-8 h-6 w-16 text-xs" onClick={() => EditEmployeeHandler()}>Edit</button>
-                {(NameChanges || EmailChanges) ?  <button className="float-right bg-green-500 hover:bg-green-600 text-white rounded mt-2 h-6 w-16 text-xs" onClick={() => SaveHandler(selectedEmployee)}>Save</button>   : null}
-                {(NameChanges || EmailChanges) ?  <button className="float-right bg-gray-500 hover:bg-gray-500 text-white rounded h-6 w-16 text-xs" onClick={() => ClearHandler()}>Clear</button>   : null}
-        
-                </div> 
+                </table>
+                <div className="float-right grid grid-rows-3">
+                    <button className="float-right bg-indigo-400 hover:bg-indigo-500 text-white rounded mt-4 mr-8 h-6 w-16 text-xs" onClick={() => EditEmployeeHandler()}>Edit</button>
+                    {(NameChanges || EmailChanges) ?  <button className="float-right bg-green-500 hover:bg-green-600 text-white rounded mt-2 h-6 w-16 text-xs" onClick={() => SaveHandler(selectedEmployee)}>Save</button>   : null}
+                    {(NameChanges || EmailChanges) ?  <button className="float-right bg-gray-500 hover:bg-gray-500 text-white rounded h-6 w-16 text-xs" onClick={() => ClearHandler()}>Clear</button>   : null}
+                </div>
+                {selectedEmployee.emp_role == "Chief" || selectedEmployee.emp_role == "STE" ? <button className="float-right bg-indigo-600 hover:bg-indigo-800 text-white rounded mt-4 mr-4 h-6 w-16 text-xs" onClick={() => EditManager()}>Manager</button> :null}
                 </div> :
             <div className="grid place-content-center mt-48">
                 <div>

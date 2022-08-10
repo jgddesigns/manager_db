@@ -142,7 +142,7 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
               <div className="text-md font-medium text-gray-900 px-32 py-4 text-left w-16"><a className="underline text-blue-600 hover:text-blue-800 cursor-pointer" onClick={()=>SortHandler("EFIS")}>EFIS</a></div>
               <div className="text-md font-medium text-gray-900 px-20 py-4 text-left ml-4 w-16 "><a className="underline text-blue-600 hover:text-blue-800 cursor-pointer" onClick={()=>SortHandler("Role")}>Role</a></div>
               <div className="text-md font-medium text-gray-900 px-12 py-4 text-left ml-6 w-16"><a className="underline text-blue-600 hover:text-blue-800 cursor-pointer" onClick={()=>SortHandler("District")}>District</a></div>
-              <div> <FaSort className="text-md text-center font-medium text-gray-900 mx-auto my-4"/></div>
+              <div> <FaSort className="text-md text-center font-medium text-gray-900 mx-auto my-5"/></div>
             </div>
           : ( results.length < 1 && searchInput.length > 0 ? <div className="text-center mt-56">No results.</div> :<div className="text-center mt-56">Enter employee information above to search records.</div> )}
           <tbody>

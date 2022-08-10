@@ -37,17 +37,14 @@ export type audit_table = {
   id: number
   change_type: string | null
   changed_by_number: string | null
-  changed_by_name: string | null
-  changed_by_email: string | null
   old_name: string
   new_name: string
   old_email: string
   new_email: string
   role: string | null
   efis: string | null
-  region: string | null
+  region: string
   date_time: string | null
-  test: number
 }
 
 /**
@@ -1842,20 +1839,16 @@ export namespace Prisma {
 
   export type Audit_tableAvgAggregateOutputType = {
     id: number | null
-    test: number | null
   }
 
   export type Audit_tableSumAggregateOutputType = {
     id: number | null
-    test: number | null
   }
 
   export type Audit_tableMinAggregateOutputType = {
     id: number | null
     change_type: string | null
     changed_by_number: string | null
-    changed_by_name: string | null
-    changed_by_email: string | null
     old_name: string | null
     new_name: string | null
     old_email: string | null
@@ -1864,15 +1857,12 @@ export namespace Prisma {
     efis: string | null
     region: string | null
     date_time: string | null
-    test: number | null
   }
 
   export type Audit_tableMaxAggregateOutputType = {
     id: number | null
     change_type: string | null
     changed_by_number: string | null
-    changed_by_name: string | null
-    changed_by_email: string | null
     old_name: string | null
     new_name: string | null
     old_email: string | null
@@ -1881,15 +1871,12 @@ export namespace Prisma {
     efis: string | null
     region: string | null
     date_time: string | null
-    test: number | null
   }
 
   export type Audit_tableCountAggregateOutputType = {
     id: number
     change_type: number
     changed_by_number: number
-    changed_by_name: number
-    changed_by_email: number
     old_name: number
     new_name: number
     old_email: number
@@ -1898,27 +1885,22 @@ export namespace Prisma {
     efis: number
     region: number
     date_time: number
-    test: number
     _all: number
   }
 
 
   export type Audit_tableAvgAggregateInputType = {
     id?: true
-    test?: true
   }
 
   export type Audit_tableSumAggregateInputType = {
     id?: true
-    test?: true
   }
 
   export type Audit_tableMinAggregateInputType = {
     id?: true
     change_type?: true
     changed_by_number?: true
-    changed_by_name?: true
-    changed_by_email?: true
     old_name?: true
     new_name?: true
     old_email?: true
@@ -1927,15 +1909,12 @@ export namespace Prisma {
     efis?: true
     region?: true
     date_time?: true
-    test?: true
   }
 
   export type Audit_tableMaxAggregateInputType = {
     id?: true
     change_type?: true
     changed_by_number?: true
-    changed_by_name?: true
-    changed_by_email?: true
     old_name?: true
     new_name?: true
     old_email?: true
@@ -1944,15 +1923,12 @@ export namespace Prisma {
     efis?: true
     region?: true
     date_time?: true
-    test?: true
   }
 
   export type Audit_tableCountAggregateInputType = {
     id?: true
     change_type?: true
     changed_by_number?: true
-    changed_by_name?: true
-    changed_by_email?: true
     old_name?: true
     new_name?: true
     old_email?: true
@@ -1961,7 +1937,6 @@ export namespace Prisma {
     efis?: true
     region?: true
     date_time?: true
-    test?: true
     _all?: true
   }
 
@@ -2061,17 +2036,14 @@ export namespace Prisma {
     id: number
     change_type: string | null
     changed_by_number: string | null
-    changed_by_name: string | null
-    changed_by_email: string | null
     old_name: string
     new_name: string
     old_email: string
     new_email: string
     role: string | null
     efis: string | null
-    region: string | null
+    region: string
     date_time: string | null
-    test: number
     _count: Audit_tableCountAggregateOutputType | null
     _avg: Audit_tableAvgAggregateOutputType | null
     _sum: Audit_tableSumAggregateOutputType | null
@@ -2097,8 +2069,6 @@ export namespace Prisma {
     id?: boolean
     change_type?: boolean
     changed_by_number?: boolean
-    changed_by_name?: boolean
-    changed_by_email?: boolean
     old_name?: boolean
     new_name?: boolean
     old_email?: boolean
@@ -2107,7 +2077,6 @@ export namespace Prisma {
     efis?: boolean
     region?: boolean
     date_time?: boolean
-    test?: boolean
   }
 
   export type audit_tableGetPayload<
@@ -3856,8 +3825,6 @@ export namespace Prisma {
     id: 'id',
     change_type: 'change_type',
     changed_by_number: 'changed_by_number',
-    changed_by_name: 'changed_by_name',
-    changed_by_email: 'changed_by_email',
     old_name: 'old_name',
     new_name: 'new_name',
     old_email: 'old_email',
@@ -3865,8 +3832,7 @@ export namespace Prisma {
     role: 'role',
     efis: 'efis',
     region: 'region',
-    date_time: 'date_time',
-    test: 'test'
+    date_time: 'date_time'
   };
 
   export type Audit_tableScalarFieldEnum = (typeof Audit_tableScalarFieldEnum)[keyof typeof Audit_tableScalarFieldEnum]
@@ -3984,25 +3950,20 @@ export namespace Prisma {
     id?: IntFilter | number
     change_type?: StringNullableFilter | string | null
     changed_by_number?: StringNullableFilter | string | null
-    changed_by_name?: StringNullableFilter | string | null
-    changed_by_email?: StringNullableFilter | string | null
     old_name?: StringFilter | string
     new_name?: StringFilter | string
     old_email?: StringFilter | string
     new_email?: StringFilter | string
     role?: StringNullableFilter | string | null
     efis?: StringNullableFilter | string | null
-    region?: StringNullableFilter | string | null
+    region?: StringFilter | string
     date_time?: StringNullableFilter | string | null
-    test?: IntFilter | number
   }
 
   export type audit_tableOrderByWithRelationInput = {
     id?: SortOrder
     change_type?: SortOrder
     changed_by_number?: SortOrder
-    changed_by_name?: SortOrder
-    changed_by_email?: SortOrder
     old_name?: SortOrder
     new_name?: SortOrder
     old_email?: SortOrder
@@ -4011,7 +3972,6 @@ export namespace Prisma {
     efis?: SortOrder
     region?: SortOrder
     date_time?: SortOrder
-    test?: SortOrder
   }
 
   export type audit_tableWhereUniqueInput = {
@@ -4022,8 +3982,6 @@ export namespace Prisma {
     id?: SortOrder
     change_type?: SortOrder
     changed_by_number?: SortOrder
-    changed_by_name?: SortOrder
-    changed_by_email?: SortOrder
     old_name?: SortOrder
     new_name?: SortOrder
     old_email?: SortOrder
@@ -4032,7 +3990,6 @@ export namespace Prisma {
     efis?: SortOrder
     region?: SortOrder
     date_time?: SortOrder
-    test?: SortOrder
     _count?: audit_tableCountOrderByAggregateInput
     _avg?: audit_tableAvgOrderByAggregateInput
     _max?: audit_tableMaxOrderByAggregateInput
@@ -4047,17 +4004,14 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter | number
     change_type?: StringNullableWithAggregatesFilter | string | null
     changed_by_number?: StringNullableWithAggregatesFilter | string | null
-    changed_by_name?: StringNullableWithAggregatesFilter | string | null
-    changed_by_email?: StringNullableWithAggregatesFilter | string | null
     old_name?: StringWithAggregatesFilter | string
     new_name?: StringWithAggregatesFilter | string
     old_email?: StringWithAggregatesFilter | string
     new_email?: StringWithAggregatesFilter | string
     role?: StringNullableWithAggregatesFilter | string | null
     efis?: StringNullableWithAggregatesFilter | string | null
-    region?: StringNullableWithAggregatesFilter | string | null
+    region?: StringWithAggregatesFilter | string
     date_time?: StringNullableWithAggregatesFilter | string | null
-    test?: IntWithAggregatesFilter | number
   }
 
   export type manager_dashboard_tblWhereInput = {
@@ -4254,117 +4208,96 @@ export namespace Prisma {
   export type audit_tableCreateInput = {
     change_type?: string | null
     changed_by_number?: string | null
-    changed_by_name?: string | null
-    changed_by_email?: string | null
     old_name: string
     new_name: string
     old_email: string
     new_email: string
     role?: string | null
     efis?: string | null
-    region?: string | null
+    region: string
     date_time?: string | null
-    test?: number
   }
 
   export type audit_tableUncheckedCreateInput = {
     id?: number
     change_type?: string | null
     changed_by_number?: string | null
-    changed_by_name?: string | null
-    changed_by_email?: string | null
     old_name: string
     new_name: string
     old_email: string
     new_email: string
     role?: string | null
     efis?: string | null
-    region?: string | null
+    region: string
     date_time?: string | null
-    test?: number
   }
 
   export type audit_tableUpdateInput = {
     change_type?: NullableStringFieldUpdateOperationsInput | string | null
     changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_by_name?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_by_email?: NullableStringFieldUpdateOperationsInput | string | null
     old_name?: StringFieldUpdateOperationsInput | string
     new_name?: StringFieldUpdateOperationsInput | string
     old_email?: StringFieldUpdateOperationsInput | string
     new_email?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     efis?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
+    region?: StringFieldUpdateOperationsInput | string
     date_time?: NullableStringFieldUpdateOperationsInput | string | null
-    test?: IntFieldUpdateOperationsInput | number
   }
 
   export type audit_tableUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     change_type?: NullableStringFieldUpdateOperationsInput | string | null
     changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_by_name?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_by_email?: NullableStringFieldUpdateOperationsInput | string | null
     old_name?: StringFieldUpdateOperationsInput | string
     new_name?: StringFieldUpdateOperationsInput | string
     old_email?: StringFieldUpdateOperationsInput | string
     new_email?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     efis?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
+    region?: StringFieldUpdateOperationsInput | string
     date_time?: NullableStringFieldUpdateOperationsInput | string | null
-    test?: IntFieldUpdateOperationsInput | number
   }
 
   export type audit_tableCreateManyInput = {
     id?: number
     change_type?: string | null
     changed_by_number?: string | null
-    changed_by_name?: string | null
-    changed_by_email?: string | null
     old_name: string
     new_name: string
     old_email: string
     new_email: string
     role?: string | null
     efis?: string | null
-    region?: string | null
+    region: string
     date_time?: string | null
-    test?: number
   }
 
   export type audit_tableUpdateManyMutationInput = {
     change_type?: NullableStringFieldUpdateOperationsInput | string | null
     changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_by_name?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_by_email?: NullableStringFieldUpdateOperationsInput | string | null
     old_name?: StringFieldUpdateOperationsInput | string
     new_name?: StringFieldUpdateOperationsInput | string
     old_email?: StringFieldUpdateOperationsInput | string
     new_email?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     efis?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
+    region?: StringFieldUpdateOperationsInput | string
     date_time?: NullableStringFieldUpdateOperationsInput | string | null
-    test?: IntFieldUpdateOperationsInput | number
   }
 
   export type audit_tableUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     change_type?: NullableStringFieldUpdateOperationsInput | string | null
     changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_by_name?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_by_email?: NullableStringFieldUpdateOperationsInput | string | null
     old_name?: StringFieldUpdateOperationsInput | string
     new_name?: StringFieldUpdateOperationsInput | string
     old_email?: StringFieldUpdateOperationsInput | string
     new_email?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     efis?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
+    region?: StringFieldUpdateOperationsInput | string
     date_time?: NullableStringFieldUpdateOperationsInput | string | null
-    test?: IntFieldUpdateOperationsInput | number
   }
 
   export type manager_dashboard_tblCreateInput = {
@@ -4641,8 +4574,6 @@ export namespace Prisma {
     id?: SortOrder
     change_type?: SortOrder
     changed_by_number?: SortOrder
-    changed_by_name?: SortOrder
-    changed_by_email?: SortOrder
     old_name?: SortOrder
     new_name?: SortOrder
     old_email?: SortOrder
@@ -4651,20 +4582,16 @@ export namespace Prisma {
     efis?: SortOrder
     region?: SortOrder
     date_time?: SortOrder
-    test?: SortOrder
   }
 
   export type audit_tableAvgOrderByAggregateInput = {
     id?: SortOrder
-    test?: SortOrder
   }
 
   export type audit_tableMaxOrderByAggregateInput = {
     id?: SortOrder
     change_type?: SortOrder
     changed_by_number?: SortOrder
-    changed_by_name?: SortOrder
-    changed_by_email?: SortOrder
     old_name?: SortOrder
     new_name?: SortOrder
     old_email?: SortOrder
@@ -4673,15 +4600,12 @@ export namespace Prisma {
     efis?: SortOrder
     region?: SortOrder
     date_time?: SortOrder
-    test?: SortOrder
   }
 
   export type audit_tableMinOrderByAggregateInput = {
     id?: SortOrder
     change_type?: SortOrder
     changed_by_number?: SortOrder
-    changed_by_name?: SortOrder
-    changed_by_email?: SortOrder
     old_name?: SortOrder
     new_name?: SortOrder
     old_email?: SortOrder
@@ -4690,12 +4614,10 @@ export namespace Prisma {
     efis?: SortOrder
     region?: SortOrder
     date_time?: SortOrder
-    test?: SortOrder
   }
 
   export type audit_tableSumOrderByAggregateInput = {
     id?: SortOrder
-    test?: SortOrder
   }
 
   export type StringWithAggregatesFilter = {

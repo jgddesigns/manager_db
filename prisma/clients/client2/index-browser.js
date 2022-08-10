@@ -104,8 +104,6 @@ exports.Prisma.Audit_tableScalarFieldEnum = makeEnum({
   id: 'id',
   change_type: 'change_type',
   changed_by_number: 'changed_by_number',
-  changed_by_name: 'changed_by_name',
-  changed_by_email: 'changed_by_email',
   old_name: 'old_name',
   new_name: 'new_name',
   old_email: 'old_email',
@@ -113,8 +111,7 @@ exports.Prisma.Audit_tableScalarFieldEnum = makeEnum({
   role: 'role',
   efis: 'efis',
   region: 'region',
-  date_time: 'date_time',
-  test: 'test'
+  date_time: 'date_time'
 });
 
 exports.Prisma.Manager_dashboard_tblScalarFieldEnum = makeEnum({

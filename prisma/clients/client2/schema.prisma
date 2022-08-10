@@ -27,17 +27,14 @@ model audit_table {
   id                Int     @id @default(autoincrement())
   change_type       String? @db.VarChar(50)
   changed_by_number String? @db.VarChar(30)
-  changed_by_name   String? @db.VarChar(50)
-  changed_by_email  String? @db.VarChar(50)
   old_name          String  @db.VarChar(50)
   new_name          String  @db.VarChar(50)
   old_email         String  @db.VarChar(99)
   new_email         String  @db.VarChar(99)
   role              String? @db.VarChar(50)
   efis              String? @db.VarChar(8)
-  region            String? @db.VarChar(8)
-  date_time         String? @db.VarChar(30)
-  test              Int     @default(0) @db.TinyInt
+  region            String  @db.VarChar(8)
+  date_time         String? @default(dbgenerated("(current_timestamp())")) @db.VarChar(30)
 
   @@index([changed_by_number], map: "changed_by_fk2")
 }
