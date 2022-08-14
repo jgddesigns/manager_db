@@ -15,9 +15,10 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
     const [newName, setNewName] = useState("")
     const [NameChanges, setNameChanges] = useState(false)
     const [EmailChanges, setEmailChanges] = useState(false)
+    const [ManagerChanges, setManagerChanges] = useState(false)
     const [loadingGraphicDisplay, setLoadingGraphicDisplay] = useState(false)
     const [user,setUser] = useState({}) // I would rather use the session for this, but I don't know how to do that yet.
-    const [Superiors, setSuperiors] = useState([])
+    const [Superiors, setSuperiors] = useState([],[],[])
     const [Manager, setManager] = useState([])
 
     useEffect(() => {
@@ -43,8 +44,11 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             res.json().then((data) => {
             console.log(data);
             setSuperiors(ManagerProcess(data, selectedEmployee.emp_district, selectedEmployee.emp_role, selectedEmployee.emp_efis))
-
-
+            
+            Superiors.map(result => {
+                setManager(Superiors[2])
+            })
+                
             
             });
         }).then(()=>{
@@ -53,13 +57,16 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         
       }, [superiorMap])
 
-      const superiorMap = Superiors[0].map((name, index) => {
+      
+
+      const superiorMap = Superiors.map((name, index) => {
         return {
           manager: Superiors[0][index],
           efis: Superiors[1][index],
           current_manager: Superiors[2]
         }
       })
+
 
 
     const UpdateHandler = (data) => {
@@ -77,6 +84,8 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             audit_type = ""
         }
 
+        var date = new Date()
+        date = date.toLocaleString()
         const audit_data = {
             type: audit_type,
             employee_number: user.userid,
@@ -86,7 +95,8 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             new_email: data["new_email"],
             role: data["emp_role"],
             efis: data["emp_efis"],
-            region: data["region"] 
+            region: data["region"], 
+            date_time: date,
         }
         //AUDIT DATA END
 
@@ -256,12 +266,19 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         })
     }
 
+    const EditManagerHandler = (e) => {
+        setManager(e)
+
+    }
+
+    const ConfirmChangeManager = () => {
+
+        
+
+    }
     const EditManager = () => {
 
 
-        {superiorMap.map(result => {
-            setManager(result.current_manager)
-            })}
 
         
         MySwal.fire({
@@ -299,6 +316,8 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             confirmButtonColor: 'bg-indigo-400',
         }).then(function(result) {
             if (result.value) {
+                ConfirmChangeManager()
+                setManagerChanges(true)
                 console.log("edit manager placeholder")
             }
         })
@@ -404,7 +423,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             {!loadingGraphicDisplay ? 
             <div>
                 <h2 className="px-4 py-2 text-center w-full text-xl">Selected Employee:</h2>
-                <table className="table-auto w-full mt-20 static">
+                <table className="table-auto w-full mt-12 static">
                     
                     <tbody>
                         <tr>
@@ -431,14 +450,17 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                             <td className="border px-4 py-2">TRAM:</td>
                             <td className="border px-4 py-2">{selectedEmployee.emp_tram}</td>
                         </tr>
+                        {selectedEmployee.emp_role == "Chief" || selectedEmployee.emp_role == "STE" ? <tr> <td className="border px-4 py-2">Manager:</td>
+                            <td className="border px-4 py-2">{Manager}</td></tr> : null}
                     </tbody>
                 </table>
                 <div className="float-right grid grid-rows-3">
                     <button className="float-right bg-indigo-400 hover:bg-indigo-500 text-white rounded mt-4 mr-8 h-6 w-16 text-xs" onClick={() => EditEmployeeHandler()}>Edit</button>
                     {(NameChanges || EmailChanges) ?  <button className="float-right bg-green-500 hover:bg-green-600 text-white rounded mt-2 h-6 w-16 text-xs" onClick={() => SaveHandler(selectedEmployee)}>Save</button>   : null}
-                    {(NameChanges || EmailChanges) ?  <button className="float-right bg-gray-500 hover:bg-gray-500 text-white rounded h-6 w-16 text-xs" onClick={() => ClearHandler()}>Clear</button>   : null}
+                    {(NameChanges || EmailChanges) ?  <button className="float-right bg-gray-500 hover:bg-gray-600 text-white rounded h-6 w-16 text-xs" onClick={() => ClearHandler()}>Clear</button>   : null}
                 </div>
-                {selectedEmployee.emp_role == "Chief" || selectedEmployee.emp_role == "STE" ? <button className="float-right bg-indigo-600 hover:bg-indigo-800 text-white rounded mt-4 mr-4 h-6 w-16 text-xs" onClick={() => EditManager()}>Manager</button> :null}
+                {selectedEmployee.emp_role == "Chief" || selectedEmployee.emp_role == "STE" ?<div className="float-left grid grid-rows-3"> <button className="float-left bg-indigo-600 hover:bg-indigo-800 text-white rounded mt-4 ml-6 h-6 w-16 text-xs" onClick={() => EditManager()}>Manager</button> {ManagerChanges ? <button className="float-left bg-green-700 hover:bg-green-800 text-white rounded ml-6 mt-2 h-6 w-16 text-xs" onClick={() => SaveHandler(selectedEmployee)}>Save</button>  :null} 
+                {ManagerChanges ?  <button className="float-left bg-gray-600 hover:bg-gray-700 text-white rounded ml-6 h-6 w-16 text-xs" onClick={() => ClearHandler()}>Clear</button>   : null}</div>:null}
                 </div> :
             <div className="grid place-content-center mt-48">
                 <div>

@@ -30,6 +30,7 @@ export default async function handler(req,res){
                     role: req.body['role'],
                     efis: req.body['efis'],
                     region: req.body['region'],
+                    date_time: req.body['date_time'],
                 },
             }).then(data => {
                 res.send(data) 

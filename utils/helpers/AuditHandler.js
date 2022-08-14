@@ -1,4 +1,4 @@
-import setAllManagerDB from '../../components/ManagerDBTable/index'
+
 
 const AuditHandler = (audit) =>{
     //'audit' map key:
@@ -12,7 +12,7 @@ const AuditHandler = (audit) =>{
     // efis 
     // region
 
-
+   console.log(audit)
 
 
     fetch("/ManagerDB/api/audits/", {
@@ -24,8 +24,8 @@ const AuditHandler = (audit) =>{
         body: JSON.stringify(audit) 
       }).then((res) => {
         res.json().then((data) => {
-          // console.log("Audit Response: " + JSON.stringify(data))
-          console.log("Audit Success")
+          console.log("Audit Response: " + JSON.stringify(data))
+          // console.log("Audit Success")
          
         });
       });

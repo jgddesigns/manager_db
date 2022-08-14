@@ -13,38 +13,21 @@ type UnwrapTuple<Tuple extends readonly unknown[]> = {
 
 
 /**
- * Model audit_superior
- * 
- */
-export type audit_superior = {
-  id: number
-  changed_by_number: string | null
-  changed_employee: string | null
-  changed_employee_role: string | null
-  changed_employee_efis: string | null
-  old_superior_name: string | null
-  old_superior_efis: string | null
-  new_superior_name: string | null
-  new_superior_efis: string | null
-  changed_on_date: string | null
-}
-
-/**
  * Model audit_table
  * 
  */
 export type audit_table = {
   id: number
-  change_type: string | null
-  changed_by_number: string | null
+  change_type: string
+  changed_by_number: string
   old_name: string
   new_name: string
   old_email: string
   new_email: string
-  role: string | null
-  efis: string | null
+  role: string
+  efis: string
   region: string
-  date_time: string | null
+  date_time: string
 }
 
 /**
@@ -70,7 +53,7 @@ export type manager_dashboard_tbl = {
   STE_EFIS: string | null
   STE_NAME: string | null
   STE_EMAIL: string | null
-  manager_dashboard_id: number
+  test: number
 }
 
 
@@ -81,8 +64,8 @@ export type manager_dashboard_tbl = {
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Audit_superiors
- * const audit_superiors = await prisma.audit_superior.findMany()
+ * // Fetch zero or more Audit_tables
+ * const audit_tables = await prisma.audit_table.findMany()
  * ```
  *
  * 
@@ -127,8 +110,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Audit_superiors
-   * const audit_superiors = await prisma.audit_superior.findMany()
+   * // Fetch zero or more Audit_tables
+   * const audit_tables = await prisma.audit_table.findMany()
    * ```
    *
    * 
@@ -215,16 +198,6 @@ export class PrismaClient<
   $transaction<P extends PrismaPromise<any>[]>(arg: [...P]): Promise<UnwrapTuple<P>>;
 
       /**
-   * `prisma.audit_superior`: Exposes CRUD operations for the **audit_superior** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Audit_superiors
-    * const audit_superiors = await prisma.audit_superior.findMany()
-    * ```
-    */
-  get audit_superior(): Prisma.audit_superiorDelegate<GlobalReject>;
-
-  /**
    * `prisma.audit_table`: Exposes CRUD operations for the **audit_table** model.
     * Example usage:
     * ```ts
@@ -711,7 +684,6 @@ export namespace Prisma {
   }
 
   export const ModelName: {
-    audit_superior: 'audit_superior',
     audit_table: 'audit_table',
     manager_dashboard_tbl: 'manager_dashboard_tbl'
   };
@@ -876,953 +848,6 @@ export namespace Prisma {
   /**
    * Models
    */
-
-  /**
-   * Model audit_superior
-   */
-
-
-  export type AggregateAudit_superior = {
-    _count: Audit_superiorCountAggregateOutputType | null
-    _avg: Audit_superiorAvgAggregateOutputType | null
-    _sum: Audit_superiorSumAggregateOutputType | null
-    _min: Audit_superiorMinAggregateOutputType | null
-    _max: Audit_superiorMaxAggregateOutputType | null
-  }
-
-  export type Audit_superiorAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type Audit_superiorSumAggregateOutputType = {
-    id: number | null
-  }
-
-  export type Audit_superiorMinAggregateOutputType = {
-    id: number | null
-    changed_by_number: string | null
-    changed_employee: string | null
-    changed_employee_role: string | null
-    changed_employee_efis: string | null
-    old_superior_name: string | null
-    old_superior_efis: string | null
-    new_superior_name: string | null
-    new_superior_efis: string | null
-    changed_on_date: string | null
-  }
-
-  export type Audit_superiorMaxAggregateOutputType = {
-    id: number | null
-    changed_by_number: string | null
-    changed_employee: string | null
-    changed_employee_role: string | null
-    changed_employee_efis: string | null
-    old_superior_name: string | null
-    old_superior_efis: string | null
-    new_superior_name: string | null
-    new_superior_efis: string | null
-    changed_on_date: string | null
-  }
-
-  export type Audit_superiorCountAggregateOutputType = {
-    id: number
-    changed_by_number: number
-    changed_employee: number
-    changed_employee_role: number
-    changed_employee_efis: number
-    old_superior_name: number
-    old_superior_efis: number
-    new_superior_name: number
-    new_superior_efis: number
-    changed_on_date: number
-    _all: number
-  }
-
-
-  export type Audit_superiorAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type Audit_superiorSumAggregateInputType = {
-    id?: true
-  }
-
-  export type Audit_superiorMinAggregateInputType = {
-    id?: true
-    changed_by_number?: true
-    changed_employee?: true
-    changed_employee_role?: true
-    changed_employee_efis?: true
-    old_superior_name?: true
-    old_superior_efis?: true
-    new_superior_name?: true
-    new_superior_efis?: true
-    changed_on_date?: true
-  }
-
-  export type Audit_superiorMaxAggregateInputType = {
-    id?: true
-    changed_by_number?: true
-    changed_employee?: true
-    changed_employee_role?: true
-    changed_employee_efis?: true
-    old_superior_name?: true
-    old_superior_efis?: true
-    new_superior_name?: true
-    new_superior_efis?: true
-    changed_on_date?: true
-  }
-
-  export type Audit_superiorCountAggregateInputType = {
-    id?: true
-    changed_by_number?: true
-    changed_employee?: true
-    changed_employee_role?: true
-    changed_employee_efis?: true
-    old_superior_name?: true
-    old_superior_efis?: true
-    new_superior_name?: true
-    new_superior_efis?: true
-    changed_on_date?: true
-    _all?: true
-  }
-
-  export type Audit_superiorAggregateArgs = {
-    /**
-     * Filter which audit_superior to aggregate.
-     * 
-    **/
-    where?: audit_superiorWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of audit_superiors to fetch.
-     * 
-    **/
-    orderBy?: Enumerable<audit_superiorOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     * 
-    **/
-    cursor?: audit_superiorWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` audit_superiors from the position of the cursor.
-     * 
-    **/
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` audit_superiors.
-     * 
-    **/
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned audit_superiors
-    **/
-    _count?: true | Audit_superiorCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: Audit_superiorAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: Audit_superiorSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: Audit_superiorMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: Audit_superiorMaxAggregateInputType
-  }
-
-  export type GetAudit_superiorAggregateType<T extends Audit_superiorAggregateArgs> = {
-        [P in keyof T & keyof AggregateAudit_superior]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateAudit_superior[P]>
-      : GetScalarType<T[P], AggregateAudit_superior[P]>
-  }
-
-
-
-
-  export type Audit_superiorGroupByArgs = {
-    where?: audit_superiorWhereInput
-    orderBy?: Enumerable<audit_superiorOrderByWithAggregationInput>
-    by: Array<Audit_superiorScalarFieldEnum>
-    having?: audit_superiorScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: Audit_superiorCountAggregateInputType | true
-    _avg?: Audit_superiorAvgAggregateInputType
-    _sum?: Audit_superiorSumAggregateInputType
-    _min?: Audit_superiorMinAggregateInputType
-    _max?: Audit_superiorMaxAggregateInputType
-  }
-
-
-  export type Audit_superiorGroupByOutputType = {
-    id: number
-    changed_by_number: string | null
-    changed_employee: string | null
-    changed_employee_role: string | null
-    changed_employee_efis: string | null
-    old_superior_name: string | null
-    old_superior_efis: string | null
-    new_superior_name: string | null
-    new_superior_efis: string | null
-    changed_on_date: string | null
-    _count: Audit_superiorCountAggregateOutputType | null
-    _avg: Audit_superiorAvgAggregateOutputType | null
-    _sum: Audit_superiorSumAggregateOutputType | null
-    _min: Audit_superiorMinAggregateOutputType | null
-    _max: Audit_superiorMaxAggregateOutputType | null
-  }
-
-  type GetAudit_superiorGroupByPayload<T extends Audit_superiorGroupByArgs> = PrismaPromise<
-    Array<
-      PickArray<Audit_superiorGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof Audit_superiorGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], Audit_superiorGroupByOutputType[P]>
-            : GetScalarType<T[P], Audit_superiorGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type audit_superiorSelect = {
-    id?: boolean
-    changed_by_number?: boolean
-    changed_employee?: boolean
-    changed_employee_role?: boolean
-    changed_employee_efis?: boolean
-    old_superior_name?: boolean
-    old_superior_efis?: boolean
-    new_superior_name?: boolean
-    new_superior_efis?: boolean
-    changed_on_date?: boolean
-  }
-
-  export type audit_superiorGetPayload<
-    S extends boolean | null | undefined | audit_superiorArgs,
-    U = keyof S
-      > = S extends true
-        ? audit_superior
-    : S extends undefined
-    ? never
-    : S extends audit_superiorArgs | audit_superiorFindManyArgs
-    ?'include' extends U
-    ? audit_superior 
-    : 'select' extends U
-    ? {
-    [P in TrueKeys<S['select']>]:
-    P extends keyof audit_superior ? audit_superior[P] : never
-  } 
-    : audit_superior
-  : audit_superior
-
-
-  type audit_superiorCountArgs = Merge<
-    Omit<audit_superiorFindManyArgs, 'select' | 'include'> & {
-      select?: Audit_superiorCountAggregateInputType | true
-    }
-  >
-
-  export interface audit_superiorDelegate<GlobalRejectSettings> {
-    /**
-     * Find zero or one Audit_superior that matches the filter.
-     * @param {audit_superiorFindUniqueArgs} args - Arguments to find a Audit_superior
-     * @example
-     * // Get one Audit_superior
-     * const audit_superior = await prisma.audit_superior.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends audit_superiorFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args: SelectSubset<T, audit_superiorFindUniqueArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'audit_superior'> extends True ? CheckSelect<T, Prisma__audit_superiorClient<audit_superior>, Prisma__audit_superiorClient<audit_superiorGetPayload<T>>> : CheckSelect<T, Prisma__audit_superiorClient<audit_superior | null >, Prisma__audit_superiorClient<audit_superiorGetPayload<T> | null >>
-
-    /**
-     * Find the first Audit_superior that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {audit_superiorFindFirstArgs} args - Arguments to find a Audit_superior
-     * @example
-     * // Get one Audit_superior
-     * const audit_superior = await prisma.audit_superior.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends audit_superiorFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args?: SelectSubset<T, audit_superiorFindFirstArgs>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'audit_superior'> extends True ? CheckSelect<T, Prisma__audit_superiorClient<audit_superior>, Prisma__audit_superiorClient<audit_superiorGetPayload<T>>> : CheckSelect<T, Prisma__audit_superiorClient<audit_superior | null >, Prisma__audit_superiorClient<audit_superiorGetPayload<T> | null >>
-
-    /**
-     * Find zero or more Audit_superiors that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {audit_superiorFindManyArgs=} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Audit_superiors
-     * const audit_superiors = await prisma.audit_superior.findMany()
-     * 
-     * // Get first 10 Audit_superiors
-     * const audit_superiors = await prisma.audit_superior.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const audit_superiorWithIdOnly = await prisma.audit_superior.findMany({ select: { id: true } })
-     * 
-    **/
-    findMany<T extends audit_superiorFindManyArgs>(
-      args?: SelectSubset<T, audit_superiorFindManyArgs>
-    ): CheckSelect<T, PrismaPromise<Array<audit_superior>>, PrismaPromise<Array<audit_superiorGetPayload<T>>>>
-
-    /**
-     * Create a Audit_superior.
-     * @param {audit_superiorCreateArgs} args - Arguments to create a Audit_superior.
-     * @example
-     * // Create one Audit_superior
-     * const Audit_superior = await prisma.audit_superior.create({
-     *   data: {
-     *     // ... data to create a Audit_superior
-     *   }
-     * })
-     * 
-    **/
-    create<T extends audit_superiorCreateArgs>(
-      args: SelectSubset<T, audit_superiorCreateArgs>
-    ): CheckSelect<T, Prisma__audit_superiorClient<audit_superior>, Prisma__audit_superiorClient<audit_superiorGetPayload<T>>>
-
-    /**
-     * Create many Audit_superiors.
-     *     @param {audit_superiorCreateManyArgs} args - Arguments to create many Audit_superiors.
-     *     @example
-     *     // Create many Audit_superiors
-     *     const audit_superior = await prisma.audit_superior.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
-     *     
-    **/
-    createMany<T extends audit_superiorCreateManyArgs>(
-      args?: SelectSubset<T, audit_superiorCreateManyArgs>
-    ): PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Audit_superior.
-     * @param {audit_superiorDeleteArgs} args - Arguments to delete one Audit_superior.
-     * @example
-     * // Delete one Audit_superior
-     * const Audit_superior = await prisma.audit_superior.delete({
-     *   where: {
-     *     // ... filter to delete one Audit_superior
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends audit_superiorDeleteArgs>(
-      args: SelectSubset<T, audit_superiorDeleteArgs>
-    ): CheckSelect<T, Prisma__audit_superiorClient<audit_superior>, Prisma__audit_superiorClient<audit_superiorGetPayload<T>>>
-
-    /**
-     * Update one Audit_superior.
-     * @param {audit_superiorUpdateArgs} args - Arguments to update one Audit_superior.
-     * @example
-     * // Update one Audit_superior
-     * const audit_superior = await prisma.audit_superior.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends audit_superiorUpdateArgs>(
-      args: SelectSubset<T, audit_superiorUpdateArgs>
-    ): CheckSelect<T, Prisma__audit_superiorClient<audit_superior>, Prisma__audit_superiorClient<audit_superiorGetPayload<T>>>
-
-    /**
-     * Delete zero or more Audit_superiors.
-     * @param {audit_superiorDeleteManyArgs} args - Arguments to filter Audit_superiors to delete.
-     * @example
-     * // Delete a few Audit_superiors
-     * const { count } = await prisma.audit_superior.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends audit_superiorDeleteManyArgs>(
-      args?: SelectSubset<T, audit_superiorDeleteManyArgs>
-    ): PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Audit_superiors.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {audit_superiorUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Audit_superiors
-     * const audit_superior = await prisma.audit_superior.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends audit_superiorUpdateManyArgs>(
-      args: SelectSubset<T, audit_superiorUpdateManyArgs>
-    ): PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Audit_superior.
-     * @param {audit_superiorUpsertArgs} args - Arguments to update or create a Audit_superior.
-     * @example
-     * // Update or create a Audit_superior
-     * const audit_superior = await prisma.audit_superior.upsert({
-     *   create: {
-     *     // ... data to create a Audit_superior
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Audit_superior we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends audit_superiorUpsertArgs>(
-      args: SelectSubset<T, audit_superiorUpsertArgs>
-    ): CheckSelect<T, Prisma__audit_superiorClient<audit_superior>, Prisma__audit_superiorClient<audit_superiorGetPayload<T>>>
-
-    /**
-     * Find one Audit_superior that matches the filter or throw
-     * `NotFoundError` if no matches were found.
-     * @param {audit_superiorFindUniqueOrThrowArgs} args - Arguments to find a Audit_superior
-     * @example
-     * // Get one Audit_superior
-     * const audit_superior = await prisma.audit_superior.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends audit_superiorFindUniqueOrThrowArgs>(
-      args?: SelectSubset<T, audit_superiorFindUniqueOrThrowArgs>
-    ): CheckSelect<T, Prisma__audit_superiorClient<audit_superior>, Prisma__audit_superiorClient<audit_superiorGetPayload<T>>>
-
-    /**
-     * Find the first Audit_superior that matches the filter or
-     * throw `NotFoundError` if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {audit_superiorFindFirstOrThrowArgs} args - Arguments to find a Audit_superior
-     * @example
-     * // Get one Audit_superior
-     * const audit_superior = await prisma.audit_superior.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends audit_superiorFindFirstOrThrowArgs>(
-      args?: SelectSubset<T, audit_superiorFindFirstOrThrowArgs>
-    ): CheckSelect<T, Prisma__audit_superiorClient<audit_superior>, Prisma__audit_superiorClient<audit_superiorGetPayload<T>>>
-
-    /**
-     * Count the number of Audit_superiors.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {audit_superiorCountArgs} args - Arguments to filter Audit_superiors to count.
-     * @example
-     * // Count the number of Audit_superiors
-     * const count = await prisma.audit_superior.count({
-     *   where: {
-     *     // ... the filter for the Audit_superiors we want to count
-     *   }
-     * })
-    **/
-    count<T extends audit_superiorCountArgs>(
-      args?: Subset<T, audit_superiorCountArgs>,
-    ): PrismaPromise<
-      T extends _Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], Audit_superiorCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Audit_superior.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {Audit_superiorAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends Audit_superiorAggregateArgs>(args: Subset<T, Audit_superiorAggregateArgs>): PrismaPromise<GetAudit_superiorAggregateType<T>>
-
-    /**
-     * Group by Audit_superior.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {Audit_superiorGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends Audit_superiorGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: Audit_superiorGroupByArgs['orderBy'] }
-        : { orderBy?: Audit_superiorGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends TupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, Audit_superiorGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAudit_superiorGroupByPayload<T> : PrismaPromise<InputErrors>
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for audit_superior.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export class Prisma__audit_superiorClient<T> implements PrismaPromise<T> {
-    [prisma]: true;
-    private readonly _dmmf;
-    private readonly _fetcher;
-    private readonly _queryType;
-    private readonly _rootField;
-    private readonly _clientMethod;
-    private readonly _args;
-    private readonly _dataPath;
-    private readonly _errorFormat;
-    private readonly _measurePerformance?;
-    private _isList;
-    private _callsite;
-    private _requestPromise?;
-    constructor(_dmmf: runtime.DMMFClass, _fetcher: PrismaClientFetcher, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
-    readonly [Symbol.toStringTag]: 'PrismaClientPromise';
-
-
-    private get _document();
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
-  }
-
-  // Custom InputTypes
-
-  /**
-   * audit_superior base type for findUnique actions
-   */
-  export type audit_superiorFindUniqueArgsBase = {
-    /**
-     * Select specific fields to fetch from the audit_superior
-     * 
-    **/
-    select?: audit_superiorSelect | null
-    /**
-     * Filter, which audit_superior to fetch.
-     * 
-    **/
-    where: audit_superiorWhereUniqueInput
-  }
-
-  /**
-   * audit_superior: findUnique
-   */
-  export interface audit_superiorFindUniqueArgs extends audit_superiorFindUniqueArgsBase {
-   /**
-    * Throw an Error if query returns no results
-    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
-    */
-    rejectOnNotFound?: RejectOnNotFound
-  }
-      
-
-  /**
-   * audit_superior base type for findFirst actions
-   */
-  export type audit_superiorFindFirstArgsBase = {
-    /**
-     * Select specific fields to fetch from the audit_superior
-     * 
-    **/
-    select?: audit_superiorSelect | null
-    /**
-     * Filter, which audit_superior to fetch.
-     * 
-    **/
-    where?: audit_superiorWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of audit_superiors to fetch.
-     * 
-    **/
-    orderBy?: Enumerable<audit_superiorOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for audit_superiors.
-     * 
-    **/
-    cursor?: audit_superiorWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` audit_superiors from the position of the cursor.
-     * 
-    **/
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` audit_superiors.
-     * 
-    **/
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of audit_superiors.
-     * 
-    **/
-    distinct?: Enumerable<Audit_superiorScalarFieldEnum>
-  }
-
-  /**
-   * audit_superior: findFirst
-   */
-  export interface audit_superiorFindFirstArgs extends audit_superiorFindFirstArgsBase {
-   /**
-    * Throw an Error if query returns no results
-    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
-    */
-    rejectOnNotFound?: RejectOnNotFound
-  }
-      
-
-  /**
-   * audit_superior findMany
-   */
-  export type audit_superiorFindManyArgs = {
-    /**
-     * Select specific fields to fetch from the audit_superior
-     * 
-    **/
-    select?: audit_superiorSelect | null
-    /**
-     * Filter, which audit_superiors to fetch.
-     * 
-    **/
-    where?: audit_superiorWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of audit_superiors to fetch.
-     * 
-    **/
-    orderBy?: Enumerable<audit_superiorOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing audit_superiors.
-     * 
-    **/
-    cursor?: audit_superiorWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` audit_superiors from the position of the cursor.
-     * 
-    **/
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` audit_superiors.
-     * 
-    **/
-    skip?: number
-    distinct?: Enumerable<Audit_superiorScalarFieldEnum>
-  }
-
-
-  /**
-   * audit_superior create
-   */
-  export type audit_superiorCreateArgs = {
-    /**
-     * Select specific fields to fetch from the audit_superior
-     * 
-    **/
-    select?: audit_superiorSelect | null
-    /**
-     * The data needed to create a audit_superior.
-     * 
-    **/
-    data: XOR<audit_superiorCreateInput, audit_superiorUncheckedCreateInput>
-  }
-
-
-  /**
-   * audit_superior createMany
-   */
-  export type audit_superiorCreateManyArgs = {
-    /**
-     * The data used to create many audit_superiors.
-     * 
-    **/
-    data: Enumerable<audit_superiorCreateManyInput>
-    skipDuplicates?: boolean
-  }
-
-
-  /**
-   * audit_superior update
-   */
-  export type audit_superiorUpdateArgs = {
-    /**
-     * Select specific fields to fetch from the audit_superior
-     * 
-    **/
-    select?: audit_superiorSelect | null
-    /**
-     * The data needed to update a audit_superior.
-     * 
-    **/
-    data: XOR<audit_superiorUpdateInput, audit_superiorUncheckedUpdateInput>
-    /**
-     * Choose, which audit_superior to update.
-     * 
-    **/
-    where: audit_superiorWhereUniqueInput
-  }
-
-
-  /**
-   * audit_superior updateMany
-   */
-  export type audit_superiorUpdateManyArgs = {
-    /**
-     * The data used to update audit_superiors.
-     * 
-    **/
-    data: XOR<audit_superiorUpdateManyMutationInput, audit_superiorUncheckedUpdateManyInput>
-    /**
-     * Filter which audit_superiors to update
-     * 
-    **/
-    where?: audit_superiorWhereInput
-  }
-
-
-  /**
-   * audit_superior upsert
-   */
-  export type audit_superiorUpsertArgs = {
-    /**
-     * Select specific fields to fetch from the audit_superior
-     * 
-    **/
-    select?: audit_superiorSelect | null
-    /**
-     * The filter to search for the audit_superior to update in case it exists.
-     * 
-    **/
-    where: audit_superiorWhereUniqueInput
-    /**
-     * In case the audit_superior found by the `where` argument doesn't exist, create a new audit_superior with this data.
-     * 
-    **/
-    create: XOR<audit_superiorCreateInput, audit_superiorUncheckedCreateInput>
-    /**
-     * In case the audit_superior was found with the provided `where` argument, update it with this data.
-     * 
-    **/
-    update: XOR<audit_superiorUpdateInput, audit_superiorUncheckedUpdateInput>
-  }
-
-
-  /**
-   * audit_superior delete
-   */
-  export type audit_superiorDeleteArgs = {
-    /**
-     * Select specific fields to fetch from the audit_superior
-     * 
-    **/
-    select?: audit_superiorSelect | null
-    /**
-     * Filter which audit_superior to delete.
-     * 
-    **/
-    where: audit_superiorWhereUniqueInput
-  }
-
-
-  /**
-   * audit_superior deleteMany
-   */
-  export type audit_superiorDeleteManyArgs = {
-    /**
-     * Filter which audit_superiors to delete
-     * 
-    **/
-    where?: audit_superiorWhereInput
-  }
-
-
-  /**
-   * audit_superior: findUniqueOrThrow
-   */
-  export type audit_superiorFindUniqueOrThrowArgs = audit_superiorFindUniqueArgsBase
-      
-
-  /**
-   * audit_superior: findFirstOrThrow
-   */
-  export type audit_superiorFindFirstOrThrowArgs = audit_superiorFindFirstArgsBase
-      
-
-  /**
-   * audit_superior without action
-   */
-  export type audit_superiorArgs = {
-    /**
-     * Select specific fields to fetch from the audit_superior
-     * 
-    **/
-    select?: audit_superiorSelect | null
-  }
-
-
 
   /**
    * Model audit_table
@@ -2034,16 +1059,16 @@ export namespace Prisma {
 
   export type Audit_tableGroupByOutputType = {
     id: number
-    change_type: string | null
-    changed_by_number: string | null
+    change_type: string
+    changed_by_number: string
     old_name: string
     new_name: string
     old_email: string
     new_email: string
-    role: string | null
-    efis: string | null
+    role: string
+    efis: string
     region: string
-    date_time: string | null
+    date_time: string
     _count: Audit_tableCountAggregateOutputType | null
     _avg: Audit_tableAvgAggregateOutputType | null
     _sum: Audit_tableSumAggregateOutputType | null
@@ -2793,11 +1818,11 @@ export namespace Prisma {
   }
 
   export type Manager_dashboard_tblAvgAggregateOutputType = {
-    manager_dashboard_id: number | null
+    test: number | null
   }
 
   export type Manager_dashboard_tblSumAggregateOutputType = {
-    manager_dashboard_id: number | null
+    test: number | null
   }
 
   export type Manager_dashboard_tblMinAggregateOutputType = {
@@ -2819,7 +1844,7 @@ export namespace Prisma {
     STE_EFIS: string | null
     STE_NAME: string | null
     STE_EMAIL: string | null
-    manager_dashboard_id: number | null
+    test: number | null
   }
 
   export type Manager_dashboard_tblMaxAggregateOutputType = {
@@ -2841,7 +1866,7 @@ export namespace Prisma {
     STE_EFIS: string | null
     STE_NAME: string | null
     STE_EMAIL: string | null
-    manager_dashboard_id: number | null
+    test: number | null
   }
 
   export type Manager_dashboard_tblCountAggregateOutputType = {
@@ -2863,17 +1888,17 @@ export namespace Prisma {
     STE_EFIS: number
     STE_NAME: number
     STE_EMAIL: number
-    manager_dashboard_id: number
+    test: number
     _all: number
   }
 
 
   export type Manager_dashboard_tblAvgAggregateInputType = {
-    manager_dashboard_id?: true
+    test?: true
   }
 
   export type Manager_dashboard_tblSumAggregateInputType = {
-    manager_dashboard_id?: true
+    test?: true
   }
 
   export type Manager_dashboard_tblMinAggregateInputType = {
@@ -2895,7 +1920,7 @@ export namespace Prisma {
     STE_EFIS?: true
     STE_NAME?: true
     STE_EMAIL?: true
-    manager_dashboard_id?: true
+    test?: true
   }
 
   export type Manager_dashboard_tblMaxAggregateInputType = {
@@ -2917,7 +1942,7 @@ export namespace Prisma {
     STE_EFIS?: true
     STE_NAME?: true
     STE_EMAIL?: true
-    manager_dashboard_id?: true
+    test?: true
   }
 
   export type Manager_dashboard_tblCountAggregateInputType = {
@@ -2939,7 +1964,7 @@ export namespace Prisma {
     STE_EFIS?: true
     STE_NAME?: true
     STE_EMAIL?: true
-    manager_dashboard_id?: true
+    test?: true
     _all?: true
   }
 
@@ -3054,7 +2079,7 @@ export namespace Prisma {
     STE_EFIS: string | null
     STE_NAME: string | null
     STE_EMAIL: string | null
-    manager_dashboard_id: number
+    test: number
     _count: Manager_dashboard_tblCountAggregateOutputType | null
     _avg: Manager_dashboard_tblAvgAggregateOutputType | null
     _sum: Manager_dashboard_tblSumAggregateOutputType | null
@@ -3095,7 +2120,7 @@ export namespace Prisma {
     STE_EFIS?: boolean
     STE_NAME?: boolean
     STE_EMAIL?: boolean
-    manager_dashboard_id?: boolean
+    test?: boolean
   }
 
   export type manager_dashboard_tblGetPayload<
@@ -3805,22 +2830,6 @@ export namespace Prisma {
   // Based on
   // https://github.com/microsoft/TypeScript/issues/3192#issuecomment-261720275
 
-  export const Audit_superiorScalarFieldEnum: {
-    id: 'id',
-    changed_by_number: 'changed_by_number',
-    changed_employee: 'changed_employee',
-    changed_employee_role: 'changed_employee_role',
-    changed_employee_efis: 'changed_employee_efis',
-    old_superior_name: 'old_superior_name',
-    old_superior_efis: 'old_superior_efis',
-    new_superior_name: 'new_superior_name',
-    new_superior_efis: 'new_superior_efis',
-    changed_on_date: 'changed_on_date'
-  };
-
-  export type Audit_superiorScalarFieldEnum = (typeof Audit_superiorScalarFieldEnum)[keyof typeof Audit_superiorScalarFieldEnum]
-
-
   export const Audit_tableScalarFieldEnum: {
     id: 'id',
     change_type: 'change_type',
@@ -3857,7 +2866,7 @@ export namespace Prisma {
     STE_EFIS: 'STE_EFIS',
     STE_NAME: 'STE_NAME',
     STE_EMAIL: 'STE_EMAIL',
-    manager_dashboard_id: 'manager_dashboard_id'
+    test: 'test'
   };
 
   export type Manager_dashboard_tblScalarFieldEnum = (typeof Manager_dashboard_tblScalarFieldEnum)[keyof typeof Manager_dashboard_tblScalarFieldEnum]
@@ -3876,88 +2885,21 @@ export namespace Prisma {
    */
 
 
-  export type audit_superiorWhereInput = {
-    AND?: Enumerable<audit_superiorWhereInput>
-    OR?: Enumerable<audit_superiorWhereInput>
-    NOT?: Enumerable<audit_superiorWhereInput>
-    id?: IntFilter | number
-    changed_by_number?: StringNullableFilter | string | null
-    changed_employee?: StringNullableFilter | string | null
-    changed_employee_role?: StringNullableFilter | string | null
-    changed_employee_efis?: StringNullableFilter | string | null
-    old_superior_name?: StringNullableFilter | string | null
-    old_superior_efis?: StringNullableFilter | string | null
-    new_superior_name?: StringNullableFilter | string | null
-    new_superior_efis?: StringNullableFilter | string | null
-    changed_on_date?: StringNullableFilter | string | null
-  }
-
-  export type audit_superiorOrderByWithRelationInput = {
-    id?: SortOrder
-    changed_by_number?: SortOrder
-    changed_employee?: SortOrder
-    changed_employee_role?: SortOrder
-    changed_employee_efis?: SortOrder
-    old_superior_name?: SortOrder
-    old_superior_efis?: SortOrder
-    new_superior_name?: SortOrder
-    new_superior_efis?: SortOrder
-    changed_on_date?: SortOrder
-  }
-
-  export type audit_superiorWhereUniqueInput = {
-    id?: number
-  }
-
-  export type audit_superiorOrderByWithAggregationInput = {
-    id?: SortOrder
-    changed_by_number?: SortOrder
-    changed_employee?: SortOrder
-    changed_employee_role?: SortOrder
-    changed_employee_efis?: SortOrder
-    old_superior_name?: SortOrder
-    old_superior_efis?: SortOrder
-    new_superior_name?: SortOrder
-    new_superior_efis?: SortOrder
-    changed_on_date?: SortOrder
-    _count?: audit_superiorCountOrderByAggregateInput
-    _avg?: audit_superiorAvgOrderByAggregateInput
-    _max?: audit_superiorMaxOrderByAggregateInput
-    _min?: audit_superiorMinOrderByAggregateInput
-    _sum?: audit_superiorSumOrderByAggregateInput
-  }
-
-  export type audit_superiorScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<audit_superiorScalarWhereWithAggregatesInput>
-    OR?: Enumerable<audit_superiorScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<audit_superiorScalarWhereWithAggregatesInput>
-    id?: IntWithAggregatesFilter | number
-    changed_by_number?: StringNullableWithAggregatesFilter | string | null
-    changed_employee?: StringNullableWithAggregatesFilter | string | null
-    changed_employee_role?: StringNullableWithAggregatesFilter | string | null
-    changed_employee_efis?: StringNullableWithAggregatesFilter | string | null
-    old_superior_name?: StringNullableWithAggregatesFilter | string | null
-    old_superior_efis?: StringNullableWithAggregatesFilter | string | null
-    new_superior_name?: StringNullableWithAggregatesFilter | string | null
-    new_superior_efis?: StringNullableWithAggregatesFilter | string | null
-    changed_on_date?: StringNullableWithAggregatesFilter | string | null
-  }
-
   export type audit_tableWhereInput = {
     AND?: Enumerable<audit_tableWhereInput>
     OR?: Enumerable<audit_tableWhereInput>
     NOT?: Enumerable<audit_tableWhereInput>
     id?: IntFilter | number
-    change_type?: StringNullableFilter | string | null
-    changed_by_number?: StringNullableFilter | string | null
+    change_type?: StringFilter | string
+    changed_by_number?: StringFilter | string
     old_name?: StringFilter | string
     new_name?: StringFilter | string
     old_email?: StringFilter | string
     new_email?: StringFilter | string
-    role?: StringNullableFilter | string | null
-    efis?: StringNullableFilter | string | null
+    role?: StringFilter | string
+    efis?: StringFilter | string
     region?: StringFilter | string
-    date_time?: StringNullableFilter | string | null
+    date_time?: StringFilter | string
   }
 
   export type audit_tableOrderByWithRelationInput = {
@@ -4002,16 +2944,16 @@ export namespace Prisma {
     OR?: Enumerable<audit_tableScalarWhereWithAggregatesInput>
     NOT?: Enumerable<audit_tableScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
-    change_type?: StringNullableWithAggregatesFilter | string | null
-    changed_by_number?: StringNullableWithAggregatesFilter | string | null
+    change_type?: StringWithAggregatesFilter | string
+    changed_by_number?: StringWithAggregatesFilter | string
     old_name?: StringWithAggregatesFilter | string
     new_name?: StringWithAggregatesFilter | string
     old_email?: StringWithAggregatesFilter | string
     new_email?: StringWithAggregatesFilter | string
-    role?: StringNullableWithAggregatesFilter | string | null
-    efis?: StringNullableWithAggregatesFilter | string | null
+    role?: StringWithAggregatesFilter | string
+    efis?: StringWithAggregatesFilter | string
     region?: StringWithAggregatesFilter | string
-    date_time?: StringNullableWithAggregatesFilter | string | null
+    date_time?: StringWithAggregatesFilter | string
   }
 
   export type manager_dashboard_tblWhereInput = {
@@ -4036,7 +2978,7 @@ export namespace Prisma {
     STE_EFIS?: StringNullableFilter | string | null
     STE_NAME?: StringNullableFilter | string | null
     STE_EMAIL?: StringNullableFilter | string | null
-    manager_dashboard_id?: IntFilter | number
+    test?: IntFilter | number
   }
 
   export type manager_dashboard_tblOrderByWithRelationInput = {
@@ -4058,11 +3000,11 @@ export namespace Prisma {
     STE_EFIS?: SortOrder
     STE_NAME?: SortOrder
     STE_EMAIL?: SortOrder
-    manager_dashboard_id?: SortOrder
+    test?: SortOrder
   }
 
   export type manager_dashboard_tblWhereUniqueInput = {
-    manager_dashboard_id?: number
+    test?: number
   }
 
   export type manager_dashboard_tblOrderByWithAggregationInput = {
@@ -4084,7 +3026,7 @@ export namespace Prisma {
     STE_EFIS?: SortOrder
     STE_NAME?: SortOrder
     STE_EMAIL?: SortOrder
-    manager_dashboard_id?: SortOrder
+    test?: SortOrder
     _count?: manager_dashboard_tblCountOrderByAggregateInput
     _avg?: manager_dashboard_tblAvgOrderByAggregateInput
     _max?: manager_dashboard_tblMaxOrderByAggregateInput
@@ -4114,190 +3056,102 @@ export namespace Prisma {
     STE_EFIS?: StringNullableWithAggregatesFilter | string | null
     STE_NAME?: StringNullableWithAggregatesFilter | string | null
     STE_EMAIL?: StringNullableWithAggregatesFilter | string | null
-    manager_dashboard_id?: IntWithAggregatesFilter | number
-  }
-
-  export type audit_superiorCreateInput = {
-    changed_by_number?: string | null
-    changed_employee?: string | null
-    changed_employee_role?: string | null
-    changed_employee_efis?: string | null
-    old_superior_name?: string | null
-    old_superior_efis?: string | null
-    new_superior_name?: string | null
-    new_superior_efis?: string | null
-    changed_on_date?: string | null
-  }
-
-  export type audit_superiorUncheckedCreateInput = {
-    id?: number
-    changed_by_number?: string | null
-    changed_employee?: string | null
-    changed_employee_role?: string | null
-    changed_employee_efis?: string | null
-    old_superior_name?: string | null
-    old_superior_efis?: string | null
-    new_superior_name?: string | null
-    new_superior_efis?: string | null
-    changed_on_date?: string | null
-  }
-
-  export type audit_superiorUpdateInput = {
-    changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_employee?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_employee_role?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_employee_efis?: NullableStringFieldUpdateOperationsInput | string | null
-    old_superior_name?: NullableStringFieldUpdateOperationsInput | string | null
-    old_superior_efis?: NullableStringFieldUpdateOperationsInput | string | null
-    new_superior_name?: NullableStringFieldUpdateOperationsInput | string | null
-    new_superior_efis?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_on_date?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type audit_superiorUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_employee?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_employee_role?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_employee_efis?: NullableStringFieldUpdateOperationsInput | string | null
-    old_superior_name?: NullableStringFieldUpdateOperationsInput | string | null
-    old_superior_efis?: NullableStringFieldUpdateOperationsInput | string | null
-    new_superior_name?: NullableStringFieldUpdateOperationsInput | string | null
-    new_superior_efis?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_on_date?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type audit_superiorCreateManyInput = {
-    id?: number
-    changed_by_number?: string | null
-    changed_employee?: string | null
-    changed_employee_role?: string | null
-    changed_employee_efis?: string | null
-    old_superior_name?: string | null
-    old_superior_efis?: string | null
-    new_superior_name?: string | null
-    new_superior_efis?: string | null
-    changed_on_date?: string | null
-  }
-
-  export type audit_superiorUpdateManyMutationInput = {
-    changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_employee?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_employee_role?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_employee_efis?: NullableStringFieldUpdateOperationsInput | string | null
-    old_superior_name?: NullableStringFieldUpdateOperationsInput | string | null
-    old_superior_efis?: NullableStringFieldUpdateOperationsInput | string | null
-    new_superior_name?: NullableStringFieldUpdateOperationsInput | string | null
-    new_superior_efis?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_on_date?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type audit_superiorUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_employee?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_employee_role?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_employee_efis?: NullableStringFieldUpdateOperationsInput | string | null
-    old_superior_name?: NullableStringFieldUpdateOperationsInput | string | null
-    old_superior_efis?: NullableStringFieldUpdateOperationsInput | string | null
-    new_superior_name?: NullableStringFieldUpdateOperationsInput | string | null
-    new_superior_efis?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_on_date?: NullableStringFieldUpdateOperationsInput | string | null
+    test?: IntWithAggregatesFilter | number
   }
 
   export type audit_tableCreateInput = {
-    change_type?: string | null
-    changed_by_number?: string | null
+    change_type: string
+    changed_by_number: string
     old_name: string
     new_name: string
     old_email: string
     new_email: string
-    role?: string | null
-    efis?: string | null
+    role: string
+    efis: string
     region: string
-    date_time?: string | null
+    date_time: string
   }
 
   export type audit_tableUncheckedCreateInput = {
     id?: number
-    change_type?: string | null
-    changed_by_number?: string | null
+    change_type: string
+    changed_by_number: string
     old_name: string
     new_name: string
     old_email: string
     new_email: string
-    role?: string | null
-    efis?: string | null
+    role: string
+    efis: string
     region: string
-    date_time?: string | null
+    date_time: string
   }
 
   export type audit_tableUpdateInput = {
-    change_type?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
+    change_type?: StringFieldUpdateOperationsInput | string
+    changed_by_number?: StringFieldUpdateOperationsInput | string
     old_name?: StringFieldUpdateOperationsInput | string
     new_name?: StringFieldUpdateOperationsInput | string
     old_email?: StringFieldUpdateOperationsInput | string
     new_email?: StringFieldUpdateOperationsInput | string
-    role?: NullableStringFieldUpdateOperationsInput | string | null
-    efis?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    efis?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
-    date_time?: NullableStringFieldUpdateOperationsInput | string | null
+    date_time?: StringFieldUpdateOperationsInput | string
   }
 
   export type audit_tableUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    change_type?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
+    change_type?: StringFieldUpdateOperationsInput | string
+    changed_by_number?: StringFieldUpdateOperationsInput | string
     old_name?: StringFieldUpdateOperationsInput | string
     new_name?: StringFieldUpdateOperationsInput | string
     old_email?: StringFieldUpdateOperationsInput | string
     new_email?: StringFieldUpdateOperationsInput | string
-    role?: NullableStringFieldUpdateOperationsInput | string | null
-    efis?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    efis?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
-    date_time?: NullableStringFieldUpdateOperationsInput | string | null
+    date_time?: StringFieldUpdateOperationsInput | string
   }
 
   export type audit_tableCreateManyInput = {
     id?: number
-    change_type?: string | null
-    changed_by_number?: string | null
+    change_type: string
+    changed_by_number: string
     old_name: string
     new_name: string
     old_email: string
     new_email: string
-    role?: string | null
-    efis?: string | null
+    role: string
+    efis: string
     region: string
-    date_time?: string | null
+    date_time: string
   }
 
   export type audit_tableUpdateManyMutationInput = {
-    change_type?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
+    change_type?: StringFieldUpdateOperationsInput | string
+    changed_by_number?: StringFieldUpdateOperationsInput | string
     old_name?: StringFieldUpdateOperationsInput | string
     new_name?: StringFieldUpdateOperationsInput | string
     old_email?: StringFieldUpdateOperationsInput | string
     new_email?: StringFieldUpdateOperationsInput | string
-    role?: NullableStringFieldUpdateOperationsInput | string | null
-    efis?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    efis?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
-    date_time?: NullableStringFieldUpdateOperationsInput | string | null
+    date_time?: StringFieldUpdateOperationsInput | string
   }
 
   export type audit_tableUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    change_type?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
+    change_type?: StringFieldUpdateOperationsInput | string
+    changed_by_number?: StringFieldUpdateOperationsInput | string
     old_name?: StringFieldUpdateOperationsInput | string
     new_name?: StringFieldUpdateOperationsInput | string
     old_email?: StringFieldUpdateOperationsInput | string
     new_email?: StringFieldUpdateOperationsInput | string
-    role?: NullableStringFieldUpdateOperationsInput | string | null
-    efis?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    efis?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
-    date_time?: NullableStringFieldUpdateOperationsInput | string | null
+    date_time?: StringFieldUpdateOperationsInput | string
   }
 
   export type manager_dashboard_tblCreateInput = {
@@ -4340,7 +3194,7 @@ export namespace Prisma {
     STE_EFIS?: string | null
     STE_NAME?: string | null
     STE_EMAIL?: string | null
-    manager_dashboard_id?: number
+    test?: number
   }
 
   export type manager_dashboard_tblUpdateInput = {
@@ -4383,7 +3237,7 @@ export namespace Prisma {
     STE_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
     STE_NAME?: NullableStringFieldUpdateOperationsInput | string | null
     STE_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
-    manager_dashboard_id?: IntFieldUpdateOperationsInput | number
+    test?: IntFieldUpdateOperationsInput | number
   }
 
   export type manager_dashboard_tblCreateManyInput = {
@@ -4405,7 +3259,7 @@ export namespace Prisma {
     STE_EFIS?: string | null
     STE_NAME?: string | null
     STE_EMAIL?: string | null
-    manager_dashboard_id?: number
+    test?: number
   }
 
   export type manager_dashboard_tblUpdateManyMutationInput = {
@@ -4448,7 +3302,7 @@ export namespace Prisma {
     STE_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
     STE_NAME?: NullableStringFieldUpdateOperationsInput | string | null
     STE_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
-    manager_dashboard_id?: IntFieldUpdateOperationsInput | number
+    test?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter = {
@@ -4460,100 +3314,6 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedIntFilter | number
-  }
-
-  export type StringNullableFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringNullableFilter | string | null
-  }
-
-  export type audit_superiorCountOrderByAggregateInput = {
-    id?: SortOrder
-    changed_by_number?: SortOrder
-    changed_employee?: SortOrder
-    changed_employee_role?: SortOrder
-    changed_employee_efis?: SortOrder
-    old_superior_name?: SortOrder
-    old_superior_efis?: SortOrder
-    new_superior_name?: SortOrder
-    new_superior_efis?: SortOrder
-    changed_on_date?: SortOrder
-  }
-
-  export type audit_superiorAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type audit_superiorMaxOrderByAggregateInput = {
-    id?: SortOrder
-    changed_by_number?: SortOrder
-    changed_employee?: SortOrder
-    changed_employee_role?: SortOrder
-    changed_employee_efis?: SortOrder
-    old_superior_name?: SortOrder
-    old_superior_efis?: SortOrder
-    new_superior_name?: SortOrder
-    new_superior_efis?: SortOrder
-    changed_on_date?: SortOrder
-  }
-
-  export type audit_superiorMinOrderByAggregateInput = {
-    id?: SortOrder
-    changed_by_number?: SortOrder
-    changed_employee?: SortOrder
-    changed_employee_role?: SortOrder
-    changed_employee_efis?: SortOrder
-    old_superior_name?: SortOrder
-    old_superior_efis?: SortOrder
-    new_superior_name?: SortOrder
-    new_superior_efis?: SortOrder
-    changed_on_date?: SortOrder
-  }
-
-  export type audit_superiorSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter = {
-    equals?: number
-    in?: Enumerable<number>
-    notIn?: Enumerable<number>
-    lt?: number
-    lte?: number
-    gt?: number
-    gte?: number
-    not?: NestedIntWithAggregatesFilter | number
-    _count?: NestedIntFilter
-    _avg?: NestedFloatFilter
-    _sum?: NestedIntFilter
-    _min?: NestedIntFilter
-    _max?: NestedIntFilter
-  }
-
-  export type StringNullableWithAggregatesFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringNullableWithAggregatesFilter | string | null
-    _count?: NestedIntNullableFilter
-    _min?: NestedStringNullableFilter
-    _max?: NestedStringNullableFilter
   }
 
   export type StringFilter = {
@@ -4620,6 +3380,22 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type IntWithAggregatesFilter = {
+    equals?: number
+    in?: Enumerable<number>
+    notIn?: Enumerable<number>
+    lt?: number
+    lte?: number
+    gt?: number
+    gte?: number
+    not?: NestedIntWithAggregatesFilter | number
+    _count?: NestedIntFilter
+    _avg?: NestedFloatFilter
+    _sum?: NestedIntFilter
+    _min?: NestedIntFilter
+    _max?: NestedIntFilter
+  }
+
   export type StringWithAggregatesFilter = {
     equals?: string
     in?: Enumerable<string>
@@ -4635,6 +3411,20 @@ export namespace Prisma {
     _count?: NestedIntFilter
     _min?: NestedStringFilter
     _max?: NestedStringFilter
+  }
+
+  export type StringNullableFilter = {
+    equals?: string | null
+    in?: Enumerable<string> | null
+    notIn?: Enumerable<string> | null
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    not?: NestedStringNullableFilter | string | null
   }
 
   export type manager_dashboard_tblCountOrderByAggregateInput = {
@@ -4656,11 +3446,11 @@ export namespace Prisma {
     STE_EFIS?: SortOrder
     STE_NAME?: SortOrder
     STE_EMAIL?: SortOrder
-    manager_dashboard_id?: SortOrder
+    test?: SortOrder
   }
 
   export type manager_dashboard_tblAvgOrderByAggregateInput = {
-    manager_dashboard_id?: SortOrder
+    test?: SortOrder
   }
 
   export type manager_dashboard_tblMaxOrderByAggregateInput = {
@@ -4682,7 +3472,7 @@ export namespace Prisma {
     STE_EFIS?: SortOrder
     STE_NAME?: SortOrder
     STE_EMAIL?: SortOrder
-    manager_dashboard_id?: SortOrder
+    test?: SortOrder
   }
 
   export type manager_dashboard_tblMinOrderByAggregateInput = {
@@ -4704,15 +3494,32 @@ export namespace Prisma {
     STE_EFIS?: SortOrder
     STE_NAME?: SortOrder
     STE_EMAIL?: SortOrder
-    manager_dashboard_id?: SortOrder
+    test?: SortOrder
   }
 
   export type manager_dashboard_tblSumOrderByAggregateInput = {
-    manager_dashboard_id?: SortOrder
+    test?: SortOrder
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
+  export type StringNullableWithAggregatesFilter = {
+    equals?: string | null
+    in?: Enumerable<string> | null
+    notIn?: Enumerable<string> | null
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    not?: NestedStringNullableWithAggregatesFilter | string | null
+    _count?: NestedIntNullableFilter
+    _min?: NestedStringNullableFilter
+    _max?: NestedStringNullableFilter
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -4723,8 +3530,8 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type NestedIntFilter = {
@@ -4738,10 +3545,10 @@ export namespace Prisma {
     not?: NestedIntFilter | number
   }
 
-  export type NestedStringNullableFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
+  export type NestedStringFilter = {
+    equals?: string
+    in?: Enumerable<string>
+    notIn?: Enumerable<string>
     lt?: string
     lte?: string
     gt?: string
@@ -4749,7 +3556,7 @@ export namespace Prisma {
     contains?: string
     startsWith?: string
     endsWith?: string
-    not?: NestedStringNullableFilter | string | null
+    not?: NestedStringFilter | string
   }
 
   export type NestedIntWithAggregatesFilter = {
@@ -4779,6 +3586,37 @@ export namespace Prisma {
     not?: NestedFloatFilter | number
   }
 
+  export type NestedStringWithAggregatesFilter = {
+    equals?: string
+    in?: Enumerable<string>
+    notIn?: Enumerable<string>
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    not?: NestedStringWithAggregatesFilter | string
+    _count?: NestedIntFilter
+    _min?: NestedStringFilter
+    _max?: NestedStringFilter
+  }
+
+  export type NestedStringNullableFilter = {
+    equals?: string | null
+    in?: Enumerable<string> | null
+    notIn?: Enumerable<string> | null
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    not?: NestedStringNullableFilter | string | null
+  }
+
   export type NestedStringNullableWithAggregatesFilter = {
     equals?: string | null
     in?: Enumerable<string> | null
@@ -4805,37 +3643,6 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedIntNullableFilter | number | null
-  }
-
-  export type NestedStringFilter = {
-    equals?: string
-    in?: Enumerable<string>
-    notIn?: Enumerable<string>
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringFilter | string
-  }
-
-  export type NestedStringWithAggregatesFilter = {
-    equals?: string
-    in?: Enumerable<string>
-    notIn?: Enumerable<string>
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringWithAggregatesFilter | string
-    _count?: NestedIntFilter
-    _min?: NestedStringFilter
-    _max?: NestedStringFilter
   }
 
 

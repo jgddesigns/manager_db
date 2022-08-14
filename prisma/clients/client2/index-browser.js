@@ -87,19 +87,6 @@ Prisma.NullTypes = {
 // https://github.com/microsoft/TypeScript/issues/3192#issuecomment-261720275
 function makeEnum(x) { return x; }
 
-exports.Prisma.Audit_superiorScalarFieldEnum = makeEnum({
-  id: 'id',
-  changed_by_number: 'changed_by_number',
-  changed_employee: 'changed_employee',
-  changed_employee_role: 'changed_employee_role',
-  changed_employee_efis: 'changed_employee_efis',
-  old_superior_name: 'old_superior_name',
-  old_superior_efis: 'old_superior_efis',
-  new_superior_name: 'new_superior_name',
-  new_superior_efis: 'new_superior_efis',
-  changed_on_date: 'changed_on_date'
-});
-
 exports.Prisma.Audit_tableScalarFieldEnum = makeEnum({
   id: 'id',
   change_type: 'change_type',
@@ -133,7 +120,7 @@ exports.Prisma.Manager_dashboard_tblScalarFieldEnum = makeEnum({
   STE_EFIS: 'STE_EFIS',
   STE_NAME: 'STE_NAME',
   STE_EMAIL: 'STE_EMAIL',
-  manager_dashboard_id: 'manager_dashboard_id'
+  test: 'test'
 });
 
 exports.Prisma.SortOrder = makeEnum({
@@ -143,7 +130,6 @@ exports.Prisma.SortOrder = makeEnum({
 
 
 exports.Prisma.ModelName = makeEnum({
-  audit_superior: 'audit_superior',
   audit_table: 'audit_table',
   manager_dashboard_tbl: 'manager_dashboard_tbl'
 });
