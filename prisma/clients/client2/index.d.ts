@@ -18,15 +18,17 @@ type UnwrapTuple<Tuple extends readonly unknown[]> = {
  */
 export type audit_table = {
   id: number
-  change_type: string
-  changed_by_number: string
-  old_name: string
-  new_name: string
-  old_email: string
-  new_email: string
-  role: string
-  efis: string
-  region: string
+  change_type: string | null
+  changed_by_number: string | null
+  old_name: string | null
+  new_name: string | null
+  old_email: string | null
+  new_email: string | null
+  old_manager: string | null
+  new_manager: string | null
+  role: string | null
+  efis: string | null
+  region: string | null
   date_time: string
 }
 
@@ -878,6 +880,8 @@ export namespace Prisma {
     new_name: string | null
     old_email: string | null
     new_email: string | null
+    old_manager: string | null
+    new_manager: string | null
     role: string | null
     efis: string | null
     region: string | null
@@ -892,6 +896,8 @@ export namespace Prisma {
     new_name: string | null
     old_email: string | null
     new_email: string | null
+    old_manager: string | null
+    new_manager: string | null
     role: string | null
     efis: string | null
     region: string | null
@@ -906,6 +912,8 @@ export namespace Prisma {
     new_name: number
     old_email: number
     new_email: number
+    old_manager: number
+    new_manager: number
     role: number
     efis: number
     region: number
@@ -930,6 +938,8 @@ export namespace Prisma {
     new_name?: true
     old_email?: true
     new_email?: true
+    old_manager?: true
+    new_manager?: true
     role?: true
     efis?: true
     region?: true
@@ -944,6 +954,8 @@ export namespace Prisma {
     new_name?: true
     old_email?: true
     new_email?: true
+    old_manager?: true
+    new_manager?: true
     role?: true
     efis?: true
     region?: true
@@ -958,6 +970,8 @@ export namespace Prisma {
     new_name?: true
     old_email?: true
     new_email?: true
+    old_manager?: true
+    new_manager?: true
     role?: true
     efis?: true
     region?: true
@@ -1059,15 +1073,17 @@ export namespace Prisma {
 
   export type Audit_tableGroupByOutputType = {
     id: number
-    change_type: string
-    changed_by_number: string
-    old_name: string
-    new_name: string
-    old_email: string
-    new_email: string
-    role: string
-    efis: string
-    region: string
+    change_type: string | null
+    changed_by_number: string | null
+    old_name: string | null
+    new_name: string | null
+    old_email: string | null
+    new_email: string | null
+    old_manager: string | null
+    new_manager: string | null
+    role: string | null
+    efis: string | null
+    region: string | null
     date_time: string
     _count: Audit_tableCountAggregateOutputType | null
     _avg: Audit_tableAvgAggregateOutputType | null
@@ -1098,6 +1114,8 @@ export namespace Prisma {
     new_name?: boolean
     old_email?: boolean
     new_email?: boolean
+    old_manager?: boolean
+    new_manager?: boolean
     role?: boolean
     efis?: boolean
     region?: boolean
@@ -2838,6 +2856,8 @@ export namespace Prisma {
     new_name: 'new_name',
     old_email: 'old_email',
     new_email: 'new_email',
+    old_manager: 'old_manager',
+    new_manager: 'new_manager',
     role: 'role',
     efis: 'efis',
     region: 'region',
@@ -2890,15 +2910,17 @@ export namespace Prisma {
     OR?: Enumerable<audit_tableWhereInput>
     NOT?: Enumerable<audit_tableWhereInput>
     id?: IntFilter | number
-    change_type?: StringFilter | string
-    changed_by_number?: StringFilter | string
-    old_name?: StringFilter | string
-    new_name?: StringFilter | string
-    old_email?: StringFilter | string
-    new_email?: StringFilter | string
-    role?: StringFilter | string
-    efis?: StringFilter | string
-    region?: StringFilter | string
+    change_type?: StringNullableFilter | string | null
+    changed_by_number?: StringNullableFilter | string | null
+    old_name?: StringNullableFilter | string | null
+    new_name?: StringNullableFilter | string | null
+    old_email?: StringNullableFilter | string | null
+    new_email?: StringNullableFilter | string | null
+    old_manager?: StringNullableFilter | string | null
+    new_manager?: StringNullableFilter | string | null
+    role?: StringNullableFilter | string | null
+    efis?: StringNullableFilter | string | null
+    region?: StringNullableFilter | string | null
     date_time?: StringFilter | string
   }
 
@@ -2910,6 +2932,8 @@ export namespace Prisma {
     new_name?: SortOrder
     old_email?: SortOrder
     new_email?: SortOrder
+    old_manager?: SortOrder
+    new_manager?: SortOrder
     role?: SortOrder
     efis?: SortOrder
     region?: SortOrder
@@ -2928,6 +2952,8 @@ export namespace Prisma {
     new_name?: SortOrder
     old_email?: SortOrder
     new_email?: SortOrder
+    old_manager?: SortOrder
+    new_manager?: SortOrder
     role?: SortOrder
     efis?: SortOrder
     region?: SortOrder
@@ -2944,15 +2970,17 @@ export namespace Prisma {
     OR?: Enumerable<audit_tableScalarWhereWithAggregatesInput>
     NOT?: Enumerable<audit_tableScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
-    change_type?: StringWithAggregatesFilter | string
-    changed_by_number?: StringWithAggregatesFilter | string
-    old_name?: StringWithAggregatesFilter | string
-    new_name?: StringWithAggregatesFilter | string
-    old_email?: StringWithAggregatesFilter | string
-    new_email?: StringWithAggregatesFilter | string
-    role?: StringWithAggregatesFilter | string
-    efis?: StringWithAggregatesFilter | string
-    region?: StringWithAggregatesFilter | string
+    change_type?: StringNullableWithAggregatesFilter | string | null
+    changed_by_number?: StringNullableWithAggregatesFilter | string | null
+    old_name?: StringNullableWithAggregatesFilter | string | null
+    new_name?: StringNullableWithAggregatesFilter | string | null
+    old_email?: StringNullableWithAggregatesFilter | string | null
+    new_email?: StringNullableWithAggregatesFilter | string | null
+    old_manager?: StringNullableWithAggregatesFilter | string | null
+    new_manager?: StringNullableWithAggregatesFilter | string | null
+    role?: StringNullableWithAggregatesFilter | string | null
+    efis?: StringNullableWithAggregatesFilter | string | null
+    region?: StringNullableWithAggregatesFilter | string | null
     date_time?: StringWithAggregatesFilter | string
   }
 
@@ -3060,97 +3088,111 @@ export namespace Prisma {
   }
 
   export type audit_tableCreateInput = {
-    change_type: string
-    changed_by_number: string
-    old_name: string
-    new_name: string
-    old_email: string
-    new_email: string
-    role: string
-    efis: string
-    region: string
+    change_type?: string | null
+    changed_by_number?: string | null
+    old_name?: string | null
+    new_name?: string | null
+    old_email?: string | null
+    new_email?: string | null
+    old_manager?: string | null
+    new_manager?: string | null
+    role?: string | null
+    efis?: string | null
+    region?: string | null
     date_time: string
   }
 
   export type audit_tableUncheckedCreateInput = {
     id?: number
-    change_type: string
-    changed_by_number: string
-    old_name: string
-    new_name: string
-    old_email: string
-    new_email: string
-    role: string
-    efis: string
-    region: string
+    change_type?: string | null
+    changed_by_number?: string | null
+    old_name?: string | null
+    new_name?: string | null
+    old_email?: string | null
+    new_email?: string | null
+    old_manager?: string | null
+    new_manager?: string | null
+    role?: string | null
+    efis?: string | null
+    region?: string | null
     date_time: string
   }
 
   export type audit_tableUpdateInput = {
-    change_type?: StringFieldUpdateOperationsInput | string
-    changed_by_number?: StringFieldUpdateOperationsInput | string
-    old_name?: StringFieldUpdateOperationsInput | string
-    new_name?: StringFieldUpdateOperationsInput | string
-    old_email?: StringFieldUpdateOperationsInput | string
-    new_email?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-    efis?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    change_type?: NullableStringFieldUpdateOperationsInput | string | null
+    changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
+    old_name?: NullableStringFieldUpdateOperationsInput | string | null
+    new_name?: NullableStringFieldUpdateOperationsInput | string | null
+    old_email?: NullableStringFieldUpdateOperationsInput | string | null
+    new_email?: NullableStringFieldUpdateOperationsInput | string | null
+    old_manager?: NullableStringFieldUpdateOperationsInput | string | null
+    new_manager?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    efis?: NullableStringFieldUpdateOperationsInput | string | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
     date_time?: StringFieldUpdateOperationsInput | string
   }
 
   export type audit_tableUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    change_type?: StringFieldUpdateOperationsInput | string
-    changed_by_number?: StringFieldUpdateOperationsInput | string
-    old_name?: StringFieldUpdateOperationsInput | string
-    new_name?: StringFieldUpdateOperationsInput | string
-    old_email?: StringFieldUpdateOperationsInput | string
-    new_email?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-    efis?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    change_type?: NullableStringFieldUpdateOperationsInput | string | null
+    changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
+    old_name?: NullableStringFieldUpdateOperationsInput | string | null
+    new_name?: NullableStringFieldUpdateOperationsInput | string | null
+    old_email?: NullableStringFieldUpdateOperationsInput | string | null
+    new_email?: NullableStringFieldUpdateOperationsInput | string | null
+    old_manager?: NullableStringFieldUpdateOperationsInput | string | null
+    new_manager?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    efis?: NullableStringFieldUpdateOperationsInput | string | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
     date_time?: StringFieldUpdateOperationsInput | string
   }
 
   export type audit_tableCreateManyInput = {
     id?: number
-    change_type: string
-    changed_by_number: string
-    old_name: string
-    new_name: string
-    old_email: string
-    new_email: string
-    role: string
-    efis: string
-    region: string
+    change_type?: string | null
+    changed_by_number?: string | null
+    old_name?: string | null
+    new_name?: string | null
+    old_email?: string | null
+    new_email?: string | null
+    old_manager?: string | null
+    new_manager?: string | null
+    role?: string | null
+    efis?: string | null
+    region?: string | null
     date_time: string
   }
 
   export type audit_tableUpdateManyMutationInput = {
-    change_type?: StringFieldUpdateOperationsInput | string
-    changed_by_number?: StringFieldUpdateOperationsInput | string
-    old_name?: StringFieldUpdateOperationsInput | string
-    new_name?: StringFieldUpdateOperationsInput | string
-    old_email?: StringFieldUpdateOperationsInput | string
-    new_email?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-    efis?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    change_type?: NullableStringFieldUpdateOperationsInput | string | null
+    changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
+    old_name?: NullableStringFieldUpdateOperationsInput | string | null
+    new_name?: NullableStringFieldUpdateOperationsInput | string | null
+    old_email?: NullableStringFieldUpdateOperationsInput | string | null
+    new_email?: NullableStringFieldUpdateOperationsInput | string | null
+    old_manager?: NullableStringFieldUpdateOperationsInput | string | null
+    new_manager?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    efis?: NullableStringFieldUpdateOperationsInput | string | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
     date_time?: StringFieldUpdateOperationsInput | string
   }
 
   export type audit_tableUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    change_type?: StringFieldUpdateOperationsInput | string
-    changed_by_number?: StringFieldUpdateOperationsInput | string
-    old_name?: StringFieldUpdateOperationsInput | string
-    new_name?: StringFieldUpdateOperationsInput | string
-    old_email?: StringFieldUpdateOperationsInput | string
-    new_email?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-    efis?: StringFieldUpdateOperationsInput | string
-    region?: StringFieldUpdateOperationsInput | string
+    change_type?: NullableStringFieldUpdateOperationsInput | string | null
+    changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
+    old_name?: NullableStringFieldUpdateOperationsInput | string | null
+    new_name?: NullableStringFieldUpdateOperationsInput | string | null
+    old_email?: NullableStringFieldUpdateOperationsInput | string | null
+    new_email?: NullableStringFieldUpdateOperationsInput | string | null
+    old_manager?: NullableStringFieldUpdateOperationsInput | string | null
+    new_manager?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    efis?: NullableStringFieldUpdateOperationsInput | string | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
     date_time?: StringFieldUpdateOperationsInput | string
   }
 
@@ -3316,6 +3358,20 @@ export namespace Prisma {
     not?: NestedIntFilter | number
   }
 
+  export type StringNullableFilter = {
+    equals?: string | null
+    in?: Enumerable<string> | null
+    notIn?: Enumerable<string> | null
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    not?: NestedStringNullableFilter | string | null
+  }
+
   export type StringFilter = {
     equals?: string
     in?: Enumerable<string>
@@ -3338,6 +3394,8 @@ export namespace Prisma {
     new_name?: SortOrder
     old_email?: SortOrder
     new_email?: SortOrder
+    old_manager?: SortOrder
+    new_manager?: SortOrder
     role?: SortOrder
     efis?: SortOrder
     region?: SortOrder
@@ -3356,6 +3414,8 @@ export namespace Prisma {
     new_name?: SortOrder
     old_email?: SortOrder
     new_email?: SortOrder
+    old_manager?: SortOrder
+    new_manager?: SortOrder
     role?: SortOrder
     efis?: SortOrder
     region?: SortOrder
@@ -3370,6 +3430,8 @@ export namespace Prisma {
     new_name?: SortOrder
     old_email?: SortOrder
     new_email?: SortOrder
+    old_manager?: SortOrder
+    new_manager?: SortOrder
     role?: SortOrder
     efis?: SortOrder
     region?: SortOrder
@@ -3396,6 +3458,23 @@ export namespace Prisma {
     _max?: NestedIntFilter
   }
 
+  export type StringNullableWithAggregatesFilter = {
+    equals?: string | null
+    in?: Enumerable<string> | null
+    notIn?: Enumerable<string> | null
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    not?: NestedStringNullableWithAggregatesFilter | string | null
+    _count?: NestedIntNullableFilter
+    _min?: NestedStringNullableFilter
+    _max?: NestedStringNullableFilter
+  }
+
   export type StringWithAggregatesFilter = {
     equals?: string
     in?: Enumerable<string>
@@ -3411,20 +3490,6 @@ export namespace Prisma {
     _count?: NestedIntFilter
     _min?: NestedStringFilter
     _max?: NestedStringFilter
-  }
-
-  export type StringNullableFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringNullableFilter | string | null
   }
 
   export type manager_dashboard_tblCountOrderByAggregateInput = {
@@ -3501,21 +3566,8 @@ export namespace Prisma {
     test?: SortOrder
   }
 
-  export type StringNullableWithAggregatesFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringNullableWithAggregatesFilter | string | null
-    _count?: NestedIntNullableFilter
-    _min?: NestedStringNullableFilter
-    _max?: NestedStringNullableFilter
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -3530,10 +3582,6 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type NestedIntFilter = {
     equals?: number
     in?: Enumerable<number>
@@ -3543,6 +3591,20 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedIntFilter | number
+  }
+
+  export type NestedStringNullableFilter = {
+    equals?: string | null
+    in?: Enumerable<string> | null
+    notIn?: Enumerable<string> | null
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    not?: NestedStringNullableFilter | string | null
   }
 
   export type NestedStringFilter = {
@@ -3586,37 +3648,6 @@ export namespace Prisma {
     not?: NestedFloatFilter | number
   }
 
-  export type NestedStringWithAggregatesFilter = {
-    equals?: string
-    in?: Enumerable<string>
-    notIn?: Enumerable<string>
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringWithAggregatesFilter | string
-    _count?: NestedIntFilter
-    _min?: NestedStringFilter
-    _max?: NestedStringFilter
-  }
-
-  export type NestedStringNullableFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringNullableFilter | string | null
-  }
-
   export type NestedStringNullableWithAggregatesFilter = {
     equals?: string | null
     in?: Enumerable<string> | null
@@ -3643,6 +3674,23 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedIntNullableFilter | number | null
+  }
+
+  export type NestedStringWithAggregatesFilter = {
+    equals?: string
+    in?: Enumerable<string>
+    notIn?: Enumerable<string>
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    not?: NestedStringWithAggregatesFilter | string
+    _count?: NestedIntFilter
+    _min?: NestedStringFilter
+    _max?: NestedStringFilter
   }
 
 

@@ -95,6 +95,8 @@ exports.Prisma.Audit_tableScalarFieldEnum = makeEnum({
   new_name: 'new_name',
   old_email: 'old_email',
   new_email: 'new_email',
+  old_manager: 'old_manager',
+  new_manager: 'new_manager',
   role: 'role',
   efis: 'efis',
   region: 'region',

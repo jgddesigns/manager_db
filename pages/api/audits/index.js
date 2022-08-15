@@ -19,7 +19,7 @@ export default async function handler(req,res){
             // const region = req.body['change_data'][8]
 
 
-            const audit = await prisma2.audit_table.create({
+            const audit = await prisma2.audit_table.create({  
                 data: {
                     change_type: req.body['type'],
                     changed_by_number: req.body['employee_number'],
@@ -27,6 +27,8 @@ export default async function handler(req,res){
                     new_name: req.body['new_name'],
                     old_email: req.body['old_email'],
                     new_email: req.body['new_email'],
+                    old_manager: req.body['old_manager'],
+                    new_manager: req.body['new_manager'],
                     role: req.body['role'],
                     efis: req.body['efis'],
                     region: req.body['region'],

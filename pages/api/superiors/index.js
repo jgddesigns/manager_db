@@ -28,6 +28,68 @@ export default async function handler(req,res){
     
             case 'PATCH':
             
+                console.log(req.body['old_data'])
+                const old_name = req.body['emp_name']
+                const old_role = req.body['emp_role']
+                const old_efis = req.body['emp_efis']
+        
+                const new_manager = req.body['new_manager']
+                const new_manager_email = req.body['new_manager_email']
+         
+        
+                 if(old_role == "Chief"){
+        
+                    const chief = await prisma2.manager_dashboard_tbl.updateMany({
+                        where: {
+                            CHIEF_NAME: {
+                                contains: old_name,
+                            },
+                            CHIEF_EFIS: {
+                                contains: old_efis,
+                            },
+                        },
+                        data: {
+                            PRIN_NAME: {set: new_manager},
+                            PRIN_EMAIL: {set: new_manager_email},
+                            
+                        },
+                    }).then(data => {
+                        res.send(data) 
+                    }).catch(err => {
+                        res.status(500).json({
+                            error: err.message
+                        })
+                    })
+                }
+                else if(old_role == "STE"){
+        
+                    const ste = await prisma2.manager_dashboard_tbl.updateMany({
+                        where: {
+                            STE_NAME: {
+                                contains: old_name,
+                            },
+                            STE_EFIS: {
+                                contains: old_efis,
+                            },
+                        },
+                        data: {
+                            CHIEF_NAME: {set: new_manager},
+                            CHIEF_EMAIL: {set: new_manager_email},
+                     
+                        },
+                    }).then(data => {
+                        res.send(data) 
+                        console.log(data)
+                    }).catch(err => {
+                        res.status(500).json({
+                            error: err.message
+                        })
+                    })
+        
+        
+                }else{
+                    console.log("An update role error has occured.")
+                }
         
         
                 break;
