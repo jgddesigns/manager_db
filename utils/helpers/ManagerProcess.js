@@ -8,7 +8,21 @@ export default function SearchProcess(data, region, role, emp_efis){
   var update_package = []
   var current_manager
 
-  if(role == "Chief"){
+
+  if(role == "Principal"){
+    for(var i=0; i<data.length; i++){  
+      if((data[i]['DISTRICT'] == region) && (!manager_arr.includes(data[i]['DEPUTY_NAME']))) {
+        manager_arr.push(data[i]['DEPUTY_NAME'])
+        manager_efis_arr.push(data[i]['EFIS'])
+        manager_email_arr.push(data[i]['DEPUTY_EMAIL'])
+      }
+
+      if(data[i]['PRIN_EFIS'] == emp_efis){
+        current_manager = data[i]['DEPUTY_NAME']
+
+      }
+  }
+}else if(role == "Chief"){
     for(var i=0; i<data.length; i++){  
       if((data[i]['DISTRICT'] == region) && (!manager_arr.includes(data[i]['PRIN_NAME']))) {
         manager_arr.push(data[i]['PRIN_NAME'])

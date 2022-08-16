@@ -25,6 +25,9 @@ export default async function handler(req,res){
         
                 const new_name = req.body['new_name']
                 const new_email = req.body['new_email']
+
+                const new_manager = req.body['new_manager']
+                const new_manager_email = req.body['new_manager_email']
         
                 if (old_role == "Deputy"){
         
@@ -86,6 +89,8 @@ export default async function handler(req,res){
                         data: {
                             CHIEF_NAME: {set: new_name},
                             CHIEF_EMAIL: {set: new_email},
+                            PRIN_NAME: {set: new_manager},
+                            PRIN_EMAIL: {set: new_manager_email},
                         },
                     }).then(data => {
                         res.send(data) 
@@ -109,6 +114,8 @@ export default async function handler(req,res){
                         data: {
                             STE_NAME: {set: new_name},
                             STE_EMAIL: {set: new_email},
+                            CHIEF_NAME: {set: new_manager},
+                            CHIEF_EMAIL: {set: new_manager_email},
                         },
                     }).then(data => {
                         res.send(data) 
