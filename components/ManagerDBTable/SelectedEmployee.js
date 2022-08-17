@@ -44,7 +44,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             method: "GET",
         }).then((res) => {
             res.json().then((data) => {
-                setSuperiors(ManagerProcess(data, selectedEmployee.emp_district, selectedEmployee.emp_role, selectedEmployee.emp_efis))    
+                setSuperiors(ManagerProcess(data, selectedEmployee))    
             });
         })
         
@@ -55,7 +55,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         return {
           manager: Superiors[0][index],
           efis: Superiors[1][index],
-          current_manager: Superiors[2],
+          current_manager: selectedEmployee.emp_manager,
           email: Superiors[3][index]
         }
       })
@@ -190,8 +190,8 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
 
 
 
-        if(Superiors[2]) {
-            var old_manager_str = Superiors[2]
+        if(selectedEmployee.emp_manager) {
+            var old_manager_str = selectedEmployee.emp_manager
         }else{
             old_manager_str = null
         }
@@ -391,10 +391,10 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         var noChanges = document.getElementById('no_changes')
         var errorManager = document.getElementById('error_manager')
 
-        setChangedManager(Superiors[2])
+        setChangedManager(selectedEmployee.emp_manager)
         managerChange.classList.remove('border-red-500')
         if(e){
-            managerChange.value = Superiors[2]
+            managerChange.value = selectedEmployee.emp_manager
             errorManager.hidden = true
             managerChange.classList.add('border-cyan-400')
         }else{
@@ -418,7 +418,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                 <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 bg-gray-300 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={selectedEmployee.emp_email} disabled></input>
                 {selectedEmployee.emp_role != "Deputy" ? <div>
                 <p className="text-sm mt-4 mb-2">Current Manager</p> 
-                <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border bg-gray-300 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={Superiors[2]} disabled></input>
+                <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border bg-gray-300 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={selectedEmployee.emp_manager} disabled></input>
                 </div>
                 : null }
                 <div className="w-72 grid grid-cols-2 grid-rows-1 ml-24 mt-16 mb-2">
@@ -501,7 +501,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
 
                 return new Promise(function(resolve){
                     if(managerChange){
-                        if((new_name == selectedEmployee.emp_name) && (new_email  == selectedEmployee.emp_email) && new_manager == Superiors[2]) {
+                        if((new_name == selectedEmployee.emp_name) && (new_email  == selectedEmployee.emp_email) && new_manager == selectedEmployee.emp_manager) {
                             noChanges.hidden = false
                             resolve(false)
                         }else{
@@ -656,7 +656,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                             <td className="border px-4 py-2">{selectedEmployee.emp_tram}</td>
                         </tr>
                         {selectedEmployee.emp_role == "Chief" || selectedEmployee.emp_role == "STE" ? <tr> <td className="border px-4 py-2 font-bold">Manager:</td>
-                     <td className="border px-4 py-2">{Superiors[2]}{ManagerChanges && ChangedManager[0] && (ChangedManager[0] != Superiors[2]) ? <span className="float-right text-white bg-gray-300 rounded px-2 mr-2"><span className="text-xs font-bold underline">New:</span> {ChangedManager[0]}</span>:null}</td> </tr> : null}
+                     <td className="border px-4 py-2">{selectedEmployee.emp_manager}{ManagerChanges && ChangedManager[0] && (ChangedManager[0] != selectedEmployee.emp_manager) ? <span className="float-right text-white bg-gray-300 rounded px-2 mr-2"><span className="text-xs font-bold underline">New:</span> {ChangedManager[0]}</span>:null}</td> </tr> : null}
                     </tbody>
                 </table>
                 <div className="float-right grid grid-rows-3">

@@ -1,6 +1,8 @@
-export default function SearchProcess(data, region, role, emp_efis){
+export default function SearchProcess(data, selectedEmployee){
 
-
+  var region = selectedEmployee.emp_district
+  var role = selectedEmployee.emp_role
+  var emp_efis = selectedEmployee.emp_efis
 
   var manager_arr = []
   var manager_efis_arr = []

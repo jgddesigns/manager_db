@@ -2,8 +2,10 @@ import {setState, useState, useEffect} from 'react'
 import SelectedEmployee from './SelectedEmployee'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import setReloadGraphic from './SelectedEmployee'
 import { FaSort } from 'react-icons/fa'
+import BugReport from './BugReport'
+
+
 
 export default function ManagerDBView({searchResults, setSearchInput, searchInput, setAllManagerDB}) {
   const [selectedUser, setSelectedUser] = useState(null)
@@ -16,6 +18,7 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   const [ToggleRole, setToggleRole] = useState(false)
   const [ToggleDistrict, setToggleDistrict] = useState(false)
 
+  const [isBugReport, setIsBugReport] = useState(false)
 
   const MySwal = withReactContent(Swal)
   
@@ -71,7 +74,8 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
       emp_role: searchResults[2][index],
       emp_efis: searchResults[3][index],
       emp_district: searchResults[4][index],
-      emp_tram: searchResults[5][index]
+      emp_tram: searchResults[5][index],
+      emp_manager: searchResults[6][index]
     }
   })
 
@@ -166,9 +170,12 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   
   return (
     <div className="h-[36rem] max-h-[36rem] p-2 w-[44rem] rounded bg-[#70AA9B] shadow-lg">
+        
+        {!isBugReport ?<div>
         <div className="text-white text-2xl pb-2 inline-block">
-            Employees
+            Employees {isBugReport}
         </div>
+       
         <input 
         onChange={(e) => { if(selectedUser != null) changeDisplay() ; SetSearch(e) }}
         placeholder="Search by Name, EFIS"
@@ -178,7 +185,26 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
           
         <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
           {selectedUser ? <SelectedEmployee selectedEmployee={selectedUser} setSelectedUser={setSelectedUser} setLoadingGraphic={setLoadingGraphic}/> : (!loadingGraphic ? renderResults(resultsMap) : renderResults([]))}
+        </div></div>:
+        
+        <div>
+        <div className="text-white text-2xl pb-2 inline-block">
+            Bug Report
         </div>
+       
+          <BugReport/>
+          
+        <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
+
+        </div></div>
+        
+        
+        
+        }
+          
+
+
+
     </div>
 
   )

@@ -10,6 +10,7 @@ export default function SearchProcess(input, data){
   var filtered_efis = []
   var filtered_district = []
   var filtered_tram = []
+  var filtered_manager = []
   var display_package = []
 
   for(var i=0; i<users.length; i++){
@@ -34,6 +35,8 @@ export default function SearchProcess(input, data){
             filtered_efis.push(users[i]['EFIS'])
             filtered_district.push(users[i]['DISTRICT'])
             filtered_tram.push(users[i]['TRAM'])
+            filtered_manager.push('')
+
         }
     }
     if(users[i]['PRIN_NAME'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['PRIN_EFIS'].includes(search_text)){
@@ -53,6 +56,8 @@ export default function SearchProcess(input, data){
             filtered_efis.push(users[i]['PRIN_EFIS'])
             filtered_district.push(users[i]['DISTRICT'])
             filtered_tram.push(users[i]['TRAM'])
+            filtered_manager.push(users[i]['DEPUTY_NAME'])
+    
             
         }
     }
@@ -74,6 +79,8 @@ export default function SearchProcess(input, data){
             filtered_efis.push(users[i]['CHIEF_EFIS'])
             filtered_district.push(users[i]['DISTRICT'])
             filtered_tram.push(users[i]['TRAM'])
+            filtered_manager.push(users[i]['PRIN_NAME'])
+
         }
     }
 
@@ -95,6 +102,8 @@ export default function SearchProcess(input, data){
             filtered_efis.push(users[i]['STE_EFIS'])
             filtered_district.push(users[i]['DISTRICT'])
             filtered_tram.push(users[i]['TRAM'])
+            filtered_manager.push(users[i]['CHIEF_NAME'])
+
         }
     }
 
@@ -112,7 +121,7 @@ export default function SearchProcess(input, data){
   }
 
 
-    display_package.push(filtered_users, filtered_email, filtered_roles, filtered_efis, filtered_district, filtered_tram)
+    display_package.push(filtered_users, filtered_email, filtered_roles, filtered_efis, filtered_district, filtered_tram, filtered_manager)
 
     return display_package
 
