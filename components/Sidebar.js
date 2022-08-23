@@ -86,39 +86,13 @@ export default function Sidebar() {
 <div>
         <div className="fixed w-[100%] h-[100%] left-0 z-1 bg-gray-800 opacity-75"> </div>
         <div className="fixed z-2 top-[5%] left-[35%]">
-        <BugReport isBugReport={isBugReport} setIsBugReport={setIsBugReport}/>
+        <BugReport user={user} setIsBugReport={setIsBugReport}/>
         </div></div>:null}
     </div>
     
     )
 }
 
-
-// const defaultClickEvent = (props) => {
-//     // Do stuff on button click
-//     if(props === "Dashboard"){
-//       window.location.href = "http://svgccrm01.dot.ca.gov:3030/UserBase/build"
-//       console.log(props + " Sidebar button clicked.")
-//     }
-//     else if(props === "Report a Bug"){
-//       console.log(props + " Sidebar button clicked.")
-//       handleBugReport()
-//     }
-    
-//     // if(this.value == "Dashboard"){
-//     //     console.log(this)
-//     // }
-// }
-
-// const SideBarIcon = ({icon,text="tooltip",clickEvent=defaultClickEvent}) => {
-//         return (
-//             <div className="sidebar-icon group" onClick={() => {clickEvent(text)}}>
-//                 {icon}
-//                 <span className= "sidebar-tooltip group-hover:scale-100"> {text}</span>
-//             </div>
-//         )
-
-// }
 
 //Break FullName into Initials : Jared Benitez -> JB
 const getUserInitials = (userFullName) =>{

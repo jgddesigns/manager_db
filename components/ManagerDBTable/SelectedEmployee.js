@@ -3,8 +3,8 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import AuditHandler from '../../utils/helpers/AuditHandler'
 import { Grid } from 'react-loader-spinner'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import ManagerProcess from '../../utils/helpers/ManagerProcess'
 import { FaRegCaretSquareDown } from 'react-icons/fa'
 
@@ -673,7 +673,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                         width = "80"
                         radius = "9"
                         color = '#70AA9B'
-                        ariaLabel = 'three-dots-loading'     
+                        ariaLabel = 'grid-loading'     
                         wrapperStyle
                         wrapperClass
                     /> 

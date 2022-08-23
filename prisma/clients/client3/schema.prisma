@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./clients/client3"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE3_URL")
+}
+
+model task {
+  id               Int      @id @default(autoincrement())
+  emp_num          String?  @db.VarChar(45)
+  application      String?  @db.VarChar(45)
+  page             String?  @db.VarChar(45)
+  Priorty          String   @db.VarChar(50)
+  file_path        String?  @db.MediumText
+  status           String   @default("Assigned") @db.VarChar(50)
+  task_description String   @default("") @db.MediumText
+  is_sent          String   @default("No") @db.VarChar(3)
+  created_at       DateTime @default(now()) @db.Timestamp(0)
+
+  @@index([emp_num], map: "user_id")
+}
