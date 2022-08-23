@@ -43,6 +43,15 @@ export default function BugReport ({user, setIsBugReport}) {
                 console.log(JSON.stringify(data))
                 setIsBugReport(false)  
                 setLoadingGraphic(false) 
+                toast.warn('Bug Report Sent', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             });
         })
     }
