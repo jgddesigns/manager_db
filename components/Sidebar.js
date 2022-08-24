@@ -1,8 +1,9 @@
-import {FaBell, FaUser, FaHome, FaSignOutAlt, FaBug,FaTh, FaSign} from 'react-icons/fa'
+import {FaBell, FaUser, FaHome, FaSignOutAlt, FaBug,FaTh, FaSign, FaSitemap} from 'react-icons/fa'
 import Image from 'next/image'
 import CaltransLogo from '../public/images/caltranslogo-main.png'
 import {useEffect,useState} from 'react'
 import BugReport from '../components/ManagerDBTable/BugReport'
+import  HierarchyHandler from '../utils/helpers/HierarchyHandler'
 
 
 export default function Sidebar() {
@@ -30,14 +31,33 @@ export default function Sidebar() {
         // Do stuff on button click
         if(props === "Dashboard"){
           window.location.href = "http://svgccrm01.dot.ca.gov:3030/UserBase/build"
-          console.log(props + " Sidebar button clicked.")
+
         }
         else if(props === "Report a Bug"){
-          console.log(props + " Sidebar button clicked.")
+  
           setIsBugReport(true)
+  
+        }else if (props == "Hierarchy"){
+
+          fetch("/ManagerDB/api/managers/", {
+            method: "GET",
+          }).then((res) => {
+            res.json().then((data) => {
+        
+              const employees = data
+    
+    
+              HierarchyHandler(employees, '04')
+    
+            
+          })
+
+        })
+
   
         }
         
+        console.log(props + " Sidebar button clicked.")
         // if(this.value == "Dashboard"){
         //     console.log(this)
         // }
@@ -67,6 +87,7 @@ export default function Sidebar() {
         
         <SideBarIcon icon={<p> {getUserInitials(user.UserName)}</p>} text={`Logged in as ${user.UserName}`}/>
        <SideBarIcon icon={<FaBug/>} text={"Report a Bug"}/>
+       <SideBarIcon icon={<FaSitemap/>} text={"Hierarchy"}/>
         <SideBarIcon icon={<FaTh/>} text={"Dashboard"}  />
         </div>
 

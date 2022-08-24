@@ -25,6 +25,7 @@ export default async function handler(req,res){
                     application: req.body['application'],
                     page: req.body['page'],
                     Priorty: req.body['priority'],
+                    file_path: req.body['file_path'],
                     task_description: req.body['task_description'],
                 },
             }).then(data => {
