@@ -3,12 +3,17 @@ import Image from 'next/image'
 import CaltransLogo from '../public/images/caltranslogo-main.png'
 import {useEffect,useState} from 'react'
 import BugReport from '../components/ManagerDBTable/BugReport'
+import Hierarchy from '../components/ManagerDBTable/Hierarchy'
 import  HierarchyHandler from '../utils/helpers/HierarchyHandler'
 
 
 export default function Sidebar() {
     const [user,setUser] = useState({}) // I would rather use the session for this, but I don't know how to do that yet.
     const [isBugReport, setIsBugReport] = useState(false)
+    const [isHierarchy, setIsHierarchy] = useState(false)
+    const [Employees, setEmployees] = useState('')
+    const [EmployeeList, setEmployeeList] = useState([])
+
     useEffect(() => {
         // fetch from api/current-user
         
@@ -44,11 +49,12 @@ export default function Sidebar() {
           }).then((res) => {
             res.json().then((data) => {
         
-              const employees = data
+              setEmployeeList(data)
     
-    
-              HierarchyHandler(employees, '04')
-    
+              setEmployees(HierarchyHandler(data, '04'))
+              
+              // console.log(Employees[0].principals[0].chiefs[0].stes[0].ste_name[0])
+              setIsHierarchy(true)
             
           })
 
@@ -104,11 +110,22 @@ export default function Sidebar() {
         
     </div>
     {isBugReport ?
-<div>
-        <div className="fixed w-[100%] h-[100%] left-0 z-1 bg-gray-800 opacity-75"> </div>
+      <div>
+        <div className="fixed w-[100%] h-[100%] left-0 z-1 bg-gray-800 opacity-75"></div>
         <div className="fixed z-2 top-[5%] left-[35%]">
         <BugReport user={user} setIsBugReport={setIsBugReport}/>
-        </div></div>:null}
+        </div>
+      </div>
+    :null}
+
+    {isHierarchy ?
+      <div>
+        <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"> </div>
+        <div className="absolute mt-[5%] ml-[7%] mb-16 z-2 ">
+        <Hierarchy user={user} setIsHierarchy={setIsHierarchy} employeeList={EmployeeList}  Employee={Employees}/>
+        </div>
+      </div>
+    :null}
     </div>
     
     )
