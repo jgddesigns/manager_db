@@ -196,7 +196,8 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
                         <FaSitemap className="text-5xl text-[#75a3cc]"/>
                     </div>   
                 </div>
-                <div className="fixed text-center w-full mt-[25%]">Click an employee to expand the tree</div>
+                {Employees[0].deputy_name ?
+                <div className="fixed text-center w-full mt-[25%]">Click an employee to expand the tree</div>: null}
 
                 {Loading ?  
                             <div className="fixed grid place-content-center ml-[42%] mt-[50%]">
@@ -213,11 +214,13 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
                                 /> 
                             </div>
                         </div> 
-                : <div className="ml-[10%] mt-[35%] fixed">
+                :  
+                    <div className="ml-[10%] mt-[35%] fixed">
+                        {Employees[0].deputy_name ?
                     <div className="mt-2">
                         <h1 className="underline text-black font-bold">Deputy</h1>
                         <h1 className={DeputyText} onClick={(e)=>togglePrinMap(e)}>{Employees[0].deputy_name}, #{Employees[0].deputy_efis}</h1>
-                    </div>
+                    </div>: <h1 className="mt-[30%] ml-6 w-full text-center italic">Error loading employee data. Please contact customer support.</h1>}
 
                     {PrinMap ? 
                         <div className="mt-2 ml-5 border-l-2 border-x-0 border-r-0"><h1 className="underline ml-5 text-black font-bold">Principal</h1>
@@ -255,7 +258,7 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
                                                     <h1 className="ml-2">{STEData.stes[index].ste_name[index2]}, #{STEData.stes[index].ste_efis[index2]}</h1> 
                                                 )
                                             }): 
-                                            <h1 className="ml-16 italic">No STEs Assigned</h1>}
+                                            <h1 className="ml-2 italic">No STEs Assigned</h1>}
                                     </div>
                                 )
                     })}</h1></div>:null}
