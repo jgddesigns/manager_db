@@ -56,17 +56,13 @@ export default function Sidebar() {
               // console.log(Employees[0].principals[0].chiefs[0].stes[0].ste_name[0])
               setIsHierarchy(true)
             
+            })
           })
-
-        })
 
   
         }
         
         console.log(props + " Sidebar button clicked.")
-        // if(this.value == "Dashboard"){
-        //     console.log(this)
-        // }
     }
 
     const SideBarIcon = ({icon,text="tooltip",clickEvent=defaultClickEvent}) => {
