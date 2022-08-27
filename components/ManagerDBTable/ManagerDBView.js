@@ -169,44 +169,32 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   }
   
   return (
-    <div className="h-[36rem] max-h-[36rem] p-2 w-[44rem] rounded bg-[#70AA9B] shadow-lg">
-        
-        {!isBugReport ?<div>
-        <div className="text-white text-2xl pb-2 inline-block">
-            Employees {isBugReport}
-        </div>
-       
-        <input 
-        onChange={(e) => { if(selectedUser != null) changeDisplay() ; SetSearch(e) }}
-        placeholder="Search by Name, EFIS"
-        className=" inline-block form-control px-3 py-1.5text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none placeholder:pl-2 h-8 rounded float-right shadow-lg"
-        title='Search bar'
-        />
+    <div className="h-[36rem] max-h-[36rem] p-2 w-[44rem] rounded bg-[#70AA9B] shadow-lg">    
+        {!isBugReport ?
+          <div>
+            <div className="text-white text-2xl pb-2 inline-block">
+                Employees 
+            </div>
           
-        <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
-          {selectedUser ? <SelectedEmployee selectedEmployee={selectedUser} setSelectedUser={setSelectedUser} setLoadingGraphic={setLoadingGraphic}/> : (!loadingGraphic ? renderResults(resultsMap) : renderResults([]))}
-        </div></div>:
-        
-        <div>
-        <div className="text-white text-2xl pb-2 inline-block">
-            Bug Report
-        </div>
-       
-          <BugReport/>
-          
-        <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
-
-        </div></div>
-        
-        
-        
+            <input 
+            onChange={(e) => { if(selectedUser != null) changeDisplay() ; SetSearch(e) }}
+            placeholder="Search by Name, EFIS"
+            className=" inline-block form-control px-3 py-1.5text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none placeholder:pl-2 h-8 rounded float-right shadow-lg"
+            title='Search bar'
+            />
+              
+            <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
+              {selectedUser ? <SelectedEmployee selectedEmployee={selectedUser} setSelectedUser={setSelectedUser} setLoadingGraphic={setLoadingGraphic}/> : (!loadingGraphic ? renderResults(resultsMap) : renderResults([]))}
+            </div>
+          </div>
+        :
+            <div>
+                <BugReport/>
+                {/* <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
+                </div> */}
+            </div>
         }
-          
-
-
-
     </div>
-
   )
 }
 

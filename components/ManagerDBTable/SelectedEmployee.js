@@ -449,7 +449,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                     </div>
                 </div>
                 <div className="ml-2 grid grid-cols-2 w-84">
-                <select className="px-3 text-xl ml-20 w-72 border rounded h-10  shadow appearance-none mb-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => managerChangeHandler(e.target.value)} id="managerName" >
+                <select className="px-3 text-xl ml-[34%] w-72 border rounded h-10  shadow appearance-none mb-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => managerChangeHandler(e.target.value)} id="managerName" >
                     <option value="">Select Manager</option>
                     {superiorMap.map(result => {
                         return (

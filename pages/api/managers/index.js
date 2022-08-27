@@ -51,6 +51,74 @@ export default async function handler(req,res){
                             error: err.message
                         })
                     })
+
+                    const principal = await prisma2.manager_dashboard_tbl.updateMany({
+                        where: {
+                            PRIN_NAME: {
+                                contains: old_name,
+                            },
+                            PRIN_EFIS: {
+                                contains: old_efis,
+                            },
+                        },
+                        data: {
+                            PRIN_NAME: {set: new_name},
+                            PRIN_EMAIL: {set: new_email},
+                        },
+                    }).then(data => {
+                        res.send(data)
+                    }).catch(err => {
+                        res.status(500).json({
+                            error: err.message
+                        })
+                    })
+
+                    const chief = await prisma2.manager_dashboard_tbl.updateMany({
+                        where: {
+                            CHIEF_NAME: {
+                                contains: old_name,
+                            },
+                            CHIEF_EFIS: {
+                                contains: old_efis,
+                            },
+                        },
+                        data: {
+                            CHIEF_NAME: {set: new_name},
+                            CHIEF_EMAIL: {set: new_email},
+                            PRIN_NAME: {set: new_manager},
+                            PRIN_EMAIL: {set: new_manager_email},
+                        },
+                    }).then(data => {
+                        res.send(data) 
+                    }).catch(err => {
+                        res.status(500).json({
+                            error: err.message
+                        })
+                    })
+
+                    const ste = await prisma2.manager_dashboard_tbl.updateMany({
+                        where: {
+                            STE_NAME: {
+                                contains: old_name,
+                            },
+                            STE_EFIS: {
+                                contains: old_efis,
+                            },
+                        },
+                        data: {
+                            STE_NAME: {set: new_name},
+                            STE_EMAIL: {set: new_email},
+                            CHIEF_NAME: {set: new_manager},
+                            CHIEF_EMAIL: {set: new_manager_email},
+                        },
+                    }).then(data => {
+                        res.send(data) 
+                        console.log(data)
+                    }).catch(err => {
+                        res.status(500).json({
+                            error: err.message
+                        })
+                    })
         
                 }else if(old_role == "Principal"){
         
@@ -69,6 +137,53 @@ export default async function handler(req,res){
                         },
                     }).then(data => {
                         res.send(data)
+                    }).catch(err => {
+                        res.status(500).json({
+                            error: err.message
+                        })
+                    })
+
+                    const chief = await prisma2.manager_dashboard_tbl.updateMany({
+                        where: {
+                            CHIEF_NAME: {
+                                contains: old_name,
+                            },
+                            CHIEF_EFIS: {
+                                contains: old_efis,
+                            },
+                        },
+                        data: {
+                            CHIEF_NAME: {set: new_name},
+                            CHIEF_EMAIL: {set: new_email},
+                            PRIN_NAME: {set: new_manager},
+                            PRIN_EMAIL: {set: new_manager_email},
+                        },
+                    }).then(data => {
+                        res.send(data) 
+                    }).catch(err => {
+                        res.status(500).json({
+                            error: err.message
+                        })
+                    })
+
+                    const ste = await prisma2.manager_dashboard_tbl.updateMany({
+                        where: {
+                            STE_NAME: {
+                                contains: old_name,
+                            },
+                            STE_EFIS: {
+                                contains: old_efis,
+                            },
+                        },
+                        data: {
+                            STE_NAME: {set: new_name},
+                            STE_EMAIL: {set: new_email},
+                            CHIEF_NAME: {set: new_manager},
+                            CHIEF_EMAIL: {set: new_manager_email},
+                        },
+                    }).then(data => {
+                        res.send(data) 
+                        console.log(data)
                     }).catch(err => {
                         res.status(500).json({
                             error: err.message
@@ -94,6 +209,30 @@ export default async function handler(req,res){
                         },
                     }).then(data => {
                         res.send(data) 
+                    }).catch(err => {
+                        res.status(500).json({
+                            error: err.message
+                        })
+                    })
+
+                    const ste = await prisma2.manager_dashboard_tbl.updateMany({
+                        where: {
+                            STE_NAME: {
+                                contains: old_name,
+                            },
+                            STE_EFIS: {
+                                contains: old_efis,
+                            },
+                        },
+                        data: {
+                            STE_NAME: {set: new_name},
+                            STE_EMAIL: {set: new_email},
+                            CHIEF_NAME: {set: new_manager},
+                            CHIEF_EMAIL: {set: new_manager_email},
+                        },
+                    }).then(data => {
+                        res.send(data) 
+                        console.log(data)
                     }).catch(err => {
                         res.status(500).json({
                             error: err.message

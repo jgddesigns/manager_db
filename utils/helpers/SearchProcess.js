@@ -28,7 +28,7 @@ export default function SearchProcess(input, data){
           }
       }
 
-        if(!filtered_users.includes(users[i]['DEPUTY_NAME']) || (((users[i]['DEPUTY_NAME'] == users[i]['CHIEF_NAME']) || (users[i]['DEPUTY_NAME'] == users[i]['PRIN_NAME']) || (users[i]['DEPUTY_NAME'] == users[i]['STE_NAME'])) && !deputyIncluded)){
+        if(!filtered_users.includes(users[i]['DEPUTY_NAME'])  && !deputyIncluded){
             filtered_users.push(users[i]['DEPUTY_NAME'])
             filtered_email.push(users[i]['DEPUTY_EMAIL'])
             filtered_roles.push('Deputy')
@@ -49,7 +49,7 @@ export default function SearchProcess(input, data){
           }
       }
 
-        if(!filtered_users.includes(users[i]['PRIN_NAME']) || (((users[i]['PRIN_NAME'] == users[i]['DEPUTY_NAME']) || (users[i]['PRIN_NAME'] == users[i]['CHIEF_NAME']) || (users[i]['PRIN_NAME'] == users[i]['STE_NAME'])) && !prinIncluded) ){
+        if(!filtered_users.includes(users[i]['PRIN_NAME'])  && !prinIncluded) {
             filtered_users.push(users[i]['PRIN_NAME'])
             filtered_email.push(users[i]['PRIN_EMAIL'])
             filtered_roles.push('Principal')
@@ -72,7 +72,7 @@ export default function SearchProcess(input, data){
       }
 
 
-        if(!filtered_users.includes(users[i]['CHIEF_NAME']) || (((users[i]['CHIEF_NAME'] == users[i]['DEPUTY_NAME']) || (users[i]['CHIEF_NAME'] == users[i]['PRIN_NAME']) || (users[i]['CHIEF_NAME'] == users[i]['STE_NAME'])) && !chiefIncluded)  ){
+        if(!filtered_users.includes(users[i]['CHIEF_NAME'])  && !chiefIncluded  ){
             filtered_users.push(users[i]['CHIEF_NAME'])
             filtered_email.push(users[i]['CHIEF_EMAIL'])
             filtered_roles.push('Chief')
@@ -95,7 +95,7 @@ export default function SearchProcess(input, data){
           }
       }
       
-      if(!filtered_users.includes(users[i]['STE_NAME']) || (((users[i]['STE_NAME'] == users[i]['DEPUTY_NAME']) || (users[i]['STE_NAME'] == users[i]['PRIN_NAME']) || (users[i]['STE_NAME'] == users[i]['CHIEF_NAME'])) && !steIncluded) ){
+      if(!filtered_users.includes(users[i]['STE_NAME'])  && !steIncluded) {
             filtered_users.push(users[i]['STE_NAME'])
             filtered_email.push(users[i]['STE_EMAIL'])
             filtered_roles.push('STE')

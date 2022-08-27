@@ -8,6 +8,7 @@ export default function HierarchyHandler(employees, dist){
     var deputy_map = {
         deputy_name : "",
         deputy_efis : "",
+        district: "",
         principals : []
     }
 
@@ -15,6 +16,7 @@ export default function HierarchyHandler(employees, dist){
         if(employees[i]['DISTRICT'] == dist && (deputy_map.deputy_name != employees[i]['DEPUTY_NAME'])){
             deputy_map.deputy_name = employees[i]['DEPUTY_NAME']
             deputy_map.deputy_efis = employees[i]['EFIS']
+            deputy_map.district = employees[i]['DISTRICT']
         }   
 
         for (let i = 0; i < employees.length; i++) {

@@ -1,6 +1,6 @@
 
 import {React, useState} from 'react'
-import {FaSitemap} from 'react-icons/fa'
+import {FaSitemap, FaRegCaretSquareDown} from 'react-icons/fa'
 import  HierarchyHandler from '../../utils/helpers/HierarchyHandler'
 import { MutatingDots } from 'react-loader-spinner'
 
@@ -16,8 +16,8 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
     const [PrevSTETarget, setPrevSTETarget] = useState(null)
     const [Employees, setEmployees] = useState(Employee)
     const [Loading, setLoading] = useState(false)
-   
-    
+
+
     const selectedTextDeputy = {
         textA: "cursor-pointer text-blue-400",
         textB: "font-bold text-red-400 cursor-pointer",
@@ -26,23 +26,23 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
     const [DeputyText, setDeputyText] = useState(selectedTextDeputy.textA)
     
     const selectedTextPrincipal = {
-        textA: "ml-5 cursor-pointer text-blue-400",
-        textB: "ml-5 font-bold text-yellow-400 cursor-pointer",
+        textA: "ml-2 cursor-pointer text-blue-400",
+        textB: "ml-2 font-bold text-yellow-400 cursor-pointer",
     }
 
     const selectedTextChief = {
-        textA: "ml-10 cursor-pointer text-blue-400",
-        textB: "ml-10 font-bold text-green-400 cursor-pointer",
+        textA: "ml-2 cursor-pointer text-blue-400",
+        textB: "ml-2 font-bold text-green-400 cursor-pointer",
     }
+
+
     var ste = []
     var chief = []
     var principal = []
 
-
     for(let i=0; i < Employees[0].principals.length; i++){
         for(let j=0; j < Employees[0].principals[i].chiefs.length; j++){
-            // for(let k=0; k < Employees[0].principals[i].chiefs[j].stes.length; k++){
-              
+
                 for(let l=0; l < Employees[0].principals[i].chiefs[j].stes[0].ste_name.length; l++){
             
                 var ste_data = {
@@ -50,7 +50,6 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
                     }
                 ste.push(ste_data)
             }
-            // }
 
             var chief_data = {
                name: Employees[0].principals[i].chiefs[j].chief_name,
@@ -63,12 +62,8 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
             children: chief,
         }
     
-
-        
         principal.push(principal_data)
-
     }
-
 
    const togglePrinMap = (e) => {
 
@@ -84,8 +79,6 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
     }else{
         setDeputyText(selectedTextDeputy.textB)
     }
-
-
    }
 
    const toggleChiefMap = (data, e) => {
@@ -102,20 +95,14 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
             setPrevChiefTarget(null)
             e.target.className = selectedTextPrincipal.textA
             return
-            
         }else{
             PrevChiefTarget.target.className = selectedTextPrincipal.textA
         setChiefMap(false)
         }
-
-        
-      
    }
-
 
     setChiefMap(true)
     setChiefData(data)
-
 
     if(STEMap){
         setSTEMap(false)
@@ -129,9 +116,6 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
     }
 
     setPrevChiefTarget(e)
-
-
-   
    }
 
    const toggleSTEMap = (data, e) => {
@@ -141,18 +125,12 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
             setSTEData(null)
             setPrevSTETarget(null)
             e.target.className = selectedTextChief.textA
-            return
-            
+            return false
         }else{
             PrevSTETarget.target.className = selectedTextChief.textA
         setSTEMap(false)
         }
-
-
-
-      
    }
-
 
     setSTEMap(true)
     setSTEData(data)
@@ -164,8 +142,6 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
     }
 
     setPrevSTETarget(e)
-
-   
    }
 
    const getEmployees = (district)=> {
@@ -175,33 +151,25 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
       }).then((res) => {
         res.json().then((data) => {
     
-
-
           setEmployees(HierarchyHandler(data, district))
           setPrinMap(false)
           setChiefMap(false)
           setSTEMap(false)
           setDeputyText(selectedTextDeputy.textA)
-          // console.log(Employees[0].principals[0].chiefs[0].stes[0].ste_name[0])
-            
-        
       }).then(()=>{
         setLoading(false)
       })
-
     })
-
    }
-
 
   return (
     <div>
-        <div className="flex w-[40rem] h-[54rem] bg-gray-100 drop-shadow-2xl rounded-xl border-[5px] border-[#70AA9B] text-black overflow-y-auto mb-[10%]">
+        <div className="flex w-[40rem] h-[54rem] bg-gray-100 drop-shadow-2xl rounded-xl rounded-tl-[4px] border-[5px] border-[#70AA9B] text-black overflow-y-auto mb-[10%]">
             <div className="grid grid-rows-2 grid-cols-1 h-[100%]">
                 <div className="grid grid-rows-1 grid-cols-2">
-                    <div className="bg-[#70AA9B] w-48 h-16 rounded-br-lg">
+                    <div className="bg-[#70AA9B] w-48 h-16 rounded-br-lg z-8">
                         <div className="float-left pl-4 pt-4 text-2xl font-bold text-white">Hierarchy</div>
-
+                        <FaRegCaretSquareDown className="fixed text-md  text-gray-300 ml-[22%] mt-[3.25rem]"/> 
                         <select className="px-3 text-xl ml-[10%] mt-[20%] w-36 border rounded h-10  shadow appearance-none mb-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => getEmployees(e.target.value)} id="managerName" >
                             <option value="01">District 01</option>
                             <option value="02">District 02</option>
@@ -215,16 +183,12 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
                             <option value="10">District 10</option>
                             <option value="11">District 11</option>
                             <option value="11">District 12</option>
-
-                        </select>
-
-                      
+                        </select>        
                     </div>  
                     <div className="ml-[165%] mt-[10%]">
                         <FaSitemap className="text-5xl text-[#75a3cc]"/>
                     </div>   
                 </div>
-
                 <div className="fixed text-center w-full mt-[25%]">Click an employee to expand the tree</div>
 
                 {Loading ?  
@@ -242,14 +206,14 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
                                 /> 
                             </div>
                         </div> 
-                : <div className="ml-[15%] mt-[5%]">
+                : <div className="ml-[10%] mt-[35%] fixed">
                     <div className="mt-2">
                         <h1 className="underline text-black font-bold">Deputy</h1>
                         <h1 className={DeputyText} onClick={(e)=>togglePrinMap(e)}>{Employees[0].deputy_name}, #{Employees[0].deputy_efis}</h1>
                     </div>
 
                     {PrinMap ? 
-                        <div className="mt-2"><h1 className="underline ml-5 text-black font-bold">Principal</h1>
+                        <div className="mt-2 ml-5 border-l-2 border-x-0 border-r-0"><h1 className="underline ml-5 text-black font-bold">Principal</h1>
                         <h1>{Employees[0].principals.map((principal, index) => {
                         return(
                             <h1 className={selectedTextPrincipal.textA} onClick={(e)=>toggleChiefMap(Employees[0].principals[index], e)}>{Employees[0].principals[index].prin_name}, #{Employees[0].principals[index].prin_efis}</h1>    
@@ -257,14 +221,14 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
                     })}</h1></div>: null}
 
                     {PrinMap && ChiefMap ? 
-                        <div className="mt-2">
-                            <h1 className="underline ml-10 text-black font-bold">Chief</h1>
+                        <div className="mt-2 ml-10 border-l-2 border-x-0 border-r-0">
+                            <h1 className="underline ml-2 text-black font-bold">Chief</h1>
                             <h1>{ChiefData.chiefs.map((chief, index) => {
                                 return(
                                     <div> 
                                         {ChiefData.chiefs[index] != "" ?
                                             <h1 className={selectedTextChief.textA} onClick={(e)=>toggleSTEMap(ChiefData.chiefs[index], e)}>{ChiefData.chiefs[index].chief_name}, #{ChiefData.chiefs[index].chief_efis}</h1>:
-                                            <h1 className="ml-10 italic">No Chiefs Assigned</h1>
+                                            <h1 className="ml-2 italic">No Chiefs Assigned</h1>
                                         }
                                     </div>
 
@@ -272,8 +236,8 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
                     })}</h1></div>:null}
 
                     {PrinMap && ChiefMap && STEMap ? 
-                        <div className="mt-2">
-                            <h1 className="underline ml-16 text-black font-bold">STE</h1>
+                        <div className="mt-2 ml-16 border-l-2 border-x-0 border-r-0">
+                            <h1 className="underline ml-2 text-black font-bold">STE</h1>
                          
                             <h1>{STEData.stes.map((ste, index) => {
                                 return(
@@ -281,7 +245,7 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
                                         {STEData.stes[index].ste_name != "" ?
                                             STEData.stes[index].ste_name.map((ste_name, index2) => {
                                                 return( 
-                                                    <h1 className="ml-16">{STEData.stes[index].ste_name[index2]}, #{STEData.stes[index].ste_efis[index2]}</h1> 
+                                                    <h1 className="ml-2">{STEData.stes[index].ste_name[index2]}, #{STEData.stes[index].ste_efis[index2]}</h1> 
                                                 )
                                             }): 
                                             <h1 className="ml-16 italic">No STEs Assigned</h1>}
@@ -295,7 +259,6 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
                 <div className="w-[100%] ml-[33%] text-center mt-[100%] mb-[2%] bottom-0">
                     <span onClick={()=>setIsHierarchy(false)} className="cursor-pointer h-full underline">Cancel</span>
                 </div>
-
             </div>
         </div> 
     </div>
