@@ -1,5 +1,5 @@
 
-export default function HierarchyHandler(employees, dist){
+export default function HierarchyProcess(employees, dist){
 
     var hierarchy = []
     var prin_added = []
@@ -31,7 +31,7 @@ export default function HierarchyHandler(employees, dist){
                 principal_map.prin_efis = employees[i]['PRIN_EFIS']
 
                 for (let j = 0; j < employees.length; j++) {
-                    if(principal_map.prin_name == employees[j]['PRIN_NAME'] && !chief_added.includes(employees[j]['CHIEF_NAME'])){
+                    if(principal_map.prin_name == employees[j]['PRIN_NAME'] && (employees[j]['DISTRICT'] == dist) && !chief_added.includes(employees[j]['CHIEF_NAME'])){
                         var chief_map = {
                             chief_name: "",
                             chief_efis: "",
@@ -48,7 +48,7 @@ export default function HierarchyHandler(employees, dist){
                             ste_efis: ste_efis_arr,
                         }
                         for(let k = 0; k < employees.length; k++){
-                            if((chief_map.chief_name == employees[k]['CHIEF_NAME']) && (!ste_added.includes(employees[k]['STE_NAME']))){
+                            if((chief_map.chief_name == employees[k]['CHIEF_NAME']) && (employees[k]['DISTRICT'] == dist) &&  (!ste_added.includes(employees[k]['STE_NAME']))){
                                 ste_arr.push(employees[k]['STE_NAME'])
                                 ste_efis_arr.push(employees[k]['STE_EFIS'])
                                 ste_added.push(employees[k]['STE_NAME'])

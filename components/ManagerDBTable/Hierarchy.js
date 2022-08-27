@@ -1,10 +1,10 @@
 
 import {React, useState} from 'react'
 import {FaSitemap, FaRegCaretSquareDown} from 'react-icons/fa'
-import  HierarchyHandler from '../../utils/helpers/HierarchyHandler'
+import  HierarchyProcess from '../../utils/helpers/HierarchyProcess'
 import { MutatingDots } from 'react-loader-spinner'
 
-export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
+export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}) {
     const [ChiefMap, setChiefMap] = useState(false)
     const [PrinMap, setPrinMap] = useState(false)
     const [STEMap, setSTEMap] = useState(false)
@@ -151,7 +151,7 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
       }).then((res) => {
         res.json().then((data) => {
     
-          setEmployees(HierarchyHandler(data, district))
+          setEmployees(HierarchyProcess(data, district))
           setPrinMap(false)
           setChiefMap(false)
           setSTEMap(false)
@@ -160,6 +160,13 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
         setLoading(false)
       })
     })
+   }
+
+   const closeHandler = () => {
+
+    setIsHierarchy(false)
+    setHierarchyStart(false)
+
    }
 
   return (
@@ -257,7 +264,7 @@ export default function Hierarchy({setIsHierarchy, EmployeeList,  Employee}) {
                 }
 
                 <div className="w-[100%] ml-[33%] text-center mt-[100%] mb-[2%] bottom-0">
-                    <span onClick={()=>setIsHierarchy(false)} className="cursor-pointer h-full underline">Cancel</span>
+                    <span onClick={()=>closeHandler()} className="cursor-pointer h-full underline">Cancel</span>
                 </div>
             </div>
         </div> 

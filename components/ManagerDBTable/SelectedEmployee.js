@@ -1,7 +1,7 @@
 import {React, useState, useEffect} from 'react'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import AuditHandler from '../../utils/helpers/AuditHandler'
+import AuditProcess from '../../utils/helpers/AuditProcess'
 import { Grid } from 'react-loader-spinner'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -60,7 +60,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         }
       })
 
-    const UpdateHandler = (data) => {
+    const UpdateProcess = (data) => {
         //AUDIT DATA START
         var audit_type = ""
         var nameInclude = false
@@ -138,7 +138,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
               })
               setLoadingGraphic(true)
               setSelectedUser(null)  
-              AuditHandler(audit_data)
+              AuditProcess(audit_data)
             // });
           }).then(() => {
             // console.log("Update Response: ", data)   
@@ -210,7 +210,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         }
 
         setLoadingGraphicDisplay(true)   
-        UpdateHandler(data)
+        UpdateProcess(data)
     }
 
 

@@ -1,6 +1,6 @@
 
 
-const AuditHandler = (audit) =>{
+const AuditProcess = (audit) =>{
     //'audit' map key:
     // type 
     // changed_by_number 
@@ -33,4 +33,4 @@ const AuditHandler = (audit) =>{
    
 }
 
-export default AuditHandler;
+export default AuditProcess;

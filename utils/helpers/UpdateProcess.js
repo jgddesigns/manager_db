@@ -1,8 +1,8 @@
 import {React, useState, useEffect} from 'react'
-import AuditHandler from './AuditHandler'
+import AuditProcess from './AuditProcess'
 
 
-const UpdateHandler = (update) =>{
+const UpdateProcess = (update) =>{
 
     //'data' ARRAY MAP
     // emp_name: data[0][0],
@@ -57,7 +57,7 @@ const UpdateHandler = (update) =>{
       }).then((res) => {
         res.json().then((data) => {
           // console.dir("Update Response: " + data)
-          AuditHandler(audit)
+          AuditProcess(audit)
           fetch("/ManagerDB/api/managers/", {
             method: "GET",
           })
@@ -68,4 +68,4 @@ const UpdateHandler = (update) =>{
    
 }
 
-export default UpdateHandler;
+export default UpdateProcess;

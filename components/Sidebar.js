@@ -4,13 +4,16 @@ import CaltransLogo from '../public/images/caltranslogo-main.png'
 import {useEffect,useState} from 'react'
 import BugReport from '../components/ManagerDBTable/BugReport'
 import Hierarchy from '../components/ManagerDBTable/Hierarchy'
-import  HierarchyHandler from '../utils/helpers/HierarchyHandler'
+import  HierarchyProcess from '../utils/helpers/HierarchyProcess'
+import { BallTriangle } from 'react-loader-spinner'
 
 
 export default function Sidebar() {
     const [user,setUser] = useState({}) // I would rather use the session for this, but I don't know how to do that yet.
     const [isBugReport, setIsBugReport] = useState(false)
     const [isHierarchy, setIsHierarchy] = useState(false)
+    const [HierarchyLoad, setHierarchyLoad] = useState(false)
+    const [HierarchyStart, setHierarchyStart] = useState(false)
     const [Employees, setEmployees] = useState('')
     const [EmployeeList, setEmployeeList] = useState([])
 
@@ -29,21 +32,20 @@ export default function Sidebar() {
           }
         }
         );
-    
       }, []);
 
       const defaultClickEvent = (props) => {
         // Do stuff on button click
         if(props === "Dashboard"){
           window.location.href = "http://svgccrm01.dot.ca.gov:3030/UserBase/build"
-
         }
         else if(props === "Report a Bug"){
   
           setIsBugReport(true)
   
         }else if (props == "Hierarchy"){
-
+          setHierarchyStart(true)
+          setHierarchyLoad(true)
           fetch("/ManagerDB/api/managers/", {
             method: "GET",
           }).then((res) => {
@@ -51,17 +53,18 @@ export default function Sidebar() {
         
               setEmployeeList(data)
     
-              setEmployees(HierarchyHandler(data, '04'))
+              setEmployees(HierarchyProcess(data, '04'))
               
               // console.log(Employees[0].principals[0].chiefs[0].stes[0].ste_name[0])
-              setIsHierarchy(true)
+              
             
+            }).then(()=>{
+              setIsHierarchy(true)
+              setHierarchyLoad(false)
+
             })
           })
-
-  
         }
-        
         console.log(props + " Sidebar button clicked.")
     }
 
@@ -72,7 +75,6 @@ export default function Sidebar() {
                     <span className= "sidebar-tooltip group-hover:scale-100"> {text}</span>
                 </div>
             )
-    
     }
 
   return (
@@ -87,7 +89,7 @@ export default function Sidebar() {
         <div className='grid gap-6 pt-6'>
         {/* Sidebar Icons*/}
         
-        <SideBarIcon icon={<p> {getUserInitials(user.UserName)}</p>} text={`Logged in as ${user.UserName}`}/>
+        <div className="sidebar-icon group bg-gray-600 text-[#75a3cc] cursor-default" text={`Logged in as ${user.UserName}`}>{getUserInitials(user.UserName)}</div>
        <SideBarIcon icon={<FaBug/>} text={"Report a Bug"}/>
        <SideBarIcon icon={<FaSitemap/>} text={"Hierarchy"}/>
         <SideBarIcon icon={<FaTh/>} text={"Dashboard"}  />
@@ -95,15 +97,13 @@ export default function Sidebar() {
 
         {/* Logout icon at bottom of sidebar */}
         <div className="p-6">
-        <div className="flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-auto
-        bg-gray-800 text-[#75a3cc] hover:text-white hover:bg-gray-500 
-        rounded-3xl hover:rounded-xl transition-all cursor-pointer group fixed bottom-0" onClick={handleLogout}>
-                <FaSignOutAlt/>
-                <span className= "sidebar-tooltip group-hover:scale-100 " >Logout</span>
+          <div className="flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-auto
+          bg-gray-800 text-[#75a3cc] hover:text-white hover:bg-gray-500 
+          rounded-3xl hover:rounded-xl transition-all cursor-pointer group fixed bottom-0" onClick={handleLogout}>
+            <FaSignOutAlt/>
+            <span className= "sidebar-tooltip group-hover:scale-100 " >Logout</span>
+          </div>
         </div>
-        </div>
-
-        
     </div>
     {isBugReport ?
       <div>
@@ -114,14 +114,33 @@ export default function Sidebar() {
       </div>
     :null}
 
-    {isHierarchy ?
+      {HierarchyStart ?
       <div>
         <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"> </div>
-        <div className="absolute mt-[5%] ml-[7%] mb-16 z-2 ">
-        <Hierarchy user={user} setIsHierarchy={setIsHierarchy} employeeList={EmployeeList}  Employee={Employees}/>
-        </div>
+
+        {HierarchyLoad ? 
+         <div className="fixed z-2 top-[30%] left-[42%]">
+            <BallTriangle
+            height={275}
+            width={275}
+            radius={4}
+            color='#70AA9B'
+            ariaLabel="ball-triangle-loading"
+            wrapperClass={{}}
+            wrapperStyle=""
+            visible={true}
+            />
+          </div>
+        : null}
+            
+        {isHierarchy ?
+          <div className="absolute mt-[5%] ml-[7%] mb-16 z-2">
+            <Hierarchy user={user} setIsHierarchy={setIsHierarchy} setHierarchyStart={setHierarchyStart} Employee={Employees}/>
+          </div>
+        :null}
       </div>
-    :null}
+      :null}
+    
     </div>
     
     )
