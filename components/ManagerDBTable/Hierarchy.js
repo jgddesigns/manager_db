@@ -223,7 +223,7 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
                     </div>: <h1 className="mt-[30%] ml-6 w-full text-center italic">Error loading employee data. Please contact customer support.</h1>}
 
                     {PrinMap ? 
-                        <div className="mt-2 ml-5 border-l-2 border-x-0 border-r-0"><h1 className="underline ml-5 text-black font-bold">Principal</h1>
+                        <div className="mt-2 ml-5 border-l-2 border-x-0 border-r-0"><h1 className="underline ml-2 text-black font-bold">Principal</h1>
                         <h1>{Employees[0].principals.map((principal, index) => {
                         return(
                             <h1 className={selectedTextPrincipal.textA} onClick={(e)=>toggleChiefMap(Employees[0].principals[index], e)}>{Employees[0].principals[index].prin_name}, #{Employees[0].principals[index].prin_efis}</h1>    
