@@ -6,6 +6,7 @@ import jwt_decode from "jwt-decode";
 import {useState,useEffect} from "react";
 import NoAccessLoader from "../components/NoAccessLoader";
 import LoadingLoader from "../components/LoadingLoader";
+import Favicon from 'react-favicon'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [user, setUser] = useState<Object | null>(null); // User JWT defined in header
@@ -43,6 +44,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
       <Layout >
         <Component {...pageProps} />
+         {/* <Favicon url="http://localhost:3000/ManagerDB/public/images/favicon.ico" /> */}
+         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
       </Layout>
     )
   }
