@@ -107,8 +107,8 @@ export default function Sidebar() {
     </div>
     {isBugReport ?
       <div>
-        <div className="fixed w-[100%] h-[100%] left-0 z-1 bg-gray-800 opacity-75"></div>
-        <div className="fixed z-2 top-[5%] left-[35%]">
+        <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
+        <div className="absolute z-2 top-[10%] ml-[15.5%]">
         <BugReport user={user} setIsBugReport={setIsBugReport}/>
         </div>
       </div>

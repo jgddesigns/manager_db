@@ -69,7 +69,7 @@ export default function BugReport ({user, setIsBugReport}) {
 
     return (
         <div>
-            <div className="flex w-[28rem] h-[35rem] bg-gray-100 drop-shadow-2xl rounded-xl border-4 border-[#70AA9B] text-black">
+            <div className="w-[28rem] h-[35rem] bg-gray-100 drop-shadow-2xl rounded-xl border-4 border-[#70AA9B] text-black mb-[10%]">
                 <div className="grid grid-rows-4 grid-cols-1 w-full h-full">
                     <div className="grid grid-rows-1 grid-cols-2">
                         <div className="bg-[#70AA9B] w-48 h-16 rounded-br-lg">
