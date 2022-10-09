@@ -176,7 +176,7 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
                 <div className="grid grid-rows-1 grid-cols-2">
                     <div className="bg-[#70AA9B] w-48 h-16 rounded-br-lg z-8">
                         <div className="float-left pl-4 pt-4 text-2xl font-bold text-white">Hierarchy</div>
-                        <FaRegCaretSquareDown className="fixed text-md  text-gray-300 ml-[22%] mt-[3.25rem]"/> 
+                        <FaRegCaretSquareDown className="fixed text-md  text-gray-300 ml-[22%] mt-[3.25rem] pointer-events-none"/> 
                         <select className="px-3 text-xl ml-[10%] mt-[20%] w-36 border rounded h-10  shadow appearance-none mb-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => getEmployees(e.target.value)} id="managerName" >
                             <option value="01">District 01</option>
                             <option value="02">District 02</option>
@@ -267,7 +267,7 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
                 }
 
                 <div className="w-[100%] ml-[33%] text-center mt-[100%] mb-[2%] bottom-0">
-                    <span onClick={()=>closeHandler()} className="cursor-pointer h-full underline">Cancel</span>
+                    <span onClick={()=>closeHandler()} className="cursor-pointer h-full underline">Close</span>
                 </div>
             </div>
         </div> 

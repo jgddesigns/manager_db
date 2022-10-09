@@ -8,6 +8,7 @@ import NoAccessLoader from "../components/NoAccessLoader";
 import LoadingLoader from "../components/LoadingLoader";
 import Favicon from 'react-favicon'
 
+
 function MyApp({ Component, pageProps }: AppProps) {
   const [user, setUser] = useState<Object | null>(null); // User JWT defined in header
   const [isAdmin, setIsAdmin] = useState<boolean>(false); // Only users with Admin Access should be able to access the app.
@@ -44,8 +45,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
       <Layout >
         <Component {...pageProps} />
-         {/* <Favicon url="http://localhost:3000/ManagerDB/public/images/favicon.ico" /> */}
-         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+         <Favicon url="https://dot.ca.gov/-/media/d618dccb772c461cbc2d2f0f79b749e5.ashx" />
+
 
       </Layout>
     )

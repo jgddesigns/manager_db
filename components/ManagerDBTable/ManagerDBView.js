@@ -106,6 +106,14 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
 
   }
 
+
+  const SetClear = (e) => {
+
+    setSearchInput("");
+    setSelectedUser(null);
+
+  }
+
   const sortBy = (results) => {
     if(SortBy == "Name" && ToggleName){
       return results.sort((a, b) => (a.emp_name > b.emp_name) ? 1 : -1)
@@ -175,14 +183,19 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
             <div className="text-white text-2xl pb-2 inline-block">
                 Employees 
             </div>
+
+           
           
             <input 
             onChange={(e) => { if(selectedUser != null) changeDisplay() ; SetSearch(e) }}
             placeholder="Search by Name, EFIS"
-            className=" inline-block form-control px-3 py-1.5text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none placeholder:pl-2 h-8 rounded float-right shadow-lg"
+            className="inline-block form-control px-3 py-1.5text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none placeholder:pl-2 h-8 rounded float-right shadow-lg"
             title='Search bar'
             />
-              
+     
+            <div className="text-white text-sm pb-2 float-right mr-4 mt-2 underline text-blue-700 cursor-pointer" onClick={(e)=>SetClear()}>
+                Clear
+            </div>
             <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
               {selectedUser ? <SelectedEmployee selectedEmployee={selectedUser} setSelectedUser={setSelectedUser} setLoadingGraphic={setLoadingGraphic}/> : (!loadingGraphic ? renderResults(resultsMap) : renderResults([]))}
             </div>

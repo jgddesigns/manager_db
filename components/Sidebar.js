@@ -1,9 +1,10 @@
-import {FaBell, FaUser, FaHome, FaSignOutAlt, FaBug,FaTh, FaSign, FaSitemap} from 'react-icons/fa'
+import {FaEdit, FaBell, FaUser, FaHome, FaBook, FaSignOutAlt, FaBug,FaTh, FaSign, FaSitemap} from 'react-icons/fa'
 import Image from 'next/image'
 import CaltransLogo from '../public/images/caltranslogo-main.png'
 import {useEffect,useState} from 'react'
 import BugReport from '../components/ManagerDBTable/BugReport'
 import Hierarchy from '../components/ManagerDBTable/Hierarchy'
+import Insert from '../components/ManagerDBTable/Insert'
 import  HierarchyProcess from '../utils/helpers/HierarchyProcess'
 import { BallTriangle } from 'react-loader-spinner'
 
@@ -12,6 +13,7 @@ export default function Sidebar() {
     const [user,setUser] = useState({}) // I would rather use the session for this, but I don't know how to do that yet.
     const [isBugReport, setIsBugReport] = useState(false)
     const [isHierarchy, setIsHierarchy] = useState(false)
+    const [isInsert, setIsInsert] = useState(false)
     const [HierarchyLoad, setHierarchyLoad] = useState(false)
     const [HierarchyStart, setHierarchyStart] = useState(false)
     const [Employees, setEmployees] = useState('')
@@ -64,7 +66,15 @@ export default function Sidebar() {
 
             })
           })
-        }
+      }else if("Insert Employee"){
+        
+        setIsInsert(true)
+
+      }else if("User Guide"){
+
+        window.open('http://svgccrm01.dot.ca.gov:3030/Docs/ManagerDB_Guide.pdf')
+
+      }
         console.log(props + " Sidebar button clicked.")
     }
 
@@ -90,8 +100,10 @@ export default function Sidebar() {
         {/* Sidebar Icons*/}
         
         <div className="sidebar-icon group bg-gray-600 text-[#75a3cc] cursor-default" text={`Logged in as ${user.UserName}`}>{getUserInitials(user.UserName)}</div>
+        <SideBarIcon icon={<FaEdit/>} text={"Insert Employee"}/>
        <SideBarIcon icon={<FaBug/>} text={"Report a Bug"}/>
        <SideBarIcon icon={<FaSitemap/>} text={"Hierarchy"}/>
+       <SideBarIcon icon={<FaBook/>} text={"User Guide"}/>
         <SideBarIcon icon={<FaTh/>} text={"Dashboard"}  />
         </div>
 
@@ -110,6 +122,15 @@ export default function Sidebar() {
         <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
         <div className="absolute z-2 top-[10%] left-[35%]">
         <BugReport user={user} setIsBugReport={setIsBugReport}/>
+        </div>
+      </div>
+    :null}
+
+    {isInsert ?
+      <div>
+        <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
+        <div className="absolute z-2 top-[10%] left-[29%]">
+        <Insert user={user} setIsInsert={setIsInsert}/>
         </div>
       </div>
     :null}

@@ -422,7 +422,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                 </div>
                 : null }
                 <div className="w-72 grid grid-cols-2 grid-rows-1 ml-24 mt-16 mb-2">
-                    <p className="text-sm float-left mt-4" id="name">New Name</p>
+                    <p className="text-sm float-left mt-4" id="name">New Name<span className="text-red-400">*</span></p>
                     <div className="grid grid-rows-2">
                         <span className="text-[10px] ml-12 mb-1">No Change</span>
                         <input type="checkbox" className="ml-12 h-4 " id="noNameChange" onChange={(e) => noNameChangeHandler(e.target.checked)}></input>
@@ -442,7 +442,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                 
                 {selectedEmployee.emp_role == "Chief" || selectedEmployee.emp_role == "STE" ? <div>
                 <div className="w-72 grid grid-cols-2 grid-rows-1 ml-24 mt-8 mb-2">
-                    <p className="text-sm mt-4" id="email">New Manager</p>
+                    <p className="text-sm mt-4" id="email">New Manager<span className="text-red-400">*</span></p>
                     <div className="grid grid-rows-2">
                         <span className="text-[10px] ml-12 mb-1">No Change</span>
                         <input type="checkbox" className="ml-12 h-4 " id="noManagerChange" onChange={(e) => noManagerChangeHandler(e.target.checked)}></input>
@@ -456,7 +456,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                             <option value={result.manager}>{result.manager}</option>
                         )
                         })}
-                </select> <FaRegCaretSquareDown className="text-md  text-gray-300 ml-28 mt-[.75rem]"/>
+                </select> <FaRegCaretSquareDown className="text-md  text-gray-300 ml-28 mt-[.75rem] pointer-events-none"/>
                 </div> </div>:null}
                 <div className="grid grid-rows-auto grid-cols-1 w-88 h-10 ml-2 mb-4">
                     <span className="text-red-400 text-center font-bold mt-8" id="error_name" hidden>Name cannot be blank.</span> 
