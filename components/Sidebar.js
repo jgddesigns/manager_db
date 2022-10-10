@@ -101,9 +101,9 @@ export default function Sidebar() {
         
         <div className="sidebar-icon group bg-gray-600 text-[#75a3cc] cursor-default" text={`Logged in as ${user.UserName}`}>{getUserInitials(user.UserName)}</div>
         <SideBarIcon icon={<FaEdit/>} text={"Insert Employee"}/>
-       <SideBarIcon icon={<FaBug/>} text={"Report a Bug"}/>
        <SideBarIcon icon={<FaSitemap/>} text={"Hierarchy"}/>
        <SideBarIcon icon={<FaBook/>} text={"User Guide"}/>
+       <SideBarIcon icon={<FaBug/>} text={"Report a Bug"}/>
         <SideBarIcon icon={<FaTh/>} text={"Dashboard"}  />
         </div>
 

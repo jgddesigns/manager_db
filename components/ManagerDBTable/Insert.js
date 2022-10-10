@@ -4,8 +4,8 @@ import {FaEdit} from 'react-icons/fa'
 import  HierarchyProcess from '../../utils/helpers/HierarchyProcess'
 import  InsertProcess from '../../utils/helpers/InsertProcess'
 import  InsertDataProcess from '../../utils/helpers/InsertDataProcess'
-import  EmailCheck from '../../utils/validate/EmailCheck'
-import  EFISCheck from '../../utils/validate/EFISCheck'
+import { Circles } from 'react-loader-spinner'
+
 
 
 
@@ -17,56 +17,41 @@ export default function Insert({setIsInsert, setInsertStart}) {
     const [Name, setName] = useState([])
     const [Email, setEmail] = useState([])
     const [EFIS, setEFIS] = useState([])
+    const [ValidName, setValidName] = useState(true)
     const [ValidEFIS, setValidEFIS] = useState(true)
     const [ValidEmail, setValidEmail] = useState(true)
+    const [Complete, setComplete] = useState(false)
     const [RowData, setRowData] = useState([])
+    const [InsertLoad, setInsertLoad] = useState(false)
+    const [IsInsertClicked, setIsInsertClicked] = useState(false)
     const closeHandler = () => {
-
         setIsInsert(false)
-    
-    
-       }
+    }
 
-
-       useEffect(() => {
-
+    useEffect(() => {
         fetch("/ManagerDB/api/managers/", {
             method: "GET",
           }).then((res) => {
             res.json().then((data) => {
-
              setSuperiors(InsertProcess(data, Role, District))
-
             })
-
         })
-        
-      }, [])
-
-
-
+    }, [])
 
 
     const insertData = () => {
 
-       
+       setInsertLoad(true)
 
         fetch("/ManagerDB/api/managers/", {
             method: "GET",
           }).then((res) => {
             res.json().then((data) => {
-
-          
-                setRowData(InsertDataProcess(data, NewSuperior, District))
+                // setRowData(InsertDataProcess(data, NewSuperior, District))
                 insertToTable(InsertDataProcess(data, NewSuperior, District))
-                
             })
-           
-
         })
 
-   
-       
     }
 
     const insertToTable = (a) => {
@@ -98,11 +83,7 @@ export default function Insert({setIsInsert, setInsertStart}) {
             emp_email: Email
         }
 
-        console.log(insert_data)
-
-
-
-        if(EmailCheck(Email) && EFISCheck(EFIS)){
+        if(NameCheck(Name) && EmailCheck(Email) && EFISCheck(EFIS)){
             fetch("/ManagerDB/api/insert/", {
                 method: "PATCH",
                 headers: {
@@ -112,21 +93,38 @@ export default function Insert({setIsInsert, setInsertStart}) {
                 body: JSON.stringify(insert_data)
             }).then((res) => {
 
+                setValidName(true)
                 setValidEmail(true)
                 setValidEFIS(true)
-        
-
+                setComplete(true)
+                setInsertLoad(false)
+                setIsInsertClicked(true)
                 })
+        }
+        if(!NameCheck(Name)){
+            setValidName(false)
+            setInsertLoad(false)
+
+        }else{
+            setValidName(true)
+
         }
         if(!EmailCheck(Email)){
             setValidEmail(false)
+            setInsertLoad(false)
+
+        }else{
+            setValidEmail(true)
 
         }
         if(!EFISCheck(EFIS)){
             setValidEFIS(false)
+            setInsertLoad(false)
       
-        }
+        }else{
+            setValidEFIS(true)
 
+        }
     }
 
     const nameChangeHandler = (e) => {
@@ -146,25 +144,14 @@ export default function Insert({setIsInsert, setInsertStart}) {
             method: "GET",
           }).then((res) => {
             res.json().then((data) => {
-
              setSuperiors(InsertProcess(data, Role, e))
              setNewSuperior(InsertProcess(data, Role, e)[0])
-             setRowData(InsertDataProcess(data, NewSuperior, e))
-
-             
-
-
+            //  setRowData(InsertDataProcess(data, NewSuperior, e))
             })
-
         })
-        
-
     }
 
-
     const roleChangeHandler = (e) => {
-
-        
 
         setRole(e)
 
@@ -175,14 +162,9 @@ export default function Insert({setIsInsert, setInsertStart}) {
 
              setSuperiors(InsertProcess(data, e, District))
              setNewSuperior(InsertProcess(data, e, District)[0])
-             setRowData(InsertDataProcess(data, NewSuperior, District))
+            //  setRowData(InsertDataProcess(data, NewSuperior, District))
              
-
-             
-
-
             })
-
         })
     }
 
@@ -194,16 +176,56 @@ export default function Insert({setIsInsert, setInsertStart}) {
         setEFIS(e)
     }
 
+    const NameCheck = (name) => {
+        if(name.length > 0){
+            return true
+          }
+          return false
+    }
 
 
+    const EmailCheck = (email) => {
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+
+    const EFISCheck = (efis) => {
+        if(efis.length!=4 || isNaN(efis)){
+            return false
+          }
+          return true
+    }
+
+
+    const resetData = () => {
+        setName([])
+        setEmail([])
+        setEFIS([])
+        setValidName(true)
+        setValidEFIS(true)
+        setValidEmail(true)
+        setComplete(false)
+        setDistrict('01')
+        setRole('Principal')
+        setInsertLoad(false)
+        setIsInsertClicked(false)
+        // setNewSuperior(Superiors[0])
+
+        fetch("/ManagerDB/api/managers/", {
+            method: "GET",
+          }).then((res) => {
+            res.json().then((data) => {
+             setSuperiors(InsertProcess(data, 'Principal', '01'))
+            })
+        })
+    }
 
     const superiorMap = Superiors.map((name, index) => {
         return {
           manager: Superiors[index]
         }
       })
-
-
 
   return (
     <div>
@@ -219,20 +241,20 @@ export default function Insert({setIsInsert, setInsertStart}) {
                     </div>   
                 </div>
              
-                <div className="grid grid-rows-7 gap-y-16 ml-24 w-72">
+                <div className="grid grid-rows-7 gap-y-8 ml-24 w-72">
                     <div className="grid grid-cols-2">
                         <span>Name</span>
-                        <input className="p-4 h-8 w-56" placeholder="New Employee Name" onChange={(e)=>nameChangeHandler(e.target.value)}></input>
+                        <input className="p-4 h-8 w-56" placeholder="New Employee Name" value={Name} onChange={(e)=>nameChangeHandler(e.target.value)}></input>
                     </div>
 
                     <div className="grid grid-cols-2 ">
                         <span>Email</span>
-                        <input className="p-4 h-8 w-56" placeholder="New Employee Email" onChange={(e)=>emailChangeHandler(e.target.value)}></input>
+                        <input className="p-4 h-8 w-56" placeholder="New Employee Email" value={Email} onChange={(e)=>emailChangeHandler(e.target.value)}></input>
                     </div>
 
                     <div className="grid grid-cols-2">
                         <span>District</span>
-                        <select className="w-56" onChange={(e)=>districtChangeHandler(e.target.value)}>
+                        <select className="w-56" value={District} onChange={(e)=>districtChangeHandler(e.target.value)}>
                             <option value="01">1</option>
                             <option value="02">2</option>
                             <option value="03">3</option>
@@ -251,7 +273,7 @@ export default function Insert({setIsInsert, setInsertStart}) {
 
                     <div className="grid grid-cols-2 ">
                         <span>Role</span>
-                        <select className="w-56" onChange={(e)=> {roleChangeHandler(e.target.value)}}>
+                        <select className="w-56" value={Role} onChange={(e)=> {roleChangeHandler(e.target.value)}}>
                             <option value="Principal">Principal</option>
                             <option value="Chief">Chief</option>
                             <option value="STE">STE</option>
@@ -260,41 +282,54 @@ export default function Insert({setIsInsert, setInsertStart}) {
 
                     <div className="grid grid-cols-2 ">
                         <span>Superior</span>
-                        <select className="w-56" onChange={(e)=> {superiorChangeHandler(e.target.value)}}>
-                    {superiorMap.map(result => {
-                        
+                        <select className="w-56" value={NewSuperior}onChange={(e)=> {superiorChangeHandler(e.target.value)}}>
+                    {superiorMap.map(result => {         
                         return (
                             <option className="max-w-[4rem]" value={result.manager}>{result.manager}</option>
                         )
                         })}
-                </select>
-
-                       
+                </select>   
                     </div>
-
-                    <div className="grid grid-cols-2 ">
+                    <div className="grid grid-cols-2">
                         <span>EFIS UNIT #</span>
-                        <input type="number" className="p-4 h-8 w-56" placeholder="New EFIS UNIT #" onChange={(e)=>{efisChangeHandler(e.target.value)}}></input>
+                        <input type="number" value={EFIS} className="p-4 h-8 w-56" placeholder="New EFIS UNIT #" onChange={(e)=>{efisChangeHandler(e.target.value)}}></input>
                     </div>
 
-                    <div>
-                        <button className="bg-[#a6a6a6] text-white p-4 rounded-lg ml-[100%]" onClick={() => {insertData()}}>Insert</button>
+                    <div className="grid grid-cols-2  w-[120%]">
+                        <button className="bg-[#c6c6c6] text-white p-2 rounded-lg ml-[20%] w-24" onClick={() => {resetData()}}>Reset</button>
+                        {!IsInsertClicked?<button className="bg-[#a6a6a6] text-white p-2 rounded-lg ml-[60%] w-24" onClick={() => {insertData()}}>Insert</button> :null}
                     </div>
 
-                    <div>
+                    <div className="w-[100%] ml-[33%] text-red-400">
+                        {!ValidName ? <div>
+                            Name is not valid. (Jane Doe)
+                        </div>:null} 
                         {!ValidEFIS ? <div>
-                            EFIS is not valid.
+                            EFIS is not valid. (#1111)
                         </div>:null}
                         {!ValidEmail ? <div>
-                            Email is not valid.
+                            Email is not valid. (abc@gmail.com)
+                        </div>:null}
+                        {Complete ? <div className="ml-16 text-green-400">
+                            Insert is complete.
                         </div>:null}
                     </div>
-
-
                 </div>
 
-
-
+                {InsertLoad ? 
+                    <div className="fixed z-2 top-[85%] left-[45%]">
+                        <Circles
+                        height={55}
+                        width={55}
+                        radius={2}
+                        color='#70AA9B'
+                        ariaLabel="ball-triangle-loading"
+                        wrapperClass={{}}
+                        wrapperStyle=""
+                        visible={true}
+                        />
+                    </div>
+                : null}
 
                 <div className="w-[100%] ml-[33%] text-center mt-[100%] mb-[2%] bottom-0">
                     <span onClick={()=>closeHandler()} className="cursor-pointer h-full underline">Close</span>
