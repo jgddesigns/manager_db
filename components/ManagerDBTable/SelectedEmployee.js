@@ -9,59 +9,58 @@ import ManagerProcess from '../../utils/helpers/ManagerProcess'
 import { FaRegCaretSquareDown } from 'react-icons/fa'
 
 export default function SelectedEmployee({selectedEmployee, setSelectedUser, setLoadingGraphic}) {
-
     const MySwal = withReactContent(Swal)
-
     const [newEmail, setNewEmail] = useState("")
     const [newName, setNewName] = useState("")
     const [NameChanges, setNameChanges] = useState(false)
     const [EmailChanges, setEmailChanges] = useState(false)
     const [ManagerChanges, setManagerChanges] = useState(false)
+    const [EmptyChildren, setEmptyChildren] = useState(false)
     const [loadingGraphicDisplay, setLoadingGraphicDisplay] = useState(false)
     const [user,setUser] = useState({}) 
     const [Superiors, setSuperiors] = useState([],[],[])
     const [ChangedManager, setChangedManager] = useState([],[])
+    const [NewPrincipalName, setNewPrincipalName] = useState([])
+    const [NewPrincipalEFIS, setNewPrincipalEFIS] = useState([])
+    const [NewPrincipalEmail, setNewPrincipalEmail] = useState([])
+    const [NewChiefName, setNewChiefName] = useState([])
+    const [NewChiefEFIS, setNewChiefEFIS] = useState([])
+    const [NewChiefEmail, setNewChiefEmail] = useState([])
+    const [NewSTEName, setNewSTEName] = useState([])
+    const [NewSTEEFIS, setSTEEFIS] = useState([])
+    const [NewSTEEmail, setNewSTEEmail] = useState([])
 
-
+    
     useEffect(() => {
-        // fetch from api/current-user
-        
         fetch("/ManagerDB/api/current-user/", {
           method: "GET",
         }).then((res) => {
           if (res.status === 200) {
             res.json().then((data) => {
-            //   console.log(data);
               setUser(data)
-     
             });
           }
-        }
-        );
+        });
 
-    
         fetch("/ManagerDB/api/managers/", {
             method: "GET",
         }).then((res) => {
             res.json().then((data) => {
                 setSuperiors(ManagerProcess(data, selectedEmployee))    
             });
-        })
-        
-      }, [])
-
-      
-      const superiorMap = Superiors.map((name, index) => {
+        })        
+    }, [])
+  
+    const superiorMap = Superiors.map((name, index) => {
         return {
           manager: Superiors[0][index],
           efis: Superiors[1][index],
           current_manager: selectedEmployee.emp_manager,
           email: Superiors[3][index]
         }
-      })
+    })
 
     const UpdateProcess = (data) => {
-        //AUDIT DATA START
         var audit_type = ""
         var nameInclude = false
         var emailInclude = false
@@ -69,7 +68,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         var old_email = null
         var new_email = null
         var new_manager = null
-
 
         if(data["new_name"] && (data["new_name"] != data["emp_name"])){
             audit_type = audit_type + "Name"
@@ -88,9 +86,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                 audit_type = audit_type + "Email"
             }
             emailInclude = true
-
             new_email = data["new_email"]
- 
         }
 
         if(data["new_manager"] && (data["new_manager"] != data["old_manager"])){
@@ -105,8 +101,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
 
         var date = new Date()
         date = date.toLocaleString()
-
-
         const audit_data = {
             type: audit_type,
             employee_number: user.userid,
@@ -121,10 +115,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             region: data["region"], 
             date_time: date,
         }
-        //AUDIT DATA END
 
-
-        //UPDATE API CALLS AUDIT HANDLER AFTER SUCCESSFUL RESPONSE
         fetch("/ManagerDB/api/managers/", {
             method: "PATCH",
             headers: {
@@ -139,9 +130,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
               setLoadingGraphic(true)
               setSelectedUser(null)  
               AuditProcess(audit_data)
-            // });
           }).then(() => {
-            // console.log("Update Response: ", data)   
             console.log("Update Success")   
             setTimeout(() => {
                 setLoadingGraphicDisplay(false)
@@ -161,8 +150,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
     const SaveChanges = (selected) =>{
         setNameChanges(false)
         setEmailChanges(false)
-
-
         var new_name
         var new_email
         var new_manager
@@ -179,7 +166,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             new_email = newEmail
         }
 
-  
         if(ChangedManager[0] == ""){
             new_manager= ""      
             new_manager_email = ""
@@ -187,8 +173,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             new_manager = ChangedManager[0]
             new_manager_email = ChangedManager[2]
         }
-
-
 
         if(selectedEmployee.emp_manager) {
             var old_manager_str = selectedEmployee.emp_manager
@@ -213,7 +197,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         UpdateProcess(data)
     }
 
-
     const EditEmployeeHandler = () => {
         setNameChanges(false)
         setEmailChanges(false)
@@ -221,7 +204,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         setNewName("")
         setNewEmail("")
         setChangedManager([])
-        // EditEmployee()
         EditEmployee()
     }
 
@@ -239,7 +221,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         if(emailChange.classList.contains('border-red-500')){
             emailChange.classList.remove('border-red-500')
             errorEmail.hidden = true
-
         }
         
         if(emailChange.value.length > 0){
@@ -254,7 +235,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
     }
 
     const nameChangeHandler = (val) => {
-     
         var nameChange = document.getElementById('userName')
         var noChanges = document.getElementById('no_changes')
         var errorName = document.getElementById('error_name')
@@ -276,13 +256,11 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         }
     }
 
-
     const managerChangeHandler = (val) => {
         var managerChange = document.getElementById('managerName')
         var noChanges = document.getElementById('no_changes')
         var errorManager = document.getElementById('error_manager')
 
-        // setNewName(val)
         if(managerChange.classList.contains('border-red-500')){
             managerChange.classList.remove('border-red-500')
             errorManager.hidden = true
@@ -293,7 +271,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         }else{
             managerChange.classList.remove('border-cyan-400') 
         }
-
 
         if(noChanges.hidden == false){
             noChanges.hidden = true
@@ -310,11 +287,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         }).then(function(result) {
             if (result.value) {
                 SaveChanges(emp_name, emp_role, emp_efis)
-                // SaveManagerChanges(emp_name, emp_role, emp_efis)
             }
         })
     }
-
 
     const ClearHandler = () => {
         MySwal.fire({
@@ -351,10 +326,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         var nameChange = document.getElementById('userName')
         var noChanges = document.getElementById('no_changes')
         var errorName = document.getElementById('error_name')
-
         setNewName(selectedEmployee.emp_name)
-
         nameChange.classList.remove('border-red-500')
+
         if(e){
             nameChange.value = selectedEmployee.emp_name
             errorName.hidden = true
@@ -364,17 +338,15 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             noChanges.hidden = true
             nameChange.classList.remove('border-cyan-400')
         }
-
-
     }
 
     const noEmailChangeHandler = (e) => {
         var emailChange = document.getElementById('userEmail')
         var noChanges = document.getElementById('no_changes')
         var errorEmail = document.getElementById('error_email')
-
         setNewEmail(selectedEmployee.emp_email)
         emailChange.classList.remove('border-red-500')
+
         if(e){
             emailChange.value = selectedEmployee.emp_email
             errorEmail.hidden = true
@@ -390,9 +362,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         var managerChange = document.getElementById('managerName')
         var noChanges = document.getElementById('no_changes')
         var errorManager = document.getElementById('error_manager')
-
         setChangedManager(selectedEmployee.emp_manager)
         managerChange.classList.remove('border-red-500')
+
         if(e){
             managerChange.value = selectedEmployee.emp_manager
             errorManager.hidden = true
@@ -404,68 +376,123 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         }
     }
 
-    const EditEmployee = async () => {
+    const AssignEmployees = (e) => {
+        MySwal.fire({
+            title: "Assign Employees",
+            html: (
+                <div className="mb-8">
+                    <p className="text-sm"> Enter new data for:</p>
+                    <p className="font-bold italic">{selectedEmployee.emp_name}, EFIS #{selectedEmployee.emp_efis}</p>
 
+                    {selectedEmployee.emp_role == "Deputy" ?
+                        <div className="grid grid-rows-2"> 
+                            <span>Principal Name</span>
+                            <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 leading-tight focus:outline-none focus:shadow-outline" value={NewPrincipalName}></input>
+                            <span>Principal EFIS</span>
+                            <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 leading-tight focus:outline-none focus:shadow-outline" value={NewPrincipalEFIS}></input>
+                            <span>Principal Email</span>
+                            <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 leading-tight focus:outline-none focus:shadow-outline" value={NewPrincipalEmail}></input>
+                        </div>
+                    : null }
+
+                    {selectedEmployee.emp_role == "Deputy" || selectedEmployee.emp_role == "Principal" ?
+                        <div className="grid grid-rows-2 mt-8"> 
+                            <span>Chief Name</span>
+                            <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 leading-tight focus:outline-none focus:shadow-outline" value={NewChiefName}></input>
+                            <span>Chief EFIS</span>
+                            <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 leading-tight focus:outline-none focus:shadow-outline" value={NewChiefEFIS}></input>
+                            <span>Chief Email</span>
+                            <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 leading-tight focus:outline-none focus:shadow-outline" value={NewChiefEmail}></input>
+                        </div>
+                    : null }
+
+                    {selectedEmployee.emp_role == "Deputy" || selectedEmployee.emp_role == "Principal" || selectedEmployee.emp_role == "Chief" ?
+                        <div className="grid grid-rows-2 mt-8 ml-[17%]"> 
+                            <span className="mr-[20%] mt-[15px]">STE Name</span>
+                            <input className="text-xl w-72 rounded h-10 shadow appearance-none border leading-tight focus:outline-none focus:shadow-outline" value={NewSTEName}></input>
+                            <span className="mr-[20%] mt-[15px]">STE EFIS</span>
+                            <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 leading-tight focus:outline-none focus:shadow-outline" value={NewSTEEFIS}></input>
+                            <span className="mr-[20%] mt-[15px]">STE Email</span>
+                            <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 leading-tight focus:outline-none focus:shadow-outline" value={NewSTEEmail}></input>
+                        </div>
+                    : null }
+                    
+                    
+                </div>
+            ),   
+            showCancelButton: true ,
+            confirmButtonColor: 'bg-indigo-400',
+
+            preConfirm: function() {
+               
+                 
+            },                        
+            }).then(function(result, new_name, new_email){
+              
+                
+            })
+    }
+
+    const EditEmployee = async () => {
         MySwal.fire({
             title: "Edit Employee Record",
             html: (
-            <div className="mb-8">
-                <p className="text-sm"> Enter new data for:</p>
-                <p className="font-bold italic">EFIS #{selectedEmployee.emp_efis}</p>
-                <p className="text-sm mt-8 mb-2">Current Name</p> 
-                <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 bg-gray-300 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={selectedEmployee.emp_name} disabled></input>
-                <p className="text-sm mt-4 mb-2">Current Email</p> 
-                <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 bg-gray-300 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={selectedEmployee.emp_email} disabled></input>
-                {selectedEmployee.emp_role != "Deputy" ? <div>
-                <p className="text-sm mt-4 mb-2">Current Manager</p> 
-                <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border bg-gray-300 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={selectedEmployee.emp_manager} disabled></input>
-                </div>
-                : null }
-                <div className="w-72 grid grid-cols-2 grid-rows-1 ml-24 mt-16 mb-2">
-                    <p className="text-sm float-left mt-4" id="name">New Name<span className="text-red-400">*</span></p>
-                    <div className="grid grid-rows-2">
-                        <span className="text-[10px] ml-12 mb-1">No Change</span>
-                        <input type="checkbox" className="ml-12 h-4 " id="noNameChange" onChange={(e) => noNameChangeHandler(e.target.checked)}></input>
+                <div className="mb-8">
+                    <p className="text-sm"> Enter new data for:</p>
+                    <p className="font-bold italic">EFIS #{selectedEmployee.emp_efis}</p>
+                    <p className="text-sm mt-8 mb-2">Current Name</p> 
+                    <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 bg-gray-300 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={selectedEmployee.emp_name} disabled></input>
+                    <p className="text-sm mt-4 mb-2">Current Email</p> 
+                    <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 bg-gray-300 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={selectedEmployee.emp_email} disabled></input>
+                    {selectedEmployee.emp_role != "Deputy" ? <div>
+                    <p className="text-sm mt-4 mb-2">Current Manager</p> 
+                    <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border bg-gray-300 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={selectedEmployee.emp_manager} disabled></input>
                     </div>
-                </div>
-                <input className="px-3 text-xl w-72 border rounded h-10  shadow appearance-none py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => nameChangeHandler(e.target.value)} id="userName"></input>
+                    : null }
+                    <div className="w-72 grid grid-cols-2 grid-rows-1 ml-24 mt-16 mb-2">
+                        <p className="text-sm float-left mt-4" id="name">New Name<span className="text-red-400">*</span></p>
+                        <div className="grid grid-rows-2">
+                            <span className="text-[10px] ml-12 mb-1">No Change</span>
+                            <input type="checkbox" className="ml-12 h-4 " id="noNameChange" onChange={(e) => noNameChangeHandler(e.target.checked)}></input>
+                        </div>
+                    </div>
+                    <input className="px-3 text-xl w-72 border rounded h-10  shadow appearance-none py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => nameChangeHandler(e.target.value)} id="userName"></input>
+                    <div className="w-72 grid grid-cols-2 grid-rows-1 ml-24 mt-8 mb-2">
+                        <p className="text-sm mt-4" id="email">New Email</p>
+                        <div className="grid grid-rows-2">
+                            <span className="text-[10px] ml-12 mb-1">No Change</span>
+                            <input type="checkbox" className="ml-12 h-4 " id="noEmailChange" onChange={(e) => noEmailChangeHandler(e.target.checked)}></input>
+                        </div>
+                    </div>
+    
+                    <input className="px-3 text-xl w-72 border rounded h-10  shadow appearance-none py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => emailChangeHandler(e.target.value)} id="userEmail"></input>
 
-                <div className="w-72 grid grid-cols-2 grid-rows-1 ml-24 mt-8 mb-2">
-                    <p className="text-sm mt-4" id="email">New Email</p>
-                    <div className="grid grid-rows-2">
-                        <span className="text-[10px] ml-12 mb-1">No Change</span>
-                        <input type="checkbox" className="ml-12 h-4 " id="noEmailChange" onChange={(e) => noEmailChangeHandler(e.target.checked)}></input>
+                    {selectedEmployee.emp_role == "Chief" || selectedEmployee.emp_role == "STE" ? <div>
+                    <div className="w-72 grid grid-cols-2 grid-rows-1 ml-24 mt-8 mb-2">
+                        <p className="text-sm mt-4" id="email">New Manager<span className="text-red-400">*</span></p>
+                        <div className="grid grid-rows-2">
+                            <span className="text-[10px] ml-12 mb-1">No Change</span>
+                            <input type="checkbox" className="ml-12 h-4 " id="noManagerChange" onChange={(e) => noManagerChangeHandler(e.target.checked)}></input>
+                        </div>
+                    </div>
+                    <div className="ml-2 grid grid-cols-2 w-84">
+                    <select className="px-3 text-xl ml-[34%] w-72 border rounded h-10  shadow appearance-none mb-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => managerChangeHandler(e.target.value)} id="managerName" >
+                        <option value="">Select Manager</option>
+                        {superiorMap.map(result => {
+                            return (
+                                <option value={result.manager}>{result.manager}</option>
+                            )
+                            })}
+                    </select> <FaRegCaretSquareDown className="text-md  text-gray-300 ml-28 mt-[.75rem] pointer-events-none"/>
+                    </div> </div>:null}
+                    <div className="grid grid-rows-auto grid-cols-1 w-88 h-10 ml-2 mb-4">
+                        <span className="text-red-400 text-center font-bold mt-8" id="error_name" hidden>Name cannot be blank.</span> 
+                        <span className="text-red-400 text-center font-bold mt-8" id="error_both" hidden>Please enter new data.</span> 
+                        <span className="text-red-400 text-center static font-bold mt-8" id="error_email" hidden>Please enter a valid email address.</span> 
+                        <span className="text-cyan-500 text-center font-bold mt-8" id="no_changes" hidden>No information was changed.</span> 
+                        <span className="text-red-400 text-center font-bold mt-8" id="error_manager" hidden>Please select a manager.</span> 
                     </div>
                 </div>
- 
-                <input className="px-3 text-xl w-72 border rounded h-10  shadow appearance-none py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => emailChangeHandler(e.target.value)} id="userEmail"></input>
-                
-                {selectedEmployee.emp_role == "Chief" || selectedEmployee.emp_role == "STE" ? <div>
-                <div className="w-72 grid grid-cols-2 grid-rows-1 ml-24 mt-8 mb-2">
-                    <p className="text-sm mt-4" id="email">New Manager<span className="text-red-400">*</span></p>
-                    <div className="grid grid-rows-2">
-                        <span className="text-[10px] ml-12 mb-1">No Change</span>
-                        <input type="checkbox" className="ml-12 h-4 " id="noManagerChange" onChange={(e) => noManagerChangeHandler(e.target.checked)}></input>
-                    </div>
-                </div>
-                <div className="ml-2 grid grid-cols-2 w-84">
-                <select className="px-3 text-xl ml-[34%] w-72 border rounded h-10  shadow appearance-none mb-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => managerChangeHandler(e.target.value)} id="managerName" >
-                    <option value="">Select Manager</option>
-                    {superiorMap.map(result => {
-                        return (
-                            <option value={result.manager}>{result.manager}</option>
-                        )
-                        })}
-                </select> <FaRegCaretSquareDown className="text-md  text-gray-300 ml-28 mt-[.75rem] pointer-events-none"/>
-                </div> </div>:null}
-                <div className="grid grid-rows-auto grid-cols-1 w-88 h-10 ml-2 mb-4">
-                    <span className="text-red-400 text-center font-bold mt-8" id="error_name" hidden>Name cannot be blank.</span> 
-                    <span className="text-red-400 text-center font-bold mt-8" id="error_both" hidden>Please enter new data.</span> 
-                    <span className="text-red-400 text-center static font-bold mt-8" id="error_email" hidden>Please enter a valid email address.</span> 
-                    <span className="text-cyan-500 text-center font-bold mt-8" id="no_changes" hidden>No information was changed.</span> 
-                    <span className="text-red-400 text-center font-bold mt-8" id="error_manager" hidden>Please select a manager.</span> 
-                </div>
-            </div>
             ),   
             showCancelButton: true ,
             confirmButtonColor: 'bg-indigo-400',
@@ -474,7 +501,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                 var nameChange = document.getElementById('userName')
                 var emailChange = document.getElementById('userEmail')
                 try{
-                var managerChange = document.getElementById('managerName')
+                    var managerChange = document.getElementById('managerName')
                 }catch{
                     managerChange = null
                 }
@@ -507,7 +534,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                         }else{
                             noChanges.hidden = true
                         }
-
                     }else{
                         if((new_name == selectedEmployee.emp_name) && (new_email  == selectedEmployee.emp_email)) {
                             noChanges.hidden = false
@@ -526,7 +552,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                         nameChange.classList.remove("border-cyan-400")
                         nameChange.classList.add("border-red-500")
                         errorName.hidden = false
-
                         resolve(false)
                     }else{
                         nameChange.classList.remove('border-red-500')
@@ -541,7 +566,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                             managerChange.classList.remove('border-cyan-400')
                         }
                         errorEmail.hidden = false
-
                         resolve(false)
                     }else{
                         emailChange.classList.remove('border-red-500')
@@ -555,7 +579,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                             managerChange.classList.remove("border-cyan-400")
                             managerChange.classList.add("border-red-500")
                             errorManager.hidden = false
-
                             resolve(false)
                         }else{
                             managerChange.classList.remove('border-red-500')
@@ -570,10 +593,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                             resolve()
                         }
                     }
-
-
-
-                    
                  })
             },                        
             }).then(function(result, new_name, new_email){
@@ -618,16 +637,12 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             })
     }
 
-
-
     return (
-    
         <div className='w-full'>
             {!loadingGraphicDisplay ? 
             <div>
                 <h2 className="px-4 py-2 text-center w-full text-xl font-bold underline">Selected Employee</h2>
                 <table className="table-auto w-full mt-12 static">
-                    
                     <tbody>
                         <tr>
                             <td className="border px-4 py-2 w-16 font-bold">Name:</td>
@@ -659,13 +674,16 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                      <td className="border px-4 py-2">{selectedEmployee.emp_manager}{ManagerChanges && ChangedManager[0] && (ChangedManager[0] != selectedEmployee.emp_manager) ? <span className="float-right text-white bg-gray-300 rounded px-2 mr-2"><span className="text-xs font-bold underline">New:</span> {ChangedManager[0]}</span>:null}</td> </tr> : null}
                     </tbody>
                 </table>
-                <div className="float-right grid grid-rows-3">
-                    <button className="float-right bg-indigo-400 hover:bg-indigo-500 text-white rounded mt-4 mr-8 h-6 w-16 text-xs" onClick={() => EditEmployeeHandler()}>Edit</button>
+                <div className="float-left">
+                    {!selectedEmployee.emp_children ? 
+                    <button className="float-right bg-indigo-400 hover:bg-indigo-500 text-white rounded mt-4 ml-8 p-1 w-16 text-xs" onClick={() => AssignEmployees()}>Assign Employees</button>: null}
+                </div>
+                <div className="float-right grid grid-cols-2 grid-rows-3">
+                    <button className="float-right bg-indigo-400 hover:bg-indigo-500 text-white rounded mt-4 h-6 w-16 text-xs" onClick={() => EditEmployeeHandler()}>Edit</button>
                     {(NameChanges || EmailChanges || ManagerChanges) ?  <button className="float-right bg-green-500 hover:bg-green-600 text-white rounded mt-2 h-6 w-16 text-xs" onClick={() => SaveHandler(selectedEmployee)}>Save</button>   : null}
                     {(NameChanges || EmailChanges || ManagerChanges) ?  <button className="float-right bg-gray-500 hover:bg-gray-600 text-white rounded h-6 w-16 text-xs" onClick={() => ClearHandler()}>Clear</button>   : null}
                 </div>
-
-                </div> :
+            </div> :
             <div className="grid place-content-center mt-48">
                 <div>
                     <Grid

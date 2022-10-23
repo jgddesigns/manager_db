@@ -21,8 +21,9 @@ export default function SearchProcess(data, selectedEmployee){
 
       if(data[i]['PRIN_EFIS'] == emp_efis){
         current_manager = data[i]['DEPUTY_NAME']
-
       }
+
+
   }
 }else if(role == "Chief"){
     for(var i=0; i<data.length; i++){  

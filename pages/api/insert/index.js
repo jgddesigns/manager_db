@@ -1,6 +1,3 @@
-// POST: create new audit
-// GET : list all audits
-// DELETE : Delete Audit 
 import { prisma2 } from '../../../utils/prisma/prisma2'
 
 export default async function handler(req,res){
@@ -8,7 +5,7 @@ export default async function handler(req,res){
         case 'GET': 
             const managers = await prisma2.manager_dashboard_tbl.findMany({
             }).then(managers => {
-                res.status(200).send(managers) //Send user objects back to client
+                res.status(200).send(managers)
             }).catch(err => {
                 res.status(500).json({
                     error: err
@@ -17,26 +14,6 @@ export default async function handler(req,res){
             break;
     
             case 'PATCH':
-            
-                // region: a['REGION'],
-                // district: a['DISTRICT'],
-                // tram: a['TRAM'],
-                // efis: a['EFIS'],
-                // deputy_name: a['DEPUTY_NAME'],
-                // deputy_email: a['DEPUTY_EMAIL'],
-                // prin_unit: a['PRIN_UNIT'],
-                // prin_efis: a['PRIN_EFIS'],
-                // prin_name: a['PRIN_NAME'],
-                // prin_email: a['PRIN_EMAIL'],
-                // chief_unit: a['CHIEF_UNIT'],
-                // chief_efis: a['CHIEF_EFIS'],
-                // chief_name: a['CHIEF_NAME'],
-                // chief_email: a['CHIEF_EMAIL'],
-                // ste_unit: a['STE_UNIT'],
-                // ste_efis: a['STE_EFIS'],
-                // ste_name: a['STE_NAME'],
-                // ste_email: a['STE_EMAIL'],
-
                 const region = req.body['region']
                 const district = req.body['district']
                 const tram = req.body['tram']
@@ -61,15 +38,15 @@ export default async function handler(req,res){
                 const emp_email = req.body['emp_email']
                 const emp_district = req.body['emp_district']
                 const emp_efis = req.body['emp_efis']
+                const emp_tram = req.body['emp_tram']
         
                 if (emp_role == "Principal"){
-        
                     const principal = await prisma2.manager_dashboard_tbl.create({
                         data: {
                             REGION: region,
                             DISTRICT: district,
-                            TRAM: tram,
-                            EFIS: efis, //
+                            TRAM: emp_tram,
+                            EFIS: efis, 
                             DEPUTY_NAME:  deputy_name,
                             DEPUTY_EMAIL: deputy_email,
                             PRIN_UNIT: prin_unit,
@@ -92,17 +69,13 @@ export default async function handler(req,res){
                             error: err.message
                         })
                     })
-
-                   
-        
                 }else if(emp_role == "Chief"){
-
                     const chief = await prisma2.manager_dashboard_tbl.create({
                         data: {
                             REGION: region,
                             DISTRICT: district,
-                            TRAM: tram,
-                            EFIS: efis, //
+                            TRAM: emp_tram,
+                            EFIS: efis, 
                             DEPUTY_NAME:  deputy_name,
                             DEPUTY_EMAIL: deputy_email,
                             PRIN_UNIT: prin_unit,
@@ -125,16 +98,13 @@ export default async function handler(req,res){
                             error: err.message
                         })
                     })
-
-
                 }else if(emp_role == "STE"){
-
                     const ste = await prisma2.manager_dashboard_tbl.create({
                         data: {
                             REGION: region,
                             DISTRICT: district,
-                            TRAM: tram,
-                            EFIS: efis, //
+                            TRAM: emp_tram,
+                            EFIS: efis, 
                             DEPUTY_NAME:  deputy_name,
                             DEPUTY_EMAIL: deputy_email,
                             PRIN_UNIT: prin_unit,
@@ -157,24 +127,17 @@ export default async function handler(req,res){
                             error: err.message
                         })
                     })
-
-
                 }else{
                     console.log("An update role error has occured.")
                 }
         
-        
                 break;
-        
+
             default:
                 res.status(405).json({
                     message: "Method not allowed"
                 })
                 break;
-            
-            }
     }
+}
 
-
-
-    // end of switch

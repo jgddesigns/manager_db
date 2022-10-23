@@ -75,7 +75,8 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
       emp_efis: searchResults[3][index],
       emp_district: searchResults[4][index],
       emp_tram: searchResults[5][index],
-      emp_manager: searchResults[6][index]
+      emp_manager: searchResults[6][index],
+      emp_children: searchResults[7][index]
     }
   })
 
