@@ -7,6 +7,7 @@ export default function SearchProcess(input, data){
   var filtered_efis = []
   var filtered_district = []
   var filtered_tram = []
+  var filtered_unit = []
   var filtered_manager = []
   var filtered_children = []
   var display_package = []
@@ -34,6 +35,7 @@ export default function SearchProcess(input, data){
             filtered_efis.push(users[i]['EFIS'])
             filtered_district.push(users[i]['DISTRICT'])
             filtered_tram.push(users[i]['TRAM'])
+            filtered_unit.push('')
             filtered_manager.push('')
             if(users[i]['PRIN_NAME']){
               filtered_children.push(true)      
@@ -61,6 +63,7 @@ export default function SearchProcess(input, data){
             filtered_efis.push(users[i]['PRIN_EFIS'])
             filtered_district.push(users[i]['DISTRICT'])
             filtered_tram.push(users[i]['TRAM'])
+            filtered_unit.push(users[i]['PRIN_UNIT'])
             filtered_manager.push(users[i]['DEPUTY_NAME'])
             if(users[i]['CHIEF_NAME']){
               filtered_children.push(true)      
@@ -88,6 +91,7 @@ export default function SearchProcess(input, data){
             filtered_efis.push(users[i]['CHIEF_EFIS'])
             filtered_district.push(users[i]['DISTRICT'])
             filtered_tram.push(users[i]['TRAM'])
+            filtered_unit.push(users[i]['CHIEF_UNIT'])
             filtered_manager.push(users[i]['STE_NAME'])
             if(users[i]['STE_NAME']){
               filtered_children.push(true)      
@@ -115,6 +119,7 @@ export default function SearchProcess(input, data){
           filtered_efis.push(users[i]['STE_EFIS'])
           filtered_district.push(users[i]['DISTRICT'])
           filtered_tram.push(users[i]['TRAM'])
+          filtered_unit.push(users[i]['STE_UNIT'])
           filtered_manager.push(users[i]['CHIEF_NAME'])
           filtered_children.push(true)
         }
@@ -126,6 +131,7 @@ export default function SearchProcess(input, data){
         filtered_email = []
         filtered_roles = []
         filtered_efis = []
+        filtered_unit = []
         filtered_district = []
         filtered_tram = []
         filtered_manager = [] 
@@ -133,16 +139,9 @@ export default function SearchProcess(input, data){
     }
   }
 
-    display_package.push(filtered_users, filtered_email, filtered_roles, filtered_efis, filtered_district, filtered_tram, filtered_manager, filtered_children)
+    display_package.push(filtered_users, filtered_email, filtered_roles, filtered_efis, filtered_unit, filtered_district, filtered_tram, filtered_manager, filtered_children)
 
     return display_package
 }
 
 
-// for (var i = 0; i < input.length; i++) {
-//   var datum = input[i];
-//   if (!d[datum.key]) {
-//       d[datum.key] = [];
-//   }
-//   d[datum.key].push(datum.val);
-// }
