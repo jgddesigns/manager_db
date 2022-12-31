@@ -51,24 +51,17 @@ export default function Sidebar() {
           fetch("/ManagerDB/api/managers/", {
             method: "GET",
           }).then((res) => {
-            res.json().then((data) => {
-        
-              setEmployeeList(data)
-    
+            res.json().then((data) => {       
+              setEmployeeList(data)   
               setEmployees(HierarchyProcess(data, '04'))
-              
-              // console.log(Employees[0].principals[0].chiefs[0].stes[0].ste_name[0])
-              
-            
             }).then(()=>{
               setIsHierarchy(true)
               setHierarchyLoad(false)
-
             })
           })
       }else if("Insert Employee"){
         
-        setIsInsert(true)
+        document.getElementById("insert_test").click()
 
       }else if("User Guide"){
 
@@ -102,7 +95,7 @@ export default function Sidebar() {
         <div className="sidebar-icon group bg-gray-600 text-[#75a3cc] cursor-default" text={`Logged in as ${user.UserName}`}>{getUserInitials(user.UserName)}</div>
         <SideBarIcon icon={<FaEdit/>} text={"Insert Employee"}/>
        <SideBarIcon icon={<FaSitemap/>} text={"Hierarchy"}/>
-       <SideBarIcon icon={<FaBook/>} text={"User Guide"}/>
+       {/* <SideBarIcon icon={<FaBook/>} text={"User Guide"}/> */}
        <SideBarIcon icon={<FaBug/>} text={"Report a Bug"}/>
         <SideBarIcon icon={<FaTh/>} text={"Dashboard"}  />
         </div>
@@ -125,7 +118,7 @@ export default function Sidebar() {
         </div>
       </div>
     :null}
-
+{/* 
     {isInsert ?
       <div>
         <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
@@ -133,7 +126,7 @@ export default function Sidebar() {
         <Insert user={user} setIsInsert={setIsInsert}/>
         </div>
       </div>
-    :null}
+    :null} */}
 
       {HierarchyStart ?
       <div>

@@ -1,11 +1,10 @@
 import {React, useState, useEffect} from 'react'
 import {FaEdit} from 'react-icons/fa'
-import  HierarchyProcess from '../../utils/helpers/HierarchyProcess'
 import  InsertProcess from '../../utils/helpers/InsertProcess'
 import  InsertDataProcess from '../../utils/helpers/InsertDataProcess'
 import { Circles } from 'react-loader-spinner'
 
-export default function Insert({setIsInsert}) {
+export default function Insert({setInsert, setIsInsert}) {
     const [District, setDistrict] = useState('01')
     const [Role, setRole] = useState('Principal')
     const [NewSuperior, setNewSuperior] = useState('Andy Alvarado')
@@ -35,7 +34,7 @@ export default function Insert({setIsInsert}) {
     const closeHandler = () => {
         setIsInsert(false)
     }
-
+    
     const insertData = () => {
        setInsertLoad(true)
         fetch("/ManagerDB/api/managers/", {
@@ -90,7 +89,15 @@ export default function Insert({setIsInsert}) {
                 setComplete(true)
                 setInsertLoad(false)
                 setIsInsertClicked(true)
+                fetch("/ManagerDB/api/managers/", {
+                    method: "GET",
+                }).then((res) => {
+                    res.json().then((data) => {
+                     setInsert(data)
+                     console.log(data)
+                    })
                 })
+            })
         }
         if(!NameCheck(Name)){
             setValidName(false)
@@ -116,6 +123,7 @@ export default function Insert({setIsInsert}) {
         }else{
             setValidTRAM(true)
         }
+
     }
 
     const nameChangeHandler = (e) => {

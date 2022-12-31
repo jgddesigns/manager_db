@@ -5,45 +5,31 @@ import withReactContent from 'sweetalert2-react-content'
 import { FaSort } from 'react-icons/fa'
 import BugReport from './BugReport'
 
-
-
 export default function ManagerDBView({searchResults, setSearchInput, searchInput, setAllManagerDB}) {
   const [selectedUser, setSelectedUser] = useState(null)
   const [reloadPopup, setReloadPopup] = useState(false)
   const [loadingGraphic, setLoadingGraphic] = useState(false)
-
   const [SortBy, setSortBy] = useState("Name")
   const [ToggleName, setToggleName] = useState(false)
   const [ToggleEFIS, setToggleEFIS] = useState(false)
   const [ToggleRole, setToggleRole] = useState(false)
   const [ToggleDistrict, setToggleDistrict] = useState(false)
-
   const [isBugReport, setIsBugReport] = useState(false)
-
   const MySwal = withReactContent(Swal)
   
-
   useEffect(() => {
     if(selectedUser == null && !reloadPopup){
-      
       setSearchInput("")
-      
       fetch("/ManagerDB/api/managers/", {
         method: "GET",
       }).then((res) => {
         res.json().then((data) => {
-
           setAllManagerDB(data)
-         
         }).then(()=>{
-
           setLoadingGraphic(false)
-
         })
       });
-      
     }
-
   }, [selectedUser])
 
   // Fire on Change of SearchInput when a User is Selected.
@@ -101,19 +87,15 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   }
 
   const SetSearch = (e) => {
-
     setSortBy("Name")
     setToggleName(true)
     setSearchInput(e.target.value);
-
   }
 
-
   const SetClear = (e) => {
-
     setSearchInput("");
     setSelectedUser(null);
-
+    document.getElementById("search_id").value = "";
   }
 
   const sortBy = (results) => {
@@ -144,7 +126,6 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
     return results.sort((a, b) => (a.emp_name > b.emp_name) ? 1 : -1)
   }
 
-  
   const renderResults = (results) =>{
     return(
       // /Map each result to a row in a table.
@@ -186,11 +167,9 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
                 Employees 
             </div>
 
-           
-          
             <input 
             onChange={(e) => { if(selectedUser != null) changeDisplay() ; SetSearch(e) }}
-            placeholder="Search by Name, EFIS"
+            placeholder="Search by Name, EFIS" id="search_id"
             className="inline-block form-control px-3 py-1.5text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none placeholder:pl-2 h-8 rounded float-right shadow-lg"
             title='Search bar'
             />
@@ -205,8 +184,6 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
         :
             <div>
                 <BugReport/>
-                {/* <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
-                </div> */}
             </div>
         }
     </div>

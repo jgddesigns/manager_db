@@ -8,15 +8,12 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
     const [ChiefMap, setChiefMap] = useState(false)
     const [PrinMap, setPrinMap] = useState(false)
     const [STEMap, setSTEMap] = useState(false)
-
     const [ChiefData, setChiefData] = useState([])
     const [STEData, setSTEData] = useState([])
-
     const [PrevChiefTarget, setPrevChiefTarget] = useState(null)
     const [PrevSTETarget, setPrevSTETarget] = useState(null)
     const [Employees, setEmployees] = useState(Employee)
     const [Loading, setLoading] = useState(false)
-
 
     const selectedTextDeputy = {
         textA: "cursor-pointer text-blue-400",
@@ -34,7 +31,6 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
         textA: "ml-2 cursor-pointer text-blue-400",
         textB: "ml-2 font-bold text-green-400 cursor-pointer",
     }
-
 
     var ste = []
     var chief = []
@@ -176,21 +172,26 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
                 <div className="grid grid-rows-1 grid-cols-2">
                     <div className="bg-[#70AA9B] w-48 h-16 rounded-br-lg z-8">
                         <div className="float-left pl-4 pt-4 text-2xl font-bold text-white">Hierarchy</div>
-                        <FaRegCaretSquareDown className="fixed text-md  text-gray-300 ml-[22%] mt-[3.25rem] pointer-events-none"/> 
-                        <select className="px-3 text-xl ml-[10%] mt-[20%] w-36 border rounded h-10  shadow appearance-none mb-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => getEmployees(e.target.value)} id="managerName" >
-                            <option value="01">District 01</option>
-                            <option value="02">District 02</option>
-                            <option value="03">District 03</option>
-                            <option value="04">District 04</option>
-                            <option value="05">District 05</option>
-                            <option value="06">District 06</option>
-                            <option value="07">District 07</option>
-                            <option value="08">District 08</option>
-                            <option value="09">District 09</option>
-                            <option value="10">District 10</option>
-                            <option value="11">District 11</option>
-                            <option value="11">District 12</option>
-                        </select>        
+                        
+                        {Employees[0].deputy_name ?
+                            <FaRegCaretSquareDown className="fixed text-md  text-gray-300 ml-[22%] mt-[3.25rem] pointer-events-none"/> 
+                        : null} 
+                        {Employees[0].deputy_name ?
+                            <select className="px-3 text-xl ml-[10%] mt-[20%] w-36 border rounded h-10  shadow appearance-none mb-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => getEmployees(e.target.value)} id="managerName" >
+                                <option value="01">District 01</option>
+                                <option value="02">District 02</option>
+                                <option value="03">District 03</option>
+                                <option value="04">District 04</option>
+                                <option value="05">District 05</option>
+                                <option value="06">District 06</option>
+                                <option value="07">District 07</option>
+                                <option value="08">District 08</option>
+                                <option value="09">District 09</option>
+                                <option value="10">District 10</option>
+                                <option value="11">District 11</option>
+                                <option value="12">District 12</option>
+                            </select>  
+                        :null}        
                     </div>  
                     <div className="ml-[165%] mt-[10%]">
                         <FaSitemap className="text-5xl text-[#75a3cc]"/>
