@@ -197,6 +197,7 @@ export default function Insert({setIsInsert}) {
         setName([])
         setEmail([])
         setEFIS([])
+        setTRAM([])
         setValidName(true)
         setValidEFIS(true)
         setValidEmail(true)
@@ -291,7 +292,7 @@ export default function Insert({setIsInsert}) {
                     </div>
                     <div className="w-[100%] ml-[28%] text-red-400">
                         {!ValidName ? <div>
-                            Name is not valid. (Jane Doe)
+                            Name is not valid. (Employee Name)
                         </div>:null} 
                         {!ValidEFIS ? <div>
                             EFIS Unit # is not valid. (1111)

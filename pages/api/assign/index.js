@@ -43,10 +43,6 @@ export default async function handler(req,res){
                             },
                         },
                         data: {
-                            PRIN_NAME: {set: update_name},
-                            PRIN_UNIT: {set: update_unit},
-                            PRIN_EMAIL: {set: update_email},
-                            PRIN_EFIS: {set: update_efis},
                             CHIEF_NAME: {set: chief_name},
                             CHIEF_UNIT: {set: chief_unit},
                             CHIEF_EMAIL: {set: chief_email},
@@ -71,46 +67,10 @@ export default async function handler(req,res){
                             },
                         },
                         data: {
-                            PRIN_NAME: {set: prin_name},
-                            PRIN_UNIT: {set: prin_unit},
-                            PRIN_EMAIL: {set: prin_email},
-                            PRIN_EFIS: {set: prin_efis},
-                            CHIEF_NAME: {set: update_name},
-                            CHIEF_UNIT: {set: update_unit},
-                            CHIEF_EMAIL: {set: update_email},
-                            CHIEF_EFIS: {set: update_efis},
                             STE_NAME: {set: ste_name},
                             STE_UNIT: {set: ste_unit},
                             STE_EMAIL: {set: ste_email},
                             STE_EFIS: {set: ste_efis},
-                        },
-                    }).then(data => {
-                        res.send(data) 
-                    }).catch(err => {
-                        res.status(500).json({
-                            error: err.message
-                        })
-                    })              
-                }else if (update_role == "STE"){
-                    const chief = await prisma2.manager_dashboard_tbl.updateMany({
-                        where: {
-                            STE_EFIS: {
-                                contains: update_efis,
-                            },
-                        },
-                        data: {
-                            PRIN_NAME: {set: prin_name},
-                            PRIN_UNIT: {set: prin_unit},
-                            PRIN_EMAIL: {set: prin_email},
-                            PRIN_EFIS: {set: prin_efis},
-                            CHIEF_NAME: {set: chief_name},
-                            CHIEF_UNIT: {set: chief_unit},
-                            CHIEF_EMAIL: {set: chief_email},
-                            CHIEF_EFIS: {set: chief_efis},
-                            STE_NAME: {set: update_name},
-                            STE_UNIT: {set: update_unit},
-                            STE_EMAIL: {set: update_email},
-                            STE_EFIS: {set: update_efis},
                         },
                     }).then(data => {
                         res.send(data) 

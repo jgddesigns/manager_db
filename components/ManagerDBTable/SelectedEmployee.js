@@ -10,6 +10,7 @@ import DeputyProcess from '../../utils/helpers/DeputyProcess'
 import { FaRegCaretSquareDown } from 'react-icons/fa'
 import { prisma } from '../../prisma/clients/client1'
 
+
 export default function SelectedEmployee({selectedEmployee, setSelectedUser, setLoadingGraphic}) {
     const MySwal = withReactContent(Swal)
     const [newEmail, setNewEmail] = useState("")
@@ -22,20 +23,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
     const [user,setUser] = useState({}) 
     const [Superiors, setSuperiors] = useState([],[],[])
     const [ChangedManager, setChangedManager] = useState([],[])
-    const [NewPrincipalName, setNewPrincipalName] = useState("")
-    const [NewPrincipalEFIS, setNewPrincipalEFIS] = useState([])
-    const [NewPrincipalEmail, setNewPrincipalEmail] = useState([])
-    const [NewPrincipalUnit, setNewPrincipalUnit] = useState([])
-    const [NewChiefName, setNewChiefName] = useState([])
-    const [NewChiefEFIS, setNewChiefEFIS] = useState([])
-    const [NewChiefEmail, setNewChiefEmail] = useState([])
-    const [NewChiefUnit, setNewChiefUnit] = useState([])
-    const [NewSTEName, setNewSTEName] = useState([])
-    const [NewSTEEFIS, setNewSTEEFIS] = useState([])
-    const [NewSTEEmail, setNewSTEEmail] = useState([])
-    const [NewSTEUnit, setNewSTEUnit] = useState([])
-    const [DeputyEFIS, setDeputyEFIS] = useState([])
-    const [ErrorFields, setErrorFields] = useState([])
+    const [AssignCheck, setAssignCheck] = useState(false)
 
     useEffect(() => {
         fetch("/ManagerDB/api/current-user/", {
@@ -244,211 +232,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
           return true
     }
 
-
-    // const validatePrinName = (name) => {
-    //     var valid = validateName(name)
-    //     var prinName = document.getElementById('assign_prin_name')
-    //     var errorPrin = document.getElementById('error_assign_prin')
-    //     if(valid){
-    //         if(prinName.classList.contains('border-red-500')){
-    //             prinName.classList.remove('border-red-500')
-    //             errorPrin.hidden = true
-    //         }
-    //         if(prinName.value.length > 0){
-    //             prinName.classList.add('border-cyan-400')
-    //         }else{
-    //             prinName.classList.remove('border-cyan-400') 
-    //         }
-    //     }
-    // }
-
-    // const validatePrinUnit = (unit) => {
-    //     var valid = validateUnit(unit)
-    //     var prinUnit = document.getElementById('assign_prin_unit')
-    //     var errorPrin = document.getElementById('error_assign_prin')
-    //     if(valid){
-    //         if(prinUnit.classList.contains('border-red-500')){
-    //             prinUnit.classList.remove('border-red-500')
-    //             errorPrin.hidden = true
-    //         }
-    //         if(prinUnit.value.length > 0){
-    //             prinUnit.classList.add('border-cyan-400')
-    //         }else{
-    //             prinUnit.classList.remove('border-cyan-400') 
-    //         }
-    //     }
-    // }
-
-    // const validatePrinEFIS = (efis) => {
-    //     var valid = validateEFIS(efis)
-    //     var prinEFIS = document.getElementById('assign_prin_efis')
-    //     var errorPrin = document.getElementById('error_assign_prin')
-    //     if(valid){
-    //         if(prinEFIS.classList.contains('border-red-500')){
-    //             prinEFIS.classList.remove('border-red-500')
-    //             errorPrin.hidden = true
-    //         }
-    //         if(prinEFIS.value.length > 0){
-    //             prinEFIS.classList.add('border-cyan-400')
-    //         }else{
-    //             prinEFIS.classList.remove('border-cyan-400') 
-    //         }
-    //     }
-    // }
-
-    // const validatePrinEmail = (email) => {
-    //     var valid = validateEmail(email)
-    //     var prinEmail = document.getElementById('assign_prin_email')
-    //     var errorPrin = document.getElementById('error_assign_prin')
-    //     if(valid){
-    //         if(prinEmail.classList.contains('border-red-500')){
-    //             prinEmail.classList.remove('border-red-500')
-    //             errorPrin.hidden = true
-    //         }
-    //         if(prinEmail.value.length > 0){
-    //             prinEmail.classList.add('border-cyan-400')
-    //         }else{
-    //             prinEmail.classList.remove('border-cyan-400') 
-    //         }
-    //     }
-    // }
-
-    // const validateChiefName = (name) => {
-    //     var valid = validateName(name)
-    //     var chiefName = document.getElementById('assign_chief_name')
-    //     var errorChief = document.getElementById('error_assign_chief')
-    //     if(valid){
-    //         if(chiefName.classList.contains('border-red-500')){
-    //             chiefName.classList.remove('border-red-500')
-    //             errorChief.hidden = true
-    //         }
-    //         if(chiefName.value.length > 0){
-    //             chiefName.classList.add('border-cyan-400')
-    //         }else{
-    //             chiefName.classList.remove('border-cyan-400') 
-    //         }
-    //     }
-    // }
-
-    // const validateChiefUnit = (unit) => {
-    //     var valid = validateUnit(unit)
-    //     var chiefUnit = document.getElementById('assign_chief_unit')
-    //     var errorChief = document.getElementById('error_assign_chief')
-    //     if(valid){
-    //         if(chiefUnit.classList.contains('border-red-500')){
-    //             chiefUnit.classList.remove('border-red-500')
-    //             errorChief.hidden = true
-    //         }
-    //         if(chiefUnit.value.length > 0){
-    //             chiefUnit.classList.add('border-cyan-400')
-    //         }else{
-    //             chiefUnit.classList.remove('border-cyan-400') 
-    //         }
-    //     }
-    // }
-
-    // const validateChiefEFIS = (efis) => {
-    //     var valid = validateEFIS(efis)
-    //     var chiefEFIS = document.getElementById('assign_chief_efis')
-    //     var errorChief = document.getElementById('error_assign_chief')
-    //     if(valid){
-    //         if(chiefEFIS.classList.contains('border-red-500')){
-    //             chiefEFIS.classList.remove('border-red-500')
-    //             errorChief.hidden = true
-    //         }
-    //         if(chiefEFIS.value.length > 0){
-    //             chiefEFIS.classList.add('border-cyan-400')
-    //         }else{
-    //             chiefEFIS.classList.remove('border-cyan-400') 
-    //         }
-    //     }
-    // }
-
-    // const validateChiefEmail = (email) => {
-    //     var valid = validateEmail(email)
-    //     var chiefEmail = document.getElementById('assign_chief_email')
-    //     var errorChief = document.getElementById('error_assign_chief')
-    //     if(valid){
-    //         if(chiefEmail.classList.contains('border-red-500')){
-    //             chiefEmail.classList.remove('border-red-500')
-    //             errorChief.hidden = true
-    //         }
-    //         if(chiefEmail.value.length > 0){
-    //             chiefEmail.classList.add('border-cyan-400')
-    //         }else{
-    //             chiefEmail.classList.remove('border-cyan-400') 
-    //         }
-    //     }
-    // }
-
-    // const validateSTEName = (name) => {
-    //     var valid = validateName(name)
-    //     var steName = document.getElementById('assign_ste_name')
-    //     var errorSTE = document.getElementById('error_assign_ste')
-    //     if(valid){
-    //         if(steName.classList.contains('border-red-500')){
-    //             steName.classList.remove('border-red-500')
-    //             errorSTE.hidden = true
-    //         }
-    //         if(steName.value.length > 0){
-    //             steName.classList.add('border-cyan-400')
-    //         }else{
-    //             steName.classList.remove('border-cyan-400') 
-    //         }
-    //     }
-    // }
-
-    // const validateSTEUnit = (unit) => {
-    //     var valid = validateUnit(unit)
-    //     var steUnit = document.getElementById('assign_ste_unit')
-    //     var errorSTE = document.getElementById('error_assign_ste')
-    //     if(valid){
-    //         if(steUnit.classList.contains('border-red-500')){
-    //             steUnit.classList.remove('border-red-500')
-    //             errorSTE.hidden = true
-    //         }
-    //         if(steUnit.value.length > 0){
-    //             steUnit.classList.add('border-cyan-400')
-    //         }else{
-    //             steUnit.classList.remove('border-cyan-400') 
-    //         }
-    //     }
-    // }
-
-    // const validateSTEEFIS = (efis) => {
-    //     var valid = validateEFIS(efis)
-    //     var steEFIS = document.getElementById('assign_ste_efis')
-    //     var errorSTE = document.getElementById('error_assign_ste')
-    //     if(valid){
-    //         if(steEFIS.classList.contains('border-red-500')){
-    //             steEFIS.classList.remove('border-red-500')
-    //             errorSTE.hidden = true
-    //         }
-    //         if(steEFIS.value.length > 0){
-    //             steEFIS.classList.add('border-cyan-400')
-    //         }else{
-    //             steEFIS.classList.remove('border-cyan-400') 
-    //         }
-    //     }
-    // }
-
-    // const validateSTEEmail = (email) => {
-    //     var valid = validateEmail(email)
-    //     var steEmail = document.getElementById('assign_ste_email')
-    //     var errorSTE = document.getElementById('error_assign_ste')
-    //     if(valid){
-    //         if(steEmail.classList.contains('border-red-500')){
-    //             steEmail.classList.remove('border-red-500')
-    //             errorSTE.hidden = true
-    //         }
-    //         if(steEmail.value.length > 0){
-    //             steEmail.classList.add('border-cyan-400')
-    //         }else{
-    //             steEmail.classList.remove('border-cyan-400') 
-    //         }
-    //     }
-    // }
-
     const emailChangeHandler = (val) => {
         var emailChange = document.getElementById('userEmail')
         var noChanges = document.getElementById('no_changes')
@@ -614,14 +397,36 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
     }
 
     const clearErrorHandler = (e) => {
-        var text_id = e.target.id.split("_")
-        text_id = text_id[1] + "_" + text_id[2] + "_text"
-        if(e.target.value != ""){
+        var text_id_split = e.target.id.split("_")
+        var text_id = text_id_split[1] + "_" + text_id_split[2] + "_text"
+
+        try{ 
+            var check_value = document.getElementById(e.target.id).value
+        }catch{
+            check_value = ""
+        }
+
+        if(text_id_split[2] == "name"){
+            var validate = validateName(check_value)
+        }else if(text_id_split[2] == "unit"){
+            var validate = validateUnit(check_value)
+        }else if(text_id_split[2] == "efis"){
+            var validate = validateEFIS(check_value)
+        }else if(text_id_split[2] == "email"){
+            var validate = validateEmail(check_value)
+        }
+
+        if(!validate){
+            document.getElementById(e.target.id).classList.add("border-red-500")
+            document.getElementById(text_id).classList.add("text-red-500")
+        }else{
+            document.getElementById(e.target.id).classList.remove("border-red-500")
+            document.getElementById(text_id).classList.remove("text-red-500")
+        }
+
+        if(e.target.value == ""){
             document.getElementById(e.target.id).classList.remove('border-red-500')
             document.getElementById(text_id).classList.remove('text-red-500')
-        }else{
-            document.getElementById(e.target.id).classList.add('border-red-500')
-            document.getElementById(text_id).classList.add('text-red-500')
         }
 
         var error = false
@@ -630,6 +435,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         var unit_correct = ""
         var efis_correct = ""
         var email_correct = ""
+
         try{
             if(document.getElementById('assign_prin_name').classList.contains('border-red-500')){
                 error = true
@@ -638,7 +444,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                 }
                 error_fields = error_fields + " Principal Name"
                 if(name_correct == ""){
-                    name_correct =  "</br>Name: Dot Engineer"
+                    name_correct =  "</br>Name: Engineer Name"
                 }
             }
         }catch{}
@@ -686,7 +492,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                 }
                 error_fields = error_fields + " Chief Name"
                 if(name_correct == ""){
-                    name_correct = "</br>Name: Dot Engineer"
+                    name_correct = "</br>Name: Engineer Name"
                 }
             }
         }catch{}
@@ -734,7 +540,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                 }
                 error_fields = error_fields + " STE Name"
                 if(name_correct == ""){
-                    name_correct = "</br>Name: Dot Engineer"
+                    name_correct = "</br>Name: Engineer Name"
                 }
             }
         }catch{}
@@ -775,12 +581,11 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             }
         }catch{}
 
-        console.log(error)
         if(!error){
             document.getElementById('error_assign').hidden = true
         }else{
             document.getElementById('error_assign').hidden = false
-            document.getElementById("error_assign").innerHTML = "Please correct the following fields:<br><br>" + error_fields + "<br>" + name_correct + unit_correct + efis_correct + email_correct
+            document.getElementById("error_assign").innerHTML = "Please correct the following fields:<br><br>" + error_fields + "<br><br><u>Example</u>:</label>" + name_correct + unit_correct + efis_correct + email_correct
         }
     }
 
@@ -792,20 +597,20 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                     <p className="text-sm"> Enter new data for:</p>
                     <p className="font-bold italic">{selectedEmployee.emp_name}, EFIS #{selectedEmployee.emp_efis}</p>
 
-                    {selectedEmployee.emp_role == "Deputy" ?
+                    {(selectedEmployee.emp_role == "Deputy") ?
                     <div className="grid grid-rows-2 mt-8 ml-[17%]">
                             <span className="mr-[20%] mt-[15px]" id="prin_name_text">Principal Name</span>
                             <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 leading-tight focus:outline-none focus:shadow-outline" id="assign_prin_name" onChange={(e) =>clearErrorHandler(e)}></input>
                             <span className="mr-[20%] mt-[15px]" id="prin_unit_text">Principal Unit</span>
                             <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 leading-tight focus:outline-none focus:shadow-outline" id="assign_prin_unit" onChange={(e) =>clearErrorHandler(e)}></input>
                             <span className="mr-[20%] mt-[15px]" id="prin_efis_text">Principal EFIS</span>
-                            <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 leading-tight focus:outline-none focus:shadow-outline" id="assign_prin_email" onChange={(e) =>clearErrorHandler(e)}></input>
-                            <span className="mr-[20%] mt-[15px]" id="prin_email_text">Principal Email</span>
                             <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 leading-tight focus:outline-none focus:shadow-outline" id="assign_prin_efis" onChange={(e) =>clearErrorHandler(e)}></input>
+                            <span className="mr-[20%] mt-[15px]" id="prin_email_text">Principal Email</span>
+                            <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 leading-tight focus:outline-none focus:shadow-outline" id="assign_prin_email" onChange={(e) =>clearErrorHandler(e)}></input>
                         </div>
                     : null }
 
-                    {selectedEmployee.emp_role == "Deputy" || selectedEmployee.emp_role == "Principal" ?
+                    {(selectedEmployee.emp_role == "Deputy" ||selectedEmployee.emp_role == "Principal") ?
                         <div className="grid grid-rows-2 mt-8 ml-[17%]"> 
                             <span className="mr-[20%] mt-[15px]" id="chief_name_text">Chief Name</span>
                             <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 leading-tight focus:outline-none focus:shadow-outline" id="assign_chief_name" onChange={(e) =>clearErrorHandler(e)}></input>
@@ -830,10 +635,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                             <input className="px-3 text-xl w-72 rounded h-10 shadow appearance-none border py-2 leading-tight focus:outline-none focus:shadow-outline" id="assign_ste_email" onChange={(e) =>clearErrorHandler(e)}></input>
                         </div>
                     : null }
-                    <div className="grid grid-rows-auto grid-cols-1 w-88 h-10 ml-2 mb-4">
-                        <span className="text-red-400 text-center font-bold mt-8" id="error_assign" hidden></span> 
+                    <div className="w-64 ml-[22%] mt-8">
+                        <span className="text-red-400 text-center text-base mt-8" id="error_assign" hidden></span> 
                     </div>
-                    
                 </div>
             ),   
             showCancelButton: true ,
@@ -861,11 +665,18 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                     }
                     var valid_prin_efis = validateEFIS(prin_efis)
                     try{ 
-                        var prin_email = document.getElementById("assign_prin_name").value
+                        var prin_email = document.getElementById("assign_prin_email").value
                     }catch{
                         prin_email = ""
                     }
                     var valid_prin_email = validateEmail(prin_email) 
+                  
+                    if(selectedEmployee.emp_role == "Principal" || selectedEmployee.emp_role == "Chief"){
+                        valid_prin_name = true
+                        valid_prin_unit = true
+                        valid_prin_efis = true
+                        valid_prin_email = true
+                    }
                     try{ 
                         var chief_name = document.getElementById("assign_chief_name").value 
                     }catch{
@@ -885,11 +696,17 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                     }
                     var valid_chief_efis = validateEFIS(chief_efis)
                     try{ 
-                        var chief_email = document.getElementById("assign_chief_name").value 
+                        var chief_email = document.getElementById("assign_chief_email").value 
                     }catch{
                         chief_email = ""
                     }
                     var valid_chief_email = validateEmail(chief_email)
+                    if(selectedEmployee.emp_role == "Chief"){
+                        valid_chief_name = true
+                        valid_chief_unit = true
+                        valid_chief_efis = true
+                        valid_chief_email = true
+                    }
                     try{ 
                         var ste_name = document.getElementById("assign_ste_name").value 
                     }catch{
@@ -909,118 +726,18 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                     }
                     var valid_ste_efis = validateEFIS(ste_efis)
                     try{ 
-                        var ste_email = document.getElementById("assign_ste_name").value 
+                        var ste_email = document.getElementById("assign_ste_email").value 
                     }catch{
                         ste_email = ""
                     }
                     var valid_ste_email = validateEmail(ste_email)
-
-                    var error_fields = ""
-
-                    if((selectedEmployee.emp_role == "Deputy") && !valid_prin_name){
-                        if(error_fields != ""){
-                            error_fields = error_fields + ","
-                        }
-                        error_fields = error_fields + " Principal Name"
-                        document.getElementById("assign_prin_name").classList.add("border-red-500")
-                        document.getElementById("prin_name_text").classList.add("text-red-500")
-                        
+                    if(selectedEmployee.emp_role == "STE"){
+                        valid_ste_name = true
+                        valid_ste_unit = true
+                        valid_ste_efis = true
+                        valid_ste_email = true
                     }
-                    if((selectedEmployee.emp_role == "Deputy") &&!valid_prin_unit){
-                        if(error_fields != ""){
-                            error_fields = error_fields + ","
-                        }
-                        error_fields = error_fields + " Principal Unit"
-                        document.getElementById("assign_prin_unit").classList.add("border-red-500")
-                        document.getElementById("prin_unit_text").classList.add("text-red-500")
-                    }
-                    if((selectedEmployee.emp_role == "Deputy") &&!valid_prin_efis){
-                        if(error_fields != ""){
-                            error_fields = error_fields + ","
-                        }
-                        error_fields = error_fields + " Principal EFIS"
-                        document.getElementById("assign_prin_efis").classList.add("border-red-500")
-                        document.getElementById("prin_efis_text").classList.add("text-red-500")
-                    }
-                    if((selectedEmployee.emp_role == "Deputy") &&!valid_prin_email){
-                        if(error_fields != ""){
-                            error_fields = error_fields + ","
-                        }
-                        error_fields = error_fields + " Principal Email"
-                        document.getElementById("assign_prin_email").classList.add("border-red-500")
-                        document.getElementById("prin_email_text").classList.add("text-red-500")
-                    }
-                    if(((selectedEmployee.emp_role == "Deputy") || (selectedEmployee.emp_role == "Principal")) && !valid_chief_name){
-                        if(error_fields != ""){
-                            error_fields = error_fields + ","
-                        }
-                        error_fields = error_fields + " Chief Name"
-                        document.getElementById("assign_chief_name").classList.add("border-red-500")
-                        document.getElementById("chief_name_text").classList.add("text-red-500")
-                    }
-                    if(((selectedEmployee.emp_role == "Deputy") || (selectedEmployee.emp_role == "Principal")) && !valid_chief_unit){
-                        if(error_fields != ""){
-                            error_fields = error_fields + ","
-                        }
-                        error_fields = error_fields + " Chief Unit"
-                        document.getElementById("assign_chief_unit").classList.add("border-red-500")
-                        document.getElementById("chief_unit_text").classList.add("text-red-500")
-                    }
-                    if(((selectedEmployee.emp_role == "Deputy") || (selectedEmployee.emp_role == "Principal")) && !valid_chief_efis){
-                        if(error_fields != ""){
-                            error_fields = error_fields + ","
-                        }
-                        error_fields = error_fields + " Chief EFIS"
-                        document.getElementById("assign_chief_efis").classList.add("border-red-500")
-                        document.getElementById("chief_efis_text").classList.add("text-red-500")
-                    }
-                    if(((selectedEmployee.emp_role == "Deputy") || (selectedEmployee.emp_role == "Principal")) && !valid_chief_email){
-                        if(error_fields != ""){
-                            error_fields = error_fields + ","
-                        }
-                        error_fields = error_fields + " Chief Email"
-                        document.getElementById("assign_chief_email").classList.add("border-red-500")
-                        document.getElementById("chief_email_text").classList.add("text-red-500")
-                    }
-                    if(((selectedEmployee.emp_role == "Deputy") || (selectedEmployee.emp_role == "Principal") || (selectedEmployee.emp_role == "Chief")) && !valid_ste_name){
-                        if(error_fields != ""){
-                            error_fields = error_fields + ","
-                        }
-                        error_fields = error_fields + " STE Name"
-                        document.getElementById("assign_ste_name").classList.add("border-red-500")
-                        document.getElementById("ste_name_text").classList.add("text-red-500")
-                    }
-                    if(((selectedEmployee.emp_role == "Deputy") || (selectedEmployee.emp_role == "Principal") || (selectedEmployee.emp_role == "Chief")) && !valid_ste_unit){
-                        if(error_fields != ""){
-                            error_fields = error_fields + ","
-                        }
-                        error_fields = error_fields + " STE Unit"
-                        document.getElementById("assign_ste_unit").classList.add("border-red-500")
-                        document.getElementById("ste_unit_text").classList.add("text-red-500")
-                    }
-                    if(((selectedEmployee.emp_role == "Deputy") || (selectedEmployee.emp_role == "Principal") || (selectedEmployee.emp_role == "Chief")) && !valid_ste_efis){
-                        if(error_fields != ""){
-                            error_fields = error_fields + ","
-                        }
-                        error_fields = error_fields + " STE EFIS"
-                        document.getElementById("assign_ste_efis").classList.add("border-red-500")
-                        document.getElementById("ste_efis_text").classList.add("text-red-500")
-                    }
-                    if(((selectedEmployee.emp_role == "Deputy") || (selectedEmployee.emp_role == "Principal") || (selectedEmployee.emp_role == "Chief")) && !valid_ste_email){
-                        if(error_fields != ""){
-                            error_fields = error_fields + ","
-                        }
-                        error_fields = error_fields + " STE Email"
-                        document.getElementById("assign_ste_email").classList.add("border-red-500")
-                        document.getElementById("ste_email_text").classList.add("text-red-500")
-                    }
-
-                    if(error_fields != ""){
-                        document.getElementById("error_assign").hidden = false
-                        document.getElementById("error_assign").innerHTML = "Please correct the following fields:<br><br>" + error_fields + "<br><br>Name: Dot Engineer</br>Unit: 123</br>EFIS: 1234</br>Email: TestEmail@dot.ca.gov"
-                        resolve(false)
-                    }
-
+                    console.log(valid_prin_name, valid_prin_unit, valid_prin_efis, valid_prin_email, valid_chief_name, valid_chief_unit, valid_chief_efis, valid_chief_email, valid_ste_name, valid_ste_unit, valid_ste_efis, valid_ste_email)
                     if(valid_prin_name && valid_prin_unit && valid_prin_efis && valid_prin_email && valid_chief_name && valid_chief_unit && valid_chief_efis && valid_chief_email && valid_ste_name && valid_ste_unit && valid_ste_efis && valid_ste_email){
                         var data = {
                             update_role: selectedEmployee.emp_role,
@@ -1041,22 +758,133 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                             ste_efis: ste_efis,
                             ste_email: ste_email,
                         }
+                        console.log(data)
+                        try{ 
+                            document.getElementById("assign_prin_name").classList.remove("border-red-500")
+                            document.getElementById("prin_name_text").classList.remove("text-red-500")
+                        }catch{}
+                        try{
+                            document.getElementById("assign_prin_unit").classList.remove("border-red-500")
+                            document.getElementById("prin_unit_text").classList.remove("text-red-500")
+                        }catch{}
+                        try{
+                            document.getElementById("assign_prin_efis").classList.remove("border-red-500")
+                            document.getElementById("prin_efis_text").classList.remove("text-red-500")
+                        }catch{}
+                        try{
+                            document.getElementById("assign_prin_email").classList.remove("border-red-500")
+                            document.getElementById("prin_email_text").classList.remove("text-red-500")        
+                        }catch{}
+                        
+                        try{ 
+                            document.getElementById("assign_chief_name").classList.remove("border-red-500")
+                            document.getElementById("chief_name_text").classList.remove("text-red-500")
+                        }catch{}
+                        try{
+                            document.getElementById("assign_chief_unit").classList.remove("border-red-500")
+                            document.getElementById("chief_unit_text").classList.remove("text-red-500")
+                        }catch{}
+                        try{
+                            document.getElementById("assign_chief_efis").classList.remove("border-red-500")
+                            document.getElementById("chief_efis_text").classList.remove("text-red-500")
+                        }catch{}
+                        try{
+                            document.getElementById("assign_chief_email").classList.remove("border-red-500")
+                            document.getElementById("chief_email_text").classList.remove("text-red-500")
+                        }catch{}
+                        
+                        try{ 
+                            document.getElementById("assign_ste_name").classList.remove("border-red-500")
+                            document.getElementById("ste_name_text").classList.remove("text-red-500")
+                        }catch{}
+                        try{
+                            document.getElementById("assign_ste_unit").classList.remove("border-red-500")
+                            document.getElementById("ste_unit_text").classList.remove("text-red-500")
+                        }catch{}
+                        try{
+                            document.getElementById("assign_ste_efis").classList.remove("border-red-500")
+                            document.getElementById("ste_efis_text").classList.remove("text-red-500")
+                        }catch{}
+                        try{
+                            document.getElementById("assign_ste_email").classList.remove("border-red-500")
+                            document.getElementById("ste_email_text").classList.remove("text-red-500")
+                        }catch{} 
+                        setAssignCheck(true)
+                        InsertAssigned(data)
                         resolve()
-                    }
-                    
-                })
-            },                        
-            }).then(function(data){ 
-                
-                
+                    }else{
+                        try{ 
+                            if(document.getElementById("assign_prin_name").value == ""){
+                                document.getElementById("assign_prin_name").classList.add("border-red-500")
+                                document.getElementById("prin_name_text").classList.add("text-red-500")
+                            }
+                            if(document.getElementById("assign_prin_unit").value == ""){
+                                document.getElementById("assign_prin_unit").classList.add("border-red-500")
+                                document.getElementById("prin_unit_text").classList.add("text-red-500")
+                            }
+                            if(document.getElementById("assign_prin_efis").value == ""){
+                                document.getElementById("assign_prin_efis").classList.add("border-red-500")
+                                document.getElementById("prin_efis_text").classList.add("text-red-500")
+                            }
+                            if(document.getElementById("assign_prin_email").value == ""){
+                                document.getElementById("assign_prin_email").classList.add("border-red-500")
+                                document.getElementById("prin_email_text").classList.add("text-red-500")
+                            }
+                        }catch{}
 
-                InsertAssigned(data)
+                        try{ 
+                            if(document.getElementById("assign_chief_name").value == ""){
+                                document.getElementById("assign_chief_name").classList.add("border-red-500")
+                                document.getElementById("chief_name_text").classList.add("text-red-500")
+                            }
+                            if(document.getElementById("assign_chief_unit").value == ""){
+                                document.getElementById("assign_chief_unit").classList.add("border-red-500")
+                                document.getElementById("chief_unit_text").classList.add("text-red-500")
+                            }
+                            if(document.getElementById("assign_chief_efis").value == ""){
+                                document.getElementById("assign_chief_efis").classList.add("border-red-500")
+                                document.getElementById("chief_efis_text").classList.add("text-red-500")
+                            }
+                            if(document.getElementById("assign_chief_email").value == ""){
+                                document.getElementById("assign_chief_email").classList.add("border-red-500")
+                                document.getElementById("chief_email_text").classList.add("text-red-500")
+                            }
+                        }catch{}
+
+                        try{ 
+                            if(document.getElementById("assign_ste_name").value == ""){
+                                document.getElementById("assign_ste_name").classList.add("border-red-500")
+                                document.getElementById("ste_name_text").classList.add("text-red-500")
+                            }
+                            if(document.getElementById("assign_ste_unit").value == ""){
+                                document.getElementById("assign_ste_unit").classList.add("border-red-500")
+                                document.getElementById("ste_unit_text").classList.add("text-red-500")
+                            }
+                            if(document.getElementById("assign_ste_efis").value == ""){
+                                document.getElementById("assign_ste_efis").classList.add("border-red-500")
+                                document.getElementById("ste_efis_text").classList.add("text-red-500")
+                            }
+                            if(document.getElementById("assign_ste_email").value == ""){
+                                document.getElementById("assign_ste_email").classList.add("border-red-500")
+                                document.getElementById("ste_email_text").classList.add("text-red-500")
+                            }
+                        }catch{}
+
+                        document.getElementById('error_assign').innerHTML = "Please fill out all fields"
+                        document.getElementById('error_assign').hidden = false
+                        resolve(false)
+                    }
+                })
+                
+            },                        
+            }).then(function(asdf){ 
+
             })
-            
     }
 
     const InsertAssigned = (data) => {
         console.log(data)
+
         fetch("/ManagerDB/api/assign/", {
             method: "PATCH",
             headers: {
@@ -1311,7 +1139,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                     </tbody>
                 </table>
                 <div className="float-left">
-                    {!selectedEmployee.emp_children ? 
+                    {!selectedEmployee.emp_children && !AssignCheck ? 
                     <button className="float-right bg-indigo-400 hover:bg-indigo-500 text-white rounded mt-4 ml-8 p-1 w-16 text-xs" onClick={() => AssignEmployees()}>Assign Employees</button>: null}
                 </div>
                 <div className="float-right grid grid-cols-2 grid-rows-3">
