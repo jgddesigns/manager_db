@@ -35,6 +35,9 @@ export default function Insert({setInsert, setIsInsert}) {
         setIsInsert(false)
     }
     
+    //Calls the function to retrieve manager data, the calls the helper function insertToTable to process and insert the data into the database.
+    //@param: None.
+    //@return: Void.
     const insertData = () => {
        setInsertLoad(true)
         fetch("/ManagerDB/api/managers/", {
@@ -45,6 +48,9 @@ export default function Insert({setInsert, setIsInsert}) {
         })
     }
 
+    //Calls the function to retrieve manager data, the calls the helper function insertToTable to process and insert the data into the database.
+    //@param a: The results of the insertToTable function. Contains the data to be inserted into the database.
+    //@return: Void.    
     const insertToTable = (a) => {
         const insert_data = {
             region: a['REGION'],
@@ -126,14 +132,23 @@ export default function Insert({setInsert, setIsInsert}) {
 
     }
 
+    //Called from the name change button. Will set the name state to the value of the input.
+    //@param e: The value of the input.
+    //@return: Void.
     const nameChangeHandler = (e) => {
         setName(e)
     }
 
+    //Called from the email change button. Will set the email state to the value of the input.
+    //@param e: The value of the input.
+    //@return: Void.
     const emailChangeHandler = (e) => {
         setEmail(e)
     }
 
+    //Called from the district change button. Will set the district state to the value of the input.
+    //@param e: The value of the input.
+    //@return: Void.
     const districtChangeHandler = (e) => {
         setDistrict(e)
         fetch("/ManagerDB/api/managers/", {
@@ -146,6 +161,9 @@ export default function Insert({setInsert, setIsInsert}) {
         })
     }
 
+    //Called from the role change button. Will set the role state to the value of the input.
+    //@param e: The value of the input.
+    //@return: Void.
     const roleChangeHandler = (e) => {
         setRole(e)
         fetch("/ManagerDB/api/managers/", {
@@ -158,18 +176,30 @@ export default function Insert({setInsert, setIsInsert}) {
         })
     }
 
+    //Called from the superior change button. Will set the superior state to the value of the input.
+    //@param e: The value of the input.
+    //@return: Void.
     const superiorChangeHandler = (e) => {
         setNewSuperior(e)
     }
 
+    //Called from the efis change button. Will set the efis state to the value of the input.
+    //@param e: The value of the input.
+    //@return: Void.
     const efisChangeHandler = (e) => {
         setEFIS(e)
     }
 
+    //Called from the tram change button. Will set the tram state to the value of the input.
+    //@param e: The value of the input.
+    //@return: Void.
     const tramChangeHandler = (e) => {
         setTRAM(e)
     }
 
+    //Validates the name input.
+    //@param name: The name to validate.
+    //@return: True if the name is valid, false otherwise.
     const NameCheck = (name) => {
         if(name.length < 5){
             return false
@@ -182,11 +212,17 @@ export default function Insert({setInsert, setIsInsert}) {
         return true
     }
 
+    //Validates the email input.
+    //@param email: The email to validate.
+    //@return: True if the email is valid, false otherwise.
     const EmailCheck = (email) => {
         const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email);
     }
 
+    //Validates the efis input.
+    //@param efis: The efis to validate.
+    //@return: True if the efis is valid, false otherwise.
     const EFISCheck = (efis) => {
         if(efis.length!=4 || isNaN(efis)){
             return false
@@ -194,6 +230,9 @@ export default function Insert({setInsert, setIsInsert}) {
           return true
     }
 
+    //Validates the tram input.
+    //@param tram: The tram to validate.
+    //@return: True if the tram is valid, false otherwise.
     const TRAMCheck = (tram) => {
         if(tram.length!=3 || isNaN(tram)){
             return false
@@ -201,6 +240,9 @@ export default function Insert({setInsert, setIsInsert}) {
           return true
     }
 
+    //Resets all states to empty. 
+    //@param: None.
+    //@return: Void.
     const resetData = () => {
         setName([])
         setEmail([])

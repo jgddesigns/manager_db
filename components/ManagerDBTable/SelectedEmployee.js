@@ -1,4 +1,5 @@
 import {React, useState, useEffect} from 'react'
+import ClearEmployee from './ClearEmployee'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import AuditProcess from '../../utils/helpers/AuditProcess'
@@ -8,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import ManagerProcess from '../../utils/helpers/ManagerProcess'
 import DeputyProcess from '../../utils/helpers/DeputyProcess'
 import { FaRegCaretSquareDown } from 'react-icons/fa'
-import { prisma } from '../../prisma/clients/client1'
 
 
 export default function SelectedEmployee({selectedEmployee, setSelectedUser, setLoadingGraphic}) {
@@ -18,12 +18,12 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
     const [NameChanges, setNameChanges] = useState(false)
     const [EmailChanges, setEmailChanges] = useState(false)
     const [ManagerChanges, setManagerChanges] = useState(false)
-    const [EmptyChildren, setEmptyChildren] = useState(false)
     const [loadingGraphicDisplay, setLoadingGraphicDisplay] = useState(false)
-    const [user,setUser] = useState({}) 
+    const [user, setUser] = useState({}) 
     const [Superiors, setSuperiors] = useState([],[],[])
     const [ChangedManager, setChangedManager] = useState([],[])
     const [AssignCheck, setAssignCheck] = useState(false)
+    const [ClearEmployeeCheck, setClearEmployeeCheck] = useState(false)
 
     useEffect(() => {
         fetch("/ManagerDB/api/current-user/", {
@@ -54,6 +54,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         }
     })
 
+    //After the employee information is updated, the audit information is sent to the database
+    //@param data: The information to update the employee with.
+    //@return: Void.
     const UpdateProcess = (data) => {
         var audit_type = ""
         var nameInclude = false
@@ -141,6 +144,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         })
     }
 
+    //Once the employee information is updated, the audit information is sent to the database.
+    //@param selected: The information to update the employee with.
+    //@return: Void.
     const SaveChanges = (selected) =>{
         setNameChanges(false)
         setEmailChanges(false)
@@ -191,7 +197,11 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         UpdateProcess(data)
     }
 
+    //Sets all changes to false and clears the input fields, the calls the EditEmployee function.
+    //@param: None.
+    //@return: Void.
     const EditEmployeeHandler = () => {
+        console.log(selectedEmployee.emp_children)
         setNameChanges(false)
         setEmailChanges(false)
         setManagerChanges(false)
@@ -201,6 +211,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         EditEmployee()
     }
 
+    //Validates the name input for the form.
+    //@param name: The name to validate.
+    //@return: True if name is valid, false if not.
     const validateName = (name) => {
         if(name.length < 5){
             return false
@@ -213,11 +226,17 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         return true
     }
 
+    //Validates the email input for the form.
+    //@param email: The email to validate.
+    //@return: True if email is valid, false if not.
     const validateEmail = (email) => {
         const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email);
     }
 
+    //Validates the efis input for the form.
+    //@param efis: The efis to validate.
+    //@return: True if efis is valid, false if not.
     const validateEFIS = (efis) => {
         if(efis.length!=4 || isNaN(efis)){
             return false
@@ -225,6 +244,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
           return true
     }
 
+    //Validates the unit input for the form.
+    //@param unit: The unit to validate.
+    //@return: True if unit is valid, false if not.
     const validateUnit = (unit) => {
         if(unit.length!=3 || isNaN(unit)){
             return false
@@ -232,6 +254,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
           return true
     }
 
+    //Once the email address is changed, will check the fields to see if they are valid or need to be hidden.
+    //@param val: The value of the email input.
+    //@return: Void.
     const emailChangeHandler = (val) => {
         var emailChange = document.getElementById('userEmail')
         var noChanges = document.getElementById('no_changes')
@@ -254,6 +279,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         }
     }
 
+    //Once the name is changed, will check the fields to see if they are valid or need to be hidden.
+    //@param val: The value of the name input.
+    //@return: Void.
     const nameChangeHandler = (val) => {
         var nameChange = document.getElementById('userName')
         var noChanges = document.getElementById('no_changes')
@@ -276,6 +304,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         }
     }
 
+    //Once the manager is changed, will check the fields to see if they are valid or need to be hidden.
+    //@param val: The value of the manager input.
+    //@return: Void.
     const managerChangeHandler = (val) => {
         var managerChange = document.getElementById('managerName')
         var noChanges = document.getElementById('no_changes')
@@ -297,6 +328,11 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         }
     }
    
+    //Will call the sweet alert that displays the save message relating to the employee edit form. 
+    //@param emp_name: The name of the employee.
+    //@param emp_role: The role of the employee.
+    //@param emp_efis: The efis of the employee.
+    //@return: Void.
     const SaveHandler = (emp_name, emp_role, emp_efis) => {
         MySwal.fire({
             icon: 'question',
@@ -311,6 +347,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         })
     }
 
+    //Displays the sweet alert that displays the clear message relating to the employee edit form.
+    //@param: None.
+    //@return: Void.
     const ClearHandler = () => {
         MySwal.fire({
             icon: 'warning',
@@ -330,6 +369,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         })
     }
        
+    //When the manager is changed, the changed manager state will be set to the nmew manager for further procesing after the form is submitted.
+    //@param e: The event that is triggered when the manager is changed.
+    //@return: Void.
     const EditManagerHandler = (e) => {
         var manager_arr = []
         setChangedManager("")
@@ -342,6 +384,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
           })
     }
 
+    //If the name is not changed, the appropriate fields will be hidden and the name input will be cleared.
+    //@param e: The event that is triggered when the name is not changed.
+    //@return: Void.
     const noNameChangeHandler = (e) => {
         var nameChange = document.getElementById('userName')
         var noChanges = document.getElementById('no_changes')
@@ -360,6 +405,47 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         }
     }
 
+    //Will clear the current displayed employee from the database. The row is maintained in the database, but the employee is removed from the table.
+    //@param: None.
+    //@return: Void.
+    const clearEmployeeHandler = () => {
+        document.getElementById('clear_test').click()   
+    }
+
+    const activateClearEmployee = () => {
+        const data = {
+            efis: selectedEmployee.emp_efis,
+            role: selectedEmployee.emp_role
+        }
+        setLoadingGraphicDisplay(true)
+        setSelectedUser(null)  
+        fetch("/ManagerDB/api/clear/", {
+            method: "PATCH",
+            headers: {
+                'Content-Type':'application/json',
+                'Accept':'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(() => {
+          console.log("Clear Success")   
+          setTimeout(() => {
+              setLoadingGraphicDisplay(false)
+          }, 2000) 
+          toast.success('Clear Successful!', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+          });
+      })
+    }
+
+    //If the email is not changed, the appropriate fields will be hidden and the email input will be cleared.
+    //@param e: The event that is triggered when the email is not changed.
+    //@return: Void.
     const noEmailChangeHandler = (e) => {
         var emailChange = document.getElementById('userEmail')
         var noChanges = document.getElementById('no_changes')
@@ -378,6 +464,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         }
     }
 
+    //If the manager is not changed, the appropriate fields will be hidden and the manager input will be cleared.
+    //@param e: The event that is triggered when the manager is not changed.
+    //@return: Void.
     const noManagerChangeHandler = (e) => {
         var managerChange = document.getElementById('managerName')
         var noChanges = document.getElementById('no_changes')
@@ -396,6 +485,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         }
     }
 
+    //Checks the assign employee form for errors and displays the appropriate error messages.
+    //@param e: The event that is triggered when the form is submitted.
+    //@return: Void.
     const clearErrorHandler = (e) => {
         var text_id_split = e.target.id.split("_")
         var text_id = text_id_split[1] + "_" + text_id_split[2] + "_text"
@@ -589,7 +681,10 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         }
     }
 
-    const AssignEmployees = (e) => {
+    //Calls the assign employee sweet alert that will allow the user to assign employees under an inserted with the insert function.
+    //@param: None.
+    //@return: Void.
+    const AssignEmployees = () => {
         MySwal.fire({
             title: "Assign Employees",
             html: (
@@ -737,7 +832,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                         valid_ste_efis = true
                         valid_ste_email = true
                     }
-                    console.log(valid_prin_name, valid_prin_unit, valid_prin_efis, valid_prin_email, valid_chief_name, valid_chief_unit, valid_chief_efis, valid_chief_email, valid_ste_name, valid_ste_unit, valid_ste_efis, valid_ste_email)
                     if(valid_prin_name && valid_prin_unit && valid_prin_efis && valid_prin_email && valid_chief_name && valid_chief_unit && valid_chief_efis && valid_chief_email && valid_ste_name && valid_ste_unit && valid_ste_efis && valid_ste_email){
                         var data = {
                             update_role: selectedEmployee.emp_role,
@@ -758,7 +852,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                             ste_efis: ste_efis,
                             ste_email: ste_email,
                         }
-                        console.log(data)
+                        // validateAssignForm()
                         try{ 
                             document.getElementById("assign_prin_name").classList.remove("border-red-500")
                             document.getElementById("prin_name_text").classList.remove("text-red-500")
@@ -882,9 +976,10 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             })
     }
 
+    //After the information has been filled out in the assign form, this function will insert the data into the database.
+    //@param data: The data to be inserted.
+    //@return: Void.
     const InsertAssigned = (data) => {
-        console.log(data)
-
         fetch("/ManagerDB/api/assign/", {
             method: "PATCH",
             headers: {
@@ -897,6 +992,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         })
     }
 
+    //This function will call the the edit employee sweet alert, which will allow all of the employee data to be edited.
+    //@param: None.
+    //@return: Void.
     const EditEmployee = async () => {
         MySwal.fire({
             title: "Edit Employee Record",
@@ -1140,13 +1238,19 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                 </table>
                 <div className="float-left">
                     {!selectedEmployee.emp_children && !AssignCheck ? 
-                    <button className="float-right bg-indigo-400 hover:bg-indigo-500 text-white rounded mt-4 ml-8 p-1 w-16 text-xs" onClick={() => AssignEmployees()}>Assign Employees</button>: null}
+                    <button className="float-right bg-yellow-300 hover:bg-yellow-400 text-white rounded mt-4 ml-8 p-1 w-16 text-xs" onClick={() => AssignEmployees()}>Assign Employees</button>: null}
                 </div>
                 <div className="float-right grid grid-cols-2 grid-rows-3">
                     <button className="float-right bg-indigo-400 hover:bg-indigo-500 text-white rounded mt-4 h-6 w-16 text-xs" onClick={() => EditEmployeeHandler()}>Edit</button>
                     {(NameChanges || EmailChanges || ManagerChanges) ?  <button className="float-right bg-green-500 hover:bg-green-600 text-white rounded mt-2 h-6 w-16 text-xs" onClick={() => SaveHandler(selectedEmployee)}>Save</button>   : null}
                     {(NameChanges || EmailChanges || ManagerChanges) ?  <button className="float-right bg-gray-500 hover:bg-gray-600 text-white rounded h-6 w-16 text-xs" onClick={() => ClearHandler()}>Clear</button>   : null}
                 </div>
+                <div>
+                    <button className="float-center bg-green-500 hover:bg-green-600 text-white rounded mt-4 ml-12 h-6 w-20 text-xs cursor-pointer" onClick={(e) => clearEmployeeHandler(e)} >Empty Data</button>
+                    <button className="hidden" id="activate_clear" onClick={(e) => activateClearEmployee(e)}></button>
+                </div>
+                
+
             </div> :
             <div className="grid place-content-center mt-48">
                 <div>

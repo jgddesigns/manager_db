@@ -43,6 +43,7 @@ export type users = {
   created_at: Date
   last_logged_in: Date
   deactivated: boolean
+  onetime_survey: boolean
 }
 
 
@@ -1825,6 +1826,7 @@ export namespace Prisma {
     created_at: Date | null
     last_logged_in: Date | null
     deactivated: boolean | null
+    onetime_survey: boolean | null
   }
 
   export type UsersMaxAggregateOutputType = {
@@ -1838,6 +1840,7 @@ export namespace Prisma {
     created_at: Date | null
     last_logged_in: Date | null
     deactivated: boolean | null
+    onetime_survey: boolean | null
   }
 
   export type UsersCountAggregateOutputType = {
@@ -1851,6 +1854,7 @@ export namespace Prisma {
     created_at: number
     last_logged_in: number
     deactivated: number
+    onetime_survey: number
     _all: number
   }
 
@@ -1874,6 +1878,7 @@ export namespace Prisma {
     created_at?: true
     last_logged_in?: true
     deactivated?: true
+    onetime_survey?: true
   }
 
   export type UsersMaxAggregateInputType = {
@@ -1887,6 +1892,7 @@ export namespace Prisma {
     created_at?: true
     last_logged_in?: true
     deactivated?: true
+    onetime_survey?: true
   }
 
   export type UsersCountAggregateInputType = {
@@ -1900,6 +1906,7 @@ export namespace Prisma {
     created_at?: true
     last_logged_in?: true
     deactivated?: true
+    onetime_survey?: true
     _all?: true
   }
 
@@ -2006,6 +2013,7 @@ export namespace Prisma {
     created_at: Date
     last_logged_in: Date
     deactivated: boolean
+    onetime_survey: boolean
     _count: UsersCountAggregateOutputType | null
     _avg: UsersAvgAggregateOutputType | null
     _sum: UsersSumAggregateOutputType | null
@@ -2038,6 +2046,7 @@ export namespace Prisma {
     created_at?: boolean
     last_logged_in?: boolean
     deactivated?: boolean
+    onetime_survey?: boolean
   }
 
   export type usersGetPayload<
@@ -2772,7 +2781,8 @@ export namespace Prisma {
     email_address: 'email_address',
     created_at: 'created_at',
     last_logged_in: 'last_logged_in',
-    deactivated: 'deactivated'
+    deactivated: 'deactivated',
+    onetime_survey: 'onetime_survey'
   };
 
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
@@ -2868,6 +2878,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter | Date | string
     last_logged_in?: DateTimeFilter | Date | string
     deactivated?: BoolFilter | boolean
+    onetime_survey?: BoolFilter | boolean
   }
 
   export type usersOrderByWithRelationInput = {
@@ -2881,6 +2892,7 @@ export namespace Prisma {
     created_at?: SortOrder
     last_logged_in?: SortOrder
     deactivated?: SortOrder
+    onetime_survey?: SortOrder
   }
 
   export type usersWhereUniqueInput = {
@@ -2899,6 +2911,7 @@ export namespace Prisma {
     created_at?: SortOrder
     last_logged_in?: SortOrder
     deactivated?: SortOrder
+    onetime_survey?: SortOrder
     _count?: usersCountOrderByAggregateInput
     _avg?: usersAvgOrderByAggregateInput
     _max?: usersMaxOrderByAggregateInput
@@ -2920,6 +2933,7 @@ export namespace Prisma {
     created_at?: DateTimeWithAggregatesFilter | Date | string
     last_logged_in?: DateTimeWithAggregatesFilter | Date | string
     deactivated?: BoolWithAggregatesFilter | boolean
+    onetime_survey?: BoolWithAggregatesFilter | boolean
   }
 
   export type user_sessionCreateInput = {
@@ -3014,6 +3028,7 @@ export namespace Prisma {
     created_at?: Date | string
     last_logged_in?: Date | string
     deactivated?: boolean
+    onetime_survey: boolean
   }
 
   export type usersUncheckedCreateInput = {
@@ -3027,6 +3042,7 @@ export namespace Prisma {
     created_at?: Date | string
     last_logged_in?: Date | string
     deactivated?: boolean
+    onetime_survey: boolean
   }
 
   export type usersUpdateInput = {
@@ -3040,6 +3056,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     last_logged_in?: DateTimeFieldUpdateOperationsInput | Date | string
     deactivated?: BoolFieldUpdateOperationsInput | boolean
+    onetime_survey?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type usersUncheckedUpdateInput = {
@@ -3053,6 +3070,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     last_logged_in?: DateTimeFieldUpdateOperationsInput | Date | string
     deactivated?: BoolFieldUpdateOperationsInput | boolean
+    onetime_survey?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type usersCreateManyInput = {
@@ -3066,6 +3084,7 @@ export namespace Prisma {
     created_at?: Date | string
     last_logged_in?: Date | string
     deactivated?: boolean
+    onetime_survey: boolean
   }
 
   export type usersUpdateManyMutationInput = {
@@ -3079,6 +3098,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     last_logged_in?: DateTimeFieldUpdateOperationsInput | Date | string
     deactivated?: BoolFieldUpdateOperationsInput | boolean
+    onetime_survey?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type usersUncheckedUpdateManyInput = {
@@ -3092,6 +3112,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     last_logged_in?: DateTimeFieldUpdateOperationsInput | Date | string
     deactivated?: BoolFieldUpdateOperationsInput | boolean
+    onetime_survey?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type IntFilter = {
@@ -3291,6 +3312,7 @@ export namespace Prisma {
     created_at?: SortOrder
     last_logged_in?: SortOrder
     deactivated?: SortOrder
+    onetime_survey?: SortOrder
   }
 
   export type usersAvgOrderByAggregateInput = {
@@ -3308,6 +3330,7 @@ export namespace Prisma {
     created_at?: SortOrder
     last_logged_in?: SortOrder
     deactivated?: SortOrder
+    onetime_survey?: SortOrder
   }
 
   export type usersMinOrderByAggregateInput = {
@@ -3321,6 +3344,7 @@ export namespace Prisma {
     created_at?: SortOrder
     last_logged_in?: SortOrder
     deactivated?: SortOrder
+    onetime_survey?: SortOrder
   }
 
   export type usersSumOrderByAggregateInput = {

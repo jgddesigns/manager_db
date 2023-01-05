@@ -32,7 +32,9 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
     }
   }, [selectedUser])
 
-  // Fire on Change of SearchInput when a User is Selected.
+  //Alerts the user that entering any new information in the search field will clear the current displayed employee.
+  //@param: None.
+  //@return: Void.
   function changeDisplay() {
     MySwal.fire({
       icon: 'question',
@@ -47,6 +49,9 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
     })
   };
 
+  //Alerts the user that entering any new information in the search field will clear the current displayed employee.
+  //@param: None.
+  //@return: Void.
   const setEmployeeHandler = (result) => {
     setSelectedUser(result)
     setReloadPopup(false)
@@ -67,6 +72,9 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
     }
   })
 
+  //Based on the column header clicked, sort the results by that column.
+  //@param type: The string of the column name that was clicked.
+  //@return: Void.
   const SortHandler = (type) => {
     
     if(type == "Name"){
@@ -86,18 +94,27 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
     renderResults(resultsMap)
   }
 
+  //When the search information is entered, the function is called to update the searchInput state. This will then display the search results.
+  //@param e: The event that is triggered when the user enters information into the search field.
+  //@return: Void.
   const SetSearch = (e) => {
     setSortBy("Name")
     setToggleName(true)
     setSearchInput(e.target.value);
   }
 
-  const SetClear = (e) => {
+  //When the clear button is clicked, sets all search related values to null or empty.
+  //@param: None.
+  //@return: Void.
+  const SetClear = () => {
     setSearchInput("");
     setSelectedUser(null);
     document.getElementById("search_id").value = "";
   }
 
+  //Processes the sort function and returns the sorted results.
+  //@param results: The array of results to be sorted.
+  //@return: The sorted array of results.
   const sortBy = (results) => {
     if(SortBy == "Name" && ToggleName){
       return results.sort((a, b) => (a.emp_name > b.emp_name) ? 1 : -1)
@@ -126,6 +143,9 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
     return results.sort((a, b) => (a.emp_name > b.emp_name) ? 1 : -1)
   }
 
+  //Displays the search results after thney have been processed by background functions.
+  //@param results: The array of results to be displayed.
+  //@return: The JSX to be displayed.
   const renderResults = (results) =>{
     return(
       // /Map each result to a row in a table.

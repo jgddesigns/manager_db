@@ -22,6 +22,8 @@ model audit_table {
   efis              String? @db.VarChar(8)
   region            String? @db.VarChar(8)
   date_time         String  @db.VarChar(30)
+
+  @@index([changed_by_number], map: "changed_by_fk")
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.

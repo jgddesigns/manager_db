@@ -1,3 +1,7 @@
+//Matches and returns the information associated with the search input.
+//@param input: The search input.
+//@param data: The array of users.
+//@return: The results to display.
 export default function SearchProcess(input, data){
   var search_text = input
   var users = data

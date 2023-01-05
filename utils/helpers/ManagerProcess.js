@@ -1,3 +1,7 @@
+//Gets the manager array for the employee to be inserted.
+//@param data: The data to check.
+//@param selectedEmployee: The employee to be edited.
+//@return: The information needed to update the form.
 export default function SearchProcess(data, selectedEmployee){
 
   var region = selectedEmployee.emp_district

@@ -109,7 +109,8 @@ exports.Prisma.UsersScalarFieldEnum = makeEnum({
   email_address: 'email_address',
   created_at: 'created_at',
   last_logged_in: 'last_logged_in',
-  deactivated: 'deactivated'
+  deactivated: 'deactivated',
+  onetime_survey: 'onetime_survey'
 });
 
 exports.Prisma.SortOrder = makeEnum({

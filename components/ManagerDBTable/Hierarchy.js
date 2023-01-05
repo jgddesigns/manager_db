@@ -61,6 +61,9 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
         principal.push(principal_data)
     }
 
+   //Shows the active principals for the current district. Will allow the user to select a principal to view employees working for them.
+   //@param e: The object that was clicked on.
+   //@return: Void.
    const togglePrinMap = (e) => {
 
     setPrinMap(!PrinMap)
@@ -77,43 +80,48 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
     }
    }
 
+   //Shows the active chiefs for the current district. Will allow the user to select a chief to view employees working for them.
+   //@param data: The data to set the chief map to.
+   //@param e: The object that was clicked on.
+   //@return: Void.
    const toggleChiefMap = (data, e) => {
-
-    if(PrevSTETarget){
-
-        PrevSTETarget.target.className = selectedTextChief.textA
-    }
-
-    if(PrevChiefTarget != null){
-        if(e.target.className == selectedTextPrincipal.textB){
-            setChiefMap(false)
-            setChiefData(null)
-            setPrevChiefTarget(null)
-            e.target.className = selectedTextPrincipal.textA
-            return
-        }else{
-            PrevChiefTarget.target.className = selectedTextPrincipal.textA
-        setChiefMap(false)
+        if(PrevSTETarget){
+            PrevSTETarget.target.className = selectedTextChief.textA
         }
+
+        if(PrevChiefTarget != null){
+            if(e.target.className == selectedTextPrincipal.textB){
+                setChiefMap(false)
+                setChiefData(null)
+                setPrevChiefTarget(null)
+                e.target.className = selectedTextPrincipal.textA
+                return
+            }else{
+                PrevChiefTarget.target.className = selectedTextPrincipal.textA
+            setChiefMap(false)
+            }
+        }
+
+        setChiefMap(true)
+        setChiefData(data)
+
+        if(STEMap){
+            setSTEMap(false)
+        }
+
+        if(e.target.className == selectedTextPrincipal.textB){
+            e.target.className = selectedTextPrincipal.textA
+        }else{
+            e.target.className = selectedTextPrincipal.textB
+        }
+
+        setPrevChiefTarget(e)
    }
 
-    setChiefMap(true)
-    setChiefData(data)
-
-    if(STEMap){
-        setSTEMap(false)
-    }
-
-    if(e.target.className == selectedTextPrincipal.textB){
-        e.target.className = selectedTextPrincipal.textA
-    }else{
-        e.target.className = selectedTextPrincipal.textB
-        
-    }
-
-    setPrevChiefTarget(e)
-   }
-
+   //Shows the active STEs for the current district. Will allow the user to select a STE to view employees working for them.
+   //@param data: The data to set the chief map to.
+   //@param e: The object that was clicked on.
+   //@return: Void.   
    const toggleSTEMap = (data, e) => {
     if(PrevSTETarget != null){
         if(e.target.className == selectedTextChief.textB){
@@ -140,6 +148,9 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
     setPrevSTETarget(e)
    }
 
+   //Gets the employees for the current district.
+   //@param district: The district to get the employees for.
+   //@return: Void.
    const getEmployees = (district)=> {
     setLoading(true)
     fetch("/ManagerDB/api/managers/", {
@@ -158,11 +169,12 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
     })
    }
 
+   //Closes the hierarchy view.
+   //@param: None.
+   //@return: Void.
    const closeHandler = () => {
-
     setIsHierarchy(false)
     setHierarchyStart(false)
-
    }
 
   return (

@@ -16,11 +16,9 @@ export default function BugReport ({user, setIsBugReport}) {
     const [SubmitStyling, setSubmitStyling] = useState(styling.submit_default)
     const [IsText, setIsText] = useState(false)
 
-
-
-
-
-
+    //After submit button is clicked, send the data to the backend. Performs a toast notification to notify the user that the bug report has been sent.
+    //@param: None.
+    //@return: None.
     const handleReport = () => {
         const data = {
             emp_num: user.userid,
@@ -56,6 +54,9 @@ export default function BugReport ({user, setIsBugReport}) {
         })
     }
 
+    //Checks if the text area is empty or not. If it is not empty, the submit button will be enabled.
+    //@param val: The value of the text area.
+    //@return: None.
     const textHandler = (val) => {
         if(val.length>0){
             setIsText(true)

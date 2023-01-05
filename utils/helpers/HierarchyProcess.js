@@ -1,6 +1,8 @@
-
+//Processes the data to display the hierarchy of the selected district.
+//@param employees: The array of employees to display.
+//@param dist: The selected district.
+//@return: The array of employees to be displayed.
 export default function HierarchyProcess(employees, dist){
-
     var hierarchy = []
     var prin_added = []
     var chief_added = []
@@ -73,9 +75,7 @@ export default function HierarchyProcess(employees, dist){
         }
     }
         hierarchy.push(deputy_map)
-   
     return hierarchy
-    
 }
 
 

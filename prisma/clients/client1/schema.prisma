@@ -35,6 +35,7 @@ model users {
   created_at     DateTime @default(now()) @db.DateTime(0)
   last_logged_in DateTime @default(now()) @db.DateTime(0)
   deactivated    Boolean  @default(false)
+  onetime_survey Boolean
 
   @@id([id, emp_num])
 }

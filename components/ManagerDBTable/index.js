@@ -1,5 +1,6 @@
 import ManagerDBView from './ManagerDBView'
 import Insert from './Insert'
+import ClearEmployee from './ClearEmployee'
 import Instructions from '../Instructions'
 import SearchProcess from '../../utils/helpers/SearchProcess'
 import {useState, useEffect} from 'react'
@@ -10,6 +11,8 @@ export default function index() {
   const [searchInput, setSearchInput] = useState('')
   const [allManagerDB, setAllManagerDB] = useState([])
   const [isInsert, setIsInsert] = useState(false)
+  const [isClear, setIsClear] = useState(false)
+
 
   useEffect(() => {
     if (allManagerDB.length === 0) {
@@ -23,14 +26,19 @@ export default function index() {
     }
   }, [searchInput])
 
-  function testInsert(){
+  function setInsert(){
     setIsInsert(true)
+  }
+
+  function setClear(){
+    setIsClear(true)
   }
 
   return (
     <div className="grid gap-[1rem] space-y-4 pb-24">
       <div className="text-center text-3xl text-black mt-8 mb-8">Manager Update Tool for Construction</div>
-        <div className="hidden"><button id="insert_test" onClick={(e)=>{testInsert()}}>Insert</button></div>
+        <div className="hidden"><button id="insert_test" onClick={(e)=>{setInsert()}}>Insert</button></div>
+        <div className="hidden"><button id="clear_test" onClick={(e)=>{setClear()}}>Clear</button></div>
         <div>
             <Instructions />
             <ManagerDBView searchResults={SearchProcess(searchInput, allManagerDB)} setSearchInput={setSearchInput} searchInput={searchInput} setAllManagerDB={setAllManagerDB}/>
@@ -42,6 +50,14 @@ export default function index() {
                 </div>
               </div>
             :null}
+            {isClear ? 
+              <div>
+                <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
+                <div className="absolute z-2 top-[10%] left-[29%]">
+                <ClearEmployee setClear={setClear} setIsClear={setIsClear}/>
+                </div>
+              </div>
+              : null }
         </div>
         <ToastContainer
             position="top-right"

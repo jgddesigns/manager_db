@@ -1,19 +1,16 @@
-import {React, useState, useEffect} from 'react'
 import AuditProcess from './AuditProcess'
 
-
+//When the user is updated in the database, this function is called to update the mngr_db table.
+//@param update: The information to be updated.
+//@return: The results to display.
 const UpdateProcess = (update) =>{
-
     //'data' ARRAY MAP
     // emp_name: data[0][0],
     // emp_role: data[0][1],
     // emp_efis: data[0][2],
     // emp_email: data[0][3],
-
     // new_name: data[1][0],
     // new_email: data[1][1]
-
-
     //'audit' ARRAY MAP
     // change_type = audit[0]
     // changed_by_number = audit[1]
@@ -24,11 +21,8 @@ const UpdateProcess = (update) =>{
     // role = audit[6]
     // efis = audit[7]
 
-  
-
     var audit = []
 
-    //change type
     if((data[0][0] != data[1][0]) && (data[0][3] != data[1][1])){
       audit.push("Name/Email")
     }else if((data[0][0] != data[1][0]) && (data[0][3] == data[1][1])){
@@ -46,7 +40,6 @@ const UpdateProcess = (update) =>{
     audit.push(data[0][1]) //role
     audit.push(data[0][2]) //efis
 
-
     fetch("/ManagerDB/api/managers/", {
         method: "PATCH",
         headers: {
@@ -56,16 +49,12 @@ const UpdateProcess = (update) =>{
         body: JSON.stringify(update) 
       }).then((res) => {
         res.json().then((data) => {
-          // console.dir("Update Response: " + data)
           AuditProcess(audit)
           fetch("/ManagerDB/api/managers/", {
             method: "GET",
           })
-         
         });
       });
-
-   
 }
 
 export default UpdateProcess;
