@@ -1,6 +1,4 @@
 import {React, useState, useEffect} from 'react'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 import AuditProcess from '../../utils/helpers/AuditProcess'
 import AssignModal from './modals/AssignModal'
 import EditModal from './modals/EditModal'
@@ -9,10 +7,7 @@ import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import ManagerProcess from '../../utils/helpers/ManagerProcess'
 
-
-
 export default function SelectedEmployee({selectedEmployee, setSelectedUser, setLoadingGraphic}) {
-    const MySwal = withReactContent(Swal)
     const [newEmail, setNewEmail] = useState("")
     const [newName, setNewName] = useState("")
     const [NameChanges, setNameChanges] = useState(false)
@@ -256,56 +251,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
           return true
     }
 
-    //Once the email address is changed, will check the fields to see if they are valid or need to be hidden.
-    //@param val: The value of the email input.
-    //@return: Void.
-    const emailChangeHandler = (val) => {
-        var emailChange = document.getElementById('userEmail')
-        var noChanges = document.getElementById('no_changes')
-        var errorEmail = document.getElementById('error_email')
-
-        setNewEmail(val)
-        if(emailChange.classList.contains('border-red-500')){
-            emailChange.classList.remove('border-red-500')
-            errorEmail.hidden = true
-        }
-        
-        if(emailChange.value.length > 0){
-            emailChange.classList.add('border-cyan-400')
-        }else{
-            emailChange.classList.remove('border-cyan-400') 
-        }
-
-        if(noChanges.hidden == false){
-            noChanges.hidden = true
-        }
-    }
-
-    //Once the name is changed, will check the fields to see if they are valid or need to be hidden.
-    //@param val: The value of the name input.
-    //@return: Void.
-    const nameChangeHandler = (val) => {
-        var nameChange = document.getElementById('userName')
-        var noChanges = document.getElementById('no_changes')
-        var errorName = document.getElementById('error_name')
-
-        setNewName(val)
-        if(nameChange.classList.contains('border-red-500')){
-            nameChange.classList.remove('border-red-500')
-            errorName.hidden = true
-        }
-
-        if(nameChange.value.length > 0){
-            nameChange.classList.add('border-cyan-400')
-        }else{
-            nameChange.classList.remove('border-cyan-400') 
-        }
-
-        if(noChanges.hidden == false){
-            noChanges.hidden = true
-        }
-    }
-
     //Will call the sweet alert that displays the save message relating to the employee edit form. 
     //@param emp_name: The name of the employee.
     //@param emp_role: The role of the employee.
@@ -329,6 +274,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         document.getElementById('clear_test').click()   
     }
 
+    //Once the clear employee modal is confirmed, will call the clear employee function.
+    //@param: None.
+    //@return: Void.
     const activateClearEmployee = () => {
         const data = {
             efis: selectedEmployee.emp_efis,
@@ -360,10 +308,18 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
       })
     }
 
+    //Once the save employee modal is confirmed, will call the clear employee function.
+    //@param emp_name: The name of the selected employee.
+    //@param emp_role: The role of the selected employee.
+    //@param emp_efis: The efis of the selected employee.
+    //@return: Void.
     const activateSaveEmployee = (emp_name, emp_role, emp_efis) => {
         SaveChanges(emp_name, emp_role, emp_efis)
     }
 
+    //Once the clear data modal is confirmed, will call the clear employee function.
+    //@param: None.
+    //@return: Void.
     const activateClearData = () => {
         setNewName("")
         setNewEmail("")
@@ -373,16 +329,16 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         setManagerChanges(false)
     }
 
-
-
-
-    //Calls the assign employee sweet alert that will allow the user to assign employees under an inserted with the insert function.
+    //Activates assign employee modal.
     //@param: None.
     //@return: Void.
     const AssignEmployees = () => {
         setShowAssign(true)
     }
 
+    //Once the clear assign employee modal is confirmed, will call the processing function.
+    //@param: None.
+    //@return: Void.
     const activateAssigned = () => {
         try{ 
             var prin_name = document.getElementById("assign_prin_name").value
@@ -642,6 +598,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
           })
     }
 
+    //Once the clear edit employee modal is confirmed, will call the processing function.
+    //@param: None.
+    //@return: Void.
     const activateEdit = () => {
         var nameChange = document.getElementById('userName')
         var emailChange = document.getElementById('userEmail')
@@ -723,56 +682,47 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                 managerChange.classList.remove('border-red-500')
                 errorManager.hidden = true
             }
-
-            if(new_name != "" && (new_email == "" || validateEmail(new_email)) && managerChange.value){
-            }
-        }else{
-            if(new_name != "" && (new_email == "" || validateEmail(new_email))){
-                
-            }
         }
-    
+        
         var nameChange = document.getElementById('userName')
         var emailChange = document.getElementById('userEmail')
         var managerChange = document.getElementById('managerName')
 
-   
-            try{ 
-                var new_name = nameChange.value
-            }catch{
-                new_name = ""
-            }
+        try{ 
+            var new_name = nameChange.value
+        }catch{
+            new_name = ""
+        }
 
-            try{
-                var new_email = emailChange.value
-            }catch{
-                new_email = ""
-            }
+        try{
+            var new_email = emailChange.value
+        }catch{
+            new_email = ""
+        }
 
-            try{ 
-                var new_manager = managerName.value
-            }catch{
-                new_manager = ""
-            }
+        try{ 
+            var new_manager = managerName.value
+        }catch{
+            new_manager = ""
+        }
 
-            if(new_name != ""){
-                setNameChanges(true)    
-            }
-            
-            if(new_email != selectedEmployee.emp_email){
-                setEmailChanges(true)
-            }
-
-            if(new_manager != ""){
-                if(managerChange.value.length > 0){
-                    EditManagerHandler(managerChange.value)
-                    setManagerChanges(true)
-                }
-            }
+        if(new_name != ""){
+            setNameChanges(true)    
+        }
         
+        if(new_email != selectedEmployee.emp_email){
+            setEmailChanges(true)
+        }
+
+        if(new_manager != ""){
+            if(managerChange.value.length > 0){
+                EditManagerHandler(managerChange.value)
+                setManagerChanges(true)
+            }
+        }
     }
 
-    //This function will call the the edit employee sweet alert, which will allow all of the employee data to be edited.
+    //Activates the edit employee modal.
     //@param: None.
     //@return: Void.
     const EditEmployee = async () => {
