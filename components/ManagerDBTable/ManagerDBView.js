@@ -3,9 +3,9 @@ import SelectedEmployee from './SelectedEmployee'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { FaSort } from 'react-icons/fa'
-import BugReport from './BugReport'
+import BugReport from './modals/BugReport'
 
-export default function ManagerDBView({searchResults, setSearchInput, searchInput, setAllManagerDB}) {
+export default function ManagerDBView({searchResults, setSearchInput, searchInput, setAllManagerDB}){
   const [selectedUser, setSelectedUser] = useState(null)
   const [reloadPopup, setReloadPopup] = useState(false)
   const [loadingGraphic, setLoadingGraphic] = useState(false)
@@ -53,12 +53,14 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   //@param: None.
   //@return: Void.
   const setEmployeeHandler = (result) => {
+    console.log(result)
     setSelectedUser(result)
     setReloadPopup(false)
   }
 
   // Map each ressult to a single json object {emp_name: "", emp_role: "", emp_efis: "", emp_district: ""}
   const resultsMap = searchResults[0].map((name, index) => {
+  
     return {
       emp_name: searchResults[0][index],
       emp_email: searchResults[1][index],
@@ -100,16 +102,23 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   const SetSearch = (e) => {
     setSortBy("Name")
     setToggleName(true)
-    setSearchInput(e.target.value);
+    setSearchInput(e.target.value)
   }
 
   //When the clear button is clicked, sets all search related values to null or empty.
   //@param: None.
   //@return: Void.
   const SetClear = () => {
-    setSearchInput("");
-    setSelectedUser(null);
-    document.getElementById("search_id").value = "";
+    document.getElementById('reset_test').click()
+  }
+
+  //When the reset button is clicked, resets all displayed employee information.
+  //@param: None.
+  //@return: Void.
+  const activateReset = () => {
+    setSearchInput("")
+    setSelectedUser(null)
+    document.getElementById("search_id").value = ""
   }
 
   //Processes the sort function and returns the sorted results.
@@ -148,8 +157,10 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   //@return: The JSX to be displayed.
   const renderResults = (results) =>{
     return(
+
       // /Map each result to a row in a table.
       <div className="flex flex-col text-center">
+        <button id="activate_reset" className="hidden" onClick={() => activateReset()}></button>
         <div className="overflow-y-auto max-h-[28rem] ">
           { results.length > 0 ?
             <div className="grid grid-rows-1 grid-cols-5">
@@ -193,7 +204,7 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
             className="inline-block form-control px-3 py-1.5text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none placeholder:pl-2 h-8 rounded float-right shadow-lg"
             title='Search bar'
             />
-     
+            <button id="set_clear" className="hidden" onClick={() => activateReset()}></button>
             <div className="text-white text-sm pb-2 float-right mr-4 mt-2 underline text-blue-700 cursor-pointer" onClick={(e)=>SetClear()}>
                 Clear
             </div>

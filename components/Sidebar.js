@@ -2,9 +2,8 @@ import {FaEdit, FaBell, FaUser, FaHome, FaBook, FaSignOutAlt, FaBug,FaTh, FaSign
 import Image from 'next/image'
 import CaltransLogo from '../public/images/caltranslogo-main.png'
 import {useEffect,useState} from 'react'
-import BugReport from '../components/ManagerDBTable/BugReport'
-import Hierarchy from '../components/ManagerDBTable/Hierarchy'
-import Insert from '../components/ManagerDBTable/Insert'
+import BugReport from '../components/ManagerDBTable/modals/BugReport'
+import Hierarchy from '../components/ManagerDBTable/modals/Hierarchy'
 import  HierarchyProcess from '../utils/helpers/HierarchyProcess'
 import { BallTriangle } from 'react-loader-spinner'
 

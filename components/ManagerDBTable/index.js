@@ -1,6 +1,10 @@
 import ManagerDBView from './ManagerDBView'
-import Insert from './Insert'
-import ClearEmployee from './ClearEmployee'
+import Insert from './modals/Insert'
+import AssignModal from './modals/AssignModal'
+import ClearEmployee from './modals/ClearEmployee'
+import ClearChanges from './modals/ClearChanges'
+import SaveEmployee from './modals/SaveEmployee'
+import ResetData from './modals/ResetData'
 import Instructions from '../Instructions'
 import SearchProcess from '../../utils/helpers/SearchProcess'
 import {useState, useEffect} from 'react'
@@ -12,6 +16,10 @@ export default function index() {
   const [allManagerDB, setAllManagerDB] = useState([])
   const [isInsert, setIsInsert] = useState(false)
   const [isClear, setIsClear] = useState(false)
+  const [isClearData, setIsClearData] = useState(false)
+  const [isSave, setIsSave] = useState(false)
+  const [isReset, setIsReset] = useState(false)
+  const [isAssign, setIsAssign] = useState(false)
 
 
   useEffect(() => {
@@ -34,11 +42,31 @@ export default function index() {
     setIsClear(true)
   }
 
+  function setClearData(){
+    setIsClearData(true)
+  }
+
+  function setSave(){
+    setIsSave(true)
+  }
+
+  function setReset(){
+    setIsReset(true)
+  }
+
+  function setAssign(){
+    setIsAssign(true)
+  }
+
   return (
     <div className="grid gap-[1rem] space-y-4 pb-24">
       <div className="text-center text-3xl text-black mt-8 mb-8">Manager Update Tool for Construction</div>
         <div className="hidden"><button id="insert_test" onClick={(e)=>{setInsert()}}>Insert</button></div>
         <div className="hidden"><button id="clear_test" onClick={(e)=>{setClear()}}>Clear</button></div>
+        <div className="hidden"><button id="clear_data_test" onClick={(e)=>{setClearData()}}>Clear Data</button></div>
+        <div className="hidden"><button id="save_test" onClick={(e)=>{setSave()}}>Save</button></div>
+        <div className="hidden"><button id="reset_test" onClick={(e)=>{setReset()}}>Reset</button></div>
+        <div className="hidden"><button id="assign_test" onClick={(e)=>{setAssign()}}>Assign</button></div>
         <div>
             <Instructions />
             <ManagerDBView searchResults={SearchProcess(searchInput, allManagerDB)} setSearchInput={setSearchInput} searchInput={searchInput} setAllManagerDB={setAllManagerDB}/>
@@ -57,7 +85,33 @@ export default function index() {
                 <ClearEmployee setClear={setClear} setIsClear={setIsClear}/>
                 </div>
               </div>
-              : null }
+            : null }
+            {isSave ? 
+              <div>
+                <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
+                <div className="absolute z-2 top-[10%] left-[29%]">
+                <SaveEmployee setIsSave={setIsSave}/>
+                </div>
+              </div>
+            : null }
+            {isClearData ? 
+              <div>
+                <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
+                <div className="absolute z-2 top-[10%] left-[29%]">
+                <ClearChanges setIsClearData={setIsClearData}/>
+                </div>
+              </div>
+            : null }
+            {isReset ? 
+              <div>
+                <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
+                <div className="absolute z-2 top-[10%] left-[29%]">
+                <ResetData setIsReset={setIsReset}/>
+                </div>
+              </div>
+            : null }
+
+
         </div>
         <ToastContainer
             position="top-right"

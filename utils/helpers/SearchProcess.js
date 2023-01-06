@@ -96,7 +96,7 @@ export default function SearchProcess(input, data){
             filtered_district.push(users[i]['DISTRICT'])
             filtered_tram.push(users[i]['TRAM'])
             filtered_unit.push(users[i]['CHIEF_UNIT'])
-            filtered_manager.push(users[i]['STE_NAME'])
+            filtered_manager.push(users[i]['PRIN_NAME'])
             if(users[i]['STE_NAME']){
               filtered_children.push(true)      
             }else{

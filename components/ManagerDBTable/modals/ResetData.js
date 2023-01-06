@@ -1,20 +1,16 @@
 import {React, useState, useEffect} from 'react'
 import {FaExclamation} from 'react-icons/fa'
-import  InsertProcess from '../../utils/helpers/InsertProcess'
-import  InsertDataProcess from '../../utils/helpers/InsertDataProcess'
-import { Circles } from 'react-loader-spinner'
-import SelectedEmployee from './SelectedEmployee'
 
 
-export default function ClearEmployee({isClear, setIsClear}) {
+export default function ResetData({setIsReset}) {
 
     const okayHandler = (e) => {
-        document.getElementById('activate_clear').click()
-        setIsClear(false)
+        document.getElementById('activate_reset').click()
+        setIsReset(false)
     }
     
     const nvmHandler = (e) => {
-        setIsClear(false)
+        setIsReset(false)
     }
     
   return (
@@ -23,7 +19,7 @@ export default function ClearEmployee({isClear, setIsClear}) {
             <div className="grid grid-rows-2 grid-cols-1 h-[100%]">
                 <div className="grid grid-rows-1 grid-cols-2">
                     <div className="bg-[#70AA9B] w-48 h-16 rounded-br-lg z-8">
-                        <div className="float-left pl-4 pt-4 text-2xl font-bold text-white">Empty Data</div>
+                        <div className="float-left pl-4 pt-4 text-2xl font-bold text-white">Reset Data</div>
                     </div>  
                     <div className="ml-[165%] mt-[10%]">
                         <FaExclamation className="text-5xl text-[#75a3cc]"/>
@@ -31,12 +27,11 @@ export default function ClearEmployee({isClear, setIsClear}) {
                 </div>
                 <div className="grid grid-rows-8 gap-y-8 ml-[45%] w-72 mt-[-20%]">
                     <div>
-                        <span className="font-bold">Warning! This will erase the current selected employee from all areas they are present within the database, continue?</span>
-
+                        <span className="font-bold">Proceeding will reset all currently displayed employee data. Continue?</span>
                     </div>
 
                     <div className="grid grid-cols-2  w-[100%]">
-                        <button className="bg-[#c6c6c6] text-white bg-red-500 hover:bg-red-600 rounded-lg ml-[16%] h-8 w-16" onClick={()=>okayHandler()}>Okay</button>
+                        <button className="bg-[#c6c6c6] text-white bg-blue-500 hover:bg-blue-600 rounded-lg ml-[16%] h-8 w-16" onClick={()=>okayHandler()}>Okay</button>
                         <button className="bg-[#c6c6c6] text-white bg-gray-400 hover:bg-gray-500 rounded-lg h-8 w-24" onClick={()=>nvmHandler()}>Nevermind</button>
                     </div>
 

@@ -1,7 +1,7 @@
 
 import {React, useState} from 'react'
 import {FaSitemap, FaRegCaretSquareDown} from 'react-icons/fa'
-import  HierarchyProcess from '../../utils/helpers/HierarchyProcess'
+import  HierarchyProcess from '../../../utils/helpers/HierarchyProcess'
 import { MutatingDots } from 'react-loader-spinner'
 
 export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}) {
