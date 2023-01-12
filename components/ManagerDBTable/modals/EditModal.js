@@ -2,7 +2,7 @@ import {useState, React } from 'react'
 import { FaEdit } from 'react-icons/fa'
 import { FaRegCaretSquareDown } from 'react-icons/fa'
 
-export default function EditModal({setShowEdit, selectedEmployee, superiorMap, setNewName, setNewEmail, setChangedManager, Display, Buttons, Close, Changed, Alert}) {
+export default function EditModal({setShowEdit, selectedEmployee, superiorMap, setNewName, setNewEmail, setChangedManager, Display, Buttons, Close, Changed, Alert, setNameChanges, setEmailChanges, setManagerChanges}) {
 
     const okayHandler = () => {
         if(selectedEmployee.emp_role == "Deputy" || selectedEmployee.emp_role == "Principal"){
@@ -107,6 +107,7 @@ export default function EditModal({setShowEdit, selectedEmployee, superiorMap, s
         
         if(emailChange.value.length > 0){
             emailChange.classList.add('border-cyan-400')
+            setEmailChanges(true)
         }else{
             emailChange.classList.remove('border-cyan-400') 
         }
@@ -132,6 +133,7 @@ export default function EditModal({setShowEdit, selectedEmployee, superiorMap, s
 
         if(nameChange.value.length > 0){
             nameChange.classList.add('border-cyan-400')
+            setNameChanges(true)
         }else{
             nameChange.classList.remove('border-cyan-400') 
         }
@@ -156,6 +158,7 @@ export default function EditModal({setShowEdit, selectedEmployee, superiorMap, s
 
         if(managerChange.value.length > 0){
             managerChange.classList.add('border-cyan-400')
+            setManagerChanges(true)
         }else{
             managerChange.classList.remove('border-cyan-400') 
         }

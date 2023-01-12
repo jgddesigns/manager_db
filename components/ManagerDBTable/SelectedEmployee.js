@@ -735,7 +735,9 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         }else{
             if(!NameChanges && !EmailChanges && !ManagerChanges){
                 noChanges.hidden = false
+                console.log(managerChange.value)
             }else{
+                console.log(managerChange.value)
                 EditManagerHandler(managerChange.value)
             }
         }
@@ -776,7 +778,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
               <div>
                 <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
                 <div className="absolute z-2 top-[10%] left-[29%]">
-                <EditModal setShowEdit={setShowEdit} selectedEmployee={selectedEmployee} superiorMap={superiorMap} setNewName={setNewName} setNewEmail={setNewEmail} setChangedManager={setChangedManager} Display={Display} Buttons={Buttons} Close={Close} Changed={Changed} Alert={Alert}/>
+                <EditModal setShowEdit={setShowEdit} selectedEmployee={selectedEmployee} superiorMap={superiorMap} setNewName={setNewName} setNewEmail={setNewEmail} setChangedManager={setChangedManager} Display={Display} Buttons={Buttons} Close={Close} Changed={Changed} Alert={Alert} setNameChanges={setNameChanges} setEmailChanges={setEmailChanges} setManagerChanges={setManagerChanges}/>
                 </div>
               </div>
             : null }
