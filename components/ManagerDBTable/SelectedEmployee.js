@@ -729,8 +729,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         if(selectedEmployee.emp_role == "Deputy" || selectedEmployee.emp_role == "Principal"){
             if(!NameChanges && !EmailChanges){
                 noChanges.hidden = false
-            }else{
-                EditManagerHandler(managerChange.value)
             }
         }else{
             if(!NameChanges && !EmailChanges && !ManagerChanges){
@@ -741,6 +739,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                 EditManagerHandler(managerChange.value)
             }
         }
+        SaveChanges(selectedEmployee)
     }
 
     //Activates the edit employee modal.
