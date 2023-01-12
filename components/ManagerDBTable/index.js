@@ -71,7 +71,7 @@ export default function index() {
             {isInsert ?
               <div>
                 <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
-                <div className="absolute z-2 top-[10%] left-[29%]">
+                <div className="absolute z-2 top-[10%] left-[28%]">
                 <Insert setInsert={setAllManagerDB} setIsInsert={setIsInsert}/>
                 </div>
               </div>
@@ -79,7 +79,7 @@ export default function index() {
             {isClear ? 
               <div>
                 <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
-                <div className="absolute z-2 top-[10%] left-[29%]">
+                <div className="absolute z-2 top-[10%] left-[28%]">
                 <ClearEmployee setClear={setClear} setIsClear={setIsClear}/>
                 </div>
               </div>
@@ -87,7 +87,7 @@ export default function index() {
             {isSave ? 
               <div>
                 <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
-                <div className="absolute z-2 top-[10%] left-[29%]">
+                <div className="absolute z-2 top-[10%] left-[28%]">
                 <SaveEmployee setIsSave={setIsSave}/>
                 </div>
               </div>
@@ -95,7 +95,7 @@ export default function index() {
             {isChange ? 
               <div>
                 <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
-                <div className="absolute z-2 top-[10%] left-[29%]">
+                <div className="absolute z-2 top-[10%] left-[28%]">
                 <ClearChanges setIsChange={setIsChange}/>
                 </div>
               </div>
@@ -103,7 +103,7 @@ export default function index() {
             {isReset ? 
               <div>
                 <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
-                <div className="absolute z-2 top-[10%] left-[29%]">
+                <div className="absolute z-2 top-[10%] left-[28%]">
                 <ResetData setIsReset={setIsReset}/>
                 </div>
               </div>

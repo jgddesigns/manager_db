@@ -2,11 +2,26 @@ import {useState, React } from 'react'
 import { FaEdit } from 'react-icons/fa'
 import { FaRegCaretSquareDown } from 'react-icons/fa'
 
-export default function EditModal({setShowEdit, selectedEmployee, superiorMap, setNewName, setNewEmail, setChangedManager, Display, Buttons, Close}) {
+export default function EditModal({setShowEdit, selectedEmployee, superiorMap, setNewName, setNewEmail, setChangedManager, Display, Buttons, Close, Changed, Alert}) {
 
     const okayHandler = () => {
-        document.getElementById('activate_edit').click()
-        setShowEdit(false)
+        if(selectedEmployee.emp_role == "Deputy" || selectedEmployee.emp_role == "Principal"){
+            console.log(document.getElementById('userName').value)
+            console.log(document.getElementById('userEmail').value)
+            if(document.getElementById('userName').value != selectedEmployee.emp_name || document.getElementById('userEmail').value != selectedEmployee.emp_email){
+                document.getElementById('activate_edit').click()
+                setShowEdit(false)
+            }else{
+                document.getElementById('no_changes').hidden = false
+            }
+        }else{
+            if(document.getElementById('userName').value != selectedEmployee.emp_name || document.getElementById('userEmail').value != selectedEmployee.emp_email || document.getElementById('managerName').value != selectedEmployee.emp_manager){
+                document.getElementById('activate_edit').click()
+                setShowEdit(false)
+            }else{
+                document.getElementById('no_changes').hidden = false    
+            }
+        }
     }
 
     const closeHandler = () => {
@@ -214,13 +229,13 @@ export default function EditModal({setShowEdit, selectedEmployee, superiorMap, s
                         </select> <FaRegCaretSquareDown className="text-md text-gray-300 ml-12 mt-[.75rem] pointer-events-none"/>
                         </div> </div>:null}
                         <div className="grid grid-rows-auto grid-cols-1 w-88 h-10 ml-2 mb-4">
-                            <span className="text-red-400 text-center font-bold mt-8" id="error_name" hidden>Name cannot be blank.</span> 
-                            <span className="text-red-400 text-center font-bold mt-8" id="error_both" hidden>Please enter new data.</span> 
-                            <span className="text-red-400 text-center static font-bold mt-8" id="error_email" hidden>Please enter a valid email address.</span> 
-                            <span className="text-cyan-500 text-center font-bold mt-8" id="no_changes" hidden>No information was changed.</span> 
-                            <span className="text-red-400 text-center font-bold mt-8" id="error_manager" hidden>Please select a manager.</span> 
+                            <span className={Alert} id="error_name" hidden>Name cannot be blank.</span> 
+                            <span className={Alert} id="error_both" hidden>Please enter new data.</span> 
+                            <span className={Alert} id="error_email" hidden>Please enter a valid email address.</span> 
+                            <span className={Changed} id="no_changes" hidden>No information was changed.</span> 
+                            <span className={Alert} id="error_manager" hidden>Please select a manager.</span> 
                         </div>
-                        <div className="grid-rows-2 w-[100%] mt-8">
+                        <div className="grid-rows-2 w-[100%] mt-24">
                             <div className={Buttons}>
                                 <button className="bg-[#c6c6c6] text-white bg-blue-500 hover:bg-blue-600 rounded-lg ml-[16%] h-8 w-16" onClick={()=>okayHandler()}>Okay</button><button className="bg-[#c6c6c6] text-white bg-gray-400 hover:bg-gray-500 rounded-lg h-8 w-24" onClick={()=>closeHandler()}>Nevermind</button>
                             </div> 

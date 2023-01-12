@@ -25,6 +25,8 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
     const [Display, setDisplay] = useState([])
     const [Buttons, setButtons] = useState([])
     const [Close, setClose] = useState([])
+    const [Changed, setChanged] = useState([])
+    const [Alert, setAlert] = useState([])
 
     useEffect(() => {
         fetch("/ManagerDB/api/current-user/", {
@@ -710,18 +712,31 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             new_manager = ""
         }
 
-        if(new_name != ""){
+        if(new_name != "" || new_name != selectedEmployee.emp_name){
             setNameChanges(true)    
         }
         
-        if(new_email != selectedEmployee.emp_email){
+        if(new_email != "" || new_email != selectedEmployee.emp_email){
             setEmailChanges(true)
         }
 
-        if(new_manager != ""){
+        if(new_manager != "" || new_manager != selectedEmployee.emp_manager && selectedEmployee.emp_role != "Deputy" && selectedEmployee.emp_role != "Principal"){
             if(managerChange.value.length > 0){
-                EditManagerHandler(managerChange.value)
                 setManagerChanges(true)
+            }
+        }
+
+        if(selectedEmployee.emp_role == "Deputy" || selectedEmployee.emp_role == "Principal"){
+            if(!NameChanges && !EmailChanges){
+                noChanges.hidden = false
+            }else{
+                EditManagerHandler(managerChange.value)
+            }
+        }else{
+            if(!NameChanges && !EmailChanges && !ManagerChanges){
+                noChanges.hidden = false
+            }else{
+                EditManagerHandler(managerChange.value)
             }
         }
     }
@@ -734,11 +749,15 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             setDisplay("mb-8 mt-28 ml-[28%]")
             setButtons("grid grid-cols-2 mr-16")
             setClose("cursor-pointer h-full underline mr-32")
+            setChanged("text-cyan-500 text-center font-bold mt-8 mr-32")
+            setAlert("text-red-400 text-center font-bold mt-8")
             setShowEdit(true)
         }else{
             setDisplay("mb-8 mt-28 ml-[40%]")
             setButtons("grid grid-cols-2 ml-8")
             setClose("cursor-pointer h-full underline ml-8")
+            setChanged("text-cyan-500 text-center font-bold mt-8 ml-8")
+            setAlert("text-red-400 text-center font-bold mt-8")
             setShowEdit(true)
         }
     }
@@ -757,7 +776,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
               <div>
                 <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
                 <div className="absolute z-2 top-[10%] left-[29%]">
-                <EditModal setShowEdit={setShowEdit} selectedEmployee={selectedEmployee} superiorMap={superiorMap} setNewName={setNewName} setNewEmail={setNewEmail} setChangedManager={setChangedManager} Display={Display} Buttons={Buttons} Close={Close}/>
+                <EditModal setShowEdit={setShowEdit} selectedEmployee={selectedEmployee} superiorMap={superiorMap} setNewName={setNewName} setNewEmail={setNewEmail} setChangedManager={setChangedManager} Display={Display} Buttons={Buttons} Close={Close} Changed={Changed} Alert={Alert}/>
                 </div>
               </div>
             : null }

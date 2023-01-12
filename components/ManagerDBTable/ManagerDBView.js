@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import SelectedEmployee from './SelectedEmployee'
-import ChangeDisplay from './modals/ChangeDisplay'
+import ResetData from './modals/ResetData'
 import {FaSort} from 'react-icons/fa'
 import BugReport from './modals/BugReport'
 
@@ -13,6 +13,7 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   const [ToggleEFIS, setToggleEFIS] = useState(false)
   const [ToggleRole, setToggleRole] = useState(false)
   const [isChange, setIsChange] = useState(false)
+  const [isReset, setIsReset] = useState(false)
   const [ToggleDistrict, setToggleDistrict] = useState(false)
   const [isBugReport, setIsBugReport] = useState(false)
   
@@ -35,7 +36,7 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   //@param: None.
   //@return: Void.
   function changeDisplay() {
-      setIsChange(true) 
+      setIsReset(true) 
   }
 
   //Once the change modal is confirmed, clear the current displayed employee.
@@ -188,11 +189,11 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   return (
     <div className="h-[36rem] max-h-[36rem] p-2 w-[44rem] rounded bg-[#70AA9B] shadow-lg">
     {/* <button id="activate_change" onClick={()=>activateChange()} className="hidden"></button> */}
-      {isChange ? 
+      {isReset ? 
         <div>
           <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
           <div className="absolute z-2 top-[10%] left-[29%]">
-          <ChangeDisplay setIsChange={setIsChange}/>
+          <ResetData setIsReset={setIsReset}/>
           </div>
         </div>
       : null }
