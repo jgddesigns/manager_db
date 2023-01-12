@@ -1,5 +1,5 @@
-import {React, useState, useEffect} from 'react'
-import {FaEdit} from 'react-icons/fa'
+import { React, useState, useEffect } from 'react'
+import { FaEdit } from 'react-icons/fa'
 import  InsertProcess from '../../../utils/helpers/InsertProcess'
 import  InsertDataProcess from '../../../utils/helpers/InsertDataProcess'
 import { Circles } from 'react-loader-spinner'

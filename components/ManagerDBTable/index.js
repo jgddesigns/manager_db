@@ -1,6 +1,5 @@
 import ManagerDBView from './ManagerDBView'
 import Insert from './modals/Insert'
-import AssignModal from './modals/AssignModal'
 import ClearEmployee from './modals/ClearEmployee'
 import ClearChanges from './modals/ClearChanges'
 import SaveEmployee from './modals/SaveEmployee'
@@ -16,11 +15,10 @@ export default function index() {
   const [allManagerDB, setAllManagerDB] = useState([])
   const [isInsert, setIsInsert] = useState(false)
   const [isClear, setIsClear] = useState(false)
-  const [isClearData, setIsClearData] = useState(false)
+  const [isChange, setIsChange] = useState(false)
   const [isSave, setIsSave] = useState(false)
   const [isReset, setIsReset] = useState(false)
   const [isAssign, setIsAssign] = useState(false)
-
 
   useEffect(() => {
     if (allManagerDB.length === 0) {
@@ -42,8 +40,8 @@ export default function index() {
     setIsClear(true)
   }
 
-  function setClearData(){
-    setIsClearData(true)
+  function setChange(){
+    setIsChange(true)
   }
 
   function setSave(){
@@ -63,7 +61,7 @@ export default function index() {
       <div className="text-center text-3xl text-black mt-8 mb-8">Manager Update Tool for Construction</div>
         <div className="hidden"><button id="insert_test" onClick={(e)=>{setInsert()}}>Insert</button></div>
         <div className="hidden"><button id="clear_test" onClick={(e)=>{setClear()}}>Clear</button></div>
-        <div className="hidden"><button id="clear_data_test" onClick={(e)=>{setClearData()}}>Clear Data</button></div>
+        <div className="hidden"><button id="clear_data_test" onClick={(e)=>{setChange()}}>Clear Data</button></div>
         <div className="hidden"><button id="save_test" onClick={(e)=>{setSave()}}>Save</button></div>
         <div className="hidden"><button id="reset_test" onClick={(e)=>{setReset()}}>Reset</button></div>
         <div className="hidden"><button id="assign_test" onClick={(e)=>{setAssign()}}>Assign</button></div>
@@ -94,11 +92,11 @@ export default function index() {
                 </div>
               </div>
             : null }
-            {isClearData ? 
+            {isChange ? 
               <div>
                 <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
                 <div className="absolute z-2 top-[10%] left-[29%]">
-                <ClearChanges setIsClearData={setIsClearData}/>
+                <ClearChanges setIsChange={setIsChange}/>
                 </div>
               </div>
             : null }
@@ -110,8 +108,6 @@ export default function index() {
                 </div>
               </div>
             : null }
-
-
         </div>
         <ToastContainer
             position="top-right"

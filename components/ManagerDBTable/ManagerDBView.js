@@ -1,8 +1,7 @@
-import {setState, useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import SelectedEmployee from './SelectedEmployee'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-import { FaSort } from 'react-icons/fa'
+import ChangeDisplay from './modals/ChangeDisplay'
+import {FaSort} from 'react-icons/fa'
 import BugReport from './modals/BugReport'
 
 export default function ManagerDBView({searchResults, setSearchInput, searchInput, setAllManagerDB}){
@@ -13,9 +12,9 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   const [ToggleName, setToggleName] = useState(false)
   const [ToggleEFIS, setToggleEFIS] = useState(false)
   const [ToggleRole, setToggleRole] = useState(false)
+  const [isChange, setIsChange] = useState(false)
   const [ToggleDistrict, setToggleDistrict] = useState(false)
   const [isBugReport, setIsBugReport] = useState(false)
-  const MySwal = withReactContent(Swal)
   
   useEffect(() => {
     if(selectedUser == null && !reloadPopup){
@@ -36,31 +35,27 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   //@param: None.
   //@return: Void.
   function changeDisplay() {
-    MySwal.fire({
-      icon: 'question',
-      title: <p>Clear Info</p>,
-      text: 'This will clear current employee information. Continue?',
-      showCancelButton: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        setSelectedUser(null)
-        setReloadPopup(true)
-      }
-    })
-  };
+      setIsChange(true) 
+  }
+
+  //Once the change modal is confirmed, clear the current displayed employee.
+  //@param: None.
+  //@return: Void.
+  function activateChange() {
+    setSelectedUser(null)
+    setReloadPopup(true)
+  }
 
   //Alerts the user that entering any new information in the search field will clear the current displayed employee.
   //@param: None.
   //@return: Void.
   const setEmployeeHandler = (result) => {
-    console.log(result)
     setSelectedUser(result)
     setReloadPopup(false)
   }
 
   // Map each ressult to a single json object {emp_name: "", emp_role: "", emp_efis: "", emp_district: ""}
   const resultsMap = searchResults[0].map((name, index) => {
-  
     return {
       emp_name: searchResults[0][index],
       emp_email: searchResults[1][index],
@@ -109,7 +104,9 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   //@param: None.
   //@return: Void.
   const SetClear = () => {
-    document.getElementById('reset_test').click()
+    if(document.getElementById('search_id').value != ""){
+      document.getElementById('reset_test').click()
+    }
   }
 
   //When the reset button is clicked, resets all displayed employee information.
@@ -157,8 +154,6 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   //@return: The JSX to be displayed.
   const renderResults = (results) =>{
     return(
-
-      // /Map each result to a row in a table.
       <div className="flex flex-col text-center">
         <button id="activate_reset" className="hidden" onClick={() => activateReset()}></button>
         <div className="overflow-y-auto max-h-[28rem] ">
@@ -191,32 +186,41 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   }
   
   return (
-    <div className="h-[36rem] max-h-[36rem] p-2 w-[44rem] rounded bg-[#70AA9B] shadow-lg">    
-        {!isBugReport ?
-          <div>
-            <div className="text-white text-2xl pb-2 inline-block">
-                Employees 
-            </div>
-
-            <input 
-            onChange={(e) => { if(selectedUser != null) changeDisplay() ; SetSearch(e) }}
-            placeholder="Search by Name, EFIS" id="search_id"
-            className="inline-block form-control px-3 py-1.5text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none placeholder:pl-2 h-8 rounded float-right shadow-lg"
-            title='Search bar'
-            />
-            <button id="set_clear" className="hidden" onClick={() => activateReset()}></button>
-            <div className="text-white text-sm pb-2 float-right mr-4 mt-2 underline text-blue-700 cursor-pointer" onClick={(e)=>SetClear()}>
-                Clear
-            </div>
-            <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
-              {selectedUser ? <SelectedEmployee selectedEmployee={selectedUser} setSelectedUser={setSelectedUser} setLoadingGraphic={setLoadingGraphic}/> : (!loadingGraphic ? renderResults(resultsMap) : renderResults([]))}
-            </div>
+    <div className="h-[36rem] max-h-[36rem] p-2 w-[44rem] rounded bg-[#70AA9B] shadow-lg">
+    <button id="activate_change" onClick={()=>activateChange()} className="hidden"></button>
+      {isChange ? 
+        <div>
+          <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
+          <div className="absolute z-2 top-[10%] left-[29%]">
+          <ChangeDisplay setIsChange={setIsChange}/>
           </div>
-        :
-            <div>
-                <BugReport/>
-            </div>
-        }
+        </div>
+      : null }
+      {!isBugReport ?
+        <div>
+          <div className="text-white text-2xl pb-2 inline-block">
+              Employees 
+          </div>
+
+          <input 
+          onChange={(e) => { if(selectedUser != null) changeDisplay() ; SetSearch(e) }}
+          placeholder="Search by Name, EFIS" id="search_id"
+          className="inline-block form-control px-3 py-1.5text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none placeholder:pl-2 h-8 rounded float-right shadow-lg"
+          title='Search bar'
+          />
+          <button id="set_clear" className="hidden" onClick={() => activateReset()}></button>
+          <div className="text-white text-sm pb-2 float-right mr-4 mt-2 underline text-blue-700 cursor-pointer" onClick={(e)=>SetClear()}>
+              Clear
+          </div>
+          <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
+            {selectedUser ? <SelectedEmployee selectedEmployee={selectedUser} setSelectedUser={setSelectedUser} setLoadingGraphic={setLoadingGraphic}/> : (!loadingGraphic ? renderResults(resultsMap) : renderResults([]))}
+          </div>
+        </div>
+      :
+          <div>
+              <BugReport/>
+          </div>
+      }
     </div>
   )
 }

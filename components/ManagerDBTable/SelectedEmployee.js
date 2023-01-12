@@ -2,6 +2,7 @@ import {React, useState, useEffect} from 'react'
 import AuditProcess from '../../utils/helpers/AuditProcess'
 import AssignModal from './modals/AssignModal'
 import EditModal from './modals/EditModal'
+import EditModal2 from './modals/EditModal2'
 import { Grid } from 'react-loader-spinner'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -20,6 +21,10 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
     const [AssignCheck, setAssignCheck] = useState(false)
     const [showAssign, setShowAssign] = useState(false)
     const [showEdit, setShowEdit] = useState(false)
+    const [showEdit2, setShowEdit2] = useState(false)
+    const [Display, setDisplay] = useState([])
+    const [Buttons, setButtons] = useState([])
+    const [Close, setClose] = useState([])
 
     useEffect(() => {
         fetch("/ManagerDB/api/current-user/", {
@@ -198,7 +203,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
     //@param: None.
     //@return: Void.
     const EditEmployeeHandler = () => {
-        console.log(selectedEmployee.emp_children)
         setNameChanges(false)
         setEmailChanges(false)
         setManagerChanges(false)
@@ -320,7 +324,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
     //Once the clear data modal is confirmed, will call the clear employee function.
     //@param: None.
     //@return: Void.
-    const activateClearData = () => {
+    const activateChange = () => {
         setNewName("")
         setNewEmail("")
         setChangedManager("")
@@ -725,8 +729,18 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
     //Activates the edit employee modal.
     //@param: None.
     //@return: Void.
-    const EditEmployee = async () => {
-        setShowEdit(true)
+    const EditEmployee = () => {
+        if(selectedEmployee.emp_role != "Deputy" && selectedEmployee.emp_role != "Principal"){
+            setDisplay("mb-8 mt-28 ml-[28%]")
+            setButtons("grid grid-cols-2 mr-16")
+            setClose("cursor-pointer h-full underline mr-32")
+            setShowEdit(true)
+        }else{
+            setDisplay("mb-8 mt-28 ml-[40%]")
+            setButtons("grid grid-cols-2 ml-8")
+            setClose("cursor-pointer h-full underline ml-8")
+            setShowEdit(true)
+        }
     }
 
     return (
@@ -743,10 +757,18 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
               <div>
                 <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
                 <div className="absolute z-2 top-[10%] left-[29%]">
-                <EditModal setShowEdit={setShowEdit} selectedEmployee={selectedEmployee} superiorMap={superiorMap} setNewName={setNewName} setNewEmail={setNewEmail} setChangedManager={setChangedManager}/>
+                <EditModal setShowEdit={setShowEdit} selectedEmployee={selectedEmployee} superiorMap={superiorMap} setNewName={setNewName} setNewEmail={setNewEmail} setChangedManager={setChangedManager} Display={Display} Buttons={Buttons} Close={Close}/>
                 </div>
               </div>
             : null }
+            {/* {showEdit2 ? 
+              <div>
+                <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
+                <div className="absolute z-2 top-[10%] left-[29%]">
+                <EditModal2 setShowEdit={setShowEdit2} selectedEmployee={selectedEmployee} superiorMap={superiorMap} setNewName={setNewName} setNewEmail={setNewEmail} setChangedManager={setChangedManager}/>
+                </div>
+              </div>
+            : null } */}
             {!loadingGraphicDisplay ? 
             <div>
                 <h2 className="px-4 py-2 text-center w-full text-xl font-bold underline">Selected Employee</h2>
@@ -795,7 +817,7 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                     <button className="float-center bg-orange-400 hover:bg-orange-500 text-white rounded mt-4 ml-12 h-6 w-20 text-xs cursor-pointer" onClick={(e) => clearEmployeeHandler(e)} >Empty Data</button>
                     <button className="hidden" id="activate_clear" onClick={(e) => activateClearEmployee(e)}></button>
                     <button className="hidden" id="activate_save" onClick={(e) => activateSaveEmployee(selectedEmployee)}></button>
-                    <button className="hidden" id="activate_clear_data" onClick={(e) => activateClearData()}></button>
+                    <button className="hidden" id="activate_change" onClick={(e) => activateChange()}></button>
                     <button className="hidden" id="activate_assign" onClick={(e) => activateAssigned()}></button>
                     <button className="hidden" id="activate_edit" onClick={(e) => activateEdit()}></button>
                 </div>

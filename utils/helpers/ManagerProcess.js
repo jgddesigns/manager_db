@@ -59,11 +59,9 @@ export default function SearchProcess(data, selectedEmployee){
   }else{
       console.log("Manager edit hasn't proccessed.")
   }
-  console.log(current_manager)
 
-    update_package.push(manager_arr, manager_efis_arr, current_manager, manager_email_arr)
+  update_package.push(manager_arr, manager_efis_arr, current_manager, manager_email_arr)
     
 
-    return update_package
-
+  return update_package
 }

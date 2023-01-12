@@ -5,7 +5,7 @@ import {FaExclamation} from 'react-icons/fa'
 export default function ResetData({setIsReset}) {
 
     const okayHandler = (e) => {
-        document.getElementById('activate_reset').click()
+        document.getElementById('set_clear').click()
         setIsReset(false)
     }
     

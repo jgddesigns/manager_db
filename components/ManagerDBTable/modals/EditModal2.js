@@ -1,8 +1,8 @@
-import {useState, React } from 'react'
+import { React } from 'react'
 import { FaEdit } from 'react-icons/fa'
 import { FaRegCaretSquareDown } from 'react-icons/fa'
 
-export default function EditModal({setShowEdit, selectedEmployee, superiorMap, setNewName, setNewEmail, setChangedManager, Display, Buttons, Close}) {
+export default function EditModal2({setShowEdit, selectedEmployee, superiorMap, setNewName, setNewEmail, setChangedManager}) {
 
     const okayHandler = () => {
         document.getElementById('activate_edit').click()
@@ -164,7 +164,7 @@ export default function EditModal({setShowEdit, selectedEmployee, superiorMap, s
                 </div>
                 <div className="grid grid-rows-8 gap-y-8 ml-[33%] w-72 mt-[-15%]">       
                 </div>
-                <div className={Display}>
+                <div className="mb-8 mt-28 ml-[30%]">
                     <div className="mb-8">
                         <p className="text-sm"> Enter new data for:</p>
                         <p className="font-bold italic">EFIS #{selectedEmployee.emp_efis}</p>
@@ -220,12 +220,12 @@ export default function EditModal({setShowEdit, selectedEmployee, superiorMap, s
                             <span className="text-cyan-500 text-center font-bold mt-8" id="no_changes" hidden>No information was changed.</span> 
                             <span className="text-red-400 text-center font-bold mt-8" id="error_manager" hidden>Please select a manager.</span> 
                         </div>
-                        <div className="grid-rows-2 w-[100%] mt-8">
-                            <div className={Buttons}>
+                        <div className="grid-rows-2 w-[100%] mt-8 ml-[2rem]">
+                            <div className="grid grid-cols-2">
                                 <button className="bg-[#c6c6c6] text-white bg-blue-500 hover:bg-blue-600 rounded-lg ml-[16%] h-8 w-16" onClick={()=>okayHandler()}>Okay</button><button className="bg-[#c6c6c6] text-white bg-gray-400 hover:bg-gray-500 rounded-lg h-8 w-24" onClick={()=>closeHandler()}>Nevermind</button>
                             </div> 
-                            <div className="w-[100%] text-center mt-[30%] mb-[2%] mr-[90%] bottom-0">
-                                <span onClick={()=>closeHandler()} className={Close}>Close</span>
+                            <div className="w-[100%] text-center mt-[30%] mb-[2%] bottom-0">
+                                <span onClick={()=>closeHandler()} className="cursor-pointer h-full underline mr-8">Close</span>
                             </div>
                         </div>
                     </div>
