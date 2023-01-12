@@ -739,7 +739,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                 EditManagerHandler(managerChange.value)
             }
         }
-        SaveChanges(selectedEmployee)
     }
 
     //Activates the edit employee modal.
@@ -781,14 +780,6 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
                 </div>
               </div>
             : null }
-            {/* {showEdit2 ? 
-              <div>
-                <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
-                <div className="absolute z-2 top-[10%] left-[29%]">
-                <EditModal2 setShowEdit={setShowEdit2} selectedEmployee={selectedEmployee} superiorMap={superiorMap} setNewName={setNewName} setNewEmail={setNewEmail} setChangedManager={setChangedManager}/>
-                </div>
-              </div>
-            : null } */}
             {!loadingGraphicDisplay ? 
             <div>
                 <h2 className="px-4 py-2 text-center w-full text-xl font-bold underline">Selected Employee</h2>

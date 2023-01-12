@@ -179,7 +179,7 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
 
   return (
     <div>
-        <div className="flex w-[40rem] h-[54rem] bg-gray-100 drop-shadow-2xl rounded-xl rounded-tl-[4px] border-[5px] border-[#70AA9B] text-black overflow-y-auto mb-[10%]">
+        <div className="flex w-[40rem] h-[58rem] bg-gray-100 drop-shadow-2xl rounded-xl rounded-tl-[4px] border-[5px] border-[#70AA9B] text-black overflow-y-auto mb-[10%]">
             <div className="grid grid-rows-2 grid-cols-1 h-[100%]">
                 <div className="grid grid-rows-1 grid-cols-2">
                     <div className="bg-[#70AA9B] w-48 h-16 rounded-br-lg z-8">
@@ -279,7 +279,7 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
                 </div>
                 }
 
-                <div className="w-[100%] ml-[33%] text-center mt-[100%] mb-[2%] bottom-0">
+                <div className="w-[100%] ml-[33%] text-center mt-[110%] bottom-0">
                     <span onClick={()=>closeHandler()} className="cursor-pointer h-full underline">Close</span>
                 </div>
             </div>
