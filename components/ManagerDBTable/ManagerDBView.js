@@ -187,7 +187,7 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   
   return (
     <div className="h-[36rem] max-h-[36rem] p-2 w-[44rem] rounded bg-[#70AA9B] shadow-lg">
-    <button id="activate_change" onClick={()=>activateChange()} className="hidden"></button>
+    {/* <button id="activate_change" onClick={()=>activateChange()} className="hidden"></button> */}
       {isChange ? 
         <div>
           <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
