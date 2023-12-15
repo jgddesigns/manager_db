@@ -18,17 +18,17 @@ type UnwrapTuple<Tuple extends readonly unknown[]> = {
  */
 export type audit_table = {
   id: number
-  change_type: string | null
-  changed_by_number: string | null
-  old_name: string | null
-  new_name: string | null
-  old_email: string | null
-  new_email: string | null
-  old_manager: string | null
-  new_manager: string | null
-  role: string | null
-  efis: string | null
-  region: string | null
+  change_type: string
+  changed_by_number: string
+  old_name: string
+  new_name: string
+  old_email: string
+  new_email: string
+  old_manager: string
+  new_manager: string
+  role: string
+  efis: string
+  region: string
   date_time: string
 }
 
@@ -37,24 +37,24 @@ export type audit_table = {
  * The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
  */
 export type manager_dashboard_tbl = {
-  REGION: string | null
-  DISTRICT: string | null
-  TRAM: string | null
-  EFIS: string | null
-  DEPUTY_NAME: string | null
-  DEPUTY_EMAIL: string | null
-  PRIN_UNIT: string | null
-  PRIN_EFIS: string | null
-  PRIN_NAME: string | null
-  PRIN_EMAIL: string | null
-  CHIEF_UNIT: string | null
-  CHIEF_EFIS: string | null
-  CHIEF_NAME: string | null
-  CHIEF_EMAIL: string | null
-  STE_UNIT: string | null
-  STE_EFIS: string | null
-  STE_NAME: string | null
-  STE_EMAIL: string | null
+  REGION: string
+  DISTRICT: string
+  TRAM: string
+  EFIS: string
+  DEPUTY_NAME: string
+  DEPUTY_EMAIL: string
+  PRIN_UNIT: string
+  PRIN_EFIS: string
+  PRIN_NAME: string
+  PRIN_EMAIL: string
+  CHIEF_UNIT: string
+  CHIEF_EFIS: string
+  CHIEF_NAME: string
+  CHIEF_EMAIL: string
+  STE_UNIT: string
+  STE_EFIS: string
+  STE_NAME: string
+  STE_EMAIL: string
   test: number
 }
 
@@ -1073,17 +1073,17 @@ export namespace Prisma {
 
   export type Audit_tableGroupByOutputType = {
     id: number
-    change_type: string | null
-    changed_by_number: string | null
-    old_name: string | null
-    new_name: string | null
-    old_email: string | null
-    new_email: string | null
-    old_manager: string | null
-    new_manager: string | null
-    role: string | null
-    efis: string | null
-    region: string | null
+    change_type: string
+    changed_by_number: string
+    old_name: string
+    new_name: string
+    old_email: string
+    new_email: string
+    old_manager: string
+    new_manager: string
+    role: string
+    efis: string
+    region: string
     date_time: string
     _count: Audit_tableCountAggregateOutputType | null
     _avg: Audit_tableAvgAggregateOutputType | null
@@ -2079,24 +2079,24 @@ export namespace Prisma {
 
 
   export type Manager_dashboard_tblGroupByOutputType = {
-    REGION: string | null
-    DISTRICT: string | null
-    TRAM: string | null
-    EFIS: string | null
-    DEPUTY_NAME: string | null
-    DEPUTY_EMAIL: string | null
-    PRIN_UNIT: string | null
-    PRIN_EFIS: string | null
-    PRIN_NAME: string | null
-    PRIN_EMAIL: string | null
-    CHIEF_UNIT: string | null
-    CHIEF_EFIS: string | null
-    CHIEF_NAME: string | null
-    CHIEF_EMAIL: string | null
-    STE_UNIT: string | null
-    STE_EFIS: string | null
-    STE_NAME: string | null
-    STE_EMAIL: string | null
+    REGION: string
+    DISTRICT: string
+    TRAM: string
+    EFIS: string
+    DEPUTY_NAME: string
+    DEPUTY_EMAIL: string
+    PRIN_UNIT: string
+    PRIN_EFIS: string
+    PRIN_NAME: string
+    PRIN_EMAIL: string
+    CHIEF_UNIT: string
+    CHIEF_EFIS: string
+    CHIEF_NAME: string
+    CHIEF_EMAIL: string
+    STE_UNIT: string
+    STE_EFIS: string
+    STE_NAME: string
+    STE_EMAIL: string
     test: number
     _count: Manager_dashboard_tblCountAggregateOutputType | null
     _avg: Manager_dashboard_tblAvgAggregateOutputType | null
@@ -2910,17 +2910,17 @@ export namespace Prisma {
     OR?: Enumerable<audit_tableWhereInput>
     NOT?: Enumerable<audit_tableWhereInput>
     id?: IntFilter | number
-    change_type?: StringNullableFilter | string | null
-    changed_by_number?: StringNullableFilter | string | null
-    old_name?: StringNullableFilter | string | null
-    new_name?: StringNullableFilter | string | null
-    old_email?: StringNullableFilter | string | null
-    new_email?: StringNullableFilter | string | null
-    old_manager?: StringNullableFilter | string | null
-    new_manager?: StringNullableFilter | string | null
-    role?: StringNullableFilter | string | null
-    efis?: StringNullableFilter | string | null
-    region?: StringNullableFilter | string | null
+    change_type?: StringFilter | string
+    changed_by_number?: StringFilter | string
+    old_name?: StringFilter | string
+    new_name?: StringFilter | string
+    old_email?: StringFilter | string
+    new_email?: StringFilter | string
+    old_manager?: StringFilter | string
+    new_manager?: StringFilter | string
+    role?: StringFilter | string
+    efis?: StringFilter | string
+    region?: StringFilter | string
     date_time?: StringFilter | string
   }
 
@@ -2970,17 +2970,17 @@ export namespace Prisma {
     OR?: Enumerable<audit_tableScalarWhereWithAggregatesInput>
     NOT?: Enumerable<audit_tableScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
-    change_type?: StringNullableWithAggregatesFilter | string | null
-    changed_by_number?: StringNullableWithAggregatesFilter | string | null
-    old_name?: StringNullableWithAggregatesFilter | string | null
-    new_name?: StringNullableWithAggregatesFilter | string | null
-    old_email?: StringNullableWithAggregatesFilter | string | null
-    new_email?: StringNullableWithAggregatesFilter | string | null
-    old_manager?: StringNullableWithAggregatesFilter | string | null
-    new_manager?: StringNullableWithAggregatesFilter | string | null
-    role?: StringNullableWithAggregatesFilter | string | null
-    efis?: StringNullableWithAggregatesFilter | string | null
-    region?: StringNullableWithAggregatesFilter | string | null
+    change_type?: StringWithAggregatesFilter | string
+    changed_by_number?: StringWithAggregatesFilter | string
+    old_name?: StringWithAggregatesFilter | string
+    new_name?: StringWithAggregatesFilter | string
+    old_email?: StringWithAggregatesFilter | string
+    new_email?: StringWithAggregatesFilter | string
+    old_manager?: StringWithAggregatesFilter | string
+    new_manager?: StringWithAggregatesFilter | string
+    role?: StringWithAggregatesFilter | string
+    efis?: StringWithAggregatesFilter | string
+    region?: StringWithAggregatesFilter | string
     date_time?: StringWithAggregatesFilter | string
   }
 
@@ -2988,24 +2988,24 @@ export namespace Prisma {
     AND?: Enumerable<manager_dashboard_tblWhereInput>
     OR?: Enumerable<manager_dashboard_tblWhereInput>
     NOT?: Enumerable<manager_dashboard_tblWhereInput>
-    REGION?: StringNullableFilter | string | null
-    DISTRICT?: StringNullableFilter | string | null
-    TRAM?: StringNullableFilter | string | null
-    EFIS?: StringNullableFilter | string | null
-    DEPUTY_NAME?: StringNullableFilter | string | null
-    DEPUTY_EMAIL?: StringNullableFilter | string | null
-    PRIN_UNIT?: StringNullableFilter | string | null
-    PRIN_EFIS?: StringNullableFilter | string | null
-    PRIN_NAME?: StringNullableFilter | string | null
-    PRIN_EMAIL?: StringNullableFilter | string | null
-    CHIEF_UNIT?: StringNullableFilter | string | null
-    CHIEF_EFIS?: StringNullableFilter | string | null
-    CHIEF_NAME?: StringNullableFilter | string | null
-    CHIEF_EMAIL?: StringNullableFilter | string | null
-    STE_UNIT?: StringNullableFilter | string | null
-    STE_EFIS?: StringNullableFilter | string | null
-    STE_NAME?: StringNullableFilter | string | null
-    STE_EMAIL?: StringNullableFilter | string | null
+    REGION?: StringFilter | string
+    DISTRICT?: StringFilter | string
+    TRAM?: StringFilter | string
+    EFIS?: StringFilter | string
+    DEPUTY_NAME?: StringFilter | string
+    DEPUTY_EMAIL?: StringFilter | string
+    PRIN_UNIT?: StringFilter | string
+    PRIN_EFIS?: StringFilter | string
+    PRIN_NAME?: StringFilter | string
+    PRIN_EMAIL?: StringFilter | string
+    CHIEF_UNIT?: StringFilter | string
+    CHIEF_EFIS?: StringFilter | string
+    CHIEF_NAME?: StringFilter | string
+    CHIEF_EMAIL?: StringFilter | string
+    STE_UNIT?: StringFilter | string
+    STE_EFIS?: StringFilter | string
+    STE_NAME?: StringFilter | string
+    STE_EMAIL?: StringFilter | string
     test?: IntFilter | number
   }
 
@@ -3066,284 +3066,284 @@ export namespace Prisma {
     AND?: Enumerable<manager_dashboard_tblScalarWhereWithAggregatesInput>
     OR?: Enumerable<manager_dashboard_tblScalarWhereWithAggregatesInput>
     NOT?: Enumerable<manager_dashboard_tblScalarWhereWithAggregatesInput>
-    REGION?: StringNullableWithAggregatesFilter | string | null
-    DISTRICT?: StringNullableWithAggregatesFilter | string | null
-    TRAM?: StringNullableWithAggregatesFilter | string | null
-    EFIS?: StringNullableWithAggregatesFilter | string | null
-    DEPUTY_NAME?: StringNullableWithAggregatesFilter | string | null
-    DEPUTY_EMAIL?: StringNullableWithAggregatesFilter | string | null
-    PRIN_UNIT?: StringNullableWithAggregatesFilter | string | null
-    PRIN_EFIS?: StringNullableWithAggregatesFilter | string | null
-    PRIN_NAME?: StringNullableWithAggregatesFilter | string | null
-    PRIN_EMAIL?: StringNullableWithAggregatesFilter | string | null
-    CHIEF_UNIT?: StringNullableWithAggregatesFilter | string | null
-    CHIEF_EFIS?: StringNullableWithAggregatesFilter | string | null
-    CHIEF_NAME?: StringNullableWithAggregatesFilter | string | null
-    CHIEF_EMAIL?: StringNullableWithAggregatesFilter | string | null
-    STE_UNIT?: StringNullableWithAggregatesFilter | string | null
-    STE_EFIS?: StringNullableWithAggregatesFilter | string | null
-    STE_NAME?: StringNullableWithAggregatesFilter | string | null
-    STE_EMAIL?: StringNullableWithAggregatesFilter | string | null
+    REGION?: StringWithAggregatesFilter | string
+    DISTRICT?: StringWithAggregatesFilter | string
+    TRAM?: StringWithAggregatesFilter | string
+    EFIS?: StringWithAggregatesFilter | string
+    DEPUTY_NAME?: StringWithAggregatesFilter | string
+    DEPUTY_EMAIL?: StringWithAggregatesFilter | string
+    PRIN_UNIT?: StringWithAggregatesFilter | string
+    PRIN_EFIS?: StringWithAggregatesFilter | string
+    PRIN_NAME?: StringWithAggregatesFilter | string
+    PRIN_EMAIL?: StringWithAggregatesFilter | string
+    CHIEF_UNIT?: StringWithAggregatesFilter | string
+    CHIEF_EFIS?: StringWithAggregatesFilter | string
+    CHIEF_NAME?: StringWithAggregatesFilter | string
+    CHIEF_EMAIL?: StringWithAggregatesFilter | string
+    STE_UNIT?: StringWithAggregatesFilter | string
+    STE_EFIS?: StringWithAggregatesFilter | string
+    STE_NAME?: StringWithAggregatesFilter | string
+    STE_EMAIL?: StringWithAggregatesFilter | string
     test?: IntWithAggregatesFilter | number
   }
 
   export type audit_tableCreateInput = {
-    change_type?: string | null
-    changed_by_number?: string | null
-    old_name?: string | null
-    new_name?: string | null
-    old_email?: string | null
-    new_email?: string | null
-    old_manager?: string | null
-    new_manager?: string | null
-    role?: string | null
-    efis?: string | null
-    region?: string | null
+    change_type: string
+    changed_by_number: string
+    old_name: string
+    new_name: string
+    old_email: string
+    new_email: string
+    old_manager: string
+    new_manager: string
+    role: string
+    efis: string
+    region: string
     date_time: string
   }
 
   export type audit_tableUncheckedCreateInput = {
     id?: number
-    change_type?: string | null
-    changed_by_number?: string | null
-    old_name?: string | null
-    new_name?: string | null
-    old_email?: string | null
-    new_email?: string | null
-    old_manager?: string | null
-    new_manager?: string | null
-    role?: string | null
-    efis?: string | null
-    region?: string | null
+    change_type: string
+    changed_by_number: string
+    old_name: string
+    new_name: string
+    old_email: string
+    new_email: string
+    old_manager: string
+    new_manager: string
+    role: string
+    efis: string
+    region: string
     date_time: string
   }
 
   export type audit_tableUpdateInput = {
-    change_type?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
-    old_name?: NullableStringFieldUpdateOperationsInput | string | null
-    new_name?: NullableStringFieldUpdateOperationsInput | string | null
-    old_email?: NullableStringFieldUpdateOperationsInput | string | null
-    new_email?: NullableStringFieldUpdateOperationsInput | string | null
-    old_manager?: NullableStringFieldUpdateOperationsInput | string | null
-    new_manager?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: NullableStringFieldUpdateOperationsInput | string | null
-    efis?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
+    change_type?: StringFieldUpdateOperationsInput | string
+    changed_by_number?: StringFieldUpdateOperationsInput | string
+    old_name?: StringFieldUpdateOperationsInput | string
+    new_name?: StringFieldUpdateOperationsInput | string
+    old_email?: StringFieldUpdateOperationsInput | string
+    new_email?: StringFieldUpdateOperationsInput | string
+    old_manager?: StringFieldUpdateOperationsInput | string
+    new_manager?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    efis?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
     date_time?: StringFieldUpdateOperationsInput | string
   }
 
   export type audit_tableUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    change_type?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
-    old_name?: NullableStringFieldUpdateOperationsInput | string | null
-    new_name?: NullableStringFieldUpdateOperationsInput | string | null
-    old_email?: NullableStringFieldUpdateOperationsInput | string | null
-    new_email?: NullableStringFieldUpdateOperationsInput | string | null
-    old_manager?: NullableStringFieldUpdateOperationsInput | string | null
-    new_manager?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: NullableStringFieldUpdateOperationsInput | string | null
-    efis?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
+    change_type?: StringFieldUpdateOperationsInput | string
+    changed_by_number?: StringFieldUpdateOperationsInput | string
+    old_name?: StringFieldUpdateOperationsInput | string
+    new_name?: StringFieldUpdateOperationsInput | string
+    old_email?: StringFieldUpdateOperationsInput | string
+    new_email?: StringFieldUpdateOperationsInput | string
+    old_manager?: StringFieldUpdateOperationsInput | string
+    new_manager?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    efis?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
     date_time?: StringFieldUpdateOperationsInput | string
   }
 
   export type audit_tableCreateManyInput = {
     id?: number
-    change_type?: string | null
-    changed_by_number?: string | null
-    old_name?: string | null
-    new_name?: string | null
-    old_email?: string | null
-    new_email?: string | null
-    old_manager?: string | null
-    new_manager?: string | null
-    role?: string | null
-    efis?: string | null
-    region?: string | null
+    change_type: string
+    changed_by_number: string
+    old_name: string
+    new_name: string
+    old_email: string
+    new_email: string
+    old_manager: string
+    new_manager: string
+    role: string
+    efis: string
+    region: string
     date_time: string
   }
 
   export type audit_tableUpdateManyMutationInput = {
-    change_type?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
-    old_name?: NullableStringFieldUpdateOperationsInput | string | null
-    new_name?: NullableStringFieldUpdateOperationsInput | string | null
-    old_email?: NullableStringFieldUpdateOperationsInput | string | null
-    new_email?: NullableStringFieldUpdateOperationsInput | string | null
-    old_manager?: NullableStringFieldUpdateOperationsInput | string | null
-    new_manager?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: NullableStringFieldUpdateOperationsInput | string | null
-    efis?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
+    change_type?: StringFieldUpdateOperationsInput | string
+    changed_by_number?: StringFieldUpdateOperationsInput | string
+    old_name?: StringFieldUpdateOperationsInput | string
+    new_name?: StringFieldUpdateOperationsInput | string
+    old_email?: StringFieldUpdateOperationsInput | string
+    new_email?: StringFieldUpdateOperationsInput | string
+    old_manager?: StringFieldUpdateOperationsInput | string
+    new_manager?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    efis?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
     date_time?: StringFieldUpdateOperationsInput | string
   }
 
   export type audit_tableUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    change_type?: NullableStringFieldUpdateOperationsInput | string | null
-    changed_by_number?: NullableStringFieldUpdateOperationsInput | string | null
-    old_name?: NullableStringFieldUpdateOperationsInput | string | null
-    new_name?: NullableStringFieldUpdateOperationsInput | string | null
-    old_email?: NullableStringFieldUpdateOperationsInput | string | null
-    new_email?: NullableStringFieldUpdateOperationsInput | string | null
-    old_manager?: NullableStringFieldUpdateOperationsInput | string | null
-    new_manager?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: NullableStringFieldUpdateOperationsInput | string | null
-    efis?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
+    change_type?: StringFieldUpdateOperationsInput | string
+    changed_by_number?: StringFieldUpdateOperationsInput | string
+    old_name?: StringFieldUpdateOperationsInput | string
+    new_name?: StringFieldUpdateOperationsInput | string
+    old_email?: StringFieldUpdateOperationsInput | string
+    new_email?: StringFieldUpdateOperationsInput | string
+    old_manager?: StringFieldUpdateOperationsInput | string
+    new_manager?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    efis?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
     date_time?: StringFieldUpdateOperationsInput | string
   }
 
   export type manager_dashboard_tblCreateInput = {
-    REGION?: string | null
-    DISTRICT?: string | null
-    TRAM?: string | null
-    EFIS?: string | null
-    DEPUTY_NAME?: string | null
-    DEPUTY_EMAIL?: string | null
-    PRIN_UNIT?: string | null
-    PRIN_EFIS?: string | null
-    PRIN_NAME?: string | null
-    PRIN_EMAIL?: string | null
-    CHIEF_UNIT?: string | null
-    CHIEF_EFIS?: string | null
-    CHIEF_NAME?: string | null
-    CHIEF_EMAIL?: string | null
-    STE_UNIT?: string | null
-    STE_EFIS?: string | null
-    STE_NAME?: string | null
-    STE_EMAIL?: string | null
+    REGION: string
+    DISTRICT: string
+    TRAM: string
+    EFIS: string
+    DEPUTY_NAME: string
+    DEPUTY_EMAIL: string
+    PRIN_UNIT: string
+    PRIN_EFIS: string
+    PRIN_NAME: string
+    PRIN_EMAIL: string
+    CHIEF_UNIT: string
+    CHIEF_EFIS: string
+    CHIEF_NAME: string
+    CHIEF_EMAIL: string
+    STE_UNIT: string
+    STE_EFIS: string
+    STE_NAME: string
+    STE_EMAIL: string
   }
 
   export type manager_dashboard_tblUncheckedCreateInput = {
-    REGION?: string | null
-    DISTRICT?: string | null
-    TRAM?: string | null
-    EFIS?: string | null
-    DEPUTY_NAME?: string | null
-    DEPUTY_EMAIL?: string | null
-    PRIN_UNIT?: string | null
-    PRIN_EFIS?: string | null
-    PRIN_NAME?: string | null
-    PRIN_EMAIL?: string | null
-    CHIEF_UNIT?: string | null
-    CHIEF_EFIS?: string | null
-    CHIEF_NAME?: string | null
-    CHIEF_EMAIL?: string | null
-    STE_UNIT?: string | null
-    STE_EFIS?: string | null
-    STE_NAME?: string | null
-    STE_EMAIL?: string | null
+    REGION: string
+    DISTRICT: string
+    TRAM: string
+    EFIS: string
+    DEPUTY_NAME: string
+    DEPUTY_EMAIL: string
+    PRIN_UNIT: string
+    PRIN_EFIS: string
+    PRIN_NAME: string
+    PRIN_EMAIL: string
+    CHIEF_UNIT: string
+    CHIEF_EFIS: string
+    CHIEF_NAME: string
+    CHIEF_EMAIL: string
+    STE_UNIT: string
+    STE_EFIS: string
+    STE_NAME: string
+    STE_EMAIL: string
     test?: number
   }
 
   export type manager_dashboard_tblUpdateInput = {
-    REGION?: NullableStringFieldUpdateOperationsInput | string | null
-    DISTRICT?: NullableStringFieldUpdateOperationsInput | string | null
-    TRAM?: NullableStringFieldUpdateOperationsInput | string | null
-    EFIS?: NullableStringFieldUpdateOperationsInput | string | null
-    DEPUTY_NAME?: NullableStringFieldUpdateOperationsInput | string | null
-    DEPUTY_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
-    PRIN_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
-    PRIN_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
-    PRIN_NAME?: NullableStringFieldUpdateOperationsInput | string | null
-    PRIN_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
-    CHIEF_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
-    CHIEF_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
-    CHIEF_NAME?: NullableStringFieldUpdateOperationsInput | string | null
-    CHIEF_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
-    STE_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
-    STE_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
-    STE_NAME?: NullableStringFieldUpdateOperationsInput | string | null
-    STE_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    REGION?: StringFieldUpdateOperationsInput | string
+    DISTRICT?: StringFieldUpdateOperationsInput | string
+    TRAM?: StringFieldUpdateOperationsInput | string
+    EFIS?: StringFieldUpdateOperationsInput | string
+    DEPUTY_NAME?: StringFieldUpdateOperationsInput | string
+    DEPUTY_EMAIL?: StringFieldUpdateOperationsInput | string
+    PRIN_UNIT?: StringFieldUpdateOperationsInput | string
+    PRIN_EFIS?: StringFieldUpdateOperationsInput | string
+    PRIN_NAME?: StringFieldUpdateOperationsInput | string
+    PRIN_EMAIL?: StringFieldUpdateOperationsInput | string
+    CHIEF_UNIT?: StringFieldUpdateOperationsInput | string
+    CHIEF_EFIS?: StringFieldUpdateOperationsInput | string
+    CHIEF_NAME?: StringFieldUpdateOperationsInput | string
+    CHIEF_EMAIL?: StringFieldUpdateOperationsInput | string
+    STE_UNIT?: StringFieldUpdateOperationsInput | string
+    STE_EFIS?: StringFieldUpdateOperationsInput | string
+    STE_NAME?: StringFieldUpdateOperationsInput | string
+    STE_EMAIL?: StringFieldUpdateOperationsInput | string
   }
 
   export type manager_dashboard_tblUncheckedUpdateInput = {
-    REGION?: NullableStringFieldUpdateOperationsInput | string | null
-    DISTRICT?: NullableStringFieldUpdateOperationsInput | string | null
-    TRAM?: NullableStringFieldUpdateOperationsInput | string | null
-    EFIS?: NullableStringFieldUpdateOperationsInput | string | null
-    DEPUTY_NAME?: NullableStringFieldUpdateOperationsInput | string | null
-    DEPUTY_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
-    PRIN_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
-    PRIN_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
-    PRIN_NAME?: NullableStringFieldUpdateOperationsInput | string | null
-    PRIN_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
-    CHIEF_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
-    CHIEF_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
-    CHIEF_NAME?: NullableStringFieldUpdateOperationsInput | string | null
-    CHIEF_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
-    STE_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
-    STE_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
-    STE_NAME?: NullableStringFieldUpdateOperationsInput | string | null
-    STE_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    REGION?: StringFieldUpdateOperationsInput | string
+    DISTRICT?: StringFieldUpdateOperationsInput | string
+    TRAM?: StringFieldUpdateOperationsInput | string
+    EFIS?: StringFieldUpdateOperationsInput | string
+    DEPUTY_NAME?: StringFieldUpdateOperationsInput | string
+    DEPUTY_EMAIL?: StringFieldUpdateOperationsInput | string
+    PRIN_UNIT?: StringFieldUpdateOperationsInput | string
+    PRIN_EFIS?: StringFieldUpdateOperationsInput | string
+    PRIN_NAME?: StringFieldUpdateOperationsInput | string
+    PRIN_EMAIL?: StringFieldUpdateOperationsInput | string
+    CHIEF_UNIT?: StringFieldUpdateOperationsInput | string
+    CHIEF_EFIS?: StringFieldUpdateOperationsInput | string
+    CHIEF_NAME?: StringFieldUpdateOperationsInput | string
+    CHIEF_EMAIL?: StringFieldUpdateOperationsInput | string
+    STE_UNIT?: StringFieldUpdateOperationsInput | string
+    STE_EFIS?: StringFieldUpdateOperationsInput | string
+    STE_NAME?: StringFieldUpdateOperationsInput | string
+    STE_EMAIL?: StringFieldUpdateOperationsInput | string
     test?: IntFieldUpdateOperationsInput | number
   }
 
   export type manager_dashboard_tblCreateManyInput = {
-    REGION?: string | null
-    DISTRICT?: string | null
-    TRAM?: string | null
-    EFIS?: string | null
-    DEPUTY_NAME?: string | null
-    DEPUTY_EMAIL?: string | null
-    PRIN_UNIT?: string | null
-    PRIN_EFIS?: string | null
-    PRIN_NAME?: string | null
-    PRIN_EMAIL?: string | null
-    CHIEF_UNIT?: string | null
-    CHIEF_EFIS?: string | null
-    CHIEF_NAME?: string | null
-    CHIEF_EMAIL?: string | null
-    STE_UNIT?: string | null
-    STE_EFIS?: string | null
-    STE_NAME?: string | null
-    STE_EMAIL?: string | null
+    REGION: string
+    DISTRICT: string
+    TRAM: string
+    EFIS: string
+    DEPUTY_NAME: string
+    DEPUTY_EMAIL: string
+    PRIN_UNIT: string
+    PRIN_EFIS: string
+    PRIN_NAME: string
+    PRIN_EMAIL: string
+    CHIEF_UNIT: string
+    CHIEF_EFIS: string
+    CHIEF_NAME: string
+    CHIEF_EMAIL: string
+    STE_UNIT: string
+    STE_EFIS: string
+    STE_NAME: string
+    STE_EMAIL: string
     test?: number
   }
 
   export type manager_dashboard_tblUpdateManyMutationInput = {
-    REGION?: NullableStringFieldUpdateOperationsInput | string | null
-    DISTRICT?: NullableStringFieldUpdateOperationsInput | string | null
-    TRAM?: NullableStringFieldUpdateOperationsInput | string | null
-    EFIS?: NullableStringFieldUpdateOperationsInput | string | null
-    DEPUTY_NAME?: NullableStringFieldUpdateOperationsInput | string | null
-    DEPUTY_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
-    PRIN_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
-    PRIN_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
-    PRIN_NAME?: NullableStringFieldUpdateOperationsInput | string | null
-    PRIN_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
-    CHIEF_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
-    CHIEF_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
-    CHIEF_NAME?: NullableStringFieldUpdateOperationsInput | string | null
-    CHIEF_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
-    STE_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
-    STE_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
-    STE_NAME?: NullableStringFieldUpdateOperationsInput | string | null
-    STE_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    REGION?: StringFieldUpdateOperationsInput | string
+    DISTRICT?: StringFieldUpdateOperationsInput | string
+    TRAM?: StringFieldUpdateOperationsInput | string
+    EFIS?: StringFieldUpdateOperationsInput | string
+    DEPUTY_NAME?: StringFieldUpdateOperationsInput | string
+    DEPUTY_EMAIL?: StringFieldUpdateOperationsInput | string
+    PRIN_UNIT?: StringFieldUpdateOperationsInput | string
+    PRIN_EFIS?: StringFieldUpdateOperationsInput | string
+    PRIN_NAME?: StringFieldUpdateOperationsInput | string
+    PRIN_EMAIL?: StringFieldUpdateOperationsInput | string
+    CHIEF_UNIT?: StringFieldUpdateOperationsInput | string
+    CHIEF_EFIS?: StringFieldUpdateOperationsInput | string
+    CHIEF_NAME?: StringFieldUpdateOperationsInput | string
+    CHIEF_EMAIL?: StringFieldUpdateOperationsInput | string
+    STE_UNIT?: StringFieldUpdateOperationsInput | string
+    STE_EFIS?: StringFieldUpdateOperationsInput | string
+    STE_NAME?: StringFieldUpdateOperationsInput | string
+    STE_EMAIL?: StringFieldUpdateOperationsInput | string
   }
 
   export type manager_dashboard_tblUncheckedUpdateManyInput = {
-    REGION?: NullableStringFieldUpdateOperationsInput | string | null
-    DISTRICT?: NullableStringFieldUpdateOperationsInput | string | null
-    TRAM?: NullableStringFieldUpdateOperationsInput | string | null
-    EFIS?: NullableStringFieldUpdateOperationsInput | string | null
-    DEPUTY_NAME?: NullableStringFieldUpdateOperationsInput | string | null
-    DEPUTY_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
-    PRIN_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
-    PRIN_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
-    PRIN_NAME?: NullableStringFieldUpdateOperationsInput | string | null
-    PRIN_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
-    CHIEF_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
-    CHIEF_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
-    CHIEF_NAME?: NullableStringFieldUpdateOperationsInput | string | null
-    CHIEF_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
-    STE_UNIT?: NullableStringFieldUpdateOperationsInput | string | null
-    STE_EFIS?: NullableStringFieldUpdateOperationsInput | string | null
-    STE_NAME?: NullableStringFieldUpdateOperationsInput | string | null
-    STE_EMAIL?: NullableStringFieldUpdateOperationsInput | string | null
+    REGION?: StringFieldUpdateOperationsInput | string
+    DISTRICT?: StringFieldUpdateOperationsInput | string
+    TRAM?: StringFieldUpdateOperationsInput | string
+    EFIS?: StringFieldUpdateOperationsInput | string
+    DEPUTY_NAME?: StringFieldUpdateOperationsInput | string
+    DEPUTY_EMAIL?: StringFieldUpdateOperationsInput | string
+    PRIN_UNIT?: StringFieldUpdateOperationsInput | string
+    PRIN_EFIS?: StringFieldUpdateOperationsInput | string
+    PRIN_NAME?: StringFieldUpdateOperationsInput | string
+    PRIN_EMAIL?: StringFieldUpdateOperationsInput | string
+    CHIEF_UNIT?: StringFieldUpdateOperationsInput | string
+    CHIEF_EFIS?: StringFieldUpdateOperationsInput | string
+    CHIEF_NAME?: StringFieldUpdateOperationsInput | string
+    CHIEF_EMAIL?: StringFieldUpdateOperationsInput | string
+    STE_UNIT?: StringFieldUpdateOperationsInput | string
+    STE_EFIS?: StringFieldUpdateOperationsInput | string
+    STE_NAME?: StringFieldUpdateOperationsInput | string
+    STE_EMAIL?: StringFieldUpdateOperationsInput | string
     test?: IntFieldUpdateOperationsInput | number
   }
 
@@ -3356,20 +3356,6 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedIntFilter | number
-  }
-
-  export type StringNullableFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringNullableFilter | string | null
   }
 
   export type StringFilter = {
@@ -3456,23 +3442,6 @@ export namespace Prisma {
     _sum?: NestedIntFilter
     _min?: NestedIntFilter
     _max?: NestedIntFilter
-  }
-
-  export type StringNullableWithAggregatesFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringNullableWithAggregatesFilter | string | null
-    _count?: NestedIntNullableFilter
-    _min?: NestedStringNullableFilter
-    _max?: NestedStringNullableFilter
   }
 
   export type StringWithAggregatesFilter = {
@@ -3566,10 +3535,6 @@ export namespace Prisma {
     test?: SortOrder
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -3591,20 +3556,6 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedIntFilter | number
-  }
-
-  export type NestedStringNullableFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringNullableFilter | string | null
   }
 
   export type NestedStringFilter = {
@@ -3646,34 +3597,6 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedFloatFilter | number
-  }
-
-  export type NestedStringNullableWithAggregatesFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringNullableWithAggregatesFilter | string | null
-    _count?: NestedIntNullableFilter
-    _min?: NestedStringNullableFilter
-    _max?: NestedStringNullableFilter
-  }
-
-  export type NestedIntNullableFilter = {
-    equals?: number | null
-    in?: Enumerable<number> | null
-    notIn?: Enumerable<number> | null
-    lt?: number
-    lte?: number
-    gt?: number
-    gte?: number
-    not?: NestedIntNullableFilter | number | null
   }
 
   export type NestedStringWithAggregatesFilter = {

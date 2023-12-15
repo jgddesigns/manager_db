@@ -58,7 +58,7 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
             children: chief,
         }
     
-        principal.push(principal_data)
+        
     }
 
    //Shows the active principals for the current district. Will allow the user to select a principal to view employees working for them.
@@ -190,6 +190,8 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
                         : null} 
                         {Employees[0].deputy_name ?
                             <select className="px-3 text-xl ml-[10%] mt-[20%] w-36 border rounded h-10  shadow appearance-none mb-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onChange={(e) => getEmployees(e.target.value)} id="managerName" >
+
+                                {/* ORIGINAL LIST
                                 <option value="01">District 01</option>
                                 <option value="02">District 02</option>
                                 <option value="03">District 03</option>
@@ -201,7 +203,13 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
                                 <option value="09">District 09</option>
                                 <option value="10">District 10</option>
                                 <option value="11">District 11</option>
-                                <option value="12">District 12</option>
+                                <option value="12">District 12</option> */}
+
+                                <option value="CA">California</option>
+                                <option value="FL">Florida</option>
+                                <option value="IL">Illinois</option>
+                                <option value="NY">New York</option>
+                                <option value="TX">Texas</option>
                             </select>  
                         :null}        
                     </div>  

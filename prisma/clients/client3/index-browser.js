@@ -92,7 +92,7 @@ exports.Prisma.TaskScalarFieldEnum = makeEnum({
   emp_num: 'emp_num',
   application: 'application',
   page: 'page',
-  Priorty: 'Priorty',
+  Priority: 'Priority',
   file_path: 'file_path',
   status: 'status',
   task_description: 'task_description',

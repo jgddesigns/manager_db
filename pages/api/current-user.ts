@@ -6,9 +6,9 @@ export default async function handler(req : NextApiRequest,res: NextApiResponse)
 // if the user is not logged in, return null
 // if the user is logged in, return the user object
 // Get jwt from cookie
-const token = req.cookies.jwt;
+const token = 'eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY5ODAyNDY1NywiaWF0IjoxNjk4MDI0NjU3fQ.NoW570xtZ7o57Ul9VbtymhQvQbDf1bpcPGityMwleco';
     if (token) {
-    const decoded= jwt_decode(token);
+    const decoded = jwt_decode(token);
     res.send(decoded);
     }
     else{

@@ -19,13 +19,13 @@ type UnwrapTuple<Tuple extends readonly unknown[]> = {
 export type user_session = {
   id: number
   LoggedIn_session: number
-  Week_In_session_id: number | null
-  Project_In_session_id: number | null
-  LoggedIn_cookie: string | null
+  Week_In_session_id: number
+  Project_In_session_id: number
+  LoggedIn_cookie: string
   Last_loggedIn: Date
-  addReport_form_tmp_json: string | null
-  createReport_form_tmp_json: string | null
-  one_time_alert_onupdate: number | null
+  addReport_form_tmp_json: string
+  createReport_form_tmp_json: string
+  on_time_alert_onupdate: number
 }
 
 /**
@@ -37,8 +37,8 @@ export type users = {
   emp_num: string
   first_name: string
   last_name: string
-  role: string | null
-  passward: string
+  role: string
+  password: string
   email_address: string
   created_at: Date
   last_logged_in: Date
@@ -857,7 +857,7 @@ export namespace Prisma {
     LoggedIn_session: number | null
     Week_In_session_id: number | null
     Project_In_session_id: number | null
-    one_time_alert_onupdate: number | null
+    on_time_alert_onupdate: number | null
   }
 
   export type User_sessionSumAggregateOutputType = {
@@ -865,7 +865,7 @@ export namespace Prisma {
     LoggedIn_session: number | null
     Week_In_session_id: number | null
     Project_In_session_id: number | null
-    one_time_alert_onupdate: number | null
+    on_time_alert_onupdate: number | null
   }
 
   export type User_sessionMinAggregateOutputType = {
@@ -877,7 +877,7 @@ export namespace Prisma {
     Last_loggedIn: Date | null
     addReport_form_tmp_json: string | null
     createReport_form_tmp_json: string | null
-    one_time_alert_onupdate: number | null
+    on_time_alert_onupdate: number | null
   }
 
   export type User_sessionMaxAggregateOutputType = {
@@ -889,7 +889,7 @@ export namespace Prisma {
     Last_loggedIn: Date | null
     addReport_form_tmp_json: string | null
     createReport_form_tmp_json: string | null
-    one_time_alert_onupdate: number | null
+    on_time_alert_onupdate: number | null
   }
 
   export type User_sessionCountAggregateOutputType = {
@@ -901,7 +901,7 @@ export namespace Prisma {
     Last_loggedIn: number
     addReport_form_tmp_json: number
     createReport_form_tmp_json: number
-    one_time_alert_onupdate: number
+    on_time_alert_onupdate: number
     _all: number
   }
 
@@ -911,7 +911,7 @@ export namespace Prisma {
     LoggedIn_session?: true
     Week_In_session_id?: true
     Project_In_session_id?: true
-    one_time_alert_onupdate?: true
+    on_time_alert_onupdate?: true
   }
 
   export type User_sessionSumAggregateInputType = {
@@ -919,7 +919,7 @@ export namespace Prisma {
     LoggedIn_session?: true
     Week_In_session_id?: true
     Project_In_session_id?: true
-    one_time_alert_onupdate?: true
+    on_time_alert_onupdate?: true
   }
 
   export type User_sessionMinAggregateInputType = {
@@ -931,7 +931,7 @@ export namespace Prisma {
     Last_loggedIn?: true
     addReport_form_tmp_json?: true
     createReport_form_tmp_json?: true
-    one_time_alert_onupdate?: true
+    on_time_alert_onupdate?: true
   }
 
   export type User_sessionMaxAggregateInputType = {
@@ -943,7 +943,7 @@ export namespace Prisma {
     Last_loggedIn?: true
     addReport_form_tmp_json?: true
     createReport_form_tmp_json?: true
-    one_time_alert_onupdate?: true
+    on_time_alert_onupdate?: true
   }
 
   export type User_sessionCountAggregateInputType = {
@@ -955,7 +955,7 @@ export namespace Prisma {
     Last_loggedIn?: true
     addReport_form_tmp_json?: true
     createReport_form_tmp_json?: true
-    one_time_alert_onupdate?: true
+    on_time_alert_onupdate?: true
     _all?: true
   }
 
@@ -1054,13 +1054,13 @@ export namespace Prisma {
   export type User_sessionGroupByOutputType = {
     id: number
     LoggedIn_session: number
-    Week_In_session_id: number | null
-    Project_In_session_id: number | null
-    LoggedIn_cookie: string | null
+    Week_In_session_id: number
+    Project_In_session_id: number
+    LoggedIn_cookie: string
     Last_loggedIn: Date
-    addReport_form_tmp_json: string | null
-    createReport_form_tmp_json: string | null
-    one_time_alert_onupdate: number | null
+    addReport_form_tmp_json: string
+    createReport_form_tmp_json: string
+    on_time_alert_onupdate: number
     _count: User_sessionCountAggregateOutputType | null
     _avg: User_sessionAvgAggregateOutputType | null
     _sum: User_sessionSumAggregateOutputType | null
@@ -1091,7 +1091,7 @@ export namespace Prisma {
     Last_loggedIn?: boolean
     addReport_form_tmp_json?: boolean
     createReport_form_tmp_json?: boolean
-    one_time_alert_onupdate?: boolean
+    on_time_alert_onupdate?: boolean
   }
 
   export type user_sessionGetPayload<
@@ -1821,7 +1821,7 @@ export namespace Prisma {
     first_name: string | null
     last_name: string | null
     role: string | null
-    passward: string | null
+    password: string | null
     email_address: string | null
     created_at: Date | null
     last_logged_in: Date | null
@@ -1835,7 +1835,7 @@ export namespace Prisma {
     first_name: string | null
     last_name: string | null
     role: string | null
-    passward: string | null
+    password: string | null
     email_address: string | null
     created_at: Date | null
     last_logged_in: Date | null
@@ -1849,7 +1849,7 @@ export namespace Prisma {
     first_name: number
     last_name: number
     role: number
-    passward: number
+    password: number
     email_address: number
     created_at: number
     last_logged_in: number
@@ -1873,7 +1873,7 @@ export namespace Prisma {
     first_name?: true
     last_name?: true
     role?: true
-    passward?: true
+    password?: true
     email_address?: true
     created_at?: true
     last_logged_in?: true
@@ -1887,7 +1887,7 @@ export namespace Prisma {
     first_name?: true
     last_name?: true
     role?: true
-    passward?: true
+    password?: true
     email_address?: true
     created_at?: true
     last_logged_in?: true
@@ -1901,7 +1901,7 @@ export namespace Prisma {
     first_name?: true
     last_name?: true
     role?: true
-    passward?: true
+    password?: true
     email_address?: true
     created_at?: true
     last_logged_in?: true
@@ -2007,8 +2007,8 @@ export namespace Prisma {
     emp_num: string
     first_name: string
     last_name: string
-    role: string | null
-    passward: string
+    role: string
+    password: string
     email_address: string
     created_at: Date
     last_logged_in: Date
@@ -2041,7 +2041,7 @@ export namespace Prisma {
     first_name?: boolean
     last_name?: boolean
     role?: boolean
-    passward?: boolean
+    password?: boolean
     email_address?: boolean
     created_at?: boolean
     last_logged_in?: boolean
@@ -2765,7 +2765,7 @@ export namespace Prisma {
     Last_loggedIn: 'Last_loggedIn',
     addReport_form_tmp_json: 'addReport_form_tmp_json',
     createReport_form_tmp_json: 'createReport_form_tmp_json',
-    one_time_alert_onupdate: 'one_time_alert_onupdate'
+    on_time_alert_onupdate: 'on_time_alert_onupdate'
   };
 
   export type User_sessionScalarFieldEnum = (typeof User_sessionScalarFieldEnum)[keyof typeof User_sessionScalarFieldEnum]
@@ -2777,7 +2777,7 @@ export namespace Prisma {
     first_name: 'first_name',
     last_name: 'last_name',
     role: 'role',
-    passward: 'passward',
+    password: 'password',
     email_address: 'email_address',
     created_at: 'created_at',
     last_logged_in: 'last_logged_in',
@@ -2807,13 +2807,13 @@ export namespace Prisma {
     NOT?: Enumerable<user_sessionWhereInput>
     id?: IntFilter | number
     LoggedIn_session?: IntFilter | number
-    Week_In_session_id?: IntNullableFilter | number | null
-    Project_In_session_id?: IntNullableFilter | number | null
-    LoggedIn_cookie?: StringNullableFilter | string | null
+    Week_In_session_id?: IntFilter | number
+    Project_In_session_id?: IntFilter | number
+    LoggedIn_cookie?: StringFilter | string
     Last_loggedIn?: DateTimeFilter | Date | string
-    addReport_form_tmp_json?: StringNullableFilter | string | null
-    createReport_form_tmp_json?: StringNullableFilter | string | null
-    one_time_alert_onupdate?: IntNullableFilter | number | null
+    addReport_form_tmp_json?: StringFilter | string
+    createReport_form_tmp_json?: StringFilter | string
+    on_time_alert_onupdate?: IntFilter | number
   }
 
   export type user_sessionOrderByWithRelationInput = {
@@ -2825,7 +2825,7 @@ export namespace Prisma {
     Last_loggedIn?: SortOrder
     addReport_form_tmp_json?: SortOrder
     createReport_form_tmp_json?: SortOrder
-    one_time_alert_onupdate?: SortOrder
+    on_time_alert_onupdate?: SortOrder
   }
 
   export type user_sessionWhereUniqueInput = {
@@ -2841,7 +2841,7 @@ export namespace Prisma {
     Last_loggedIn?: SortOrder
     addReport_form_tmp_json?: SortOrder
     createReport_form_tmp_json?: SortOrder
-    one_time_alert_onupdate?: SortOrder
+    on_time_alert_onupdate?: SortOrder
     _count?: user_sessionCountOrderByAggregateInput
     _avg?: user_sessionAvgOrderByAggregateInput
     _max?: user_sessionMaxOrderByAggregateInput
@@ -2855,13 +2855,13 @@ export namespace Prisma {
     NOT?: Enumerable<user_sessionScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
     LoggedIn_session?: IntWithAggregatesFilter | number
-    Week_In_session_id?: IntNullableWithAggregatesFilter | number | null
-    Project_In_session_id?: IntNullableWithAggregatesFilter | number | null
-    LoggedIn_cookie?: StringNullableWithAggregatesFilter | string | null
+    Week_In_session_id?: IntWithAggregatesFilter | number
+    Project_In_session_id?: IntWithAggregatesFilter | number
+    LoggedIn_cookie?: StringWithAggregatesFilter | string
     Last_loggedIn?: DateTimeWithAggregatesFilter | Date | string
-    addReport_form_tmp_json?: StringNullableWithAggregatesFilter | string | null
-    createReport_form_tmp_json?: StringNullableWithAggregatesFilter | string | null
-    one_time_alert_onupdate?: IntNullableWithAggregatesFilter | number | null
+    addReport_form_tmp_json?: StringWithAggregatesFilter | string
+    createReport_form_tmp_json?: StringWithAggregatesFilter | string
+    on_time_alert_onupdate?: IntWithAggregatesFilter | number
   }
 
   export type usersWhereInput = {
@@ -2872,8 +2872,8 @@ export namespace Prisma {
     emp_num?: StringFilter | string
     first_name?: StringFilter | string
     last_name?: StringFilter | string
-    role?: StringNullableFilter | string | null
-    passward?: StringFilter | string
+    role?: StringFilter | string
+    password?: StringFilter | string
     email_address?: StringFilter | string
     created_at?: DateTimeFilter | Date | string
     last_logged_in?: DateTimeFilter | Date | string
@@ -2887,7 +2887,7 @@ export namespace Prisma {
     first_name?: SortOrder
     last_name?: SortOrder
     role?: SortOrder
-    passward?: SortOrder
+    password?: SortOrder
     email_address?: SortOrder
     created_at?: SortOrder
     last_logged_in?: SortOrder
@@ -2896,8 +2896,7 @@ export namespace Prisma {
   }
 
   export type usersWhereUniqueInput = {
-    emp_num?: string
-    id_emp_num?: usersIdEmp_numCompoundUniqueInput
+    id?: number
   }
 
   export type usersOrderByWithAggregationInput = {
@@ -2906,7 +2905,7 @@ export namespace Prisma {
     first_name?: SortOrder
     last_name?: SortOrder
     role?: SortOrder
-    passward?: SortOrder
+    password?: SortOrder
     email_address?: SortOrder
     created_at?: SortOrder
     last_logged_in?: SortOrder
@@ -2927,8 +2926,8 @@ export namespace Prisma {
     emp_num?: StringWithAggregatesFilter | string
     first_name?: StringWithAggregatesFilter | string
     last_name?: StringWithAggregatesFilter | string
-    role?: StringNullableWithAggregatesFilter | string | null
-    passward?: StringWithAggregatesFilter | string
+    role?: StringWithAggregatesFilter | string
+    password?: StringWithAggregatesFilter | string
     email_address?: StringWithAggregatesFilter | string
     created_at?: DateTimeWithAggregatesFilter | Date | string
     last_logged_in?: DateTimeWithAggregatesFilter | Date | string
@@ -2938,93 +2937,92 @@ export namespace Prisma {
 
   export type user_sessionCreateInput = {
     LoggedIn_session: number
-    Week_In_session_id?: number | null
-    Project_In_session_id?: number | null
-    LoggedIn_cookie?: string | null
-    Last_loggedIn?: Date | string
-    addReport_form_tmp_json?: string | null
-    createReport_form_tmp_json?: string | null
-    one_time_alert_onupdate?: number | null
+    Week_In_session_id: number
+    Project_In_session_id: number
+    LoggedIn_cookie: string
+    Last_loggedIn: Date | string
+    addReport_form_tmp_json: string
+    createReport_form_tmp_json: string
+    on_time_alert_onupdate?: number
   }
 
   export type user_sessionUncheckedCreateInput = {
     id?: number
     LoggedIn_session: number
-    Week_In_session_id?: number | null
-    Project_In_session_id?: number | null
-    LoggedIn_cookie?: string | null
-    Last_loggedIn?: Date | string
-    addReport_form_tmp_json?: string | null
-    createReport_form_tmp_json?: string | null
-    one_time_alert_onupdate?: number | null
+    Week_In_session_id: number
+    Project_In_session_id: number
+    LoggedIn_cookie: string
+    Last_loggedIn: Date | string
+    addReport_form_tmp_json: string
+    createReport_form_tmp_json: string
+    on_time_alert_onupdate?: number
   }
 
   export type user_sessionUpdateInput = {
     LoggedIn_session?: IntFieldUpdateOperationsInput | number
-    Week_In_session_id?: NullableIntFieldUpdateOperationsInput | number | null
-    Project_In_session_id?: NullableIntFieldUpdateOperationsInput | number | null
-    LoggedIn_cookie?: NullableStringFieldUpdateOperationsInput | string | null
+    Week_In_session_id?: IntFieldUpdateOperationsInput | number
+    Project_In_session_id?: IntFieldUpdateOperationsInput | number
+    LoggedIn_cookie?: StringFieldUpdateOperationsInput | string
     Last_loggedIn?: DateTimeFieldUpdateOperationsInput | Date | string
-    addReport_form_tmp_json?: NullableStringFieldUpdateOperationsInput | string | null
-    createReport_form_tmp_json?: NullableStringFieldUpdateOperationsInput | string | null
-    one_time_alert_onupdate?: NullableIntFieldUpdateOperationsInput | number | null
+    addReport_form_tmp_json?: StringFieldUpdateOperationsInput | string
+    createReport_form_tmp_json?: StringFieldUpdateOperationsInput | string
+    on_time_alert_onupdate?: IntFieldUpdateOperationsInput | number
   }
 
   export type user_sessionUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     LoggedIn_session?: IntFieldUpdateOperationsInput | number
-    Week_In_session_id?: NullableIntFieldUpdateOperationsInput | number | null
-    Project_In_session_id?: NullableIntFieldUpdateOperationsInput | number | null
-    LoggedIn_cookie?: NullableStringFieldUpdateOperationsInput | string | null
+    Week_In_session_id?: IntFieldUpdateOperationsInput | number
+    Project_In_session_id?: IntFieldUpdateOperationsInput | number
+    LoggedIn_cookie?: StringFieldUpdateOperationsInput | string
     Last_loggedIn?: DateTimeFieldUpdateOperationsInput | Date | string
-    addReport_form_tmp_json?: NullableStringFieldUpdateOperationsInput | string | null
-    createReport_form_tmp_json?: NullableStringFieldUpdateOperationsInput | string | null
-    one_time_alert_onupdate?: NullableIntFieldUpdateOperationsInput | number | null
+    addReport_form_tmp_json?: StringFieldUpdateOperationsInput | string
+    createReport_form_tmp_json?: StringFieldUpdateOperationsInput | string
+    on_time_alert_onupdate?: IntFieldUpdateOperationsInput | number
   }
 
   export type user_sessionCreateManyInput = {
     id?: number
     LoggedIn_session: number
-    Week_In_session_id?: number | null
-    Project_In_session_id?: number | null
-    LoggedIn_cookie?: string | null
-    Last_loggedIn?: Date | string
-    addReport_form_tmp_json?: string | null
-    createReport_form_tmp_json?: string | null
-    one_time_alert_onupdate?: number | null
+    Week_In_session_id: number
+    Project_In_session_id: number
+    LoggedIn_cookie: string
+    Last_loggedIn: Date | string
+    addReport_form_tmp_json: string
+    createReport_form_tmp_json: string
+    on_time_alert_onupdate?: number
   }
 
   export type user_sessionUpdateManyMutationInput = {
     LoggedIn_session?: IntFieldUpdateOperationsInput | number
-    Week_In_session_id?: NullableIntFieldUpdateOperationsInput | number | null
-    Project_In_session_id?: NullableIntFieldUpdateOperationsInput | number | null
-    LoggedIn_cookie?: NullableStringFieldUpdateOperationsInput | string | null
+    Week_In_session_id?: IntFieldUpdateOperationsInput | number
+    Project_In_session_id?: IntFieldUpdateOperationsInput | number
+    LoggedIn_cookie?: StringFieldUpdateOperationsInput | string
     Last_loggedIn?: DateTimeFieldUpdateOperationsInput | Date | string
-    addReport_form_tmp_json?: NullableStringFieldUpdateOperationsInput | string | null
-    createReport_form_tmp_json?: NullableStringFieldUpdateOperationsInput | string | null
-    one_time_alert_onupdate?: NullableIntFieldUpdateOperationsInput | number | null
+    addReport_form_tmp_json?: StringFieldUpdateOperationsInput | string
+    createReport_form_tmp_json?: StringFieldUpdateOperationsInput | string
+    on_time_alert_onupdate?: IntFieldUpdateOperationsInput | number
   }
 
   export type user_sessionUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     LoggedIn_session?: IntFieldUpdateOperationsInput | number
-    Week_In_session_id?: NullableIntFieldUpdateOperationsInput | number | null
-    Project_In_session_id?: NullableIntFieldUpdateOperationsInput | number | null
-    LoggedIn_cookie?: NullableStringFieldUpdateOperationsInput | string | null
+    Week_In_session_id?: IntFieldUpdateOperationsInput | number
+    Project_In_session_id?: IntFieldUpdateOperationsInput | number
+    LoggedIn_cookie?: StringFieldUpdateOperationsInput | string
     Last_loggedIn?: DateTimeFieldUpdateOperationsInput | Date | string
-    addReport_form_tmp_json?: NullableStringFieldUpdateOperationsInput | string | null
-    createReport_form_tmp_json?: NullableStringFieldUpdateOperationsInput | string | null
-    one_time_alert_onupdate?: NullableIntFieldUpdateOperationsInput | number | null
+    addReport_form_tmp_json?: StringFieldUpdateOperationsInput | string
+    createReport_form_tmp_json?: StringFieldUpdateOperationsInput | string
+    on_time_alert_onupdate?: IntFieldUpdateOperationsInput | number
   }
 
   export type usersCreateInput = {
-    id?: number
-    emp_num?: string
-    first_name?: string
-    last_name?: string
-    role?: string | null
-    passward?: string
-    email_address?: string
+    emp_num: string
+    first_name: string
+    last_name: string
+    role?: string
+    password: string
+    email_address: string
     created_at?: Date | string
     last_logged_in?: Date | string
     deactivated?: boolean
@@ -3033,12 +3031,12 @@ export namespace Prisma {
 
   export type usersUncheckedCreateInput = {
     id?: number
-    emp_num?: string
-    first_name?: string
-    last_name?: string
-    role?: string | null
-    passward?: string
-    email_address?: string
+    emp_num: string
+    first_name: string
+    last_name: string
+    role?: string
+    password: string
+    email_address: string
     created_at?: Date | string
     last_logged_in?: Date | string
     deactivated?: boolean
@@ -3046,12 +3044,11 @@ export namespace Prisma {
   }
 
   export type usersUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
     emp_num?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
-    role?: NullableStringFieldUpdateOperationsInput | string | null
-    passward?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     email_address?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     last_logged_in?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3064,8 +3061,8 @@ export namespace Prisma {
     emp_num?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
-    role?: NullableStringFieldUpdateOperationsInput | string | null
-    passward?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     email_address?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     last_logged_in?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3075,12 +3072,12 @@ export namespace Prisma {
 
   export type usersCreateManyInput = {
     id?: number
-    emp_num?: string
-    first_name?: string
-    last_name?: string
-    role?: string | null
-    passward?: string
-    email_address?: string
+    emp_num: string
+    first_name: string
+    last_name: string
+    role?: string
+    password: string
+    email_address: string
     created_at?: Date | string
     last_logged_in?: Date | string
     deactivated?: boolean
@@ -3088,12 +3085,11 @@ export namespace Prisma {
   }
 
   export type usersUpdateManyMutationInput = {
-    id?: IntFieldUpdateOperationsInput | number
     emp_num?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
-    role?: NullableStringFieldUpdateOperationsInput | string | null
-    passward?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     email_address?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     last_logged_in?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3106,8 +3102,8 @@ export namespace Prisma {
     emp_num?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
-    role?: NullableStringFieldUpdateOperationsInput | string | null
-    passward?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     email_address?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     last_logged_in?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3126,21 +3122,10 @@ export namespace Prisma {
     not?: NestedIntFilter | number
   }
 
-  export type IntNullableFilter = {
-    equals?: number | null
-    in?: Enumerable<number> | null
-    notIn?: Enumerable<number> | null
-    lt?: number
-    lte?: number
-    gt?: number
-    gte?: number
-    not?: NestedIntNullableFilter | number | null
-  }
-
-  export type StringNullableFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
+  export type StringFilter = {
+    equals?: string
+    in?: Enumerable<string>
+    notIn?: Enumerable<string>
     lt?: string
     lte?: string
     gt?: string
@@ -3148,7 +3133,7 @@ export namespace Prisma {
     contains?: string
     startsWith?: string
     endsWith?: string
-    not?: NestedStringNullableFilter | string | null
+    not?: NestedStringFilter | string
   }
 
   export type DateTimeFilter = {
@@ -3171,7 +3156,7 @@ export namespace Prisma {
     Last_loggedIn?: SortOrder
     addReport_form_tmp_json?: SortOrder
     createReport_form_tmp_json?: SortOrder
-    one_time_alert_onupdate?: SortOrder
+    on_time_alert_onupdate?: SortOrder
   }
 
   export type user_sessionAvgOrderByAggregateInput = {
@@ -3179,7 +3164,7 @@ export namespace Prisma {
     LoggedIn_session?: SortOrder
     Week_In_session_id?: SortOrder
     Project_In_session_id?: SortOrder
-    one_time_alert_onupdate?: SortOrder
+    on_time_alert_onupdate?: SortOrder
   }
 
   export type user_sessionMaxOrderByAggregateInput = {
@@ -3191,7 +3176,7 @@ export namespace Prisma {
     Last_loggedIn?: SortOrder
     addReport_form_tmp_json?: SortOrder
     createReport_form_tmp_json?: SortOrder
-    one_time_alert_onupdate?: SortOrder
+    on_time_alert_onupdate?: SortOrder
   }
 
   export type user_sessionMinOrderByAggregateInput = {
@@ -3203,7 +3188,7 @@ export namespace Prisma {
     Last_loggedIn?: SortOrder
     addReport_form_tmp_json?: SortOrder
     createReport_form_tmp_json?: SortOrder
-    one_time_alert_onupdate?: SortOrder
+    on_time_alert_onupdate?: SortOrder
   }
 
   export type user_sessionSumOrderByAggregateInput = {
@@ -3211,7 +3196,7 @@ export namespace Prisma {
     LoggedIn_session?: SortOrder
     Week_In_session_id?: SortOrder
     Project_In_session_id?: SortOrder
-    one_time_alert_onupdate?: SortOrder
+    on_time_alert_onupdate?: SortOrder
   }
 
   export type IntWithAggregatesFilter = {
@@ -3228,127 +3213,6 @@ export namespace Prisma {
     _sum?: NestedIntFilter
     _min?: NestedIntFilter
     _max?: NestedIntFilter
-  }
-
-  export type IntNullableWithAggregatesFilter = {
-    equals?: number | null
-    in?: Enumerable<number> | null
-    notIn?: Enumerable<number> | null
-    lt?: number
-    lte?: number
-    gt?: number
-    gte?: number
-    not?: NestedIntNullableWithAggregatesFilter | number | null
-    _count?: NestedIntNullableFilter
-    _avg?: NestedFloatNullableFilter
-    _sum?: NestedIntNullableFilter
-    _min?: NestedIntNullableFilter
-    _max?: NestedIntNullableFilter
-  }
-
-  export type StringNullableWithAggregatesFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringNullableWithAggregatesFilter | string | null
-    _count?: NestedIntNullableFilter
-    _min?: NestedStringNullableFilter
-    _max?: NestedStringNullableFilter
-  }
-
-  export type DateTimeWithAggregatesFilter = {
-    equals?: Date | string
-    in?: Enumerable<Date> | Enumerable<string>
-    notIn?: Enumerable<Date> | Enumerable<string>
-    lt?: Date | string
-    lte?: Date | string
-    gt?: Date | string
-    gte?: Date | string
-    not?: NestedDateTimeWithAggregatesFilter | Date | string
-    _count?: NestedIntFilter
-    _min?: NestedDateTimeFilter
-    _max?: NestedDateTimeFilter
-  }
-
-  export type StringFilter = {
-    equals?: string
-    in?: Enumerable<string>
-    notIn?: Enumerable<string>
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringFilter | string
-  }
-
-  export type BoolFilter = {
-    equals?: boolean
-    not?: NestedBoolFilter | boolean
-  }
-
-  export type usersIdEmp_numCompoundUniqueInput = {
-    id: number
-    emp_num: string
-  }
-
-  export type usersCountOrderByAggregateInput = {
-    id?: SortOrder
-    emp_num?: SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
-    role?: SortOrder
-    passward?: SortOrder
-    email_address?: SortOrder
-    created_at?: SortOrder
-    last_logged_in?: SortOrder
-    deactivated?: SortOrder
-    onetime_survey?: SortOrder
-  }
-
-  export type usersAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type usersMaxOrderByAggregateInput = {
-    id?: SortOrder
-    emp_num?: SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
-    role?: SortOrder
-    passward?: SortOrder
-    email_address?: SortOrder
-    created_at?: SortOrder
-    last_logged_in?: SortOrder
-    deactivated?: SortOrder
-    onetime_survey?: SortOrder
-  }
-
-  export type usersMinOrderByAggregateInput = {
-    id?: SortOrder
-    emp_num?: SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
-    role?: SortOrder
-    passward?: SortOrder
-    email_address?: SortOrder
-    created_at?: SortOrder
-    last_logged_in?: SortOrder
-    deactivated?: SortOrder
-    onetime_survey?: SortOrder
-  }
-
-  export type usersSumOrderByAggregateInput = {
-    id?: SortOrder
   }
 
   export type StringWithAggregatesFilter = {
@@ -3368,6 +3232,75 @@ export namespace Prisma {
     _max?: NestedStringFilter
   }
 
+  export type DateTimeWithAggregatesFilter = {
+    equals?: Date | string
+    in?: Enumerable<Date> | Enumerable<string>
+    notIn?: Enumerable<Date> | Enumerable<string>
+    lt?: Date | string
+    lte?: Date | string
+    gt?: Date | string
+    gte?: Date | string
+    not?: NestedDateTimeWithAggregatesFilter | Date | string
+    _count?: NestedIntFilter
+    _min?: NestedDateTimeFilter
+    _max?: NestedDateTimeFilter
+  }
+
+  export type BoolFilter = {
+    equals?: boolean
+    not?: NestedBoolFilter | boolean
+  }
+
+  export type usersCountOrderByAggregateInput = {
+    id?: SortOrder
+    emp_num?: SortOrder
+    first_name?: SortOrder
+    last_name?: SortOrder
+    role?: SortOrder
+    password?: SortOrder
+    email_address?: SortOrder
+    created_at?: SortOrder
+    last_logged_in?: SortOrder
+    deactivated?: SortOrder
+    onetime_survey?: SortOrder
+  }
+
+  export type usersAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type usersMaxOrderByAggregateInput = {
+    id?: SortOrder
+    emp_num?: SortOrder
+    first_name?: SortOrder
+    last_name?: SortOrder
+    role?: SortOrder
+    password?: SortOrder
+    email_address?: SortOrder
+    created_at?: SortOrder
+    last_logged_in?: SortOrder
+    deactivated?: SortOrder
+    onetime_survey?: SortOrder
+  }
+
+  export type usersMinOrderByAggregateInput = {
+    id?: SortOrder
+    emp_num?: SortOrder
+    first_name?: SortOrder
+    last_name?: SortOrder
+    role?: SortOrder
+    password?: SortOrder
+    email_address?: SortOrder
+    created_at?: SortOrder
+    last_logged_in?: SortOrder
+    deactivated?: SortOrder
+    onetime_survey?: SortOrder
+  }
+
+  export type usersSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
   export type BoolWithAggregatesFilter = {
     equals?: boolean
     not?: NestedBoolWithAggregatesFilter | boolean
@@ -3384,24 +3317,12 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
-  }
-
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -3419,21 +3340,10 @@ export namespace Prisma {
     not?: NestedIntFilter | number
   }
 
-  export type NestedIntNullableFilter = {
-    equals?: number | null
-    in?: Enumerable<number> | null
-    notIn?: Enumerable<number> | null
-    lt?: number
-    lte?: number
-    gt?: number
-    gte?: number
-    not?: NestedIntNullableFilter | number | null
-  }
-
-  export type NestedStringNullableFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
+  export type NestedStringFilter = {
+    equals?: string
+    in?: Enumerable<string>
+    notIn?: Enumerable<string>
     lt?: string
     lte?: string
     gt?: string
@@ -3441,7 +3351,7 @@ export namespace Prisma {
     contains?: string
     startsWith?: string
     endsWith?: string
-    not?: NestedStringNullableFilter | string | null
+    not?: NestedStringFilter | string
   }
 
   export type NestedDateTimeFilter = {
@@ -3482,37 +3392,10 @@ export namespace Prisma {
     not?: NestedFloatFilter | number
   }
 
-  export type NestedIntNullableWithAggregatesFilter = {
-    equals?: number | null
-    in?: Enumerable<number> | null
-    notIn?: Enumerable<number> | null
-    lt?: number
-    lte?: number
-    gt?: number
-    gte?: number
-    not?: NestedIntNullableWithAggregatesFilter | number | null
-    _count?: NestedIntNullableFilter
-    _avg?: NestedFloatNullableFilter
-    _sum?: NestedIntNullableFilter
-    _min?: NestedIntNullableFilter
-    _max?: NestedIntNullableFilter
-  }
-
-  export type NestedFloatNullableFilter = {
-    equals?: number | null
-    in?: Enumerable<number> | null
-    notIn?: Enumerable<number> | null
-    lt?: number
-    lte?: number
-    gt?: number
-    gte?: number
-    not?: NestedFloatNullableFilter | number | null
-  }
-
-  export type NestedStringNullableWithAggregatesFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
+  export type NestedStringWithAggregatesFilter = {
+    equals?: string
+    in?: Enumerable<string>
+    notIn?: Enumerable<string>
     lt?: string
     lte?: string
     gt?: string
@@ -3520,10 +3403,10 @@ export namespace Prisma {
     contains?: string
     startsWith?: string
     endsWith?: string
-    not?: NestedStringNullableWithAggregatesFilter | string | null
-    _count?: NestedIntNullableFilter
-    _min?: NestedStringNullableFilter
-    _max?: NestedStringNullableFilter
+    not?: NestedStringWithAggregatesFilter | string
+    _count?: NestedIntFilter
+    _min?: NestedStringFilter
+    _max?: NestedStringFilter
   }
 
   export type NestedDateTimeWithAggregatesFilter = {
@@ -3540,40 +3423,9 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter
   }
 
-  export type NestedStringFilter = {
-    equals?: string
-    in?: Enumerable<string>
-    notIn?: Enumerable<string>
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringFilter | string
-  }
-
   export type NestedBoolFilter = {
     equals?: boolean
     not?: NestedBoolFilter | boolean
-  }
-
-  export type NestedStringWithAggregatesFilter = {
-    equals?: string
-    in?: Enumerable<string>
-    notIn?: Enumerable<string>
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringWithAggregatesFilter | string
-    _count?: NestedIntFilter
-    _min?: NestedStringFilter
-    _max?: NestedStringFilter
   }
 
   export type NestedBoolWithAggregatesFilter = {

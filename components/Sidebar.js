@@ -1,6 +1,6 @@
 import {FaEdit, FaBell, FaUser, FaHome, FaBook, FaSignOutAlt, FaBug,FaTh, FaSign, FaSitemap} from 'react-icons/fa'
 import Image from 'next/image'
-import CaltransLogo from '../public/images/caltranslogo-main.png'
+import CaltransLogo from '../public/images/etc.png'
 import {useEffect,useState} from 'react'
 import BugReport from '../components/ManagerDBTable/modals/BugReport'
 import Hierarchy from '../components/ManagerDBTable/modals/Hierarchy'
@@ -46,9 +46,10 @@ export default function Sidebar() {
         fetch("/ManagerDB/api/managers/", {
           method: "GET",
         }).then((res) => {
-          res.json().then((data) => {       
+          res.json().then((data) => {   
+            console.log(data)    
             setEmployeeList(data)   
-            setEmployees(HierarchyProcess(data, '04'))
+            setEmployees(HierarchyProcess(data, 'CA'))
           }).then(()=>{
             setIsHierarchy(true)
             setHierarchyLoad(false)

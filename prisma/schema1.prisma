@@ -11,31 +11,25 @@ datasource db {
 model user_session {
   id                         Int      @id @default(autoincrement())
   LoggedIn_session           Int
-  Week_In_session_id         Int?
-  Project_In_session_id      Int?
-  LoggedIn_cookie            String?  @db.VarChar(256)
-  Last_loggedIn              DateTime @default(now()) @db.DateTime(0)
-  addReport_form_tmp_json    String?  @db.LongText
-  createReport_form_tmp_json String?  @db.LongText
-  one_time_alert_onupdate    Int?     @default(1)
-
-  @@index([Week_In_session_id], map: "FK_user_session_weekly")
-  @@index([LoggedIn_session], map: "LoggedIn_session")
-  @@index([Project_In_session_id], map: "Project_In_session_id")
+  Week_In_session_id         Int
+  Project_In_session_id      Int
+  LoggedIn_cookie            String   @db.VarChar(256)
+  Last_loggedIn              DateTime @db.DateTime(6)
+  addReport_form_tmp_json    String   @db.VarChar(200)
+  createReport_form_tmp_json String   @db.VarChar(200)
+  on_time_alert_onupdate     Int      @default(1)
 }
 
 model users {
-  id             Int      @default(autoincrement())
-  emp_num        String   @unique(map: "emp_num") @default("") @db.VarChar(45)
-  first_name     String   @default("") @db.VarChar(45)
-  last_name      String   @default("") @db.VarChar(45)
-  role           String?  @default("Data Entry") @db.VarChar(45)
-  passward       String   @default("") @db.VarChar(256)
-  email_address  String   @default("") @db.VarChar(45)
-  created_at     DateTime @default(now()) @db.DateTime(0)
-  last_logged_in DateTime @default(now()) @db.DateTime(0)
+  id             Int      @id @default(autoincrement())
+  emp_num        String   @db.VarChar(45)
+  first_name     String   @db.VarChar(45)
+  last_name      String   @db.VarChar(45)
+  role           String   @default("Data Entry") @db.VarChar(45)
+  password       String   @db.VarChar(256)
+  email_address  String   @db.VarChar(45)
+  created_at     DateTime @default(now()) @db.DateTime(6)
+  last_logged_in DateTime @default(now()) @db.DateTime(6)
   deactivated    Boolean  @default(false)
   onetime_survey Boolean
-
-  @@id([id, emp_num])
 }

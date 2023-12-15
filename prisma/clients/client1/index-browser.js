@@ -96,7 +96,7 @@ exports.Prisma.User_sessionScalarFieldEnum = makeEnum({
   Last_loggedIn: 'Last_loggedIn',
   addReport_form_tmp_json: 'addReport_form_tmp_json',
   createReport_form_tmp_json: 'createReport_form_tmp_json',
-  one_time_alert_onupdate: 'one_time_alert_onupdate'
+  on_time_alert_onupdate: 'on_time_alert_onupdate'
 });
 
 exports.Prisma.UsersScalarFieldEnum = makeEnum({
@@ -105,7 +105,7 @@ exports.Prisma.UsersScalarFieldEnum = makeEnum({
   first_name: 'first_name',
   last_name: 'last_name',
   role: 'role',
-  passward: 'passward',
+  password: 'password',
   email_address: 'email_address',
   created_at: 'created_at',
   last_logged_in: 'last_logged_in',

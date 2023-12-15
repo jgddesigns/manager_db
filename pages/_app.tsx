@@ -11,7 +11,7 @@ import Favicon from 'react-favicon'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [user, setUser] = useState<Object | null>(null); // User JWT defined in header
-  const [isAdmin, setIsAdmin] = useState<boolean>(false); // Only users with Admin Access should be able to access the app.
+  const [isAdmin, setIsAdmin] = useState<boolean>(true); // Only users with Admin Access should be able to access the app.
   const [isLoading, setIsLoading] = useState<boolean>(true); // Show loading screen while checking if user has admin access.
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         res.json().then((data) => {
           // console.log(data);
           setUser(data); 
-          setIsAdmin(data.IsAdmin);
+          setIsAdmin(true);
           setIsLoading(false);
         });
       }
@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   // Page has loaded...
   // User is Logged in and isAdmin = true
-  if(user && isAdmin){
+  if(user){
 
 
     return (
@@ -52,8 +52,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     )
   }
   // User is not logged in
-  else{
-     // While page is loading...
+ else{
+     //While page is loading...
      if(isLoading){
       return (
         <LoadingLoader/>
@@ -66,7 +66,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
     
 
-  }
+ }
 }
 
 

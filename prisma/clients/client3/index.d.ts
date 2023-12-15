@@ -18,11 +18,11 @@ type UnwrapTuple<Tuple extends readonly unknown[]> = {
  */
 export type task = {
   id: number
-  emp_num: string | null
-  application: string | null
-  page: string | null
-  Priorty: string
-  file_path: string | null
+  emp_num: string
+  application: string
+  page: string
+  Priority: string
+  file_path: string
   status: string
   task_description: string
   is_sent: string
@@ -837,7 +837,7 @@ export namespace Prisma {
     emp_num: string | null
     application: string | null
     page: string | null
-    Priorty: string | null
+    Priority: string | null
     file_path: string | null
     status: string | null
     task_description: string | null
@@ -850,7 +850,7 @@ export namespace Prisma {
     emp_num: string | null
     application: string | null
     page: string | null
-    Priorty: string | null
+    Priority: string | null
     file_path: string | null
     status: string | null
     task_description: string | null
@@ -863,7 +863,7 @@ export namespace Prisma {
     emp_num: number
     application: number
     page: number
-    Priorty: number
+    Priority: number
     file_path: number
     status: number
     task_description: number
@@ -886,7 +886,7 @@ export namespace Prisma {
     emp_num?: true
     application?: true
     page?: true
-    Priorty?: true
+    Priority?: true
     file_path?: true
     status?: true
     task_description?: true
@@ -899,7 +899,7 @@ export namespace Prisma {
     emp_num?: true
     application?: true
     page?: true
-    Priorty?: true
+    Priority?: true
     file_path?: true
     status?: true
     task_description?: true
@@ -912,7 +912,7 @@ export namespace Prisma {
     emp_num?: true
     application?: true
     page?: true
-    Priorty?: true
+    Priority?: true
     file_path?: true
     status?: true
     task_description?: true
@@ -1015,11 +1015,11 @@ export namespace Prisma {
 
   export type TaskGroupByOutputType = {
     id: number
-    emp_num: string | null
-    application: string | null
-    page: string | null
-    Priorty: string
-    file_path: string | null
+    emp_num: string
+    application: string
+    page: string
+    Priority: string
+    file_path: string
     status: string
     task_description: string
     is_sent: string
@@ -1050,7 +1050,7 @@ export namespace Prisma {
     emp_num?: boolean
     application?: boolean
     page?: boolean
-    Priorty?: boolean
+    Priority?: boolean
     file_path?: boolean
     status?: boolean
     task_description?: boolean
@@ -1770,7 +1770,7 @@ export namespace Prisma {
     emp_num: 'emp_num',
     application: 'application',
     page: 'page',
-    Priorty: 'Priorty',
+    Priority: 'Priority',
     file_path: 'file_path',
     status: 'status',
     task_description: 'task_description',
@@ -1799,11 +1799,11 @@ export namespace Prisma {
     OR?: Enumerable<taskWhereInput>
     NOT?: Enumerable<taskWhereInput>
     id?: IntFilter | number
-    emp_num?: StringNullableFilter | string | null
-    application?: StringNullableFilter | string | null
-    page?: StringNullableFilter | string | null
-    Priorty?: StringFilter | string
-    file_path?: StringNullableFilter | string | null
+    emp_num?: StringFilter | string
+    application?: StringFilter | string
+    page?: StringFilter | string
+    Priority?: StringFilter | string
+    file_path?: StringFilter | string
     status?: StringFilter | string
     task_description?: StringFilter | string
     is_sent?: StringFilter | string
@@ -1815,7 +1815,7 @@ export namespace Prisma {
     emp_num?: SortOrder
     application?: SortOrder
     page?: SortOrder
-    Priorty?: SortOrder
+    Priority?: SortOrder
     file_path?: SortOrder
     status?: SortOrder
     task_description?: SortOrder
@@ -1832,7 +1832,7 @@ export namespace Prisma {
     emp_num?: SortOrder
     application?: SortOrder
     page?: SortOrder
-    Priorty?: SortOrder
+    Priority?: SortOrder
     file_path?: SortOrder
     status?: SortOrder
     task_description?: SortOrder
@@ -1850,11 +1850,11 @@ export namespace Prisma {
     OR?: Enumerable<taskScalarWhereWithAggregatesInput>
     NOT?: Enumerable<taskScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
-    emp_num?: StringNullableWithAggregatesFilter | string | null
-    application?: StringNullableWithAggregatesFilter | string | null
-    page?: StringNullableWithAggregatesFilter | string | null
-    Priorty?: StringWithAggregatesFilter | string
-    file_path?: StringNullableWithAggregatesFilter | string | null
+    emp_num?: StringWithAggregatesFilter | string
+    application?: StringWithAggregatesFilter | string
+    page?: StringWithAggregatesFilter | string
+    Priority?: StringWithAggregatesFilter | string
+    file_path?: StringWithAggregatesFilter | string
     status?: StringWithAggregatesFilter | string
     task_description?: StringWithAggregatesFilter | string
     is_sent?: StringWithAggregatesFilter | string
@@ -1862,11 +1862,11 @@ export namespace Prisma {
   }
 
   export type taskCreateInput = {
-    emp_num?: string | null
-    application?: string | null
-    page?: string | null
-    Priorty: string
-    file_path?: string | null
+    emp_num: string
+    application: string
+    page: string
+    Priority: string
+    file_path: string
     status?: string
     task_description?: string
     is_sent?: string
@@ -1875,11 +1875,11 @@ export namespace Prisma {
 
   export type taskUncheckedCreateInput = {
     id?: number
-    emp_num?: string | null
-    application?: string | null
-    page?: string | null
-    Priorty: string
-    file_path?: string | null
+    emp_num: string
+    application: string
+    page: string
+    Priority: string
+    file_path: string
     status?: string
     task_description?: string
     is_sent?: string
@@ -1887,11 +1887,11 @@ export namespace Prisma {
   }
 
   export type taskUpdateInput = {
-    emp_num?: NullableStringFieldUpdateOperationsInput | string | null
-    application?: NullableStringFieldUpdateOperationsInput | string | null
-    page?: NullableStringFieldUpdateOperationsInput | string | null
-    Priorty?: StringFieldUpdateOperationsInput | string
-    file_path?: NullableStringFieldUpdateOperationsInput | string | null
+    emp_num?: StringFieldUpdateOperationsInput | string
+    application?: StringFieldUpdateOperationsInput | string
+    page?: StringFieldUpdateOperationsInput | string
+    Priority?: StringFieldUpdateOperationsInput | string
+    file_path?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     task_description?: StringFieldUpdateOperationsInput | string
     is_sent?: StringFieldUpdateOperationsInput | string
@@ -1900,11 +1900,11 @@ export namespace Prisma {
 
   export type taskUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    emp_num?: NullableStringFieldUpdateOperationsInput | string | null
-    application?: NullableStringFieldUpdateOperationsInput | string | null
-    page?: NullableStringFieldUpdateOperationsInput | string | null
-    Priorty?: StringFieldUpdateOperationsInput | string
-    file_path?: NullableStringFieldUpdateOperationsInput | string | null
+    emp_num?: StringFieldUpdateOperationsInput | string
+    application?: StringFieldUpdateOperationsInput | string
+    page?: StringFieldUpdateOperationsInput | string
+    Priority?: StringFieldUpdateOperationsInput | string
+    file_path?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     task_description?: StringFieldUpdateOperationsInput | string
     is_sent?: StringFieldUpdateOperationsInput | string
@@ -1913,11 +1913,11 @@ export namespace Prisma {
 
   export type taskCreateManyInput = {
     id?: number
-    emp_num?: string | null
-    application?: string | null
-    page?: string | null
-    Priorty: string
-    file_path?: string | null
+    emp_num: string
+    application: string
+    page: string
+    Priority: string
+    file_path: string
     status?: string
     task_description?: string
     is_sent?: string
@@ -1925,11 +1925,11 @@ export namespace Prisma {
   }
 
   export type taskUpdateManyMutationInput = {
-    emp_num?: NullableStringFieldUpdateOperationsInput | string | null
-    application?: NullableStringFieldUpdateOperationsInput | string | null
-    page?: NullableStringFieldUpdateOperationsInput | string | null
-    Priorty?: StringFieldUpdateOperationsInput | string
-    file_path?: NullableStringFieldUpdateOperationsInput | string | null
+    emp_num?: StringFieldUpdateOperationsInput | string
+    application?: StringFieldUpdateOperationsInput | string
+    page?: StringFieldUpdateOperationsInput | string
+    Priority?: StringFieldUpdateOperationsInput | string
+    file_path?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     task_description?: StringFieldUpdateOperationsInput | string
     is_sent?: StringFieldUpdateOperationsInput | string
@@ -1938,11 +1938,11 @@ export namespace Prisma {
 
   export type taskUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    emp_num?: NullableStringFieldUpdateOperationsInput | string | null
-    application?: NullableStringFieldUpdateOperationsInput | string | null
-    page?: NullableStringFieldUpdateOperationsInput | string | null
-    Priorty?: StringFieldUpdateOperationsInput | string
-    file_path?: NullableStringFieldUpdateOperationsInput | string | null
+    emp_num?: StringFieldUpdateOperationsInput | string
+    application?: StringFieldUpdateOperationsInput | string
+    page?: StringFieldUpdateOperationsInput | string
+    Priority?: StringFieldUpdateOperationsInput | string
+    file_path?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     task_description?: StringFieldUpdateOperationsInput | string
     is_sent?: StringFieldUpdateOperationsInput | string
@@ -1958,20 +1958,6 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedIntFilter | number
-  }
-
-  export type StringNullableFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringNullableFilter | string | null
   }
 
   export type StringFilter = {
@@ -2004,7 +1990,7 @@ export namespace Prisma {
     emp_num?: SortOrder
     application?: SortOrder
     page?: SortOrder
-    Priorty?: SortOrder
+    Priority?: SortOrder
     file_path?: SortOrder
     status?: SortOrder
     task_description?: SortOrder
@@ -2021,7 +2007,7 @@ export namespace Prisma {
     emp_num?: SortOrder
     application?: SortOrder
     page?: SortOrder
-    Priorty?: SortOrder
+    Priority?: SortOrder
     file_path?: SortOrder
     status?: SortOrder
     task_description?: SortOrder
@@ -2034,7 +2020,7 @@ export namespace Prisma {
     emp_num?: SortOrder
     application?: SortOrder
     page?: SortOrder
-    Priorty?: SortOrder
+    Priority?: SortOrder
     file_path?: SortOrder
     status?: SortOrder
     task_description?: SortOrder
@@ -2060,23 +2046,6 @@ export namespace Prisma {
     _sum?: NestedIntFilter
     _min?: NestedIntFilter
     _max?: NestedIntFilter
-  }
-
-  export type StringNullableWithAggregatesFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringNullableWithAggregatesFilter | string | null
-    _count?: NestedIntNullableFilter
-    _min?: NestedStringNullableFilter
-    _max?: NestedStringNullableFilter
   }
 
   export type StringWithAggregatesFilter = {
@@ -2110,10 +2079,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -2139,20 +2104,6 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedIntFilter | number
-  }
-
-  export type NestedStringNullableFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringNullableFilter | string | null
   }
 
   export type NestedStringFilter = {
@@ -2205,34 +2156,6 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedFloatFilter | number
-  }
-
-  export type NestedStringNullableWithAggregatesFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringNullableWithAggregatesFilter | string | null
-    _count?: NestedIntNullableFilter
-    _min?: NestedStringNullableFilter
-    _max?: NestedStringNullableFilter
-  }
-
-  export type NestedIntNullableFilter = {
-    equals?: number | null
-    in?: Enumerable<number> | null
-    notIn?: Enumerable<number> | null
-    lt?: number
-    lte?: number
-    gt?: number
-    gte?: number
-    not?: NestedIntNullableFilter | number | null
   }
 
   export type NestedStringWithAggregatesFilter = {
