@@ -43,7 +43,8 @@ export default function Insert({setInsert, setIsInsert}) {
         fetch("/ManagerDB/api/managers/", {
             method: "GET",
           }).then((res) => {
-            res.json().then((data) => {                insertToTable(InsertDataProcess(data, NewSuperior, District))
+            res.json().then((data) => {                
+                insertToTable(InsertDataProcess(data, NewSuperior, District))
             })
         })
     }
@@ -136,14 +137,18 @@ export default function Insert({setInsert, setIsInsert}) {
     //@param e: The value of the input.
     //@return: Void.
     const nameChangeHandler = (e) => {
+        setValidName(false)
         setName(e)
+        NameCheck(e)
     }
 
     //Called from the email change button. Will set the email state to the value of the input.
     //@param e: The value of the input.
     //@return: Void.
     const emailChangeHandler = (e) => {
+        setValidEmail(false)
         setEmail(e)
+        EmailCheck(e)
     }
 
     //Called from the district change button. Will set the district state to the value of the input.
@@ -180,6 +185,7 @@ export default function Insert({setInsert, setIsInsert}) {
     //@param e: The value of the input.
     //@return: Void.
     const superiorChangeHandler = (e) => {
+
         setNewSuperior(e)
     }
 
@@ -187,14 +193,18 @@ export default function Insert({setInsert, setIsInsert}) {
     //@param e: The value of the input.
     //@return: Void.
     const efisChangeHandler = (e) => {
+        setValidEFIS(false)
         setEFIS(e)
+        EFISCheck(e)
     }
 
     //Called from the tram change button. Will set the tram state to the value of the input.
     //@param e: The value of the input.
     //@return: Void.
     const tramChangeHandler = (e) => {
+        setValidTRAM(false)
         setTRAM(e)
+        TRAMCheck(e)
     }
 
     //Validates the name input.
@@ -202,13 +212,16 @@ export default function Insert({setInsert, setIsInsert}) {
     //@return: True if the name is valid, false otherwise.
     const NameCheck = (name) => {
         if(name.length < 5){
+            setValidName(false)
             return false
         }
         for(let i=0; i<name.length; i++){
             if(!name[i].match(/[a-z]/i) && (name[i] != ' ')){
+                setValidName(false)
                 return false
             }
         }
+        setValidName(true)
         return true
     }
 
@@ -217,7 +230,12 @@ export default function Insert({setInsert, setIsInsert}) {
     //@return: True if the email is valid, false otherwise.
     const EmailCheck = (email) => {
         const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
+        if (!re.test(email)){
+            setValidEmail(false)
+            return false
+        }
+            setValidEmail(true)
+            return true
     }
 
     //Validates the efis input.
@@ -225,8 +243,10 @@ export default function Insert({setInsert, setIsInsert}) {
     //@return: True if the efis is valid, false otherwise.
     const EFISCheck = (efis) => {
         if(efis.length!=4 || isNaN(efis)){
+            setValidEFIS(false)
             return false
           }
+          setValidEFIS(true)
           return true
     }
 
@@ -235,8 +255,10 @@ export default function Insert({setInsert, setIsInsert}) {
     //@return: True if the tram is valid, false otherwise.
     const TRAMCheck = (tram) => {
         if(tram.length!=3 || isNaN(tram)){
+            setValidTRAM(false)
             return false
           }
+          setValidTRAM(true)
           return true
     }
 
@@ -253,7 +275,7 @@ export default function Insert({setInsert, setIsInsert}) {
         setValidEmail(true)
         setValidTRAM(true)
         setComplete(false)
-        setDistrict('01')
+        setDistrict('CA')
         setRole('Principal')
         setInsertLoad(false)
         setIsInsertClicked(false)
@@ -296,7 +318,7 @@ export default function Insert({setInsert, setIsInsert}) {
                     <div className="grid grid-cols-2">
                         <span>District</span>
                         <select className="rounded w-56" value={District} onChange={(e)=>districtChangeHandler(e.target.value)}>
-                            <option value="01">1</option>
+                            {/* <option value="01">1</option>
                             <option value="02">2</option>
                             <option value="03">3</option>
                             <option value="04">4</option>
@@ -307,7 +329,12 @@ export default function Insert({setInsert, setIsInsert}) {
                             <option value="09">9</option>
                             <option value="10">10</option>
                             <option value="11">11</option>
-                            <option value="12">12</option>
+                            <option value="12">12</option> */}
+                            <option value="CA">California</option>
+                            <option value="FL">Florida</option>
+                            <option value="IL">Illinois</option>
+                            <option value="NY">New York</option>
+                            <option value="TX">Texas</option>
                         </select>
                     </div>
                     <div className="grid grid-cols-2 ">
