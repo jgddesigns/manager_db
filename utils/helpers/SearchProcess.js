@@ -22,26 +22,26 @@ export default function SearchProcess(input, data){
     var chiefIncluded = false
     var steIncluded = false
 
-    if(users[i]['DEPUTY_NAME'] != null){
-      if(users[i]['DEPUTY_NAME'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['EFIS'].includes(search_text)){
+    if(users[i]['deputy_name'] != null){
+      if(users[i]['deputy_name'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['efis'].includes(search_text)){
         for(var j=0; j<filtered_users.length; j++){
-            if(users[i]['DEPUTY_NAME'] == filtered_users[j]){
+            if(users[i]['deputy_name'] == filtered_users[j]){
               if(filtered_roles[j] == "Deputy"){
                   deputyIncluded = true
               }
             }
         }
 
-        if(!filtered_users.includes(users[i]['DEPUTY_NAME'])  && !deputyIncluded){
-            filtered_users.push(users[i]['DEPUTY_NAME'])
-            filtered_email.push(users[i]['DEPUTY_EMAIL'])
+        if(!filtered_users.includes(users[i]['deputy_name'])  && !deputyIncluded){
+            filtered_users.push(users[i]['deputy_name'])
+            filtered_email.push(users[i]['deputy_email'])
             filtered_roles.push('Deputy')
-            filtered_efis.push(users[i]['EFIS'])
-            filtered_district.push(users[i]['DISTRICT'])
-            filtered_tram.push(users[i]['TRAM'])
+            filtered_efis.push(users[i]['efis'])
+            filtered_district.push(users[i]['district'])
+            filtered_tram.push(users[i]['tram'])
             filtered_unit.push('')
             filtered_manager.push('')
-            if(users[i]['PRIN_NAME']){
+            if(users[i]['prin_name']){
               filtered_children.push(true)      
             }else{
               filtered_children.push(false)
@@ -50,26 +50,26 @@ export default function SearchProcess(input, data){
       }
     }
 
-    if(users[i]['PRIN_NAME'] != null){
-      if(users[i]['PRIN_NAME'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['PRIN_EFIS'].includes(search_text)){
+    if(users[i]['prin_name'] != null){
+      if(users[i]['prin_name'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['prin_efis'].includes(search_text)){
         for(var j=0; j<filtered_users.length; j++){
-            if(users[i]['PRIN_NAME'] == filtered_users[j]){
+            if(users[i]['prin_name'] == filtered_users[j]){
               if(filtered_roles[j] == "Principal"){
                   prinIncluded = true
               }
             }
         }
 
-        if(!filtered_users.includes(users[i]['PRIN_NAME'])  && !prinIncluded) {
-            filtered_users.push(users[i]['PRIN_NAME'])
-            filtered_email.push(users[i]['PRIN_EMAIL'])
+        if(!filtered_users.includes(users[i]['prin_name'])  && !prinIncluded) {
+            filtered_users.push(users[i]['prin_name'])
+            filtered_email.push(users[i]['prin_email'])
             filtered_roles.push('Principal')
-            filtered_efis.push(users[i]['PRIN_EFIS'])
-            filtered_district.push(users[i]['DISTRICT'])
-            filtered_tram.push(users[i]['TRAM'])
-            filtered_unit.push(users[i]['PRIN_UNIT'])
-            filtered_manager.push(users[i]['DEPUTY_NAME'])
-            if(users[i]['CHIEF_NAME']){
+            filtered_efis.push(users[i]['prin_efis'])
+            filtered_district.push(users[i]['district'])
+            filtered_tram.push(users[i]['tram'])
+            filtered_unit.push(users[i]['prin_unit'])
+            filtered_manager.push(users[i]['deputy_name'])
+            if(users[i]['chief_name']){
               filtered_children.push(true)      
             }else{
               filtered_children.push(false)
@@ -78,26 +78,26 @@ export default function SearchProcess(input, data){
       }
     }
 
-    if(users[i]['CHIEF_NAME'] != null){
-      if(users[i]['CHIEF_NAME'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['CHIEF_EFIS'].includes(search_text)){
+    if(users[i]['chief_name'] != null){
+      if(users[i]['chief_name'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['chief_efis'].includes(search_text)){
         for(var j=0; j<filtered_users.length; j++){
-            if(users[i]['CHIEF_NAME'] == filtered_users[j]){
+            if(users[i]['chief_name'] == filtered_users[j]){
               if(filtered_roles[j] == "Chief"){
                   chiefIncluded = true
               }
             }
         }
 
-        if(!filtered_users.includes(users[i]['CHIEF_NAME'])  && !chiefIncluded  ){
-            filtered_users.push(users[i]['CHIEF_NAME'])
-            filtered_email.push(users[i]['CHIEF_EMAIL'])
+        if(!filtered_users.includes(users[i]['chief_name'])  && !chiefIncluded  ){
+            filtered_users.push(users[i]['chief_name'])
+            filtered_email.push(users[i]['chief_email'])
             filtered_roles.push('Chief')
-            filtered_efis.push(users[i]['CHIEF_EFIS'])
-            filtered_district.push(users[i]['DISTRICT'])
-            filtered_tram.push(users[i]['TRAM'])
-            filtered_unit.push(users[i]['CHIEF_UNIT'])
-            filtered_manager.push(users[i]['PRIN_NAME'])
-            if(users[i]['STE_NAME']){
+            filtered_efis.push(users[i]['chief_efis'])
+            filtered_district.push(users[i]['district'])
+            filtered_tram.push(users[i]['tram'])
+            filtered_unit.push(users[i]['chief_unit'])
+            filtered_manager.push(users[i]['prin_name'])
+            if(users[i]['ste_name']){
               filtered_children.push(true)      
             }else{
               filtered_children.push(false)
@@ -106,25 +106,25 @@ export default function SearchProcess(input, data){
       }
     }
 
-    if(users[i]['STE_NAME'] != null){
-      if(users[i]['STE_NAME'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['STE_EFIS'].includes(search_text)){
+    if(users[i]['ste_name'] != null){
+      if(users[i]['ste_name'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['ste_efis'].includes(search_text)){
         for(var j=0; j<filtered_users.length; j++){
-            if(users[i]['STE_NAME'] == filtered_users[j]){
+            if(users[i]['ste_name'] == filtered_users[j]){
               if(filtered_roles[j] == "STE"){
                   steIncluded = true
               }
             }
         }
         
-        if(!filtered_users.includes(users[i]['STE_NAME'])  && !steIncluded) {
-          filtered_users.push(users[i]['STE_NAME'])
-          filtered_email.push(users[i]['STE_EMAIL'])
+        if(!filtered_users.includes(users[i]['ste_name'])  && !steIncluded) {
+          filtered_users.push(users[i]['ste_name'])
+          filtered_email.push(users[i]['ste_email'])
           filtered_roles.push('STE')
-          filtered_efis.push(users[i]['STE_EFIS'])
-          filtered_district.push(users[i]['DISTRICT'])
-          filtered_tram.push(users[i]['TRAM'])
-          filtered_unit.push(users[i]['STE_UNIT'])
-          filtered_manager.push(users[i]['CHIEF_NAME'])
+          filtered_efis.push(users[i]['ste_efis'])
+          filtered_district.push(users[i]['district'])
+          filtered_tram.push(users[i]['tram'])
+          filtered_unit.push(users[i]['ste_unit'])
+          filtered_manager.push(users[i]['chief_name'])
           filtered_children.push(true)
         }
       }

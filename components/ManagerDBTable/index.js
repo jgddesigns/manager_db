@@ -7,8 +7,9 @@ import ResetData from './modals/ResetData'
 import Instructions from '../Instructions'
 import SearchProcess from '../../utils/helpers/SearchProcess'
 import {useState, useEffect} from 'react'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import DynamoDB from '../../database/DynamoDB.js'
 
 export default function index() {
   const [searchInput, setSearchInput] = useState('')
@@ -19,18 +20,14 @@ export default function index() {
   const [isSave, setIsSave] = useState(false)
   const [isReset, setIsReset] = useState(false)
   const [isAssign, setIsAssign] = useState(false)
+  const [GetData, setGetData] = useState(false)
 
   useEffect(() => {
-    if (allManagerDB.length === 0) {
-      fetch("/ManagerDB/api/managers/", {
-        method: "GET",
-      }).then((res) => {
-        res.json().then((data) => {
-          setAllManagerDB(data)
-        });
-      });
-    }
-  }, [searchInput])
+    if(allManagerDB.length > 0){
+      console.log("DB confirmed")
+      console.log(allManagerDB)
+    } 
+  }, [allManagerDB])
 
   function setInsert(){
     setIsInsert(true)
@@ -121,6 +118,7 @@ export default function index() {
             pauseOnHover
             theme="colored"
         />
+        <DynamoDB GetData={GetData} setAllManagerDB={setAllManagerDB} />
     </div>
   )
 }

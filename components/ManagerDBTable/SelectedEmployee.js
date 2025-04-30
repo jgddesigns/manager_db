@@ -39,13 +39,13 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             }
         });
 
-        fetch("/ManagerDB/api/managers/", {
-            method: "GET",
-        }).then((res) => {
-            res.json().then((data) => {
-                setSuperiors(ManagerProcess(data, selectedEmployee)) 
-            })
-        }) 
+        // fetch("/ManagerDB/api/managers/", {
+        //     method: "GET",
+        // }).then((res) => {
+        //     res.json().then((data) => {
+        //         setSuperiors(ManagerProcess(data, selectedEmployee)) 
+        //     })
+        // }) 
     }, [])
   
     const superiorMap = Superiors.map((name, index) => {

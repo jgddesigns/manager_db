@@ -4,7 +4,7 @@ import {FaSitemap, FaRegCaretSquareDown} from 'react-icons/fa'
 import  HierarchyProcess from '../../../utils/helpers/HierarchyProcess'
 import { MutatingDots } from 'react-loader-spinner'
 
-export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}) {
+export default function Hierarchy({EmployeeList, setIsHierarchy, setHierarchyStart, Employee}) {
     const [ChiefMap, setChiefMap] = useState(false)
     const [PrinMap, setPrinMap] = useState(false)
     const [STEMap, setSTEMap] = useState(false)
@@ -152,21 +152,21 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
    //@param district: The district to get the employees for.
    //@return: Void.
    const getEmployees = (district)=> {
-    setLoading(true)
-    fetch("/ManagerDB/api/managers/", {
-        method: "GET",
-      }).then((res) => {
-        res.json().then((data) => {
-    
-          setEmployees(HierarchyProcess(data, district))
+    // setLoading(true)
+    // fetch("/ManagerDB/api/managers/", {
+    //     method: "GET",
+    //   }).then((res) => {
+    //     res.json().then((data) => {
+        console.log(EmployeeList)
+          setEmployees(HierarchyProcess(EmployeeList, district))
           setPrinMap(false)
           setChiefMap(false)
           setSTEMap(false)
           setDeputyText(selectedTextDeputy.textA)
-      }).then(()=>{
-        setLoading(false)
-      })
-    })
+    //   }).then(()=>{
+    //     setLoading(false)
+    //   })
+    // })
    }
 
    //Closes the hierarchy view.
@@ -179,11 +179,11 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
 
   return (
     <div>
-        <div className="flex w-[40rem] h-[58rem] bg-gray-100 drop-shadow-2xl rounded-xl rounded-tl-[4px] border-[5px] border-[#70AA9B] text-black overflow-y-auto mb-[10%]">
+        <div className="flex w-[40rem] h-[58rem] bg-gray-100 drop-shadow-2xl rounded-xl rounded-tl-[4px] border-[5px] border-[#70AA9B] text-black overflow-y-auto mb-[10%] grid grid-auto-rows">
             <div className="grid grid-rows-2 grid-cols-1 h-[100%]">
                 <div className="grid grid-rows-1 grid-cols-2">
                     <div className="bg-[#70AA9B] w-48 h-16 rounded-br-lg z-8">
-                        <div className="float-left pl-4 pt-4 text-2xl font-bold text-white">Hierarchy</div>
+                        <div className="float-left pl-4 pt-4 text-2xl font-bold text-white">Employee Tree</div>
                         
                         {Employees[0].deputy_name ?
                             <FaRegCaretSquareDown className="fixed text-md  text-gray-300 ml-[22%] mt-[3.25rem] pointer-events-none"/> 
@@ -204,12 +204,16 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
                                 <option value="10">District 10</option>
                                 <option value="11">District 11</option>
                                 <option value="12">District 12</option> */}
-
-                                <option value="CA">California</option>
-                                <option value="FL">Florida</option>
-                                <option value="IL">Illinois</option>
-                                <option value="NY">New York</option>
-                                <option value="TX">Texas</option>
+                                <option value="Alabama">Alabama</option>
+                                <option value="Alaska">Alaska</option>
+                                <option value="Arizona">Arizona</option>
+                                <option value="Arkansas">Arkansas</option>
+                                <option value="California">California</option>
+                                <option value="Colorado">Colorado</option>
+                                <option value="Connecticut">Connecticut</option>
+                                <option value="Delaware">Delaware</option>
+                                <option value="Florida">Florida</option>
+                                <option value="Georgia">Georgia</option>
                             </select>  
                         :null}        
                     </div>  
@@ -244,7 +248,7 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
                     </div>: <h1 className="mt-[30%] ml-6 w-full text-center italic">Error loading employee data. Please contact customer support.</h1>}
 
                     {PrinMap ? 
-                        <div className="mt-2 ml-5 border-l-2 border-x-0 border-r-0"><h1 className="underline ml-2 text-black font-bold">Principal</h1>
+                        <div className="mt-2 ml-5 border-l-2 border-x-0 border-r-0 mb-4"><h1 className="underline ml-2 text-black font-bold">Principal</h1>
                         <h1>{Employees[0].principals.map((principal, index) => {
                         return(
                             <h1 className={selectedTextPrincipal.textA} onClick={(e)=>toggleChiefMap(Employees[0].principals[index], e)}>{Employees[0].principals[index].prin_name}, #{Employees[0].principals[index].prin_efis}</h1>    
@@ -252,7 +256,7 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
                     })}</h1></div>: null}
 
                     {PrinMap && ChiefMap ? 
-                        <div className="mt-2 ml-10 border-l-2 border-x-0 border-r-0">
+                        <div className="mt-2 ml-10 border-l-2 border-x-0 border-r-0 mb-4">
                             <h1 className="underline ml-2 text-black font-bold">Chief</h1>
                             <h1>{ChiefData.chiefs.map((chief, index) => {
                                 return(
@@ -267,8 +271,8 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
                     })}</h1></div>:null}
 
                     {PrinMap && ChiefMap && STEMap ? 
-                        <div className="mt-2 ml-16 border-l-2 border-x-0 border-r-0">
-                            <h1 className="underline ml-2 text-black font-bold">STE</h1>
+                        <div className="mt-2 ml-16 border-l-2 border-x-0 border-r-0 mb-24">
+                            <h1 className="underline ml-2 text-black font-bold ">STE</h1>
                          
                             <h1>{STEData.stes.map((ste, index) => {
                                 return(
@@ -283,14 +287,16 @@ export default function Hierarchy({setIsHierarchy, setHierarchyStart,  Employee}
                                     </div>
                                 )
                     })}</h1></div>:null}
-                    <div className="h-12"></div>
+
+<div className="w-[100%] ml-[100%] grid mt-[200%] self-end bottom-0 mb-8 relative">
+            <span onClick={()=>closeHandler()} className="cursor-pointer h-full underline">Close</span>
+        </div>
                 </div>
                 }
 
-                <div className="w-[100%] ml-[33%] text-center mt-[110%] bottom-0">
-                    <span onClick={()=>closeHandler()} className="cursor-pointer h-full underline">Close</span>
-                </div>
+
             </div>
+
         </div> 
     </div>
 

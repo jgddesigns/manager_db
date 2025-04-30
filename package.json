@@ -9,6 +9,8 @@
     "start": "SET NODE_ENV=development && node server.js"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.788.0",
+    "@aws-sdk/lib-dynamodb": "^3.789.0",
     "@prisma/client": "^4.1.0",
     "file-saver": "^2.0.5",
     "jwt-decode": "^3.1.2",
@@ -26,7 +28,8 @@
     "react-spinners": "^0.13.3",
     "react-toastify": "^9.0.8",
     "sweetalert2": "^11.4.26",
-    "sweetalert2-react-content": "^5.0.2"
+    "sweetalert2-react-content": "^5.0.2",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@types/next": "^9.0.0",

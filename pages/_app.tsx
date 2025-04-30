@@ -15,14 +15,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [isLoading, setIsLoading] = useState<boolean>(true); // Show loading screen while checking if user has admin access.
 
   useEffect(() => {
-    // fetch from api/current-user
     fetch("/ManagerDB/api/current-user/", {
       method: "GET",
     }).then((res) => {
       if (res.status === 200) {
-        // console.log(res);
         res.json().then((data) => {
-          // console.log(data);
           setUser(data); 
           setIsAdmin(true);
           setIsLoading(false);

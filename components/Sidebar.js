@@ -6,6 +6,7 @@ import BugReport from '../components/ManagerDBTable/modals/BugReport'
 import Hierarchy from '../components/ManagerDBTable/modals/Hierarchy'
 import  HierarchyProcess from '../utils/helpers/HierarchyProcess'
 import { BallTriangle } from 'react-loader-spinner'
+import DynamoDB from '../database/DynamoDB.js'
 
 
 export default function Sidebar() {
@@ -17,19 +18,30 @@ export default function Sidebar() {
     const [HierarchyStart, setHierarchyStart] = useState(false)
     const [Employees, setEmployees] = useState('')
     const [EmployeeList, setEmployeeList] = useState([])
+    const [GetData, setGetData] = useState(false)
 
     useEffect(() => {
-        fetch("/ManagerDB/api/current-user/", {
-          method: "GET",
-        }).then((res) => {
-          if (res.status === 200) {
-            res.json().then((data) => {
-              setUser(data);
-            });
-          }
-        }
-        );
+        // fetch("/ManagerDB/api/current-user/", {
+        //   method: "GET",
+        // }).then((res) => {
+        //   if (res.status === 200) {
+        //     res.json().then((data) => {
+        //       setUser(data);
+        //     });
+        //   }
+        // }
+        // );
       }, []);
+
+      useEffect(() => {
+        if(EmployeeList.length > 0){
+          setEmployees(HierarchyProcess(EmployeeList, 'Colorado'))
+          console.log(EmployeeList)
+          setIsHierarchy(true)
+          setHierarchyLoad(false)
+          setGetData(false)         
+        }
+      }, [EmployeeList]);
 
     //When the sidebar is clicked, the appropriate function is called to display information related to the clicked icon.
     //@param props: The text of the icon that was clicked.
@@ -43,18 +55,20 @@ export default function Sidebar() {
       }else if (props == "Hierarchy"){
         setHierarchyStart(true)
         setHierarchyLoad(true)
-        fetch("/ManagerDB/api/managers/", {
-          method: "GET",
-        }).then((res) => {
-          res.json().then((data) => {   
-            console.log(data)    
-            setEmployeeList(data)   
-            setEmployees(HierarchyProcess(data, 'CA'))
-          }).then(()=>{
-            setIsHierarchy(true)
-            setHierarchyLoad(false)
-          })
-        })
+        setGetData(true)
+
+        // fetch("/ManagerDB/api/managers/", {
+        //   method: "GET",
+        // }).then((res) => {
+        //   res.json().then((data) => {   
+        //     console.log(data)    
+        //     setEmployeeList(data)   
+        //     setEmployees(HierarchyProcess(data, 'CA'))
+        //   }).then(()=>{
+        //     setIsHierarchy(true)
+        //     setHierarchyLoad(false)
+        //   })
+        // })
       }else if("Insert Employee"){
         document.getElementById("insert_test").click()
       }else if("User Guide"){
@@ -77,6 +91,7 @@ export default function Sidebar() {
 
   return (
     <div>
+    <DynamoDB/>
     <div className="flex fixed top-0 left-0 w-24 flex-col bg-[#333] h-screen shadow-lg ">
       <div className="pt-4 p-4" >
           <Image src={CaltransLogo} layout="responsive" alt=""  className="pt-16" />
@@ -127,12 +142,14 @@ export default function Sidebar() {
             
         {isHierarchy ?
           <div className="absolute mt-[5%] ml-[7%] mb-16 z-2">
-            <Hierarchy user={user} setIsHierarchy={setIsHierarchy} setHierarchyStart={setHierarchyStart} Employee={Employees}/>
+            <Hierarchy user={user} setIsHierarchy={setIsHierarchy} setHierarchyStart={setHierarchyStart} EmployeeList={EmployeeList} Employee={Employees}/>
           </div>
         :null}
     </div>
   :null}
+  <DynamoDB GetData={GetData} setAllManagerDB={setEmployeeList} />
     </div>
+    
     
     )
 }

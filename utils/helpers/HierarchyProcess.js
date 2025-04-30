@@ -15,33 +15,36 @@ export default function HierarchyProcess(employees, dist){
     }
 
     for (let i = 0; i < employees.length; i++) {
-        if(employees[i]['DISTRICT'] == dist && (deputy_map.deputy_name != employees[i]['DEPUTY_NAME'])){
-            deputy_map.deputy_name = employees[i]['DEPUTY_NAME']
-            deputy_map.deputy_efis = employees[i]['EFIS']
-            deputy_map.district = employees[i]['DISTRICT']
+        // console.log("employees")
+        // console.log(employees[i]['district'] )
+        // break
+        if(employees[i]['district'] == dist && (deputy_map.deputy_name != employees[i]['deputy_name'])){
+            deputy_map.deputy_name = employees[i]['deputy_name']
+            deputy_map.deputy_efis = employees[i]['efis']
+            deputy_map.district = employees[i]['district']
         }   
 
         for (let i = 0; i < employees.length; i++) {
-            if(employees[i]['DISTRICT'] == dist && (!prin_added.includes(employees[i]['PRIN_NAME']))){
+            if(employees[i]['district'] == dist && (!prin_added.includes(employees[i]['prin_name']))){
                 var principal_map = {
                     prin_name: "",
                     prin_efis: "",
                     chiefs: []
                 }
 
-                principal_map.prin_name = employees[i]['PRIN_NAME']
-                principal_map.prin_efis = employees[i]['PRIN_EFIS']
+                principal_map.prin_name = employees[i]['prin_name']
+                principal_map.prin_efis = employees[i]['prin_efis']
 
                 for (let j = 0; j < employees.length; j++) {
-                    if(principal_map.prin_name == employees[j]['PRIN_NAME'] && (employees[j]['DISTRICT'] == dist) && !chief_added.includes(employees[j]['CHIEF_NAME'])){
+                    if(principal_map.prin_name == employees[j]['prin_name'] && (employees[j]['district'] == dist) && !chief_added.includes(employees[j]['chief_name'])){
                         var chief_map = {
                             chief_name: "",
                             chief_efis: "",
                             stes: []
                         }
 
-                        chief_map.chief_name = employees[j]['CHIEF_NAME']
-                        chief_map.chief_efis = employees[j]['CHIEF_EFIS']
+                        chief_map.chief_name = employees[j]['chief_name']
+                        chief_map.chief_efis = employees[j]['chief_efis']
                         
                         var ste_arr = []
                         var ste_efis_arr = []
@@ -50,10 +53,10 @@ export default function HierarchyProcess(employees, dist){
                             ste_efis: ste_efis_arr,
                         }
                         for(let k = 0; k < employees.length; k++){
-                            if((chief_map.chief_name == employees[k]['CHIEF_NAME']) && (employees[k]['DISTRICT'] == dist) &&  (!ste_added.includes(employees[k]['STE_NAME']))){
-                                ste_arr.push(employees[k]['STE_NAME'])
-                                ste_efis_arr.push(employees[k]['STE_EFIS'])
-                                ste_added.push(employees[k]['STE_NAME'])
+                            if((chief_map.chief_name == employees[k]['chief_name']) && (employees[k]['district'] == dist) &&  (!ste_added.includes(employees[k]['chief_name']))){
+                                ste_arr.push(employees[k]['chief_name'])
+                                ste_efis_arr.push(employees[k]['ste_efis'])
+                                ste_added.push(employees[k]['chief_name'])
                             }
                         }
 
@@ -75,6 +78,8 @@ export default function HierarchyProcess(employees, dist){
         }
     }
         hierarchy.push(deputy_map)
+        console.log("\n\nhierarchy")
+        console.log(hierarchy)
     return hierarchy
 }
 

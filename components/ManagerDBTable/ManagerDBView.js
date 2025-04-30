@@ -3,6 +3,7 @@ import SelectedEmployee from './SelectedEmployee'
 import ResetData from './modals/ResetData'
 import {FaSort} from 'react-icons/fa'
 import BugReport from './modals/BugReport'
+import DynamoDB from '../../database/DynamoDB.js'
 
 export default function ManagerDBView({searchResults, setSearchInput, searchInput, setAllManagerDB}){
   const [selectedUser, setSelectedUser] = useState(null)
@@ -16,21 +17,16 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
   const [isReset, setIsReset] = useState(false)
   const [ToggleDistrict, setToggleDistrict] = useState(false)
   const [isBugReport, setIsBugReport] = useState(false)
+  const [GetData, setGetData] = useState(false)
+  const [TableData, setTableData] = useState(null)
   
+
   useEffect(() => {
     if(selectedUser == null && !reloadPopup){
-      setSearchInput("")
-      fetch("/ManagerDB/api/managers/", {
-        method: "GET",
-      }).then((res) => {
-        res.json().then((data) => {
-          setAllManagerDB(data)
-        }).then(()=>{
-          setLoadingGraphic(false)
-        })
-      });
+      setGetData(true) 
     }
-  }, [selectedUser])
+  }, [selectedUser, reloadPopup])
+
 
   //Alerts the user that entering any new information in the search field will clear the current displayed employee.
   //@param: None.
@@ -222,6 +218,7 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
               <BugReport/>
           </div>
       }
+      <DynamoDB GetData={GetData} setAllManagerDB={setAllManagerDB} />
     </div>
   )
 }
