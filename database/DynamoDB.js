@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb"
 import { DynamoDBDocumentClient, PutCommand, ScanCommand } from "@aws-sdk/lib-dynamodb"
 import { v4 as uuidv4 } from "uuid"
-import { aws_credentials } from "./credentials.js"
+import aws_credentials from "./credentials.js"
 
 export default function DynamoDB(props) {
 
@@ -10,10 +10,10 @@ export default function DynamoDB(props) {
   const [Items, setItems] = React.useState(null)
 
   const client = new DynamoDBClient({
-      region: aws_credentials["REGION"],
+      region: aws_credentials[0],
       credentials: {
-        accessKeyId: aws_credentials["ACCESS_KEY"],
-        secretAccessKey: aws_credentials["SECRET_KEY"]
+        accessKeyId: aws_credentials[1],
+        secretAccessKey: aws_credentials[2]
       },
   })
     
