@@ -44,4 +44,4 @@ yarn-error.log*
 .idea/
 
 
-/database/credentials.js
+# /database/credentials.js
