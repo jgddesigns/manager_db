@@ -10,7 +10,7 @@ export default function Instructions() {
   return (
       <>
         {/*<AiFillQuestionCircle size={25} onClick={toggle}/>*/}
-        {!showInstructions ? <button onClick={toggle} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 mb-3 rounded">Show Instructions</button> :  <button onClick={toggle} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 mb-3 rounded">Hide Instructions</button> } 
+        {!showInstructions ? <button onClick={toggle} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 mb-3 rounded">Show Instructions</button> :  <button onClick={toggle} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 mb-3 rounded">Hide Instructions </button> } 
         <div >
           <ul style={{display: showInstructions ? "block":"none"}} className="text-black bg-300 rounded p-5 mb-3 w-[44rem]">
             <li> 1. Search for an employee in the field on the right side of the 'Employees' section.</li><br/>
