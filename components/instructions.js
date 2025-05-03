@@ -1,7 +1,7 @@
 import {AiFillQuestionCircle} from 'react-icons/ai'
 import {useState} from "react";
 
-export default function NoAccessLoader() {
+export default function Instructions() {
   const [showInstructions, setShowInstructions] = useState(false);
   function toggle() {
     setShowInstructions(!showInstructions)
