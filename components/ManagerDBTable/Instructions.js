@@ -1,5 +1,5 @@
 import {AiFillQuestionCircle} from 'react-icons/ai'
-import {useState} from "react";
+import {React, useState, useEffect} from 'react'
 
 export default function Instructions() {
   const [showInstructions, setShowInstructions] = useState(false);
