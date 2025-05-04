@@ -54,6 +54,12 @@ export default function index() {
   }
 
   return (
+    <div>
+    {window.screen.width < 800 ?
+      <div className="mt-48 text-black">
+        No mobile support. Intended for desktop only. 
+      </div>
+    :
     <div className="grid gap-[1rem] space-y-4 pb-24">
       <div className="text-center text-3xl text-black mt-8 mb-8">Manager Update Tool for Construction</div>
         <div className="hidden"><button id="insert_test" onClick={(e)=>{setInsert()}}>Insert</button></div>
@@ -119,7 +125,7 @@ export default function index() {
             theme="colored"
         />
         <DynamoDB GetData={GetData} setAllManagerDB={setAllManagerDB} />
-    </div>
+    </div>}</div>
   )
 }
 
