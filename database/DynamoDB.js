@@ -10,10 +10,10 @@ export default function DynamoDB(props) {
   const [Items, setItems] = React.useState(null)
 
   const client = new DynamoDBClient({
-      region: aws_credentials[0],
+      region: aws_credentials[2],
       credentials: {
-        accessKeyId: aws_credentials[1],
-        secretAccessKey: aws_credentials[2]
+        accessKeyId: aws_credentials[0],
+        secretAccessKey: aws_credentials[1]
       },
   })
     
