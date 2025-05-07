@@ -10,17 +10,17 @@ import aws_credentials from "../database/credentials.js";
 
 export async function getServerSideProps() {
   try{
-    const client = new DynamoDBClient({
-      region: aws_credentials[2],
+    const client: any = new DynamoDBClient({
+      region: aws_credentials[2] ?? "",
       credentials: {
-        accessKeyId: aws_credentials[0],
-        secretAccessKey: aws_credentials[1],
+        accessKeyId: aws_credentials[0] ?? "",
+        secretAccessKey: aws_credentials[1] ?? "",
       },
     });
 
     const dynamo = DynamoDBDocumentClient.from(client);
 
-    const data = await dynamo.send(new ScanCommand({ TableName: aws_credentials[3] }));
+    const data = await dynamo.send(new ScanCommand({ TableName: aws_credentials[3] ?? ""}));
 
     return {
       props: { items: data.Items || [] },
