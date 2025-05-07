@@ -11,7 +11,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import DynamoDB from '../../database/DynamoDB.js'
 
-export default function index() {
+export default function index(props) {
   const [searchInput, setSearchInput] = useState('')
   const [allManagerDB, setAllManagerDB] = useState([])
   const [isInsert, setIsInsert] = useState(false)
@@ -23,11 +23,13 @@ export default function index() {
   const [GetData, setGetData] = useState(false)
 
   useEffect(() => {
-    if(allManagerDB.length > 0){
+    if(props.Items.length > 0){
       console.log("DB confirmed")
-      console.log(allManagerDB)
+      // let items = 
+      console.log(JSON.parse(props.Items)["items"])
+      setAllManagerDB(JSON.parse(props.Items)["items"])
     } 
-  }, [allManagerDB])
+  }, [props.Items])
 
   function setInsert(){
     setIsInsert(true)
@@ -61,7 +63,7 @@ export default function index() {
       </div>
     :
     <div className="grid gap-[1rem] space-y-4 pb-24">
-      <div className="text-center text-3xl text-black mt-8 mb-8">Manager Update Tool for Construction</div>
+      <div className="text-center text-3xl text-black mt-8 mb-8">Database Modifier</div>
         <div className="hidden"><button id="insert_test" onClick={(e)=>{setInsert()}}>Insert</button></div>
         <div className="hidden"><button id="clear_test" onClick={(e)=>{setClear()}}>Clear</button></div>
         <div className="hidden"><button id="clear_data_test" onClick={(e)=>{setChange()}}>Clear Data</button></div>

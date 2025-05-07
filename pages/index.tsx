@@ -1,23 +1,48 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import ManagerDBTable from '../components/ManagerDBTable'
 import Favicon from 'react-favicon'
+import React, { useEffect, useState } from "react";
+import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient, ScanCommand } from "@aws-sdk/lib-dynamodb";
+import aws_credentials from "../database/credentials.js";
 
-const Home: NextPage = () => {
-  // Redirect user to Home page
+
+export async function getServerSideProps() {
+  const client = new DynamoDBClient({
+    region: aws_credentials[2],
+    credentials: {
+      accessKeyId: aws_credentials[0],
+      secretAccessKey: aws_credentials[1],
+    },
+  });
+
+  const dynamo = DynamoDBDocumentClient.from(client);
+
+  try {
+    const data = await dynamo.send(new ScanCommand({ TableName: aws_credentials[3] }));
+
+    return {
+      props: { items: data.Items || [] },
+    };
+  } catch (err) {
+    console.error("Error retrieving items:", err);
+    return {
+      props: { items: [] },
+    };
+  }
+}
+
+const Home: NextPage = (items) => {
   
   return (
-    // Form with 3 dropdowns
     <div className="flex">
       <Head>
-        <title>Manager DB Tool</title>
-        <Favicon url="http://svgccrm01.dot.ca.gov:3000/ManagerDB/pages/favicon.ico" />
-        <link rel="icon" type="image/x-icon" href="images/favicon.png" />
+        <title>Database Modifier</title>
+        <Favicon url="/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
-      <ManagerDBTable/>
-
-      
+      <ManagerDBTable Items={JSON.stringify(items)} />
     </div>
   )
 }

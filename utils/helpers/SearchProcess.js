@@ -16,6 +16,7 @@ export default function SearchProcess(input, data){
   var filtered_children = []
   var display_package = []
 
+
   for(var i=0; i<users.length; i++){
     var deputyIncluded = false
     var prinIncluded = false
@@ -49,8 +50,9 @@ export default function SearchProcess(input, data){
         }
       }
     }
-
-    if(users[i]['prin_name'] != null){
+    console.log(users[i]['prin_name'])
+    console.log(users[i]['prin_efis'])
+    if(users[i]['prin_name'] != null && users[i]['prin_efis'] != null){
       if(users[i]['prin_name'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['prin_efis'].includes(search_text)){
         for(var j=0; j<filtered_users.length; j++){
             if(users[i]['prin_name'] == filtered_users[j]){
@@ -78,7 +80,7 @@ export default function SearchProcess(input, data){
       }
     }
 
-    if(users[i]['chief_name'] != null){
+    if(users[i]['chief_name'] != null && users[i]['chief_efis'] != null){
       if(users[i]['chief_name'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['chief_efis'].includes(search_text)){
         for(var j=0; j<filtered_users.length; j++){
             if(users[i]['chief_name'] == filtered_users[j]){
@@ -106,7 +108,7 @@ export default function SearchProcess(input, data){
       }
     }
 
-    if(users[i]['ste_name'] != null){
+    if(users[i]['ste_name'] != null && users[i]['ste_efis'] != null){
       if(users[i]['ste_name'].toLowerCase().includes(search_text.toLowerCase()) || users[i]['ste_efis'].includes(search_text)){
         for(var j=0; j<filtered_users.length; j++){
             if(users[i]['ste_name'] == filtered_users[j]){
@@ -146,6 +148,7 @@ export default function SearchProcess(input, data){
     display_package.push(filtered_users, filtered_email, filtered_roles, filtered_efis, filtered_unit, filtered_district, filtered_tram, filtered_manager, filtered_children)
 
     return display_package
+
 }
 
 

@@ -223,7 +223,7 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
                 <BugReport/>
             </div>
         }
-        <DynamoDB GetData={GetData} setAllManagerDB={setAllManagerDB} />
+        {/* <DynamoDB GetData={GetData} setAllManagerDB={setAllManagerDB} /> */}
       </div>
       }
     </div>
