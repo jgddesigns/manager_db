@@ -9,7 +9,7 @@ import SearchProcess from '../../utils/helpers/SearchProcess'
 import {useState, useEffect} from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import DynamoDB from '../../database/DynamoDB.js'
+// import DynamoDB from '../../database/DynamoDB.js'
 
 export default function index(props) {
   const [searchInput, setSearchInput] = useState('')
@@ -126,7 +126,7 @@ export default function index(props) {
             pauseOnHover
             theme="colored"
         />
-        <DynamoDB GetData={GetData} setAllManagerDB={setAllManagerDB} />
+        {/* <DynamoDB GetData={GetData} setAllManagerDB={setAllManagerDB} /> */}
     </div>}</div>
   )
 }

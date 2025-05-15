@@ -3,7 +3,7 @@ import SelectedEmployee from './SelectedEmployee'
 import ResetData from './modals/ResetData'
 import {FaSort} from 'react-icons/fa'
 import BugReport from './modals/BugReport'
-import DynamoDB from '../../database/DynamoDB.js'
+// import DynamoDB from '../../database/DynamoDB.js'
 
 export default function ManagerDBView({searchResults, setSearchInput, searchInput, setAllManagerDB}){
   const [selectedUser, setSelectedUser] = useState(null)

@@ -6,7 +6,7 @@ import BugReport from '../components/ManagerDBTable/modals/BugReport'
 import Hierarchy from '../components/ManagerDBTable/modals/Hierarchy'
 import  HierarchyProcess from '../utils/helpers/HierarchyProcess'
 import { BallTriangle } from 'react-loader-spinner'
-import DynamoDB from '../database/DynamoDB.js'
+// import DynamoDB from '../database/DynamoDB.js'
 
 
 export default function Sidebar() {
@@ -91,7 +91,7 @@ export default function Sidebar() {
 
   return (
     <div>
-    <DynamoDB/>
+    {/* <DynamoDB/> */}
     <div className="flex fixed top-0 left-0 w-24 flex-col bg-[#333] h-screen shadow-lg ">
       <div className="pt-4 p-4" >
           <Image src={CaltransLogo} layout="responsive" alt=""  className="pt-16" />
@@ -147,7 +147,7 @@ export default function Sidebar() {
         :null}
     </div>
   :null}
-  <DynamoDB GetData={GetData} setAllManagerDB={setEmployeeList} />
+  {/* <DynamoDB GetData={GetData} setAllManagerDB={setEmployeeList} /> */}
     </div>
     
     
