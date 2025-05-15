@@ -42,7 +42,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
       <Layout >
         <Component {...pageProps} />
-         <Favicon url="https://dot.ca.gov/-/media/d618dccb772c461cbc2d2f0f79b749e5.ashx" />
+         <Favicon url="favicon.ico" />
 
 
       </Layout>
