@@ -1,5 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+/database/credentials.js
 /database/local.js
 
 # dependencies
@@ -46,6 +47,3 @@ yarn-error.log*
 
 # IDE
 .idea/
-
-
-# /database/credentials.js

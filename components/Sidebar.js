@@ -54,7 +54,7 @@ export default function Sidebar() {
         setIsBugReport(true)
       }else if (props == "Hierarchy"){
         setHierarchyStart(true)
-        setHierarchyLoad(true)
+        // setHierarchyLoad(true)
         setGetData(true)
 
         // fetch("/ManagerDB/api/managers/", {

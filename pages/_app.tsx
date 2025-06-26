@@ -31,20 +31,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
 
-
-  
-
   // Page has loaded...
   // User is Logged in and isAdmin = true
   if(user){
-
-
     return (
       <Layout >
         <Component {...pageProps} />
          <Favicon url="favicon.ico" />
-
-
       </Layout>
     )
   }
