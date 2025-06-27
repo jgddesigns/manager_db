@@ -57,6 +57,7 @@ export default function Sidebar() {
         setHierarchyStart(true)
         // setHierarchyLoad(true)
         setGetData(true)
+        setEmployeeList
 
         // fetch("/ManagerDB/api/managers/", {
         //   method: "GET",
