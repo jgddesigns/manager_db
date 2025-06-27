@@ -125,7 +125,7 @@ export default function Sidebar() {
       <div>
         <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"> </div>
 
-        {HierarchyLoad ? 
+        {/* {HierarchyLoad ? 
           <div className="fixed z-2 top-[30%] left-[42%]">
             <BallTriangle
             height={275}
@@ -138,7 +138,7 @@ export default function Sidebar() {
             visible={true}
             />
           </div>
-        : null}
+        : null} */}
             
         {isHierarchy ?
           <div className="absolute mt-[5%] ml-[7%] mb-16 z-2">
