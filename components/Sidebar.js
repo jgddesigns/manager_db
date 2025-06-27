@@ -22,8 +22,9 @@ export default function Sidebar() {
 
     useEffect(() => {
         // fetch("/ManagerDB/api/current-user/", {
-        //   method: "GET",
-        // }).then((res) => {
+        //   met  
+        // hod: "GET",
+        // })ff.then((res) => {
         //   if (res.status === 200) {
         //     res.json().then((data) => {
         //       setUser(data);
