@@ -192,7 +192,7 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
       {/* <button id="activate_change" onClick={()=>activateChange()} className="hidden"></button> */}
         {isReset ? 
           <div>
-            <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
+            <div className="fixed w-[110%] h-[100%] left-0  top-0 z-1 bg-gray-800 opacity-75"></div>
             <div className="absolute z-2 top-[10%] left-[29%]">
             <ResetData setIsReset={setIsReset}/>
             </div>

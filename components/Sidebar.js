@@ -9,40 +9,28 @@ import { BallTriangle } from 'react-loader-spinner'
 // import DynamoDB from '../database/DynamoDB.js'
 
 
-export default function Sidebar() {
+export default function Sidebar(props) {
     const [user,setUser] = useState({})
     const [isBugReport, setIsBugReport] = useState(false)
     const [isHierarchy, setIsHierarchy] = useState(false)
     const [isInsert, setIsInsert] = useState(false)
     const [HierarchyLoad, setHierarchyLoad] = useState(false)
     const [HierarchyStart, setHierarchyStart] = useState(false)
-    const [Employees, setEmployees] = useState('')
-    const [EmployeeList, setEmployeeList] = useState([])
+    const [Employees, setEmployees] = useState(null)
+    const [EmployeeList, setEmployeeList] = useState(null)
     const [GetData, setGetData] = useState(false)
 
     useEffect(() => {
-        // fetch("/ManagerDB/api/current-user/", {
-        //   met  
-        // hod: "GET",
-        // })ff.then((res) => {
-        //   if (res.status === 200) {
-        //     res.json().then((data) => {
-        //       setUser(data);
-        //     });
-        //   }
-        // }
-        // );
+        setEmployeeList(JSON.parse(props.Items))
       }, []);
 
       useEffect(() => {
-        if(EmployeeList.length > 0){
-          setEmployees(HierarchyProcess(EmployeeList, 'Colorado'))
-          console.log(EmployeeList)
+        if(Employees){
+          console.log(Employees)
           setIsHierarchy(true)
-          setHierarchyLoad(false)
-          setGetData(false)         
+          setHierarchyLoad(false)    
         }
-      }, [EmployeeList]);
+      }, [Employees]);
 
     //When the sidebar is clicked, the appropriate function is called to display information related to the clicked icon.
     //@param props: The text of the icon that was clicked.
@@ -55,22 +43,8 @@ export default function Sidebar() {
         setIsBugReport(true)
       }else if (props == "Hierarchy"){
         setHierarchyStart(true)
-        // setHierarchyLoad(true)
-        setGetData(true)
-        setEmployeeList
-
-        // fetch("/ManagerDB/api/managers/", {
-        //   method: "GET",
-        // }).then((res) => {
-        //   res.json().then((data) => {   
-        //     console.log(data)    
-        //     setEmployeeList(data)   
-        //     setEmployees(HierarchyProcess(data, 'CA'))
-        //   }).then(()=>{
-        //     setIsHierarchy(true)
-        //     setHierarchyLoad(false)
-        //   })
-        // })
+        setHierarchyLoad(true)
+        setEmployees(HierarchyProcess(EmployeeList, 'California'))
       }else if("Insert Employee"){
         document.getElementById("insert_test").click()
       }else if("User Guide"){
@@ -116,7 +90,7 @@ export default function Sidebar() {
     </div>
     {isBugReport ?
       <div>
-        <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"></div>
+        <div className="fixed w-[110%] h-[100%] right-[4%] top-0 z-1 bg-gray-800 opacity-75"></div>
         <div className="absolute z-2 top-[10%] left-[35%]">
         <BugReport user={user} setIsBugReport={setIsBugReport}/>
         </div>
@@ -125,9 +99,9 @@ export default function Sidebar() {
 
     {HierarchyStart ?
       <div>
-        <div className="fixed w-[100%] h-[100%] left-0 top-0 z-1 bg-gray-800 opacity-75"> </div>
+        <div className="fixed w-[110%] h-[100%] right-[4%] top-0 z-1 bg-gray-800 opacity-75"> </div>
 
-        {/* {HierarchyLoad ? 
+        {HierarchyLoad ? 
           <div className="fixed z-2 top-[30%] left-[42%]">
             <BallTriangle
             height={275}
@@ -140,7 +114,7 @@ export default function Sidebar() {
             visible={true}
             />
           </div>
-        : null} */}
+        : null}
             
         {isHierarchy ?
           <div className="absolute mt-[5%] ml-[7%] mb-16 z-2">
@@ -164,7 +138,7 @@ const getUserInitials = (userFullName) =>{
         let initials = userFullName.split(" ").map(name => name[0]).join("")
         return initials
     }
-    return "NA"
+    return "DM"
 }
 
 //When the logout button is clicked, processes the logout information and redirects the user to the UserBase app.

@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, ScanCommand } from "@aws-sdk/lib-dynamodb";
 import aws_credentials from "../database/credentials.js";
+import Sidebar from '../components/Sidebar';
 
 
 export async function getServerSideProps() {
@@ -42,6 +43,9 @@ const Home: NextPage = (items) => {
         <Favicon url="/favicon.ico" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
+            <div >
+                <Sidebar Items={JSON.stringify(items)}/>
+            </div>
       <ManagerDBTable Items={JSON.stringify(items)} />
     </div>
   )

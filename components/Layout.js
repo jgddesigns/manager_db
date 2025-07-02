@@ -10,9 +10,9 @@ export default function Layout({children}) {
       </div>
     :
     <div className="flex h-screen justify-center ">
-      <div >
+      {/* <div >
           <Sidebar/>
-      </div>
+      </div> */}
       <div className="pl-16">  
         {children}
       </div>

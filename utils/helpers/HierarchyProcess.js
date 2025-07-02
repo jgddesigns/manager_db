@@ -14,10 +14,8 @@ export default function HierarchyProcess(employees, dist){
         principals : []
     }
 
+    employees = employees["items"]
     for (let i = 0; i < employees.length; i++) {
-        // console.log("employees")
-        // console.log(employees[i]['district'] )
-        // break
         if(employees[i]['district'] == dist && (deputy_map.deputy_name != employees[i]['deputy_name'])){
             deputy_map.deputy_name = employees[i]['deputy_name']
             deputy_map.deputy_efis = employees[i]['efis']
@@ -31,12 +29,15 @@ export default function HierarchyProcess(employees, dist){
                     prin_efis: "",
                     chiefs: []
                 }
+                
 
                 principal_map.prin_name = employees[i]['prin_name']
                 principal_map.prin_efis = employees[i]['prin_efis']
+                
 
                 for (let j = 0; j < employees.length; j++) {
                     if(principal_map.prin_name == employees[j]['prin_name'] && (employees[j]['district'] == dist) && !chief_added.includes(employees[j]['chief_name'])){
+                        
                         var chief_map = {
                             chief_name: "",
                             chief_efis: "",
@@ -62,7 +63,7 @@ export default function HierarchyProcess(employees, dist){
 
                         ste_map.ste_name = ste_arr
                         chief_map.stes.push(ste_map)
-                        console.log(JSON.stringify(chief_map))
+                        
                         if(!chief_added.includes(chief_map.chief_name)){
                             principal_map.chiefs.push(chief_map)
                             chief_added.push(chief_map.chief_name)
@@ -70,6 +71,7 @@ export default function HierarchyProcess(employees, dist){
                     }
 
                     if(!prin_added.includes(principal_map.prin_name)){
+             
                         deputy_map.principals.push(principal_map)
                         prin_added.push(principal_map.prin_name)
                     }   
@@ -78,8 +80,7 @@ export default function HierarchyProcess(employees, dist){
         }
     }
         hierarchy.push(deputy_map)
-        console.log("\n\nhierarchy")
-        console.log(hierarchy)
+
     return hierarchy
 }
 

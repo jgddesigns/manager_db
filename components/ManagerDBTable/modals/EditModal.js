@@ -170,8 +170,8 @@ export default function EditModal({setShowEdit, selectedEmployee, superiorMap, s
 
   return (
     <div>
-        <div className="flex w-[40rem] h-[52rem] bg-gray-100 drop-shadow-2xl rounded-xl rounded-tl-[4px] border-[5px] border-[#70AA9B] mb-[10%] text-black overflow-y-auto">
-            <div className="grid grid-rows-2 grid-cols-1 h-[100%]">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 ml-[2%]">
+            <div className="w-[40rem] h-[52rem] bg-gray-100 drop-shadow-2xl rounded-xl border-[5px] border-[#70AA9B] text-black overflow-y-auto p-6">
                 <div className="grid grid-rows-1 grid-cols-2">
                     <div className="bg-[#70AA9B] w-48 h-16 rounded-br-lg z-8">
                         <div className="float-left pl-4 pt-4 text-2xl font-bold text-white">Edit Employee</div>

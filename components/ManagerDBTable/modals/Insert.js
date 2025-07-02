@@ -296,8 +296,8 @@ export default function Insert({setInsert, setIsInsert}) {
 
   return (
     <div>
-        <div className="flex w-[40rem] h-[54rem] bg-gray-100 drop-shadow-2xl rounded-xl rounded-tl-[4px] border-[5px] border-[#70AA9B] mb-[10%]  text-black overflow-y-auto">
-            <div className="grid grid-rows-2 grid-cols-1 h-[100%]">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 ml-[2%]">
+            <div className="w-[40rem] h-[52rem] bg-gray-100 drop-shadow-2xl rounded-xl border-[5px] border-[#70AA9B] text-black overflow-y-auto p-6">
                 <div className="grid grid-rows-1 grid-cols-2">
                     <div className="bg-[#70AA9B] w-48 h-16 rounded-br-lg z-8">
                         <div className="float-left pl-4 pt-4 text-2xl font-bold text-white">Insert</div>
@@ -306,7 +306,7 @@ export default function Insert({setInsert, setIsInsert}) {
                         <FaEdit className="text-5xl text-[#75a3cc]"/>
                     </div>   
                 </div>
-                <div className="grid grid-rows-8 gap-y-8 ml-[33%] w-72 mt-[-15%]">
+                <div className="grid grid-rows-8 gap-y-8 flex justify place-items-center mt-12">
                     <div className="grid grid-cols-2">
                         <span>Name</span>
                         <input className="rounded p-4 h-8 w-56" placeholder="New Employee Name" value={Name} onChange={(e)=>nameChangeHandler(e.target.value)}></input>
@@ -399,7 +399,7 @@ export default function Insert({setInsert, setIsInsert}) {
                         />
                     </div>
                 : null}
-                <div className="w-[100%] ml-[33%] text-center mt-[100%] mb-[2%] bottom-0">
+                <div className="w-[100%] ml-[33%] text-center mt-24 mb-[2%] bottom-0">
                     <span onClick={()=>closeHandler()} className="cursor-pointer h-full underline">Close</span>
                 </div>
             </div>
