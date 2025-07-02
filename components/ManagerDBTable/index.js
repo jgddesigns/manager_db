@@ -57,7 +57,7 @@ export default function index(props) {
 
   return (
     <div>
-    {window.screen.width < 800 ?
+    {window && window.screen.width < 800 ?
       <div className="mt-48 text-black">
         No mobile support. Intended for desktop only. 
       </div>

@@ -74,7 +74,7 @@ export default function Sidebar() {
       }else if("Insert Employee"){
         document.getElementById("insert_test").click()
       }else if("User Guide"){
-        window.open('http://svgccrm01.dot.ca.gov:3030/Docs/ManagerDB_Guide.pdf')
+        window && window.open('http://svgccrm01.dot.ca.gov:3030/Docs/ManagerDB_Guide.pdf')
       }
       console.log(props + " Sidebar button clicked.")
     }

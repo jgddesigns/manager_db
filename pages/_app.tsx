@@ -14,49 +14,72 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [isAdmin, setIsAdmin] = useState<boolean>(true); // Only users with Admin Access should be able to access the app.
   const [isLoading, setIsLoading] = useState<boolean>(true); // Show loading screen while checking if user has admin access.
 
-  useEffect(() => {
-    fetch("/ManagerDB/api/current-user/", {
-      method: "GET",
-    }).then((res) => {
-      if (res.status === 200) {
-        res.json().then((data) => {
+  // useEffect(() => {
+  //   fetch("/ManagerDB/api/current-user/", {
+  //     method: "GET",
+  //   }).then((res) => {
+  //     if (res.status === 200) {
+  //       res.json().then((data) => {
+  //         setUser(data); 
+  //         setIsAdmin(true);
+  //         setIsLoading(false);
+  //       });
+  //     }
+  //   }
+  //   );
+
+  // }, []);
+
+      useEffect(() => {
+      let data = {
+      "sub": "1234567890",
+      "UserName": "Database Modifier",
+      "email": "database@email.com"
+      }
+
           setUser(data); 
           setIsAdmin(true);
           setIsLoading(false);
-        });
-      }
-    }
-    );
+
 
   }, []);
 
 
   // Page has loaded...
   // User is Logged in and isAdmin = true
-  if(user){
+  // if(user){
+
     return (
-      <Layout >
-        <Component {...pageProps} />
-         <Favicon url="favicon.ico" />
-      </Layout>
+      <div>
+        {user ?
+          <div>
+            <Layout >
+              <Component {...pageProps} />
+              <Favicon url="favicon.ico" />
+            </Layout>
+          </div>
+        : null}
+      </div>
     )
-  }
-  // User is not logged in
- else{
-     //While page is loading...
-     if(isLoading){
-      return (
-        <LoadingLoader/>
-      )
-    }
-    else{
-      return (
-        <NoAccessLoader />
-      )
-    }
+
+//     )
+//   }
+//   // User is not logged in
+//  else{
+//      //While page is loading...
+//      if(isLoading){
+//       return (
+//         <LoadingLoader/>
+//       )
+//     }
+//     else{
+//       return (
+//         <NoAccessLoader />
+//       )
+//     }
     
 
- }
+//  }
 }
 
 
