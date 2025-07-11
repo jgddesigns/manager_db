@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import ManagerProcess from '../../utils/helpers/ManagerProcess'
 
-export default function SelectedEmployee({selectedEmployee, setSelectedUser, setLoadingGraphic}) {
+export default function SelectedEmployee({selectedEmployee, setSelectedUser, setLoadingGraphic, allManagerDB}) {
     const [newEmail, setNewEmail] = useState("")
     const [newName, setNewName] = useState("")
     const [NameChanges, setNameChanges] = useState(false)
@@ -27,35 +27,26 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
     const [Close, setClose] = useState([])
     const [Changed, setChanged] = useState([])
     const [Alert, setAlert] = useState([])
+    const [superiorMap, setsuperiorMap] = useState(null)
 
     useEffect(() => {
-        fetch("/ManagerDB/api/current-user/", {
-            method: "GET",
-          }).then((res) => {
-            if (res.status === 200) {
-              res.json().then((data) => {
-                setUser(data)
-              });
-            }
-        });
-
-        // fetch("/ManagerDB/api/managers/", {
-        //     method: "GET",
-        // }).then((res) => {
-        //     res.json().then((data) => {
-        //         setSuperiors(ManagerProcess(data, selectedEmployee)) 
-        //     })
-        // }) 
-    }, [])
+        allManagerDB ? setSuperiors(ManagerProcess(allManagerDB, selectedEmployee)) : null
+        // setSuperiors(ManagerProcess(data, selectedEmployee)) 
+    }, [allManagerDB])
   
-    const superiorMap = Superiors.map((name, index) => {
-        return {
-          manager: Superiors[0][index],
-          efis: Superiors[1][index],
-          current_manager: selectedEmployee.emp_manager,
-          email: Superiors[3][index]
-        }
-    })
+    useEffect(() => {
+        console.log("\n\nsuperiors")
+        console.log(Superiors)
+        const superior_map = Superiors ? Superiors.map((name, index) => {
+            return {
+            manager: Superiors[0][index],
+            efis: Superiors[1][index],
+            current_manager: selectedEmployee.emp_manager,
+            email: Superiors[3][index]
+            } 
+        }) : null
+        superior_map ? setsuperiorMap(superior_map) : null
+    }, [Superiors])
 
     //After the employee information is updated, the audit information is sent to the database
     //@param data: The information to update the employee with.
@@ -766,7 +757,14 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
         <div className='w-full'>
             {showAssign ? 
               <div>
-                <div className="fixed w-[110%] h-[100%] right-[4%] top-0 z-1 bg-gray-800 opacity-75"></div>
+            <div className="fixed z-50 bg-gray-800 opacity-75"
+        style={{
+          top: 'calc(0px - 20px)',
+          bottom: 'calc(0px - 20px)',
+          left: 'calc(0px - 20px)',
+          right: 'calc(0px - 20px)',
+        }}
+    />
                 <div className="absolute z-2 top-[10%] left-[29%]">
                 <AssignModal setShowAssign={setShowAssign} selectedEmployee={selectedEmployee}/>
                 </div>
@@ -774,7 +772,14 @@ export default function SelectedEmployee({selectedEmployee, setSelectedUser, set
             : null }
             {showEdit ? 
               <div>
-                <div className="fixed w-[110%] h-[100%] right-[4%] top-0 z-1 bg-gray-800 opacity-75"></div>
+            <div className="fixed z-50 bg-gray-800 opacity-75"
+        style={{
+          top: 'calc(0px - 20px)',
+          bottom: 'calc(0px - 20px)',
+          left: 'calc(0px - 20px)',
+          right: 'calc(0px - 20px)',
+        }}
+    />
                 <div className="absolute z-2 top-[10%] left-[29%]">
                 <EditModal setShowEdit={setShowEdit} selectedEmployee={selectedEmployee} superiorMap={superiorMap} setNewName={setNewName} setNewEmail={setNewEmail} setChangedManager={setChangedManager} Display={Display} Buttons={Buttons} Close={Close} Changed={Changed} Alert={Alert} setNameChanges={setNameChanges} setEmailChanges={setEmailChanges} setManagerChanges={setManagerChanges}/>
                 </div>

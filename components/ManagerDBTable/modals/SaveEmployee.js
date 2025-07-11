@@ -18,7 +18,7 @@ export default function SaveEmployee({setIsSave}) {
     }
     
   return (
-<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 ml-[2%]">
+<div className="fixed inset-0 flex items-center justify-center  z-50 ml-[2%]">
   <div className="w-[40rem] h-[28rem] bg-gray-100 drop-shadow-2xl rounded-xl border-[5px] border-[#70AA9B] text-black overflow-y-auto p-6">
  
         
@@ -31,7 +31,7 @@ export default function SaveEmployee({setIsSave}) {
         </div>
 
         {/* Confirmation Message and Buttons */}
-        <div className="flex flex-col items-center justify-center flex-1 gap-8">
+        <div className="flex flex-col items-center justify-center flex-1 gap-8 mt-24">
         <span className="font-bold text-center">
             Are you sure you want to save changes to this employee?
         </span>

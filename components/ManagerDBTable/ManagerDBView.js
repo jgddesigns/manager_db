@@ -5,7 +5,7 @@ import {FaSort} from 'react-icons/fa'
 import BugReport from './modals/BugReport'
 // import DynamoDB from '../../database/DynamoDB.js'
 
-export default function ManagerDBView({searchResults, setSearchInput, searchInput, setAllManagerDB}){
+export default function ManagerDBView({searchResults, setSearchInput, searchInput, setAllManagerDB, allManagerDB}){
   const [selectedUser, setSelectedUser] = useState(null)
   const [reloadPopup, setReloadPopup] = useState(false)
   const [loadingGraphic, setLoadingGraphic] = useState(false)
@@ -192,7 +192,14 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
       {/* <button id="activate_change" onClick={()=>activateChange()} className="hidden"></button> */}
         {isReset ? 
           <div>
-            <div className="fixed w-[110%] h-[100%] right-[4%] top-0 z-1 bg-gray-800 opacity-75"></div>
+        <div className="fixed z-50 bg-gray-800 opacity-75"
+        style={{
+          top: 'calc(0px - 20px)',
+          bottom: 'calc(0px - 20px)',
+          left: 'calc(0px - 20px)',
+          right: 'calc(0px - 20px)',
+        }}
+    />
             <div className="absolute z-2 top-[10%] left-[29%]">
             <ResetData setIsReset={setIsReset}/>
             </div>
@@ -215,7 +222,7 @@ export default function ManagerDBView({searchResults, setSearchInput, searchInpu
                 Clear
             </div>
             <div className="bg-white text-black rounded w-128 max-w-128 h-[32rem] pt-2 shadow-lg">
-              {selectedUser ? <SelectedEmployee selectedEmployee={selectedUser} setSelectedUser={setSelectedUser} setLoadingGraphic={setLoadingGraphic}/> : (!loadingGraphic ? renderResults(resultsMap) : renderResults([]))}
+              {selectedUser ? <SelectedEmployee allManagerDB={allManagerDB} selectedEmployee={selectedUser} setSelectedUser={setSelectedUser} setLoadingGraphic={setLoadingGraphic}/> : (!loadingGraphic ? renderResults(resultsMap) : renderResults([]))}
             </div>
           </div>
         :

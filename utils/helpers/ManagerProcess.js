@@ -3,7 +3,9 @@
 //@param selectedEmployee: The employee to be edited.
 //@return: The information needed to update the form.
 export default function SearchProcess(data, selectedEmployee){
-
+  console.log("\n\nmanager process")
+  console.log(data)
+  console.log(selectedEmployee)
   var region = selectedEmployee.emp_district
   var role = selectedEmployee.emp_role
   var emp_efis = selectedEmployee.emp_efis
@@ -17,42 +19,42 @@ export default function SearchProcess(data, selectedEmployee){
 
   if(role == "Principal"){
     for(var i=0; i<data.length; i++){  
-      if((data[i]['DISTRICT'] == region) && (!manager_arr.includes(data[i]['DEPUTY_NAME']))) {
-        manager_arr.push(data[i]['DEPUTY_NAME'])
-        manager_efis_arr.push(data[i]['EFIS'])
-        manager_email_arr.push(data[i]['DEPUTY_EMAIL'])
+      if((data[i]['district'] == region) && (!manager_arr.includes(data[i]['ddeputy_name']))) {
+        manager_arr.push(data[i]['ddeputy_name'])
+        manager_efis_arr.push(data[i]['efis'])
+        manager_email_arr.push(data[i]['efis'])
       }
 
-      if(data[i]['PRIN_EFIS'] == emp_efis){
-        current_manager = data[i]['DEPUTY_NAME']
+      if(data[i]['prin_efis'] == emp_efis){
+        current_manager = data[i]['ddeputy_name']
       }
 
 
   }
 }else if(role == "Chief"){
     for(var i=0; i<data.length; i++){  
-      if((data[i]['DISTRICT'] == region) && (!manager_arr.includes(data[i]['PRIN_NAME']))) {
-        manager_arr.push(data[i]['PRIN_NAME'])
-        manager_efis_arr.push(data[i]['PRIN_EFIS'])
-        manager_email_arr.push(data[i]['PRIN_EMAIL'])
+      if((data[i]['district'] == region) && (!manager_arr.includes(data[i]['prin_name']))) {
+        manager_arr.push(data[i]['prin_name'])
+        manager_efis_arr.push(data[i]['prin_efis'])
+        manager_email_arr.push(data[i]['prin_email'])
       }
 
-      if(data[i]['CHIEF_EFIS'] == emp_efis){
-        current_manager = data[i]['PRIN_NAME']
+      if(data[i]['chief_efis'] == emp_efis){
+        current_manager = data[i]['prin_name']
 
       }
   }
     
   }else if(role == "STE"){
     for(var i=0; i<data.length; i++){
-      if((data[i]['DISTRICT'] == region) && (!manager_arr.includes(data[i]['CHIEF_NAME']))) {
-        manager_arr.push(data[i]['CHIEF_NAME'])
-        manager_efis_arr.push(data[i]['CHIEF_EFIS'])
-        manager_email_arr.push(data[i]['CHIEF_EMAIL'])
+      if((data[i]['district'] == region) && (!manager_arr.includes(data[i]['chief_name']))) {
+        manager_arr.push(data[i]['chief_name'])
+        manager_efis_arr.push(data[i]['chief_efis'])
+        manager_email_arr.push(data[i]['chief_email'])
       }
 
-      if(data[i]['STE_EFIS'] == emp_efis){
-        current_manager = data[i]['CHIEF_NAME']
+      if(data[i]['ste_efis'] == emp_efis){
+        current_manager = data[i]['chief_name']
 
       }
     }

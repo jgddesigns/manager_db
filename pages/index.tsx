@@ -10,6 +10,8 @@ import Sidebar from '../components/Sidebar';
 
 
 export async function getServerSideProps() {
+
+  
   try{
     const client: any = new DynamoDBClient({
       region: aws_credentials[2] ?? "",
@@ -34,8 +36,13 @@ export async function getServerSideProps() {
   }
 }
 
-const Home: NextPage = (items) => {
-  
+interface Props {
+  items: any;
+}
+
+const Home: NextPage = (items: any) => {
+
+
   return (
     <div className="flex">
       <Head>
@@ -47,6 +54,9 @@ const Home: NextPage = (items) => {
                 <Sidebar Items={JSON.stringify(items)}/>
             </div>
       <ManagerDBTable Items={JSON.stringify(items)} />
+     
+
+      
     </div>
   )
 }

@@ -77,20 +77,27 @@ export default function Sidebar(props) {
       <SideBarIcon icon={<FaEdit/>} text={"Insert Employee"}/>
       <SideBarIcon icon={<FaSitemap/>} text={"Hierarchy"}/>
       <SideBarIcon icon={<FaBug/>} text={"Report a Bug"}/>
-      <SideBarIcon icon={<FaTh/>} text={"Dashboard"}  />
+      {/* <SideBarIcon icon={<FaTh/>} text={"Dashboard"}  /> */}
       </div>
       <div className="p-6">
-        <div className="flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-auto
+        {/* <div className="flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-auto
         bg-gray-800 text-[#75a3cc] hover:text-white hover:bg-gray-500 
         rounded-3xl hover:rounded-xl transition-all cursor-pointer group fixed bottom-0" onClick={handleLogout}>
           <FaSignOutAlt/>
           <span className= "sidebar-tooltip group-hover:scale-100 " >Logout</span>
-        </div>
+        </div> */}
       </div>
     </div>
     {isBugReport ?
       <div>
-        <div className="fixed w-[110%] h-[100%] right-[4%] top-0 z-1 bg-gray-800 opacity-75"></div>
+    <div className="fixed z-50 bg-gray-800 opacity-75"
+        style={{
+          top: 'calc(0px - 20px)',
+          bottom: 'calc(0px - 20px)',
+          left: 'calc(0px - 20px)',
+          right: 'calc(0px - 20px)',
+        }}
+    />
         <div className="absolute z-2 top-[10%] left-[35%]">
         <BugReport user={user} setIsBugReport={setIsBugReport}/>
         </div>
@@ -99,7 +106,17 @@ export default function Sidebar(props) {
 
     {HierarchyStart ?
       <div>
-        <div className="fixed w-[110%] h-[100%] right-[4%] top-0 z-1 bg-gray-800 opacity-75"> </div>
+
+    <div className="fixed z-50 bg-gray-800 opacity-75"
+        style={{
+          top: 'calc(0px - 20px)',
+          bottom: 'calc(0px - 20px)',
+          left: 'calc(0px - 20px)',
+          right: 'calc(0px - 20px)',
+        }}
+    />
+
+
 
         {HierarchyLoad ? 
           <div className="fixed z-2 top-[30%] left-[42%]">

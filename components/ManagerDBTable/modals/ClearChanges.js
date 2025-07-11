@@ -14,10 +14,10 @@ export default function ClearChanges({setIsChange}) {
     }
     
     return (
-        <div>
-            <div className="flex w-[40rem] h-[28rem] bg-gray-100 drop-shadow-2xl rounded-xl rounded-tl-[4px] border-[5px] border-[#70AA9B] mb-[10%]  text-black overflow-y-auto">
-                <div className="grid grid-rows-2 grid-cols-1 h-[100%]">
-                    <div className="grid grid-rows-1 grid-cols-2">
+        <div className="fixed inset-0 flex w-full items-center justify-center  z-50 ml-[2%]">
+            <div className="bg-gray-100 drop-shadow-2xl rounded-xl border-[5px] border-[#70AA9B] text-black overflow-y-auto overflow-x-hidden p-6 w-[25%] h-[50%]">
+                <div className="grid grid-rows-2 grid-cols-1 h-3/4">
+                    <div className="grid grid-rows-1 grid-cols-2 w-[70%]">
                         <div className="bg-[#70AA9B] w-48 h-16 rounded-br-lg z-8">
                             <div className="float-left pl-4 pt-4 text-2xl font-bold text-white">Clear Changes</div>
                         </div>  
@@ -25,7 +25,7 @@ export default function ClearChanges({setIsChange}) {
                             <FaExclamation className="text-5xl text-[#75a3cc]"/>
                         </div>   
                     </div>
-                    <div className="grid grid-rows-8 gap-y-8 ml-[45%] w-72 mt-[-20%]">
+                    <div className="grid grid-rows-3 place-items-center gap-y-8 px-32">
                         <div>
                             <span className="font-bold">Proceeding will clear any recent changes. Continue?</span>
                         </div>

@@ -72,10 +72,17 @@ export default function index(props) {
         <div className="hidden"><button id="assign_test" onClick={(e)=>{setAssign()}}>Assign</button></div>
         <div>
             <Instructions />
-            <ManagerDBView searchResults={SearchProcess(searchInput, allManagerDB)} setSearchInput={setSearchInput} searchInput={searchInput} setAllManagerDB={setAllManagerDB}/>
+            <ManagerDBView searchResults={SearchProcess(searchInput, allManagerDB)} setSearchInput={setSearchInput} searchInput={searchInput} allManagerDB={allManagerDB} setAllManagerDB={setAllManagerDB}/>
             {isInsert ?
               <div>
-                <div className="fixed w-[110%] h-[100%] right-[4%] top-0 z-1 bg-gray-800 opacity-75"></div>
+            <div className="fixed z-50 bg-gray-800 opacity-75"
+        style={{
+          top: 'calc(0px - 20px)',
+          bottom: 'calc(0px - 20px)',
+          left: 'calc(0px - 20px)',
+          right: 'calc(0px - 20px)',
+        }}
+    />
                 <div className="absolute z-2 top-[10%] left-[28%]">
                 <Insert setInsert={setAllManagerDB} setIsInsert={setIsInsert}/>
                 </div>
@@ -83,7 +90,14 @@ export default function index(props) {
             :null}
             {isClear ? 
               <div>
-                <div className="fixed w-[110%] h-[100%] right-[4%] top-0 z-1 bg-gray-800 opacity-75"></div>
+            <div className="fixed z-50 bg-gray-800 opacity-75"
+        style={{
+          top: 'calc(0px - 20px)',
+          bottom: 'calc(0px - 20px)',
+          left: 'calc(0px - 20px)',
+          right: 'calc(0px - 20px)',
+        }}
+    />
                 <div className="absolute z-2 top-[10%] left-[28%]">
                 <ClearEmployee setClear={setClear} setIsClear={setIsClear}/>
                 </div>
@@ -99,7 +113,14 @@ export default function index(props) {
             : null }
             {isChange ? 
               <div>
-                <div className="fixed w-[110%] h-[100%] right-[4%] top-0 z-1 bg-gray-800 opacity-75"></div>
+            <div className="fixed z-50 bg-gray-800 opacity-75"
+        style={{
+          top: 'calc(0px - 20px)',
+          bottom: 'calc(0px - 20px)',
+          left: 'calc(0px - 20px)',
+          right: 'calc(0px - 20px)',
+        }}
+    />
                 <div className="absolute z-2 top-[10%] left-[28%]">
                 <ClearChanges setIsChange={setIsChange}/>
                 </div>
@@ -107,7 +128,14 @@ export default function index(props) {
             : null }
             {isReset ? 
               <div>
-                <div className="fixed w-[110%] h-[100%] right-[4%] top-0 z-1 bg-gray-800 opacity-75"></div>
+            <div className="fixed z-50 bg-gray-800 opacity-75"
+        style={{
+          top: 'calc(0px - 20px)',
+          bottom: 'calc(0px - 20px)',
+          left: 'calc(0px - 20px)',
+          right: 'calc(0px - 20px)',
+        }}
+    />
                 <div className="absolute z-2 top-[10%] left-[28%]">
                 <ResetData setIsReset={setIsReset}/>
                 </div>

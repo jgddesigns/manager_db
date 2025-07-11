@@ -4,7 +4,7 @@ import {FaSitemap, FaRegCaretSquareDown} from 'react-icons/fa'
 import  HierarchyProcess from '../../../utils/helpers/HierarchyProcess'
 import { MutatingDots } from 'react-loader-spinner'
 
-export default function Hierarchy({EmployeeList, setIsHierarchy, setHierarchyStart, Employee}) {
+export default function Hierarchy({EmployeeList, setIsHierarchy, setHierarchyStart, Employee, setBlurBG}) {
     const [ChiefMap, setChiefMap] = useState(false)
     const [PrinMap, setPrinMap] = useState(false)
     const [STEMap, setSTEMap] = useState(false)
@@ -182,9 +182,9 @@ export default function Hierarchy({EmployeeList, setIsHierarchy, setHierarchySta
 
   return (
     <div>
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 ml-[2%]">
-            <div className="w-[40rem] h-[52rem] bg-gray-100 drop-shadow-2xl rounded-xl border-[5px] border-[#70AA9B] text-black overflow-y-auto p-6">
-                <div className="grid grid-rows-1 grid-cols-2">
+        <div className="fixed inset-0 flex items-center z-50 justify-center ml-[2%]">
+            <div className="w-[40rem] h-[52rem] bg-gray-100 drop-shadow-2xl rounded-xl border-[5px] border-[#70AA9B] text-black overflow-y-auto overflow-x-hidden p-6">
+                <div className="grid grid-rows-1 grid-cols-2 w-[70%]">
                     <div className="bg-[#70AA9B] w-48 h-16 rounded-br-lg z-8">
                         <div className="float-left pl-4 pt-4 text-2xl font-bold text-white">Employee Tree</div>         
                         {Employees[0].deputy_name ?
@@ -209,7 +209,7 @@ export default function Hierarchy({EmployeeList, setIsHierarchy, setHierarchySta
                         <FaSitemap className="text-5xl text-[#75a3cc]"/>
                     </div>   
                 </div>
-                <div className="absolute top-0 right-0 mt-8 mr-8">
+                <div className="absolute top-0 right-0 py-2 px-6">
                     <span
                     onClick={() => closeHandler()}
                     className="cursor-pointer underline"

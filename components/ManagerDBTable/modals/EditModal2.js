@@ -47,11 +47,11 @@ export default function EditModal2({setShowEdit, selectedEmployee, superiorMap, 
         if(e){
             managerChange.value = selectedEmployee.emp_manager
             errorManager.hidden = true
-            managerChange.classList.add('border-cyan-400')
+            managerChange.classList.add('border-red-400')
         }else{
             managerChange.value = ""
             noChanges.hidden = true
-            managerChange.classList.remove('border-cyan-400')
+            managerChange.classList.remove('border-red-400')
         }
     }
 
@@ -152,11 +152,11 @@ export default function EditModal2({setShowEdit, selectedEmployee, superiorMap, 
 
   return (
     <div>
-<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 ml-[2%]">
+<div className="fixed inset-0 flex items-center justify-center  z-50 ml-[2%]">
   <div className="w-[40rem] h-[28rem] bg-gray-100 drop-shadow-2xl rounded-xl border-[5px] border-[#70AA9B] text-black overflow-y-auto p-6">
-                <div className="grid grid-rows-1 grid-cols-2">
+                <div className="grid grid-rows-1 grid-cols-2 w-[70%]">
                     <div className="bg-[#70AA9B] w-48 h-16 rounded-br-lg z-8">
-                        <div className="float-left pl-4 pt-4 text-2xl font-bold text-white">Edit Employee</div>
+                        <div className="float-left pl-4 pt-4 text-2xl font-bold text-white">Edit Employrrew rwee</div>
                     </div>  
                     <div className="ml-[165%] mt-[5%]">
                         <FaEdit className="text-5xl text-[#75a3cc]"/>

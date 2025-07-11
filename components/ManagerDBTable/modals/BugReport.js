@@ -19,39 +19,61 @@ export default function BugReport ({user, setIsBugReport}) {
     //After submit button is clicked, send the data to the backend. Performs a toast notification to notify the user that the bug report has been sent.
     //@param: None.
     //@return: None.
-    const handleReport = () => {
-        const data = {
-            emp_num: user.userid,
-            application: "Manager DB",
-            page: "ManagerDB",
-            priority: Priority,
-            task_description: ReportText,
-        }
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+
+    async function handleReport(){
+        // const data = {
+        //     emp_num: user.userid,
+        //     application: "Manager DB",
+        //     page: "ManagerDB",
+        //     priority: Priority,
+        //     task_description: ReportText,
+        // }
         setLoadingGraphic(true)
-        fetch("/ManagerDB/api/tasks/", {
-            method: "POST",
-            headers: {
-                'Content-Type':'application/json',
-                'Accept':'application/json'
-            },
-            body: JSON.stringify(data)
-        }).then((res) => {
+
+        await sleep(3000)
+
+        setLoadingGraphic(false) 
+        toast.warn('Bug Report Sent', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+
+        document.getElementById("bug_text").value = ""
+        setSubmitStyling(styling.default)
+        // fetch("/ManagerDB/api/tasks/", {
+        //     method: "POST",
+        //     headers: {
+        //         'Content-Type':'application/json',
+        //         'Accept':'application/json'
+        //     },
+        //     body: JSON.stringify(data)
+        // }).then((res) => {
             
-            res.json().then((data) => {
-                console.log(JSON.stringify(data))
-                setIsBugReport(false)  
-                setLoadingGraphic(false) 
-                toast.warn('Bug Report Sent', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
-            });
-        })
+        //     res.json().then((data) => {
+        //         console.log(JSON.stringify(data))
+        //         setIsBugReport(false)  
+        //         setLoadingGraphic(false) 
+        //         toast.warn('Bug Report Sent', {
+        //             position: "top-right",
+        //             autoClose: 5000,
+        //             hideProgressBar: false,
+        //             closeOnClick: true,
+        //             pauseOnHover: true,
+        //             draggable: true,
+        //             progress: undefined,
+        //         });
+        //     });
+        // })
     }
 
     //Checks if the text area is empty or not. If it is not empty, the submit button will be enabled.
@@ -69,7 +91,7 @@ export default function BugReport ({user, setIsBugReport}) {
     }
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50 ml-[2%]">
+        <div className="fixed inset-0 flex items-center justify-center  z-50 ml-[2%]">
             <div className="w-[40rem] h-[52rem] bg-gray-100 drop-shadow-2xl rounded-xl border-[5px] border-[#70AA9B] text-black overflow-y-auto p-6">
                 <div className="grid grid-rows-4 grid-cols-1 w-full h-full">
                     <div className="grid grid-rows-1 grid-cols-2">
@@ -84,7 +106,7 @@ export default function BugReport ({user, setIsBugReport}) {
                             <div>Issue:</div>
                         </div>
                         <div className="float-left ml-[13%]">
-                            <textarea className="w-[85%] h-48 border-2 rounded border-gray-500 resize-none p-2" placeholder="Please describe the problem..." onChange={(e)=>textHandler(e.target.value)}></textarea>
+                            <textarea id="bug_text" className="w-[85%] h-48 border-2 rounded border-gray-500 resize-none p-2" placeholder="Please describe the problem..." onChange={(e)=>textHandler(e.target.value)}></textarea>
                         </div>
                     </div>
                     <div className="grid grid-rows-2 gap-2 w-72 ml-[15%] mt-[30%]">
@@ -103,7 +125,7 @@ export default function BugReport ({user, setIsBugReport}) {
                     <div className="mt-[15%]">
                         <button className={SubmitStyling} onClick={() => handleReport()} disabled={!IsText?"true":""}>Submit</button>
                         {LoadingGraphic ?
-                            <div className="ml-[70%] mt-12 py-1 px-2">
+                            <div className="ml-[74%] mt-12 py-1 px-2">
                                 <ThreeDots
                                     height = "40"
                                     width = "40"
