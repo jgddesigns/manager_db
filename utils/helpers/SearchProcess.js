@@ -18,6 +18,7 @@ export default function SearchProcess(input, data){
 
 
   for(var i=0; i<users.length; i++){
+    try{
     var deputyIncluded = false
     var prinIncluded = false
     var chiefIncluded = false
@@ -143,12 +144,14 @@ export default function SearchProcess(input, data){
         filtered_manager = [] 
         filtered_children = []
     }
+  }catch{}
   }
 
     display_package.push(filtered_users, filtered_email, filtered_roles, filtered_efis, filtered_unit, filtered_district, filtered_tram, filtered_manager, filtered_children)
-
+    
     return display_package
 
+    
 }
 
 
